@@ -8,7 +8,7 @@ const VerticalNavigationBar = () => {
   return (
     <div className="app-sidebar">
       <LogoBox />
-      <SimplebarReactClient className="scrollbar" data-simplebar>
+      <SimplebarReactClient id="leftside-menu-container" className="scrollbar" data-simplebar>
         <AppMenu menuItems={menuItems} />
       </SimplebarReactClient>
     </div>
