@@ -1,32 +1,32 @@
 [
   {
     "icon": "/assets/images/icon/serviceIcon3_1.svg",
-    "title": "Software Features",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but majority have suffered alteration in some form"   
+    "title": "Verblijfsvergunningen",
+    "desc": "Aanvragen voor tijdelijk of permanent verblijf in Suriname. Inclusief reguliere verblijfsvergunningen, gezinshereniging, en arbeidsvergunningen."   
   },
   {
     "icon": "/assets/images/icon/serviceIcon3_2.svg",
-    "title": "Subscription Plans",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but majority have suffered alteration in some form"   
+    "title": "Naturalisatie",
+    "desc": "Het verkrijgen van het Surinaamse staatsburgerschap via verschillende routes: Surinaamse origine (Art. 4), Naturalisatie door Optie (Art. 5), of Naturalisatie door Huwelijk (Art. 12)."   
   },
   {
     "icon": "/assets/images/icon/serviceIcon3_3.svg",
-    "title": "Customization Option",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but majority have suffered alteration in some form"  
+    "title": "Verklaringen",
+    "desc": "Officiële verklaringen van ingezetenschap (Art. 21) en verklaringen van naturalisatie (NATSO) voor gebruik bij overheidsinstanties en buitenlandse autoriteiten."  
   },
   {
     "icon": "/assets/images/icon/serviceIcon3_5.svg",
-    "title": "Choose a App",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but majority have suffered alteration in some form"  
+    "title": "Duplicaten",
+    "desc": "Vervanging van verloren, gestolen of beschadigde documenten zoals verblijfsvergunningen, naturalisatiebewijzen en verklaringen."  
   },
   {
     "icon": "/assets/images/icon/serviceIcon3_5.svg",
-    "title": "Clean Modern Code",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but majority have suffered alteration in some form"
+    "title": "Conversie",
+    "desc": "Omzetting van een tijdelijke verblijfsvergunning naar een vestigingsvergunning na het voldoen aan de gestelde voorwaarden en verblijfsduur."
   },
   {
     "icon": "/assets/images/icon/serviceIcon3_6.svg",
-    "title": "User Interactive",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but majority have suffered alteration in some form"   
+    "title": "Asiel",
+    "desc": "Asielaanvragen voor personen die internationale bescherming zoeken. Inclusief vluchtelingenstatus en subsidiaire bescherming volgens internationale verdragen."   
   }    
 ]

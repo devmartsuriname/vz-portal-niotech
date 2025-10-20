@@ -1,4 +1,3 @@
-import Brand3 from "../Components/Brand/Brand3";
 import BreadCumb from "../Components/Common/BreadCumb";
 import Cta2 from "../Components/Cta/Cta2";
 import Services1 from "../Components/Services/Services1";
@@ -9,12 +8,10 @@ const ServicePage = () => {
         <div>
             <BreadCumb
                 bgimg="/assets/images/bg/breadcumgBg.png"
-                Title="Services"
-            ></BreadCumb>   
+                Title="Onze Diensten"
+            ></BreadCumb>
             <Cta2></Cta2>  
-            <Services1></Services1>   
-            
-            <Brand3></Brand3>    
+            <Services1></Services1>
         </div>
     );
 };

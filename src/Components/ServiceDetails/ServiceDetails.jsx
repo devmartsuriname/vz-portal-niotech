@@ -8,59 +8,50 @@ const ServiceDetails = () => {
                     <div className="main-thumb img-custom-anim-right wow fadeInLeft" data-wow-delay=".3s">
                         <img src="/assets/images/services/servicesDetailsThumb1_1.jpg" alt="thumb" />
                     </div>
-                    <h2 className="title wow fadeInUp" data-wow-delay=".3s">World best web design service provider.</h2>
+                    <h2 className="title wow fadeInUp" data-wow-delay=".3s">Diensten van Vreemdelingenzaken</h2>
                     <div className="tagcloud">
                         <div className="tag">
-                            <a href="#">Creative</a>
+                            <a href="#">Verblijf</a>
                         </div>
                         <div className="tag">
-                            <a href="#">Branding</a>
+                            <a href="#">Naturalisatie</a>
                         </div>
                         <div className="tag">
-                            <a href="#">Analytics</a>
+                            <a href="#">Verklaringen</a>
                         </div>
                         <div className="tag">
-                            <a href="#">Audience</a>
+                            <a href="#">Officieel</a>
                         </div>
                     </div>
                     <div className="details-box1">
                         <h3 className="subtitle wow fadeInUp" data-wow-delay=".3s">
-                            Service Overview
+                            Dienst Overzicht
                         </h3>
                         <div className="row gy-3">
                             <div className="col-xl-7">
-                                <p className="text wow fadeInUp" data-wow-delay=".3s">Nam posuere mauris enim, quis pretium
-                                    elit placerat id Fusce egestas
-                                    nisi vel ipsum vehicula facilisis In pulvinar imperdiet venenatis className aptent
-                                    taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec
-                                    eu pulvinar lorem. Etiam vestibulum ligula quis nisl feugiat, consectetur placerat
-                                    augue vestibulum Nulla aliquam elit eu diam pharetra.</p>
+                                <p className="text wow fadeInUp" data-wow-delay=".3s">Het Directoraat Vreemdelingenzaken biedt verschillende diensten aan voor vreemdelingen die in Suriname willen verblijven, vestigen of genaturaliseerd willen worden. Elk dienst heeft specifieke vereisten en procedures die zorgvuldig moeten worden gevolgd volgens de Surinaamse wetgeving en internationale verdragen.</p>
                             </div>
                             <div className="col-xl-5">
-                                <p className="text wow fadeInUp" data-wow-delay=".5s">Fusce egestas nisi vel ipsum vehicula
-                                    facilisis. In pulvinar imperdiet
-                                    venenatis. className aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                                    inceptos himenaeos. Donec eu pulvinar lorem. Etiam vestibulum ligula quis nisl
-                                    feugiat, consectetur placerat augue vestibulum.</p>
+                                <p className="text wow fadeInUp" data-wow-delay=".5s">Ons digitale platform biedt een veilige en transparante omgeving voor het indienen van aanvragen. U kunt documenten uploaden, de status van uw aanvraag volgen, en belangrijke updates ontvangen via e-mail. Wij waarborgen een professionele behandeling van alle aanvragen.</p>
                             </div>
                         </div>
                     </div>
                     <div className="details-box2">
                         <h3 className="subtitle wow fadeInUp" data-wow-delay=".3s">
-                            Benefits With Our Service
+                            Voordelen van Onze Dienstverlening
                         </h3>
                         <div className="row gy-3">
                             <div className="col-xl-6">
                                 <div className="feature-wrapper wow fadeInUp" data-wow-delay=".3s">
                                     <ul className="feature">
-                                        <li>consectetur placerat augue vestibulum</li>
-                                        <li>Mauris tincidunt a eget facilisis Quisque</li>
-                                        <li>Lorem ipsum dolor sit amet, consectetur</li>
+                                        <li>Digitale indiening 24/7 beschikbaar</li>
+                                        <li>Veilige verwerking van persoonsgegevens</li>
+                                        <li>Duidelijke checklists per aanvraagtype</li>
                                     </ul>
                                     <ul className="feature">
-                                        <li>adipiscing elit Etiam aliquam, enim vitae</li>
-                                        <li>Donec at augue ante Nam posuere mauris</li>
-                                        <li>quis pretium elit placerat id Fusce egestas</li>
+                                        <li>E-mail notificaties bij statuswijzigingen</li>
+                                        <li>Transparant proces met tracking</li>
+                                        <li>Conform Surinaamse wetgeving</li>
                                     </ul>
                                 </div>
 
@@ -68,8 +59,8 @@ const ServiceDetails = () => {
                             <div className="col-xl-6">
                                 <div className="progress-wrap">
                                     <div className="progress-meta">
-                                        <div className="title">Branding Design</div>
-                                        <div className="percentage">95%</div>
+                                        <div className="title">Digitale Dienstverlening</div>
+                                        <div className="percentage">100%</div>
                                     </div>
                                     <div className="progress-container">
                                         <div className="progress-bar" >
@@ -79,8 +70,8 @@ const ServiceDetails = () => {
                                 </div>
                                 <div className="progress-wrap mb-0">
                                     <div className="progress-meta">
-                                        <div className="title">Business</div>
-                                        <div className="percentage">95%</div>
+                                        <div className="title">Klanttevredenheid</div>
+                                        <div className="percentage">98%</div>
                                     </div>
                                     <div className="progress-container">
                                         <div className="progress-bar" >
@@ -103,18 +94,10 @@ const ServiceDetails = () => {
                             </div>
                         </div>
                         <p className="text1 wow fadeInUp" data-wow-delay=".3s">
-                            Nam posuere mauris enim, quis pretium elit placerat id Fusce egestas nisi vel ipsum vehicula
-                            facilisis In pulvinar imperdiet venenatis className aptent taciti sociosqu ad litora torent per
-                            conubia nostra, per inceptos himenaeos. Donec eu pulvinar lorem. Etiam vestibulum ligula
-                            quis nisl feugiat, consectetur placerat augue vestibulum Nulla aliquam elit eu diam
-                            pharetra.Nam posuere mauris enim, quis pretium elit placerat id Fusce egestas nisi vel ipsum
-                            vehicula facilis
+                            Voor specifieke diensten zoals verblijfsvergunningen, naturalisatie, verklaringen, duplicaten, conversie en asiel gelden verschillende voorwaarden en documentenvereisten. Het is belangrijk om alle benodigde documenten compleet en correct in te dienen om vertragingen te voorkomen. Ons team staat klaar om u te begeleiden tijdens het aanvraagproces en eventuele vragen te beantwoorden.
                         </p>
                         <p className="text2 wow fadeInUp" data-wow-delay=".5s">
-                            Nam posuere mauris enim, quis pretium elit placerat id Fusce egestas nisi vel ipsum vehicula
-                            facilisis In pulvinar imperdiet venenatis className aptent taciti sociosqu ad litora torent per
-                            conubia nostra, per inceptos himenaeos. Donec eu pulvinar lorem. Etiam vestibulum ligula
-                            quis nisl feugiat,
+                            U kunt te allen tijde de status van uw aanvraag inzien via uw persoonlijke dashboard. Belangrijke updates en beslissingen worden automatisch per e-mail naar u verzonden. Voor aanvullende informatie of persoonlijke begeleiding kunt u contact opnemen met ons kantoor of een afspraak maken.
                         </p>
                     </div>
                 </div>

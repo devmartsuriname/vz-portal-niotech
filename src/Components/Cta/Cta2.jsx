@@ -13,14 +13,11 @@ const Cta2 = () => {
             <div className="shape2 fix"><img src="/assets/images/shape/testimonialShape2_2.png" alt="shape" /></div>
             <div className="container">
                 <div className="service-wrapper style3">
-                    <h2 className="wow fadeInUp" data-wow-delay=".3s">Join our team to create the best digital solutions.
+                    <h2 className="wow fadeInUp" data-wow-delay=".3s">Waarom kiezen voor ons digitale portaal?
                     </h2>
-                    <p className="text wow fadeInUp" data-wow-delay=".5s">There are many variations of passages of Lorem
-                        Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. If you are going to use There are many variations of passages of Lorem
-                        Ipsum available, but the majority have suffered alteration in some form, by injected humour, or
-                        randomised words which do not look even slightly believable. If you are going to use</p>
+                    <p className="text wow fadeInUp" data-wow-delay=".5s">Het Ministerie van Justitie en Politie biedt u een veilige en gebruiksvriendelijke digitale omgeving om uw vreemdelingenzaken-aanvragen in te dienen. Met ons portaal kunt u 24/7 aanvragen indienen, documenten uploaden, en de status van uw aanvraag volgen. Wij waarborgen een transparant proces en snelle behandeling van alle aanvragen volgens de geldende wet- en regelgeving.</p>
 
-                    <Link to="/contact"> <span className="theme-btn wow fadeInUp" data-wow-delay=".3s"> Join Our Team
+                    <Link to="/instructies"> <span className="theme-btn wow fadeInUp" data-wow-delay=".3s"> Bekijk Instructies
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
                                 fill="none">
                                 <g clipPath="url(#clip0_199_944)">

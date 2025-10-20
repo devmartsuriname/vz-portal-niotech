@@ -6,8 +6,8 @@ const ServiceDetailPage = () => {
         <div>
             <BreadCumb
                 bgimg="/assets/images/bg/breadcumgBg.png"
-                Title="Services Details"
-            ></BreadCumb> 
+                Title="Dienst Details"
+            ></BreadCumb>
             <ServiceDetails></ServiceDetails>              
         </div>
     );
