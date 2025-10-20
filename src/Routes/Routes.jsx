@@ -10,6 +10,12 @@ import ContactPage from "../Pages/ContactPage";
 import BlogStandardPage from "../Pages/BlogStandardPage";
 import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
 import FaqPage from "../Pages/FaqPage";
+import Instructies from "../Pages/Instructies";
+import DocumentenLijsten from "../Pages/DocumentenLijsten";
+import AanvraagIndienen from "../Pages/AanvraagIndienen";
+import Vergunningen from "../Pages/Vergunningen";
+import Overzicht from "../Pages/Overzicht";
+import Feedback from "../Pages/Feedback";
 import { adminRoutes } from './AdminRoutes';
 
 
@@ -50,6 +56,30 @@ export const router = createBrowserRouter([
         {
           path: "/contact",
           element: <ContactPage></ContactPage>,
+        },
+        {
+          path: "/instructies",
+          element: <Instructies></Instructies>,
+        },
+        {
+          path: "/documenten-lijsten",
+          element: <DocumentenLijsten></DocumentenLijsten>,
+        },
+        {
+          path: "/aanvraag-indienen",
+          element: <AanvraagIndienen></AanvraagIndienen>,
+        },
+        {
+          path: "/vergunningen",
+          element: <Vergunningen></Vergunningen>,
+        },
+        {
+          path: "/overzicht",
+          element: <Overzicht></Overzicht>,
+        },
+        {
+          path: "/feedback",
+          element: <Feedback></Feedback>,
         },
       ],
     },             

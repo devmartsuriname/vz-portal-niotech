@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Paspoort (houderpagina)",
+    "category": "Identiteit",
+    "validity": "120 maanden",
+    "translation": "Nee",
+    "required_for": ["Verblijf", "Naturalisatie", "Asiel", "Verklaringen"]
+  },
+  {
+    "id": 2,
+    "name": "Geboorteakte",
+    "category": "Burgerlijke Staat",
+    "validity": "Permanent",
+    "translation": "Ja (indien niet in Nederlands)",
+    "required_for": ["Verblijf", "Naturalisatie"]
+  },
+  {
+    "id": 3,
+    "name": "Bewijs van Ingezetenschap",
+    "category": "Adres Verificatie",
+    "validity": "6 maanden",
+    "translation": "Nee",
+    "required_for": ["Verblijf", "Naturalisatie", "Verklaringen"]
+  },
+  {
+    "id": 4,
+    "name": "Pasfoto (3.5cm × 4.5cm)",
+    "category": "Identiteit",
+    "validity": "N/A",
+    "translation": "N/A",
+    "required_for": ["Verblijf", "Naturalisatie", "Asiel", "Verklaringen"]
+  },
+  {
+    "id": 5,
+    "name": "VOG (Verklaring van Goed Gedrag)",
+    "category": "Juridisch",
+    "validity": "6 maanden",
+    "translation": "Ja (indien buitenlands)",
+    "required_for": ["Verblijf", "Naturalisatie"]
+  },
+  {
+    "id": 6,
+    "name": "Bewijs van Inkomen",
+    "category": "Financieel",
+    "validity": "3 maanden",
+    "translation": "Nee",
+    "required_for": ["Verblijf", "Naturalisatie"]
+  },
+  {
+    "id": 7,
+    "name": "Nederlands A2 Certificaat",
+    "category": "Taalvaardigheid",
+    "validity": "Permanent",
+    "translation": "N/A",
+    "required_for": ["Naturalisatie"]
+  },
+  {
+    "id": 8,
+    "name": "Huwelijksakte",
+    "category": "Burgerlijke Staat",
+    "validity": "Permanent",
+    "translation": "Ja (indien niet in Nederlands)",
+    "required_for": ["Verblijf", "Naturalisatie"]
+  },
+  {
+    "id": 9,
+    "name": "Politierapport (bij verlies/diefstal)",
+    "category": "Juridisch",
+    "validity": "1 maand",
+    "translation": "Nee",
+    "required_for": ["Verklaringen"]
+  },
+  {
+    "id": 10,
+    "name": "Medische Documenten",
+    "category": "Medisch",
+    "validity": "Variabel",
+    "translation": "Ja (indien niet in Nederlands)",
+    "required_for": ["Asiel"]
+  },
+  {
+    "id": 11,
+    "name": "Originele Verblijfsvergunning",
+    "category": "Identiteit",
+    "validity": "N/A",
+    "translation": "N/A",
+    "required_for": ["Verklaringen"]
+  },
+  {
+    "id": 12,
+    "name": "Bewijs van Adreswijziging",
+    "category": "Adres Verificatie",
+    "validity": "3 maanden",
+    "translation": "Nee",
+    "required_for": ["Verklaringen"]
+  }
+]

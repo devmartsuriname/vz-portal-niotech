@@ -10,72 +10,61 @@ export default function Nav({ setMobileToggle }) {
         </Link>
       </li>
       <li className="menu-item-has-children">
-        <Link to="#">Pages</Link>
+        <Link to="#">Diensten</Link>
         <DropDown>
           <ul>
             <li>
-              <Link to="/about" onClick={() => setMobileToggle(false)}>
-                About Us
+              <Link to="/instructies" onClick={() => setMobileToggle(false)}>
+                Instructies
               </Link>
             </li>
             <li>
-              <Link to="/faq" onClick={() => setMobileToggle(false)}>
-                FAQ
-              </Link>
-            </li> 
-            <li>
-              <Link to="/contact" onClick={() => setMobileToggle(false)}>
-                Contact
-              </Link>
-            </li>                         
-          </ul>
-        </DropDown>
-      </li>  
-      
-      <li className="menu-item-has-children">
-        <Link to="/service" onClick={() => setMobileToggle(false)}>
-          Services
-        </Link>
-        <DropDown>
-          <ul>
-            <li>
-              <Link to="/service" onClick={() => setMobileToggle(false)}>
-                Services
+              <Link to="/documenten-lijsten" onClick={() => setMobileToggle(false)}>
+                Documentenlijsten
               </Link>
             </li>
             <li>
-              <Link to="/service/service-details" onClick={() => setMobileToggle(false)}>
-                Service Details
-              </Link>
-            </li>
-          </ul>
-        </DropDown>
-      </li>      
-      <li className="menu-item-has-children">
-        <Link to="/blog" onClick={() => setMobileToggle(false)}>
-          Blog
-        </Link>
-        <DropDown>
-          <ul>
-            <li>
-              <Link to="/blog" onClick={() => setMobileToggle(false)}>
-                Blog
+              <Link to="/aanvraag-indienen" onClick={() => setMobileToggle(false)}>
+                Aanvraag Indienen
               </Link>
             </li>
             <li>
-              <Link
-                to="/blog/blog-details"
-                onClick={() => setMobileToggle(false)}
-              >
-                Blog Details
+              <Link to="/vergunningen" onClick={() => setMobileToggle(false)}>
+                Vergunningen
+              </Link>
+            </li>
+            <li>
+              <Link to="/overzicht" onClick={() => setMobileToggle(false)}>
+                Overzicht
               </Link>
             </li>
           </ul>
         </DropDown>
       </li>
+      
+      <li>
+        <Link to="/about" onClick={() => setMobileToggle(false)}>
+          Over Ons
+        </Link>
+      </li>
+      <li>
+        <Link to="/faq" onClick={() => setMobileToggle(false)}>
+          FAQ
+        </Link>
+      </li>
+      <li>
+        <Link to="/blog" onClick={() => setMobileToggle(false)}>
+          Nieuws
+        </Link>
+      </li>
       <li>
         <Link to="/contact" onClick={() => setMobileToggle(false)}>
           Contact
+        </Link>
+      </li>
+      <li>
+        <Link to="/feedback" onClick={() => setMobileToggle(false)}>
+          Feedback
         </Link>
       </li>
     </ul>

@@ -11392,3 +11392,184 @@ textarea.is-invalid {
    --progress-width: 95%; 
    animation: 1.8s ease 0s 1 normal forwards running animate-positive; opacity: 1;
 }
+
+/* Phase 1.4 Custom Page Styles */
+
+/* Hover Scale Animation (for cards) */
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(116, 68, 253, 0.2);
+}
+
+/* Service Box Enhancements */
+.service-box.style3 {
+  border: 1px solid var(--border);
+  padding: 30px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.service-box.style3:hover {
+  border-color: #7444FD;
+  background: #f8f9fa;
+}
+
+/* Table Responsive Styles */
+.table-responsive {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+  background: #7444FD;
+  color: white;
+  font-weight: 600;
+  padding: 15px;
+  border: none;
+}
+
+.table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+}
+
+/* Badge Styles */
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+/* Counter Area */
+.counter-item {
+  padding: 20px;
+}
+
+.counter-number {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Sidebar Styles */
+.cs_sidebar {
+  position: sticky;
+  top: 120px;
+}
+
+.cs_sidebar_item {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.cs_sidebar_links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cs_sidebar_links li {
+  margin-bottom: 15px;
+}
+
+.cs_sidebar_links a {
+  display: flex;
+  align-items: center;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.cs_sidebar_links a:hover {
+  color: #7444FD;
+}
+
+.cs_sidebar_links i {
+  margin-right: 10px;
+  color: #7444FD;
+}
+
+.cs_cta_card {
+  text-align: center;
+}
+
+.cs_cta_card h4 {
+  color: var(--title);
+  margin-bottom: 15px;
+}
+
+/* Form Enhancements */
+.form-control:focus,
+.form-select:focus {
+  border-color: #7444FD;
+  box-shadow: 0 0 0 0.2rem rgba(116, 68, 253, 0.25);
+}
+
+/* Alert Styles */
+.alert {
+  border-radius: 10px;
+  border-left: 4px solid;
+}
+
+.alert-info {
+  border-left-color: #0dcaf0;
+}
+
+/* Feature Box Style 3 */
+.feature-box.style3 {
+  padding: 30px;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.feature-box.style3:hover {
+  box-shadow: 0 10px 30px rgba(116, 68, 253, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+  .cs_sidebar {
+    position: static;
+    margin-top: 50px;
+  }
+  
+  .counter-number {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 767px) {
+  .service-box.style3 {
+    padding: 20px;
+  }
+  
+  .counter-number {
+    font-size: 28px;
+  }
+  
+  .table {
+    font-size: 14px;
+  }
+  
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .btn-group .btn {
+    margin-bottom: 5px;
+  }
+}
