@@ -1,7 +1,9 @@
-import SignIn from '../pages/admin/SignIn';
-import SignUp from '../pages/admin/SignUp';
-import Dashboard from '../pages/admin/Dashboard';
+import SignIn from '../admin/pages/auth/SignIn';
+import SignUp from '../admin/pages/auth/SignUp';
+import Dashboard from '../admin/pages/dashboard/Dashboard';
+import AdminLayout from '../admin/layout/AdminLayout';
 import { ProtectedRoute } from '../components/auth/ProtectedRoute';
+import { Navigate } from 'react-router-dom';
 
 export const adminRoutes = {
   path: '/admin',
@@ -15,20 +17,22 @@ export const adminRoutes = {
       element: <SignUp />,
     },
     {
-      path: 'dashboard',
+      path: '',
       element: (
         <ProtectedRoute>
-          <Dashboard />
+          <AdminLayout />
         </ProtectedRoute>
       ),
-    },
-    {
-      index: true,
-      element: (
-        <ProtectedRoute>
-          <Dashboard />
-        </ProtectedRoute>
-      ),
+      children: [
+        {
+          index: true,
+          element: <Navigate to="/admin/dashboard" replace />,
+        },
+        {
+          path: 'dashboard',
+          element: <Dashboard />,
+        },
+      ],
     },
   ],
 };
