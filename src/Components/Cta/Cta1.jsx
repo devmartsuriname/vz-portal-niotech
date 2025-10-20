@@ -26,7 +26,7 @@ const Cta1 = ({subtitle,title,content,btnurl1,btnurl2,btnname1,btnname2,img}) =>
                                             <p className="section-desc text-white mxw-651 wow fadeInUp" data-wow-delay=".6s">
                                                 {content}</p>
                                         </div>
-                                        <div className="btn-wrapper style1 wow fadeInUp" data-wow-delay=".8s">
+                                        <div className="btn-wrapper d-flex gap-3 wow fadeInUp" data-wow-delay=".8s">
                                             <Link className="theme-btn" to={btnurl1}>
                                                 {btnname1}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
