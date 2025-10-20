@@ -1,20 +1,38 @@
 [
   {
     "img": "/assets/images/icon/serviceIcon1_1.svg",
-    "title": "Software Features",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",  
+    "title": "Verblijfsvergunningen",
+    "desc": "Aanvragen voor verblijf in Suriname voor Surinaamse origine en andere nationaliteiten",  
     "addclass": "service-box style1 wow fadeInUp"  
   },
   {
     "img": "/assets/images/icon/serviceIcon1_2.svg",
-    "title": "Customization Option",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+    "title": "Naturalisatie",
+    "desc": "Surinaams staatsburgerschap verkrijgen via verschillende procedures (Art. 5, Art. 12, origine)",
     "addclass": "service-box style1 wow fadeInUp"  
   },
   {
     "img": "/assets/images/icon/serviceIcon1_3.svg",
-    "title": "Subscription Plans",
-    "desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+    "title": "Verklaringen",
+    "desc": "Verklaringen van ingezetenschap (Art. 21) en naturalisatie (NATSO) voor officiële doeleinden",
     "addclass": "service-box style1 active wow fadeInUp"  
-  } 
+  },
+  {
+    "img": "/assets/images/icon/serviceIcon1_1.svg",
+    "title": "Duplicaten",
+    "desc": "Vervanging van verloren of beschadigde verblijfs- en naturalisatiedocumenten",
+    "addclass": "service-box style1 wow fadeInUp"  
+  },
+  {
+    "img": "/assets/images/icon/serviceIcon1_2.svg",
+    "title": "Conversie",
+    "desc": "Omzetting van verblijfsvergunning naar vestigingsvergunning voor permanente inwoners",
+    "addclass": "service-box style1 wow fadeInUp"  
+  },
+  {
+    "img": "/assets/images/icon/serviceIcon1_3.svg",
+    "title": "Asiel",
+    "desc": "Asielaanvragen en bescherming voor vluchtelingen met UNHCR certificaat",
+    "addclass": "service-box style1 wow fadeInUp"  
+  }
 ]

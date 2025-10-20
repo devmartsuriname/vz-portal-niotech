@@ -16,50 +16,50 @@ const Home = () => {
     return (
         <div>
             <HeroBanner1
-                subtitle="<span>News!</span>Find Your Solution"
-                title="We Develop Websites, Applications, and Brands."
-                content="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum,"
-                btnname="Get Started Now"
-                btnurl="/contact"
-                btntwo="Learn More"
-                btn2url="/about"
+                subtitle="<span>Welkom bij</span> Vreemdelingenzaken"
+                title="Dien uw verblijfs-, vestigings- en naturalisatieverzoeken digitaal in"
+                content="Het Ministerie van Justitie en Politie biedt u de mogelijkheid om alle vreemdelingenzaken-aanvragen digitaal in te dienen. Volg de instructies, download documentenlijsten, en verstuur uw aanvraag veilig."
+                btnname="Aanvraag Indienen"
+                btnurl="/aanvraag-indienen"
+                btntwo="Lees Instructies"
+                btn2url="/instructies"
                 cusimg="/assets/images/intro/introProfileThumb1_1.png"
-                cusnumber="2,291"
-                cuscontent="Happy Customers"
-                rating="4.8/5"
-                ratingcon="Rating"
+                cusnumber="Sinds 2020"
+                cuscontent="Officiële Overheidsportaal"
+                rating="Ministerie van Justitie"
+                ratingcon="en Politie"
                 img="/assets/images/intro/introThumb1_1.png"
             ></HeroBanner1>
             <Brand1></Brand1>
             <About1
                 img1="/assets/images/about/aboutThumb1_1.png"
                 img2="/assets/images/about/aboutThumb1_2.png"
-                subtitle="About Our App"
-                title="Simple Reports & Analytics Backdown As it"
-                content="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use"
+                subtitle="Over Vreemdelingenzaken"
+                title="Uw partner voor verblijfs- en naturalisatiezaken"
+                content="Het Directoraat Vreemdelingenzaken is verantwoordelijk voor het beheer van alle verblijfs-, vestiging- en naturalisatieverzoeken in Suriname. Wij zorgen voor een efficiënte en transparante dienstverlening aan alle burgers en vreemdelingen die in Suriname willen verblijven, vestigen of naturaliseren."
                 FeatureList={[
-                    "With our Technological and Marketing Solutions.",
-                    "We are trusted all over the world.",
-                    "Start Your 14 Days Free Trials Today!",
+                    "Erkend door het Ministerie van Justitie en Politie",
+                    "Veilige en geëncrypteerde indiening van aanvragen",
+                    "Ondersteuning voor alle vreemdelingenzaken procedures",
                 ]}                
-                btnname="Discover More"
+                btnname="Meer Informatie"
                 btnurl="/about"
             ></About1>
             <HowWork></HowWork>
             <Choose1
-                subtitle="App Advantage"
-                title="Get Benefit By Using Trending Apps"
-                content="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly"
+                subtitle="Waarom Digitaal?"
+                title="Sneller, veiliger en transparanter"
+                content="Ons digitale portaal biedt u de mogelijkheid om uw vreemdelingenzaken-aanvragen online in te dienen, zonder dat u naar ons kantoor hoeft te komen. U kunt uw aanvraag 24/7 indienen en de status online volgen."
                 FeatureList={[
-                    "Friendly Design",
-                    "SEO Optimized",
+                    "24/7 Beschikbaar - Dien uw aanvraag in wanneer het u uitkomt",
+                    "Directe Bevestiging - Ontvang direct een agenummer na indiening",
                 ]} 
                 FeatureList2={[
-                    "Cloud Storage",
-                    "Strong Security",
+                    "Veilige Opslag - Uw documenten worden veilig opgeslagen",
+                    "Tracking & Updates - Volg de status van uw aanvraag online",
                 ]}                 
-                btnname="Download App"
-                btnurl="/about"
+                btnname="Begin Aanvraag"
+                btnurl="/aanvraag-indienen"
             ></Choose1>
             <Feature1></Feature1>
             <Counter1></Counter1>
@@ -68,11 +68,11 @@ const Home = () => {
             <Feature2></Feature2>
             
             <Cta1
-                subtitle="Our App"
-                title="Download our app and start your free trail to get started today!"
-                content="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised"
-                btnurl1="https://play.google.com/store"
-                btnurl2="https://www.apple.com/store"
+                subtitle="Klaar om te beginnen?"
+                title="Dien vandaag nog uw aanvraag in via ons digitale portaal"
+                content="Begin met uw aanvraag door de wizard te volgen. Verzamel eerst uw documenten en volg de instructies voor een succesvolle indiening."
+                btnurl1="/aanvraag-indienen"
+                btnurl2="/instructies"
                 img="/assets/images/cta/ctaThumb1_1.png"
             ></Cta1>
             <Blog1></Blog1>
