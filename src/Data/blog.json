@@ -1,38 +1,50 @@
 [
   {
-    "img": "/assets/images/blog/blogThumb3_1.jpg",  
-    "title": "Regional Managers time management."
+    "img": "/assets/images/blog/blogThumb1_1.jpg",
+    "category": "Beleid",
+    "title": "Nieuwe richtlijnen voor verblijfsvergunningen (2024)",
+    "excerpt": "Per 1 januari 2024 gelden nieuwe richtlijnen voor het aanvragen van verblijfsvergunningen. Lees hier wat er verandert.",
+    "date": "15 januari 2024",
+    "author": "Ministerie van Justitie"
   },
   {
-    "img": "/assets/images/blog/blogThumb3_2.jpg",  
-    "title": "Revitalising your people in a retail downturn"
+    "img": "/assets/images/blog/blogThumb1_2.jpg",
+    "category": "Nieuws",
+    "title": "Wijzigingen in naturalisatieprocedure",
+    "excerpt": "De naturalisatieprocedure is aangepast om het proces te versnellen. Bekijk hier de belangrijkste wijzigingen.",
+    "date": "10 februari 2024",
+    "author": "Ministerie van Justitie"
   },
   {
-    "img": "/assets/images/blog/blogThumb3_3.jpg",  
-    "title": "Organisationaly teams are just like families."
+    "img": "/assets/images/blog/blogThumb1_1.jpg",
+    "category": "Feestdag",
+    "title": "Feestdagen: aangepaste openingstijden",
+    "excerpt": "Tijdens de komende feestdagen zijn onze kantoren beperkt geopend. Plan uw bezoek vooraf.",
+    "date": "20 december 2024",
+    "author": "Ministerie van Justitie"
   },
   {
-    "img": "/assets/images/blog/blogThumb3_4.jpg",  
-    "title": "Services that printing at you is important"
+    "img": "/assets/images/blog/blogThumb3_4.jpg",
+    "category": "Wijziging",
+    "title": "Digitale indiening nu beschikbaar",
+    "excerpt": "U kunt nu uw aanvragen volledig digitaal indienen via ons nieuwe portaal. Geen wachtrijen meer.",
+    "date": "5 maart 2024",
+    "author": "Ministerie van Justitie"
   },
   {
-    "img": "/assets/images/blog/blogThumb3_5.jpg",  
-    "title": "That will help you get 1% better every day"
+    "img": "/assets/images/blog/blogThumb3_5.jpg",
+    "category": "Beleid",
+    "title": "Verlenging van verblijfsvergunningen",
+    "excerpt": "Nieuwe richtlijnen voor het verlengen van verblijfsvergunningen. Bekijk de voorwaarden en deadlines.",
+    "date": "12 april 2024",
+    "author": "Ministerie van Justitie"
   },
   {
-    "img": "/assets/images/blog/blogThumb3_6.jpg",  
-    "title": "A checklist to improve your daily routine"
-  }, 
-  {
-    "img": "/assets/images/blog/blogThumb3_7.jpg",  
-    "title": "Principles UX that should be aware of winner"
-  },
-  {
-    "img": "/assets/images/blog/blogThumb3_8.jpg",  
-    "title": "Awaited technology final change the world"
-  },
-  {
-    "img": "/assets/images/blog/blogThumb3_9.jpg",  
-    "title": "Artificial intelligence that will blow your mind"
-  } 
+    "img": "/assets/images/blog/blogThumb3_6.jpg",
+    "category": "Nieuws",
+    "title": "Asielprocedure versneld",
+    "excerpt": "De asielprocedure is gestroomlijnd om sneller uitsluitsel te geven. Lees meer over de veranderingen.",
+    "date": "25 mei 2024",
+    "author": "Ministerie van Justitie"
+  }
 ]
