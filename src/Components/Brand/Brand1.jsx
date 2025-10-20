@@ -41,7 +41,7 @@ const Brand1 = () => {
                 <div className="container">
                     <div className="brand-slider-wrapper style1">
                         <h2 className="single-section-title wow fadeInUp" data-wow-delay=".2s">
-                            Millions of clients trust us.
+                            Erkend en ondersteund door
                         </h2>
                         <div className="row">
                             <div className="slider-area brandSliderOne">
@@ -52,7 +52,7 @@ const Brand1 = () => {
                                     {data.map((item, index)=>(
                                         <div key={index} className="swiper-slide">
                                             <div className="brand-logo">
-                                                <img src={item.img} alt="logo" />
+                                                <img src={item.img} alt={item.alt || "Partner logo"} />
                                             </div>
                                         </div>
                                         ))}
