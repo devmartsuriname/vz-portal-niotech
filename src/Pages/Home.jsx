@@ -9,7 +9,7 @@ import Feature1 from "../Components/Feature/Feature1";
 import Feature2 from "../Components/Feature/Feature2";
 import HeroBanner1 from "../Components/HeroBanner/HeroBanner1";
 import HowWork from "../Components/HowWork/HowWork";
-import Pricing1 from "../Components/Pricing/Pricing1";
+
 import Testimonial from "../Components/Testimonial/Testimonial";
 
 const Home = () => {
@@ -66,7 +66,7 @@ const Home = () => {
             <Faq1></Faq1>
             <Testimonial></Testimonial>
             <Feature2></Feature2>
-            <Pricing1></Pricing1>
+            
             <Cta1
                 subtitle="Our App"
                 title="Download our app and start your free trail to get started today!"

@@ -35,11 +35,11 @@ Component Architecture
 Main application source code
 
 #### `/src/Components`
-Reusable React components organized by feature:
+Reusable React components organized by feature - **Production Components**:
 - **About**: About section variations
-- **Blog**: Blog cards and listing components
+- **Blog**: Blog cards and listing components (BlogStandard retained)
 - **Brand**: Brand/logo showcases
-- **Card**: Reusable card components (Feature, Pricing, Project, Team)
+- **Card**: Reusable card components (Feature cards)
 - **Choose**: "Why Choose Us" sections
 - **Common**: Shared utilities (BreadCumb, SectionTitle, etc.)
 - **ContactInfo**: Contact forms and information
@@ -48,39 +48,53 @@ Reusable React components organized by feature:
 - **Faq**: FAQ accordion components
 - **Feature**: Feature showcases
 - **Footer**: Footer component
-- **Header**: Header with navigation (4 variants)
+- **Header**: Header with navigation (Header4 used)
 - **HeroBanner**: Hero/banner sections
 - **HowWork**: Process/workflow sections
-- **Pricing**: Pricing table components
-- **Project**: Project portfolio components
 - **Services**: Service cards and sections
-- **Team**: Team member cards
 - **Testimonial**: Testimonial sliders
 - **VideoModal**: Video popup modals
 
+**Removed During Cleanup**:
+- ~~Team components~~ (Team1, Team2, TeamDetails)
+- ~~Pricing components~~ (Pricing1-4, PricingCard)
+- ~~Project components~~ (Project1, Project2, ProjectCard, ProjectDetails)
+- ~~Blog variants~~ (BlogLeftSidebar)
+
 #### `/src/Pages`
-Page-level components (one per route):
-- Home variations (Home, Home2, Home3)
-- About, Services, Pricing
-- Projects (Project1, Project2, ProjectDetails)
-- Team (Team, TeamDetails)
-- Blog variations (Blog, BlogStandard, BlogLeft, BlogDetails)
-- Contact, FAQ
+Page-level components (one per route) - **Production Only**:
+- **Home.jsx** - Main landing page
+- **AboutPage.jsx** - About page
+- **ServicePage.jsx** - Services listing
+- **ServiceDetailPage.jsx** - Individual service details
+- **FaqPage.jsx** - FAQ page
+- **BlogStandardPage.jsx** - Blog with sidebar
+- **BlogDetaillsPage.jsx** - Blog post details
+- **ContactPage.jsx** - Contact page
+
+**Note**: Demo pages (Home2, Home3, Team, Pricing, Projects) removed during cleanup.
 
 #### `/src/Layout`
 Layout wrapper components:
-- **Main.jsx**: Default layout (Header1 + Footer)
-- **Layout2.jsx**: Alternative layout (Header2 + Footer)
-- **Layout3.jsx**: Third layout variant (Header3 + Footer)
-- **Layout4.jsx**: Fourth layout variant (Header4 + Footer)
+- **Layout4.jsx**: Production layout (Header4 + Footer) - **Used for all public routes**
+
+**Note**: Main, Layout2, and Layout3 removed during cleanup. System now uses single layout.
 
 #### `/src/Routes`
 - **Routes.jsx**: Centralized routing configuration using React Router
 
 #### `/src/Data`
-JSON files for content management:
-- Enables easy content updates without code changes
-- Supports multiple data variations (e.g., brand1, hero, testimonial1/2)
+JSON files for content management - **Production Data**:
+- ✅ `blog.json` - Blog posts
+- ✅ `services1.json` - Service offerings
+- ✅ `faq1.json`, `faq2.json` - FAQ content
+- ✅ `counter.json` - Statistics
+- ✅ `brand1.json` - Partner logos
+- ✅ `feature1.json` - Features
+- ✅ `testimonial1.json`, `testimonial2.json` - Testimonials
+- ✅ `work.json` - How it works
+
+**Removed**: ~~team1.json, project1.json, project2.json~~
 
 #### `/src/assets`
 - **main.css**: Complete Niotech design system (11,000+ lines)
@@ -115,25 +129,28 @@ import data from '../../Data/services1.json';
 ))}
 ```
 
-## Routing Structure
+## Routing Structure (Updated - Post Cleanup)
 
-### Route Organization
+### Production Route Organization
 ```javascript
-Main Routes (Layout4):
-- /about
-- /service, /service/service-details
-- /pricing
-- /project, /project2, /project/project-details
-- /team, /team/team-details
-- /faq
-- /blog, /blog-sidebar, /blog-left-sidebar, /blog/blog-details
-- /contact
+Public Routes (Layout4 only):
+├── / → Home (index route)
+├── /about → About
+├── /service → Services
+├── /service/service-details → Service Details
+├── /faq → FAQ
+├── /blog → Blog (with sidebar)
+├── /blog/blog-details → Blog Details
+└── /contact → Contact
 
-Home Variants:
-- / (Main layout with Home)
-- /home2 (Layout2 with Home2)
-- /home3 (Layout3 with Home3)
+Admin Routes (AdminLayout - separate):
+├── /admin → Redirect to dashboard
+├── /admin/auth/sign-in → Admin Sign In
+├── /admin/auth/sign-up → Admin Sign Up
+└── /admin/dashboard → Admin Dashboard
 ```
+
+**Note**: Demo routes (home2, home3, team, pricing, projects) have been removed. See `docs/frontend-cleanup.md` for details.
 
 ## Styling Architecture
 
@@ -233,5 +250,18 @@ Currently uses **component-level state** with React hooks:
 
 ---
 
-**Architecture Version**: 1.0
-**Last Updated**: 2025-10-20
+## Recent Updates
+
+### Frontend Cleanup (January 2025)
+✅ **Consolidated to single layout** (Layout4 only)  
+✅ **Removed demo content** (Home2, Home3, Team, Pricing, Projects)  
+✅ **Streamlined navigation** (8 production pages)  
+✅ **Optimized routing** (eliminated duplicate routes)  
+✅ **Cleaned codebase** (removed 25+ unused files)
+
+📄 **Full cleanup details**: See `docs/frontend-cleanup.md`
+
+---
+
+**Architecture Version**: 2.0 (Post-Cleanup)  
+**Last Updated**: 2025-01 (Cleanup Complete)

@@ -88,21 +88,31 @@ src/
 
 ## Frontend-Backend Separation
 
-### Architecture
+### Architecture (Updated Post-Cleanup)
 ```
 Application
-├── Public Frontend (Niotech)
-│   ├── Routes: / (all except /admin/*)
+├── Public Frontend (Niotech) - 8 Production Pages
+│   ├── Routes: / (Home, About, Services, Service Details, FAQ, Blog, Blog Details, Contact)
+│   ├── Layout: Layout4 only (consolidated)
 │   ├── Styling: Bootstrap + Custom CSS
 │   ├── Language: JavaScript (.jsx)
-│   └── Access: Public, no authentication
+│   ├── Access: Public, no authentication
+│   └── Status: ✅ Production-ready, demo content removed
 │
-└── Admin Backend
-    ├── Routes: /admin/*
-    ├── Styling: Tailwind CSS + shadcn/ui
+└── Admin Backend (Darkone)
+    ├── Routes: /admin/* (Sign In, Sign Up, Dashboard)
+    ├── Layout: AdminLayout (Darkone theme)
+    ├── Styling: Bootstrap 5 + SCSS + Darkone theme
     ├── Language: TypeScript (.tsx)
-    └── Access: Protected, requires authentication
+    ├── Access: Protected, requires authentication
+    └── Status: ✅ 1:1 Darkone integration complete
 ```
+
+**Frontend Cleanup Notes:**
+- Removed demo routes: home2, home3, team, pricing, projects
+- Consolidated from 4 layouts to 1 (Layout4)
+- Simplified navigation from 20+ links to 8 essential pages
+- See `docs/frontend-cleanup.md` for full details
 
 ### Data Flow
 ```
@@ -268,220 +278,67 @@ Use the Lovable Cloud interface to:
 ---
 
 **Phase 1 Completed**: 2025-10-20 (Niotech Frontend)  
-**Phase 2 Completed**: 2025-10-20 (Admin Backend + Auth)  
-**Status**: ✅ Backend Operational with Authentication  
+**Phase 2 Completed**: 2025-01 (Darkone Admin 1:1 Integration)  
+**Phase 2B Completed**: 2025-01 (Frontend Cleanup & Production Optimization)  
+**Status**: ✅ Backend Operational | ✅ Frontend Production-Ready  
 **Next**: Phase 3 - Full Backend Features & Data Integration
-
-### Overview
-The next phase will integrate the Darkone admin dashboard backend system to provide:
-- Admin panel functionality
-- Database management
-- API endpoints
-- User authentication
-- Content management
-
-### Darkone Files Available
-The project repository includes Darkone backend files in:
-```
-Darkone-React_v1.0/
-├── src/
-│   ├── app/
-│   │   └── (admin)/     # Admin routes
-│   ├── components/      # Backend UI components
-│   ├── helpers/         # Backend utilities
-│   └── routes/          # Backend routing
-```
-
-### Integration Strategy (To Be Implemented)
-1. **Separate Admin Routes**: Keep admin panel distinct from public-facing Niotech frontend
-2. **Authentication Layer**: Implement protected routes for admin access
-3. **API Structure**: Create RESTful API endpoints for data management
-4. **Database Schema**: Design and implement database structure
-5. **State Management**: Potentially integrate Redux or Context API for complex state
-
-### Planned Features
-- 📊 Admin dashboard with analytics
-- 👥 User management
-- 📝 Content management system (CMS)
-- 🎨 UI component library (Apex Charts, base UI components)
-- 🔐 Role-based access control
-- 📈 Data visualization
-
-### Tech Stack (Backend - Planned)
-- **Admin Framework**: Darkone React Admin Template
-- **Authentication**: To be determined (JWT, OAuth, etc.)
-- **Database**: To be determined (PostgreSQL, MongoDB, etc.)
-- **API**: To be determined (REST, GraphQL)
-- **Backend Runtime**: To be determined (Node.js/Express, Supabase, etc.)
-
-## Frontend-Backend Separation
-
-### Current Architecture
-```
-Frontend (Niotech)
-├── Public Routes
-│   ├── Home, About, Services
-│   ├── Blog, Projects, Team
-│   └── Contact, Pricing, FAQ
-```
-
-### Planned Architecture
-```
-Frontend (Niotech) + Backend (Darkone)
-├── Public Routes (Niotech)
-│   ├── Home, About, Services
-│   ├── Blog, Projects, Team
-│   └── Contact, Pricing, FAQ
-│
-└── Admin Routes (Darkone)
-    ├── /admin/dashboard
-    ├── /admin/users
-    ├── /admin/content
-    ├── /admin/analytics
-    └── /admin/settings
-```
-
-## API Endpoints (To Be Implemented)
-
-### Proposed Structure
-```
-/api/v1/
-├── /auth
-│   ├── POST /login
-│   ├── POST /register
-│   ├── POST /logout
-│   └── GET /me
-├── /content
-│   ├── GET /blogs
-│   ├── POST /blogs
-│   ├── PUT /blogs/:id
-│   └── DELETE /blogs/:id
-├── /users
-│   ├── GET /users
-│   ├── GET /users/:id
-│   ├── PUT /users/:id
-│   └── DELETE /users/:id
-└── /analytics
-    └── GET /stats
-```
-
-## Data Flow (Planned)
-
-### Content Management
-```
-Admin Dashboard (Darkone)
-    ↓ (Create/Edit)
-Backend API
-    ↓ (Store)
-Database
-    ↓ (Fetch)
-Frontend (Niotech)
-    ↓ (Display)
-End Users
-```
-
-## Security Considerations (To Be Implemented)
-
-### Authentication
-- JWT token-based authentication
-- Secure password hashing
-- Session management
-- Refresh token rotation
-
-### Authorization
-- Role-based access control (RBAC)
-- Admin, Editor, Viewer roles
-- Protected API endpoints
-- Route guards for admin pages
-
-### Data Protection
-- Input validation and sanitization
-- SQL injection prevention
-- XSS protection
-- CSRF tokens
-- Rate limiting
-
-## Environment Variables (To Be Configured)
-
-```env
-# Backend API
-VITE_API_URL=http://localhost:3000
-VITE_API_TIMEOUT=10000
-
-# Database
-DATABASE_URL=
-DATABASE_NAME=
-
-# Authentication
-JWT_SECRET=
-JWT_EXPIRY=
-
-# Third-party Services
-SMTP_HOST=
-SMTP_PORT=
-SMTP_USER=
-SMTP_PASS=
-```
-
-## Database Schema (To Be Designed)
-
-### Proposed Tables
-1. **users**
-   - id, email, password_hash, role, created_at, updated_at
-
-2. **blogs**
-   - id, title, slug, content, author_id, published_at, created_at, updated_at
-
-3. **projects**
-   - id, title, description, image_url, category, created_at, updated_at
-
-4. **team_members**
-   - id, name, position, bio, image_url, social_links, created_at, updated_at
-
-5. **services**
-   - id, title, description, icon_url, created_at, updated_at
-
-6. **pricing_plans**
-   - id, name, price, features, created_at, updated_at
-
-## Development Roadmap
-
-### Phase 2A: Backend Setup (Upcoming)
-- [ ] Choose and configure backend framework
-- [ ] Set up database
-- [ ] Implement authentication system
-- [ ] Create basic CRUD API endpoints
-- [ ] Integrate with Niotech frontend
-
-### Phase 2B: Admin Dashboard (Upcoming)
-- [ ] Integrate Darkone admin template
-- [ ] Implement admin routes
-- [ ] Create content management interface
-- [ ] Build user management system
-- [ ] Add analytics dashboard
-
-### Phase 2C: Advanced Features (Future)
-- [ ] File upload system
-- [ ] Email notifications
-- [ ] Search functionality
-- [ ] Caching layer
-- [ ] Rate limiting
-- [ ] Logging and monitoring
-
-## Testing Strategy (To Be Implemented)
-
-### Backend Testing
-- Unit tests for API endpoints
-- Integration tests for database operations
-- E2E tests for authentication flow
-
-### Frontend-Backend Integration
-- API contract testing
-- Mock server for frontend development
-- Cypress E2E tests for full user flows
 
 ---
 
-**Status**: 🔄 Phase 1 Complete, Phase 2 Pending
-**Last Updated**: 2025-10-20
-**Awaiting**: Further instructions for Darkone backend integration
+## Frontend Cleanup Summary (Phase 2B)
+
+### What Changed
+✅ **Consolidated Layouts**: 4 layouts → 1 (Layout4 only)  
+✅ **Removed Demo Pages**: Home2, Home3, Team, Pricing, Projects  
+✅ **Streamlined Navigation**: 20+ links → 8 essential pages  
+✅ **Cleaned Components**: Removed 25+ unused files  
+✅ **Optimized Routes**: Eliminated duplicate and demo routes  
+
+### Production Pages (8 Total)
+| Route | Component | Status |
+|-------|-----------|--------|
+| `/` | Home | ✅ Production |
+| `/about` | AboutPage | ✅ Production |
+| `/service` | ServicePage | ✅ Production |
+| `/service/service-details` | ServiceDetailPage | ✅ Production |
+| `/faq` | FaqPage | ✅ Production |
+| `/blog` | BlogStandardPage | ✅ Production |
+| `/blog/blog-details` | BlogDetailsPage | ✅ Production |
+| `/contact` | ContactPage | ✅ Production |
+
+📄 **Full cleanup documentation**: `docs/frontend-cleanup.md`
+
+---
+
+## Current System Architecture
+
+### Public Frontend (Niotech) - ✅ Production Ready
+```
+/ (Layout4)
+├── / → Home
+├── /about → About
+├── /service → Services
+├── /service/service-details → Service Details
+├── /faq → FAQ
+├── /blog → Blog (with sidebar)
+├── /blog/blog-details → Blog Details
+└── /contact → Contact
+```
+
+**Status**: Clean, production-ready, demo content removed
+
+### Admin Backend (Darkone) - ✅ 1:1 Integration Complete
+```
+/admin (AdminLayout)
+├── /admin/auth/sign-in → Admin Sign In
+├── /admin/auth/sign-up → Admin Sign Up
+└── /admin/dashboard → Admin Dashboard
+```
+
+**Status**: Full Darkone integration with 1:1 visual parity
+
+---
+
+**Status**: ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete  
+**Last Updated**: 2025-01 (Frontend Cleanup Complete)  
+**Next**: Phase 3 - Data Integration & Advanced Admin Features

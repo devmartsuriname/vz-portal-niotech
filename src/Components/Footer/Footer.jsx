@@ -59,18 +59,13 @@ const Footer = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/project">
-                                            Integrations
-                                        </Link>
-                                    </li>
-                                    <li>
                                         <Link to="/service">
-                                            Features
+                                            Services
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/pricing">
-                                            Pricing
+                                        <Link to="/faq">
+                                            FAQ
                                         </Link>
                                     </li>
                                     <li>
@@ -88,11 +83,6 @@ const Footer = () => {
                                 </div>
                                 <ul className="list-area">
                                     <li>
-                                        <Link to="/project">
-                                            Integrations
-                                        </Link>
-                                    </li>
-                                    <li>
                                         <Link to="/blog">
                                             Blog
                                         </Link>
@@ -100,21 +90,6 @@ const Footer = () => {
                                     <li>
                                         <Link to="/contact">
                                             Contact Us
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/pricing">
-                                            Pricing
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/project/project-details">
-                                            Project details
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/team">
-                                            Our Team
                                         </Link>
                                     </li>
                                 </ul>
