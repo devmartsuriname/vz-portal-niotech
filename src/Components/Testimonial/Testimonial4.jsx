@@ -55,8 +55,8 @@ const Testimonial4 = () => {
                         <div className="col-xl-6">
                             <div className="section-title">
                             <SectionTitle
-                                        SubTitle="Testimonial"
-                                        Title="What our clients say?"
+                                        SubTitle="Ervaringen"
+                                        Title="Wat zeggen aanvragers?"
                                     ></SectionTitle> 
                             </div>
                         </div>

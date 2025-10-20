@@ -1,6 +1,26 @@
 import { Link } from "react-router-dom";
 
-const Choose4 = () => {
+const Choose4 = ({
+    subtitle = "Customizations & Analysis",
+    title = "Manage your Traffic Growth Easily",
+    content1 = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even",
+    content2 = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,",
+    btnname = "View All Project",
+    btnurl = "/about",
+    counter1Number = "56",
+    counter1Suffix = "k+",
+    counter1Text = "Comparers",
+    counter2Number = "126",
+    counter2Suffix = "k+",
+    counter2Text = "Use People",
+    counter3Number = "1.2",
+    counter3Suffix = "M+",
+    counter3Text = "Download It",
+    thumbBoxTitle = "Traffic Growth",
+    thumbBoxText = "Total traffic growth of 45%",
+    thumbBoxMetricTitle = "Transaction",
+    thumbBoxMetricValue = "86%"
+}) => {
     return (
 <section className="wcu-section section-padding pt-0 fix">
         <div className="wcu-container-wrapper style3">
@@ -11,19 +31,13 @@ const Choose4 = () => {
                             <div className="wcu-content">
                                 <div className="section-title">
                                     <div className="subtitle wow fadeInUp" data-wow-delay=".2s">
-                                        Customizations & Analysis <img src="/assets/images/icon/fireIcon.svg" alt="icon" />
+                                        {subtitle} <img src="/assets/images/icon/fireIcon.svg" alt="icon" />
                                     </div>
-                                    <h2 className="title wow fadeInUp" data-wow-delay=".4s">Manage your Traffic Growth
-                                        Easily</h2>
-                                    <p className="text1 wow fadeInUp" data-wow-delay=".6s">There are many variations of
-                                        passages of Lorem Ipsum available, but the majority have suffered alteration in
-                                        some form, by injected humour, or randomised words which do not look even</p>
-                                    <p className="text2 wow fadeInUp" data-wow-delay=".8s">There are many variations of
-                                        passages of Lorem Ipsum available, but the majority have suffered alteration in
-                                        some form,</p>
+                                    <h2 className="title wow fadeInUp" data-wow-delay=".4s">{title}</h2>
+                                    <p className="text1 wow fadeInUp" data-wow-delay=".6s">{content1}</p>
+                                    <p className="text2 wow fadeInUp" data-wow-delay=".8s">{content2}</p>
                                 </div>
-                                <Link className="theme-btn rounded-5 wow fadeInUp" data-wow-delay=".4s" to="/about">View
-                                    All Project
+                                <Link className="theme-btn rounded-5 wow fadeInUp" data-wow-delay=".4s" to={btnurl}>{btnname}
                                     <svg className="ms-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 16 16" fill="none">
                                         <g clipPath="url(#clip0_190_64)">
@@ -41,21 +55,21 @@ const Choose4 = () => {
                                 <div className="counter-box-wrapper style3">
                                     <div className="counter-box style3 wow fadeInUp" data-wow-delay=".2s">
                                         <div className="counter">
-                                            <span className="counter-nubmer">56</span> <span>k+</span>
+                                            <span className="counter-nubmer">{counter1Number}</span> <span>{counter1Suffix}</span>
                                         </div>
-                                        <p className="text">Comparers</p>
+                                        <p className="text">{counter1Text}</p>
                                     </div>
                                     <div className="counter-box style3 wow fadeInUp" data-wow-delay=".4s">
                                         <div className="counter">
-                                            <span className="counter-nubmer">126</span> <span>k+</span>
+                                            <span className="counter-nubmer">{counter2Number}</span> <span>{counter2Suffix}</span>
                                         </div>
-                                        <p className="text">Use People</p>
+                                        <p className="text">{counter2Text}</p>
                                     </div>
                                     <div className="counter-box style3 wow fadeInUp" data-wow-delay=".6s">
                                         <div className="counter">
-                                            <span className="counter-nubmer">1.2</span> <span>M+</span>
+                                            <span className="counter-nubmer">{counter3Number}</span> <span>{counter3Suffix}</span>
                                         </div>
-                                        <p className="text">Download It</p>
+                                        <p className="text">{counter3Text}</p>
                                     </div>
                                 </div>
                             </div>
@@ -69,13 +83,13 @@ const Choose4 = () => {
                                     <img src="/assets/images/wcu/wcuThumb3_2.png" alt="thumb" />
                                 </div>
                                 <div className="thumb-box float-bob-y wow fadeInUp" data-wow-delay=".4s">
-                                    <h5>Traffic Growth</h5>
-                                    <p className="text">Total traffic growth of 45%</p>
+                                    <h5>{thumbBoxTitle}</h5>
+                                    <p className="text">{thumbBoxText}</p>
                                     <div className="shape-box">
                                         <img src="/assets/images/shape/wcuThumbShape3_1.png" alt="shape" />
                                         <div className="shape-content">
-                                            <h6>Transaction</h6>
-                                            <h3>86%</h3>
+                                            <h6>{thumbBoxMetricTitle}</h6>
+                                            <h3>{thumbBoxMetricValue}</h3>
                                         </div>
                                     </div>
                                 </div>
