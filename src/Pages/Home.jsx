@@ -14,7 +14,7 @@ const Home = () => {
         <div>
             <HeroBanner1
                 subtitle="<span>Welkom bij</span> Vreemdelingenzaken"
-                title="Dien uw verblijfs-, vestigings- en naturalisatieverzoeken digitaal in"
+                title="Uw verblijfsaanvraag, digitaal en veilig"
                 content="Het Ministerie van Justitie en Politie biedt u de mogelijkheid om alle vreemdelingenzaken-aanvragen digitaal in te dienen. Volg de instructies, download documentenlijsten, en verstuur uw aanvraag veilig."
                 btnname="Aanvraag Indienen"
                 btnurl="/aanvraag-indienen"
