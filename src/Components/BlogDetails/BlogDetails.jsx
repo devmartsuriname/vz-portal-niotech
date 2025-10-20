@@ -20,8 +20,7 @@ const BlogDetails = () => {
                     <div className="col-12 col-lg-8">
                         <div className="blog-post-details">
                             <div className="single-blog-post">
-                                <div className="post-featured-thumb">
-                                    <img src={article.img} alt={article.title} className="img-fluid w-100" />
+                                <div className="post-featured-thumb" data-background={article.img}>
                                 </div>
                                 <div className="post-content">
                                     <ul className="post-list d-flex align-items-center wow fadeInUp" data-wow-delay=".2s">
