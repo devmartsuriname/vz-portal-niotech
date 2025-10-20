@@ -1,0 +1,20 @@
+[
+  {
+    "img": "/assets/images/icon/04.svg",
+    "title": "Sales automation",
+    "desc": "This title is versatile and can adapted to fit the specific tone and branding of your website quality.",
+    "addclass": "feature-provide-box-items style-2"
+  },
+  {
+    "img": "/assets/images/icon/05.svg",
+    "title": "Contact management",
+    "desc": "This title is versatile and can adapted to fit the specific tone and branding of your website quality.",
+    "addclass": "feature-provide-box-items"
+  },
+  {
+    "img": "/assets/images/icon/06.svg",
+    "title": "Task Management",
+    "desc": "This title is versatile and can adapted to fit the specific tone and branding of your website quality.",
+    "addclass": "feature-provide-box-items style-2"
+  } 
+]
