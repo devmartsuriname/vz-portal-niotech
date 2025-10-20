@@ -30,7 +30,7 @@ export default function Header4({ variant }) {
   return (
     <div>
     <header
-      className={`cs_site_header header_style_2 header-area-5  cs_style_1 ${
+      className={`cs_site_header header_style_2 cs_style_1 ${
         variant ? variant : ''
       } cs_sticky_header cs_site_header_full_width ${
         mobileToggle ? 'cs_mobile_toggle_active' : ''

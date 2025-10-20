@@ -1,267 +1,154 @@
-# Project Architecture
+# Architecture Documentation
 
-## Overview
-This project uses the **Niotech React Template** as the frontend foundation, providing a modern, responsive SaaS/Software landing page experience.
+## Header Position & Spacing
 
-## Tech Stack
+### Current Configuration
+- **Layout:** Header4 with `header_style_2` variant
+- **Height:** 106px (desktop), 90px (mobile/tablet)
+- **Top Position:** 40px from viewport top (absolute positioning)
+- **Sticky Behavior:** Slides up on scroll down, slides back down on scroll up
+- **Background:** White with rounded corner overlay effect
 
-### Frontend
-- **Framework**: React 18.3.1
-- **Build Tool**: Vite
-- **Routing**: React Router DOM 6.30.1
-- **Styling**: Bootstrap 5+ & Custom CSS
-- **Icons**: Bootstrap Icons
-- **Carousel**: Slick Carousel
-- **Animations**: WOW.js (CSS-based)
+### Responsive Breakpoints
+- **Desktop (≥1200px):** Full header with horizontal padding
+- **Tablet (768-1199px):** Adjusted padding, same height
+- **Mobile (<768px):** Reduced height (90px), hamburger menu
 
-### Architecture Pattern
-The project follows a **component-based architecture** with clear separation of concerns:
+### Alignment Strategy
+- Logo: Left-aligned, vertically centered
+- Navigation: Absolutely positioned center (50% left, 50% top with transform)
+- CTA Button: Right-aligned with search icon
+
+### Phase Adjustment Note
+**Header Position Fix** - Removed `header-area-5` class from Header4.jsx to restore default `top: 40px` positioning, matching the original Niotech template alignment.
+
+---
+
+## Routing Structure
+
+### Active Routes (Layout4)
+All routes use `Layout4` as the primary layout wrapper:
 
 ```
-Component Architecture
-├── Pages (Route Components)
-│   └── Composition of multiple feature components
-├── Components (Feature Components)
-│   └── Reusable UI elements
-├── Layouts (Layout Wrappers)
-│   └── Header, Footer, and page structure
-└── Data (JSON Configuration)
-    └── Content management via JSON files
+/ → Home (index)
+/about → About Page
+/service → Services Page
+/service/service-details → Service Details Page
+/faq → FAQ Page
+/blog → Blog Page
+/blog/blog-details → Blog Details Page
+/contact → Contact Page
 ```
 
-## Directory Structure
-
-### `/src`
-Main application source code
-
-#### `/src/Components`
-Reusable React components organized by feature - **Production Components**:
-- **About**: About section variations
-- **Blog**: Blog cards and listing components (BlogStandard retained)
-- **Brand**: Brand/logo showcases
-- **Card**: Reusable card components (Feature cards)
-- **Choose**: "Why Choose Us" sections
-- **Common**: Shared utilities (BreadCumb, SectionTitle, etc.)
-- **ContactInfo**: Contact forms and information
-- **Counter**: Animated counter components
-- **Cta**: Call-to-action sections
-- **Faq**: FAQ accordion components
-- **Feature**: Feature showcases
-- **Footer**: Footer component
-- **Header**: Header with navigation (Header4 used)
-- **HeroBanner**: Hero/banner sections
-- **HowWork**: Process/workflow sections
-- **Services**: Service cards and sections
-- **Testimonial**: Testimonial sliders
-- **VideoModal**: Video popup modals
-
-**Removed During Cleanup**:
-- ~~Team components~~ (Team1, Team2, TeamDetails)
-- ~~Pricing components~~ (Pricing1-4, PricingCard)
-- ~~Project components~~ (Project1, Project2, ProjectCard, ProjectDetails)
-- ~~Blog variants~~ (BlogLeftSidebar)
-
-#### `/src/Pages`
-Page-level components (one per route) - **Production Only**:
-- **Home.jsx** - Main landing page
-- **AboutPage.jsx** - About page
-- **ServicePage.jsx** - Services listing
-- **ServiceDetailPage.jsx** - Individual service details
-- **FaqPage.jsx** - FAQ page
-- **BlogStandardPage.jsx** - Blog with sidebar
-- **BlogDetaillsPage.jsx** - Blog post details
-- **ContactPage.jsx** - Contact page
-
-**Note**: Demo pages (Home2, Home3, Team, Pricing, Projects) removed during cleanup.
-
-#### `/src/Layout`
-Layout wrapper components:
-- **Layout4.jsx**: Production layout (Header4 + Footer) - **Used for all public routes**
-
-**Note**: Main, Layout2, and Layout3 removed during cleanup. System now uses single layout.
-
-#### `/src/Routes`
-- **Routes.jsx**: Centralized routing configuration using React Router
-
-#### `/src/Data`
-JSON files for content management - **Production Data**:
-- ✅ `blog.json` - Blog posts
-- ✅ `services1.json` - Service offerings
-- ✅ `faq1.json`, `faq2.json` - FAQ content
-- ✅ `counter.json` - Statistics
-- ✅ `brand1.json` - Partner logos
-- ✅ `feature1.json` - Features
-- ✅ `testimonial1.json`, `testimonial2.json` - Testimonials
-- ✅ `work.json` - How it works
-
-**Removed**: ~~team1.json, project1.json, project2.json~~
-
-#### `/src/assets`
-- **main.css**: Complete Niotech design system (11,000+ lines)
-
-### `/public`
-Static assets served directly:
-- **assets/images**: All images, icons, logos, shapes, backgrounds
-
-## Component Communication
-
-### Props-Based
-Components receive configuration via props:
-```jsx
-<About1
-  img1="/path/to/image"
-  subtitle="About Our App"
-  title="Section Title"
-  content="Description text"
-  FeatureList={[...]}
-  btnname="Button Text"
-  btnurl="/link"
-/>
+### Admin Routes (Protected)
+```
+/admin/auth/sign-in → Sign In Page
+/admin/auth/sign-up → Sign Up Page
+/admin/dashboard → Dashboard (Protected)
 ```
 
-### Data-Driven
-Many components map over JSON data:
-```jsx
-import data from '../../Data/services1.json';
+---
 
-{data.map((item, index) => (
-  <ServiceCard key={index} {...item} />
-))}
+## Layout System
+
+### Layout4
+- **Components:** Header4 + Footer + Content Area
+- **Used By:** All public-facing pages
+- **Characteristics:**
+  - Sticky header with scroll behavior
+  - Unified footer across all pages
+  - Consistent spacing and alignment
+
+---
+
+## Component Organization
+
+### Core Components (Active)
+- **Header:** `Header4.jsx`, `Nav.jsx`, `DropDown.jsx`
+- **Footer:** `Footer.jsx`
+- **Hero:** `HeroBanner1.jsx`
+- **About:** `About1.jsx`
+- **Features:** `Feature1.jsx`, `Feature2.jsx`
+- **Services:** `Service1.jsx`, `Service2.jsx`, `ServiceDetails.jsx`
+- **Blog:** `Blog1.jsx`, `BlogStandard.jsx`, `BlogDetails.jsx`
+- **FAQ:** `Faq1.jsx`
+- **CTA:** `Cta1.jsx`
+- **Brand:** `Brand1.jsx`
+- **Counter:** `Counter1.jsx`
+- **Testimonial:** `Testimonial.jsx`
+- **HowWork:** `HowWork.jsx`
+- **Choose:** `Choose1.jsx`
+
+### Removed Components
+- Team components (Team1, Team2, TeamDetails)
+- Pricing components (Pricing1)
+- Project components (Project1, Project2, ProjectDetails)
+- Unused blog variants (BlogLeftSidebar)
+- Unused layouts (Main, Layout2, Layout3)
+
+---
+
+## Data Structure
+
+### Active JSON Files
+- `blog.json` - Blog posts data
+- `services1.json` - Services data
+- `faq1.json`, `faq2.json` - FAQ data
+- `counter.json` - Counter statistics
+- `brand1.json` - Brand logos
+- `feature1.json` - Feature list
+- `testimonial1.json`, `testimonial2.json` - Client testimonials
+- `work.json` - How it works steps
+
+### Removed JSON Files
+- `team1.json`
+- `project1.json`
+- `project2.json`
+
+---
+
+## Navigation Structure
+
+### Simplified Navigation (No Dropdowns)
+```
+Home | About | Services | Blog | FAQ | Contact
 ```
 
-## Routing Structure (Updated - Post Cleanup)
+All navigation links are top-level only. Subpages (like Service Details, Blog Details) are accessed via contextual links within their respective parent pages.
 
-### Production Route Organization
-```javascript
-Public Routes (Layout4 only):
-├── / → Home (index route)
-├── /about → About
-├── /service → Services
-├── /service/service-details → Service Details
-├── /faq → FAQ
-├── /blog → Blog (with sidebar)
-├── /blog/blog-details → Blog Details
-└── /contact → Contact
+---
 
-Admin Routes (AdminLayout - separate):
-├── /admin → Redirect to dashboard
-├── /admin/auth/sign-in → Admin Sign In
-├── /admin/auth/sign-up → Admin Sign Up
-└── /admin/dashboard → Admin Dashboard
-```
+## Authentication Integration
 
-**Note**: Demo routes (home2, home3, team, pricing, projects) have been removed. See `docs/frontend-cleanup.md` for details.
+### Supabase Auth
+- **Provider:** Lovable Cloud (Supabase backend)
+- **Protected Routes:** `/admin/dashboard` and future admin pages
+- **Auth Components:** `ProtectedRoute.tsx`, `AuthProvider` from `@/integrations/supabase/auth`
+- **Auth Pages:** Sign In, Sign Up
 
-## Styling Architecture
+### Auth Flow
+1. User navigates to protected route
+2. `ProtectedRoute` checks auth state via `useAuth()` hook
+3. If not authenticated → redirect to `/admin/auth/sign-in`
+4. If authenticated → render protected content
 
-### Design System (main.css)
-The template uses a comprehensive CSS design system:
-
-#### Variables
-```css
-:root {
-  --theme: #7444FD;
-  --title: #282C32;
-  --text: #858585;
-  --border: #E6E6E6;
-  /* ...and many more */
-}
-```
-
-#### Component Styles
-- Modular CSS classes for each component
-- Responsive breakpoints for mobile-first design
-- Animation utilities for smooth interactions
-- Utility classes for spacing, colors, typography
-
-#### Typography
-- **Primary Font**: Urbanist (Google Fonts)
-- **Secondary Font**: Nunito (Google Fonts)
-- Defined heading hierarchy (h1-h6)
-- Body text and utility text styles
-
-## State Management
-Currently uses **component-level state** with React hooks:
-- `useState` for local component state
-- `useEffect` for side effects (animations, scroll listeners)
-- Props drilling for parent-child communication
-
-## Build Configuration
-
-### Vite Setup
-```javascript
-{
-  server: { port: 8080 },
-  plugins: [react(), componentTagger()],
-  resolve: {
-    alias: { "@": "./src" }
-  }
-}
-```
-
-### Entry Point
-**index.html** → **src/main.jsx** → **RouterProvider** → Page Components
+---
 
 ## Performance Considerations
 
 ### Code Splitting
-- React Router handles route-based code splitting
-- Components loaded on-demand per route
+- Vite configured with manual chunks disabled for optimal bundle size
+- Components loaded on-demand via React Router
 
 ### Asset Optimization
-- Images served from `/public` for optimal caching
-- CSS bundled and minified in production
-
-### Animation Performance
-- CSS-based animations (WOW.js) for smooth 60fps
-- Lazy loading for images and heavy components
-
-## Responsive Design
-
-### Breakpoints
-```css
-@media (max-width: 575px)  /* Mobile */
-@media (max-width: 767px)  /* Small tablets */
-@media (max-width: 991px)  /* Tablets */
-@media (max-width: 1199px) /* Small desktop */
-```
-
-### Mobile Navigation
-- Hamburger menu toggle
-- Slide-out navigation drawer
-- Touch-friendly interactions
-
-## Extensibility
-
-### Adding New Pages
-1. Create component in `/src/Pages`
-2. Add route in `/src/Routes/Routes.jsx`
-3. Add navigation link in `/src/Components/Header/Nav.jsx`
-
-### Adding New Components
-1. Create in appropriate `/src/Components` subdirectory
-2. Import and use in page components
-3. Add any required JSON data to `/src/Data`
-
-### Customizing Styles
-- Modify CSS variables in `main.css` for global theme changes
-- Override component-specific styles in respective CSS sections
-- Use utility classes for quick adjustments
+- Images stored in `/public/assets/images/`
+- Slick carousel for optimized image sliders
+- Bootstrap Icons for consistent iconography
 
 ---
 
-## Recent Updates
-
-### Frontend Cleanup (January 2025)
-✅ **Consolidated to single layout** (Layout4 only)  
-✅ **Removed demo content** (Home2, Home3, Team, Pricing, Projects)  
-✅ **Streamlined navigation** (8 production pages)  
-✅ **Optimized routing** (eliminated duplicate routes)  
-✅ **Cleaned codebase** (removed 25+ unused files)
-
-📄 **Full cleanup details**: See `docs/frontend-cleanup.md`
-
----
-
-**Architecture Version**: 2.0 (Post-Cleanup)  
-**Last Updated**: 2025-01 (Cleanup Complete)
+## Future Enhancements
+- Dynamic data integration with Supabase
+- CMS-like content management
+- Advanced search functionality
+- User dashboard features
