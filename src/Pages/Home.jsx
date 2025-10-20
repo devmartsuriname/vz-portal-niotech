@@ -67,6 +67,8 @@ const Home = () => {
                 content="Begin met uw aanvraag door de wizard te volgen. Verzamel eerst uw documenten en volg de instructies voor een succesvolle indiening."
                 btnurl1="/aanvraag-indienen"
                 btnurl2="/instructies"
+                btnname1="Aanvraag Indienen"
+                btnname2="Lees Instructies"
                 img="/assets/images/cta/ctaThumb1_1.png"
             ></Cta1>
             <Blog1></Blog1>
