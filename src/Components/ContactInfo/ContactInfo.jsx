@@ -1,5 +1,52 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { toast } from 'sonner';
+
+const contactFormSchema = z.object({
+  name: z.string()
+    .trim()
+    .min(2, { message: "Naam moet minimaal 2 karakters bevatten" })
+    .max(100, { message: "Naam mag maximaal 100 karakters bevatten" }),
+  email: z.string()
+    .trim()
+    .email({ message: "Ongeldig e-mailadres" })
+    .max(255, { message: "E-mailadres mag maximaal 255 karakters bevatten" }),
+  message: z.string()
+    .trim()
+    .min(10, { message: "Bericht moet minimaal 10 karakters bevatten" })
+    .max(1000, { message: "Bericht mag maximaal 1000 karakters bevatten" })
+});
 
 const ContactInfo = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: zodResolver(contactFormSchema)
+    });
+
+    const onSubmit = async (data) => {
+        setIsSubmitting(true);
+        
+        try {
+            // Phase 1: Show success message (Phase 2 will integrate with Supabase)
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate submission
+            
+            toast.success('Bericht verzonden!', {
+                description: 'Bedankt voor uw bericht. Wij nemen zo spoedig mogelijk contact met u op.'
+            });
+            
+            reset();
+        } catch (error) {
+            toast.error('Er is iets misgegaan', {
+                description: 'Probeer het later opnieuw of neem telefonisch contact met ons op.'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div>
         <section className="contact-section section-padding fix">
@@ -20,8 +67,11 @@ const ContactInfo = () => {
                                             fill="#7444FD" />
                                     </svg>
                                 </div>
-                                <div className="title">Our Address</div>
-                                <a className="text" href="#">2464 Royal Ln. Mesa, New Jersey 45463.</a>
+                                <div className="title">Ons Adres</div>
+                                <a className="text" href="https://www.google.com/maps?q=5.827246,-55.152477" target="_blank" rel="noopener noreferrer">
+                                    Onafhankelijkheidsplein 1<br />
+                                    Paramaribo, Suriname
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -56,10 +106,10 @@ const ContactInfo = () => {
                                     </svg>
                                 </div>
                                 <h3 className="title">
-                                    <a href="mailto:info@exmple.com"> info@exmple.com </a>
+                                    <a href="mailto:info@juspol.sr">info@juspol.sr</a>
                                 </h3>
 
-                                <p className="text">Email us anytime for anykind ofquety.</p>
+                                <p className="text">Stuur ons een e-mail voor algemene vragen</p>
 
                             </div>
                         </div>
@@ -79,10 +129,13 @@ const ContactInfo = () => {
                                     </svg>
                                 </div>
                                 <h3 className="title">
-                                    <a href="tel:34534534543"> Hot: +208-666-0112 </a>
+                                    <a href="tel:+597472211">+597 472-211</a>
                                 </h3>
 
-                                <p className="text">Call us any kind suppor,we will wait for it</p>
+                                <p className="text">
+                                    Bel ons tijdens kantooruren<br />
+                                    Ma-Vr: 08:00 - 15:00
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -99,43 +152,77 @@ const ContactInfo = () => {
                     <div className="col-xl-6">
                         <div className="contact-map">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57559.095682562875!2d88.60522403504652!3d25.6234028155105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fb529bc7fc909b%3A0xd8f861ed9baf24de!2sDinajpur!5e0!3m2!1sen!2sbd!4v1729067103339!5m2!1sen!2sbd"
-                                 loading="lazy"
+                                src="https://www.google.com/maps?q=5.827246,-55.152477&hl=nl&z=16&output=embed"
+                                loading="lazy"
+                                title="Locatie Vreemdelingenzaken - Onafhankelijkheidsplein 1, Paramaribo"
                                 ></iframe>
                         </div>
                     </div>
                     <div className="col-xl-6">
                         <div className="contact-form style1">
                             <h2 className="contact-title">
-                                Ready to Get Started?
+                                Neem contact met ons op
                             </h2>
-                            <p className="desc">Nullam varius, erat quis iaculis dictum, eros urna varius eros, ut blandit
-                                felis odio in turpis. Quisque rhoncus,</p>
+                            <p className="desc">
+                                Heeft u vragen over verblijfsvergunningen, naturalisatie of andere vreemdelingenzaken? 
+                                Vul het formulier in en wij nemen zo spoedig mogelijk contact met u op.
+                            </p>
 
-                            <form id="contact-form" className="contact-form-items">
+                            <form id="contact-form" className="contact-form-items" onSubmit={handleSubmit(onSubmit)}>
                                 <div className="row g-4">
                                     <div className="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
                                         <div className="form-clt">
-                                            <span>Your name*</span>
-                                            <input type="text" name="name" id="name" placeholder="Your Name" />
+                                            <span>Uw naam*</span>
+                                            <input 
+                                                type="text" 
+                                                {...register("name")} 
+                                                id="name" 
+                                                placeholder="Uw naam"
+                                                disabled={isSubmitting}
+                                            />
+                                            {errors.name && (
+                                                <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+                                                    {errors.name.message}
+                                                </p>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
                                         <div className="form-clt">
-                                            <span>Your Email*</span>
-                                            <input type="text" name="email2" id="email2" placeholder="Your Email" />
+                                            <span>Uw e-mailadres*</span>
+                                            <input 
+                                                type="email" 
+                                                {...register("email")} 
+                                                id="email" 
+                                                placeholder="uw.email@voorbeeld.sr"
+                                                disabled={isSubmitting}
+                                            />
+                                            {errors.email && (
+                                                <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+                                                    {errors.email.message}
+                                                </p>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="col-lg-12 wow fadeInUp" data-wow-delay=".7s">
                                         <div className="form-clt">
-                                            <span>Write Message*</span>
-                                            <textarea name="message" id="message"
-                                                placeholder="Write Message"></textarea>
+                                            <span>Uw bericht*</span>
+                                            <textarea 
+                                                {...register("message")} 
+                                                id="message"
+                                                placeholder="Typ hier uw bericht..."
+                                                disabled={isSubmitting}
+                                            ></textarea>
+                                            {errors.message && (
+                                                <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+                                                    {errors.message.message}
+                                                </p>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="col-lg-7 wow fadeInUp" data-wow-delay=".9s">
-                                        <button type="submit" className="theme-btn">
-                                            Send Message <i className="bi bi-arrow-right"></i>
+                                        <button type="submit" className="theme-btn" disabled={isSubmitting}>
+                                            {isSubmitting ? 'Verzenden...' : 'Verstuur bericht'} <i className="bi bi-arrow-right"></i>
                                         </button>
                                     </div>
                                 </div>

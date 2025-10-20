@@ -6,8 +6,8 @@ const ContactPage = () => {
         <div>
              <BreadCumb
                 bgimg="/assets/images/bg/breadcumgBg.png"
-                Title="Contact Us"
-            ></BreadCumb> 
+                Title="Contact"
+            ></BreadCumb>
             <ContactInfo></ContactInfo>            
         </div>
     );
