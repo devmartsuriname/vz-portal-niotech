@@ -1,21 +1,29 @@
 import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
 import VerticalNavigationBar from '../components/layout/VerticalNavigationBar';
 import TopNavigationBar from '../components/layout/TopNavigationBar';
 import Footer from '../components/layout/Footer';
+import AnimationStar from '../components/AnimationStar';
 import '../assets/scss/style.scss';
 
 const AdminLayout = () => {
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', 'light');
+    document.documentElement.setAttribute('data-sidebar-color', 'light');
+    document.documentElement.setAttribute('data-topbar-color', 'light');
+    document.documentElement.setAttribute('data-sidebar-size', 'default');
+  }, []);
+
   return (
     <div className="wrapper">
+      <TopNavigationBar />
       <VerticalNavigationBar />
-      <div className="content-page">
-        <TopNavigationBar />
-        <div className="content">
-          <div className="container-fluid">
-            <Outlet />
-          </div>
+      <AnimationStar />
+      <div className="page-content">
+        <div className="container-fluid">
+          <Outlet />
+          <Footer />
         </div>
-        <Footer />
       </div>
     </div>
   );
