@@ -1,12 +1,16 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import loadBackgroudImages from "../Common/loadBackgroudImages";
+import data from '../../Data/blog.json';
 
 const BlogDetails = () => {
 
         useEffect(() => {
             loadBackgroudImages();
           }, []);
+
+    // Use first article as default
+    const article = data[0];
 
     return (
         <section className="news-standard section-padding fix">
@@ -16,50 +20,36 @@ const BlogDetails = () => {
                     <div className="col-12 col-lg-8">
                         <div className="blog-post-details">
                             <div className="single-blog-post">
-                                <div className="post-featured-thumb" data-background="/assets/images/blog/blogCardThumb3_1.png">
+                                <div className="post-featured-thumb" data-background={article.img}>
                                 </div>
                                 <div className="post-content">
                                     <ul className="post-list d-flex align-items-center wow fadeInUp" data-wow-delay=".2s">
                                         <li>
                                         <i className="bi bi-person"></i>
-                                            By Admin
+                                            {article.author}
                                         </li>
                                         <li>
-                                        <i className="bi bi-chat"></i>
-                                            2 Comments
+                                        <i className="bi bi-calendar"></i>
+                                            {article.date}
                                         </li>
                                         <li>
                                             <img src="/assets/images/icon/tagIcon.png" alt="icon" />
-                                            IT Services
+                                            {article.category}
                                         </li>
                                     </ul>
-                                    <h3 className="wow fadeInUp" data-wow-delay=".4s">Tackling the Changes of Retail
-                                        Industry</h3>
+                                    <h3 className="wow fadeInUp" data-wow-delay=".4s">{article.title}</h3>
                                     <p className="mb-3 wow fadeInUp" data-wow-delay=".6s">
-                                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                        dolore of magna aliqua. Ut enim ad minim veniam, made of owl the quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea dolor commodo consequat. Duis
-                                        aute irure and dolor in reprehenderit.
+                                        Per 1 januari 2024 zijn er nieuwe richtlijnen van kracht voor het aanvragen van verblijfsvergunningen in Suriname. Deze wijzigingen zijn doorgevoerd om het proces transparanter en efficiënter te maken voor alle aanvragers.
                                     </p>
                                     <p className="mb-3 wow fadeInUp" data-wow-delay=".8s">
-                                        The is ipsum dolor sit amet consectetur adipiscing elit. Fusce eleifend porta
-                                        arcu In hac habitasse the is platea augue thelorem turpoi dictumst. In lacus
-                                        libero faucibus at malesuada sagittis placerat eros sed istincidunt augue ac
-                                        ante rutrum sed the is sodales augue consequat.
+                                        Het Directoraat Vreemdelingenzaken heeft de procedures gemoderniseerd in lijn met internationale standaarden en de digitale transformatie van de overheid. Deze aanpassingen zijn het resultaat van uitgebreid overleg met betrokken ministeries en feedback van burgers.
                                     </p>
+                                    <h4 className="mt-4 mb-3 wow fadeInUp" data-wow-delay=".9s">Wat verandert er?</h4>
                                     <p className="wow fadeInUp" data-wow-delay="1s">
-                                        Nulla facilisi. Vestibulum tristique sem in eros eleifend imperdiet. Donec quis
-                                        convallis neque. In id lacus pulvinar lacus, eget vulputate lectus. Ut viverra
-                                        bibendum lorem, at tempus nibh mattis in. Sed a massa eget lacus consequat
-                                        auctor.
+                                        De belangrijkste wijzigingen betreffen de documentenvereisten en de verwerkingstijden. Voor aanvragen van Surinaamse origine (Art. 4) is het niet langer nodig om een geboorteakte uit Suriname voor te leggen indien u beschikt over een geldig Surinaams paspoort of een eerdere verblijfsvergunning.
                                     </p>
                                     <div className="hilight-text mt-4 mb-4 wow fadeInUp" data-wow-delay=".8s">
-                                        <p>Pellentesque sollicitudin congue dolor non aliquam. Morbi volutpat, nisi vel
-                                            ultricies urnacondimentum, sapien neque
-                                            lobortis tortor, quis efficitur mi ipsum eu metus. Praesent eleifend orci
-                                            sit
-                                            amet
-                                            est vehicula.
+                                        <p>De gemiddelde verwerkingstijd voor reguliere verblijfsvergunningen is teruggebracht van 6-8 weken naar 4-6 weken. Dit is mogelijk gemaakt door de digitalisering van het aanvraagproces via ons nieuwe portaal.
                                         </p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
                                             viewBox="0 0 36 36" fill="none">
@@ -71,36 +61,19 @@ const BlogDetails = () => {
                                                 stroke="#7444FD" />
                                         </svg>
                                     </div>
+                                    <h4 className="mt-4 mb-3 wow fadeInUp" data-wow-delay="1s">Digitale indiening</h4>
                                     <p className="mt-4 mb-5 wow fadeInUp" data-wow-delay="1s">
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam
-                                        in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula
-                                        consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis
-                                        imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu.
-                                        Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet.
-                                        Pellentesque commodo lacus at sodales sodales. Quisque sagittis orci ut diam
-                                        condimentum, vel euismod erat placerat. In iaculis arcu eros.
+                                        Alle aanvragen kunnen nu volledig digitaal worden ingediend via www.vreemdelingenzaken.sr. U hoeft niet langer fysiek naar het kantoor te komen voor de initiële indiening. Wel blijft een persoonlijk bezoek verplicht voor het ophalen van uw vergunning na goedkeuring.
                                     </p>
-                                    <div className="row g-4 wow fadeInUp" data-wow-delay="1s">
-                                        <div className="col-lg-6">
-                                            <div className="details-image">
-                                                <img src="/assets/images/blog/blogCardThumb3_2.png" alt="img" />
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <div className="details-image">
-                                                <img src="/assets/images/blog/blogCardThumb3_3.png" alt="img" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p className="pt-5 wow fadeInUp" data-wow-delay="1.2s">
-                                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                        dolore of magna aliqua. Ut enim ad minim veniam, made of owl the quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea dolor commodo consequat. Duis
-                                        aute irure and dolor in reprehenderit.Consectetur adipisicing elit, sed do
-                                        eiusmod tempor incididunt ut labore et dolore of magna aliqua. Ut enim ad minim
-                                        veniam, made of owl the quis nostrud exercitation ullamco laboris nisi ut
-                                        aliquip ex ea dolor commodo consequat. Duis aute irure and dolor in
-                                        reprehenderit.
+                                    <p className="mb-3 wow fadeInUp" data-wow-delay="1.1s">
+                                        Het digitale portaal biedt verschillende voordelen: 24/7 toegang tot het indienen van aanvragen, realtime status updates, veilige opslag van documenten, en de mogelijkheid om direct aanvullende documenten te uploaden indien nodig.
+                                    </p>
+                                    <h4 className="mt-4 mb-3 wow fadeInUp" data-wow-delay="1.2s">Wat blijft hetzelfde?</h4>
+                                    <p className="wow fadeInUp" data-wow-delay="1.3s">
+                                        De leges (kosten) voor verblijfsvergunningen blijven ongewijzigd conform de geldende tarieven. Ook de verschillende categorieën aanvragen (Surinaamse origine, buitenlandse origine, gezinshereniging, arbeid) blijven bestaan met dezelfde basisvereisten. De wettelijke grondslag blijft gebaseerd op de Vreemdelingenwet en relevante internationale verdragen.
+                                    </p>
+                                    <p className="pt-3 wow fadeInUp" data-wow-delay="1.4s">
+                                        Voor meer informatie over de nieuwe richtlijnen kunt u contact opnemen met ons kantoor via de contactpagina of de sectie 'Veelgestelde Vragen' raadplegen op onze website. Ons team staat klaar om u te assisteren bij het indienen van uw aanvraag.
                                     </p>
                                 </div>
                             </div>
@@ -108,99 +81,21 @@ const BlogDetails = () => {
                                 <div className="col-lg-8 col-12">
                                     <div className="tagcloud">
                                         <h6 className="d-inline me-2">Tags: </h6>
-                                        <a href="#">News</a>
-                                        <a href="#">business</a>
-                                        <a href="#">marketing</a>
+                                        <a href="#">Verblijf</a>
+                                        <a href="#">Beleid</a>
+                                        <a href="#">2024</a>
                                     </div>
                                 </div>
                                 <div className="col-lg-4 col-12 mt-3 mt-lg-0 text-lg-end wow fadeInUp"
                                     data-wow-delay="1.2s">
                                     <div className="social-share">
-                                        <span className="me-3">Share:</span>
+                                        <span className="me-3">Delen:</span>
                                         <a href="#"><i className="bi bi-facebook"></i></a>
                                         <a href="#"><i className="bi bi-twitter"></i></a>
                                         <a href="#"><i className="bi bi-linkedin"></i></a>
-                                        <a href="#"><i className="bi bi-pinterest"></i></a>
+                                        <a href="#"><i className="bi bi-whatsapp"></i></a>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="comments-area wow fadeInUp" data-wow-delay="1.2s">
-                                <div className="comments-heading">
-                                    <h3>02 Comments</h3>
-                                </div>
-                                <div className="blog-single-comment d-flex gap-4 pt-30 pb-30">
-                                    <div className="image">
-                                        <img src="/assets/images/blog/blogProfileThumb3_1.png" alt="image" />
-                                    </div>
-                                    <div className="content">
-                                        <div
-                                            className="head d-flex flex-wrap gap-2 align-items-center justify-content-between">
-                                            <div className="con">
-                                                <h5><a href="#">Albert Flores</a></h5>
-                                                <span>March 20, 2024 at 2:37 pm</span>
-                                            </div>
-                                            <div className="btn">
-                                                <a href="#" className="reply">Reply</a>
-                                            </div>
-                                        </div>
-                                        <p className="mt-10 mb-0">Neque porro est qui dolorem ipsum quia quaed inventor
-                                            veritatis et quasi
-                                            architecto var sed efficitur turpis gilla sed
-                                            sit amet finibus eros. Lorem Ipsum is simply dummy
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="blog-single-comment d-flex gap-4 pt-30 pb-30">
-                                    <div className="image">
-                                        <img src="/assets/images/blog/blogProfileThumb3_2.png" alt="image" />
-                                    </div>
-                                    <div className="content">
-                                        <div
-                                            className="head d-flex flex-wrap gap-2 align-items-center justify-content-between">
-                                            <div className="con">
-                                                <h5><a href="#">Alex Flores</a></h5>
-                                                <span>March 20, 2024 at 2:37 pm</span>
-                                            </div>
-                                            <div className="btn">
-                                                <a href="#" className="reply">Reply</a>
-                                            </div>
-                                        </div>
-                                        <p className="mt-10 mb-0">Neque porro est qui dolorem ipsum quia quaed inventor
-                                            veritatis et quasi
-                                            architecto var sed efficitur turpis gilla sed
-                                            sit amet finibus eros. Lorem Ipsum is simply dummy
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="comment-form-wrap pt-5 wow fadeInUp" data-wow-delay="1.2s">
-                                <h3>Leave a comments</h3>
-                                <form id="contact-form">
-                                    <div className="row g-4">
-                                        <div className="col-lg-6">
-                                            <div className="form-clt">
-                                                <input type="text" name="name" id="name" placeholder="Your Name" />
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <div className="form-clt">
-                                                <input type="text" name="email" id="email2" placeholder="Your Email" />
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-12">
-                                            <div className="form-clt">
-                                                <textarea name="message" id="message"
-                                                    placeholder="Write Message"></textarea>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <button type="submit" className="theme-btn">
-                                                Post a Comment
-                                                <i className="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -209,92 +104,54 @@ const BlogDetails = () => {
                     <div className="main-sidebar">
                         <div className="single-sidebar-widget wow fadeInUp" data-wow-delay=".2s">
                             <div className="wid-title">
-                                <h3>Search</h3>
+                                <h3>Zoeken</h3>
                             </div>
                             <div className="search-widget">
                                 <form action="#">
-                                    <input type="text" placeholder="Search here" />
+                                    <input type="text" placeholder="Zoek hier..." />
                                     <button type="submit"><i className="bi bi-search"></i></button>
                                 </form>
                             </div>
                         </div>
                         <div className="single-sidebar-widget wow fadeInUp" data-wow-delay=".4s">
                             <div className="wid-title">
-                                <h3>Categories</h3>
+                                <h3>Categorieën</h3>
                             </div>
                             <div className="news-widget-categories">
                                 <ul>
-                                    <li><Link to="/blog/blog-details">Database Security <span>(08)</span></Link></li>
-                                    <li><Link to="/blog/blog-details">IT Consultancy <span>(11)</span></Link></li>
-                                    <li className="active"><Link to="/blog/blog-details">App Development <span>(12)</span></Link>
-                                    </li>
-                                    <li><Link to="/blog/blog-details">UI/UX Design <span>(18)</span></Link></li>
-                                    <li><Link to="/blog/blog-details">Cyber Security <span>(07)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Beleid <span>(2)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Nieuws <span>(2)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Wijziging <span>(1)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Feestdag <span>(1)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Naturalisatie <span>(0)</span></Link></li>
                                 </ul>
                             </div>
                         </div>
                         <div className="single-sidebar-widget wow fadeInUp" data-wow-delay=".6s">
                             <div className="wid-title">
-                                <h3>Recent Post</h3>
+                                <h3>Recente Berichten</h3>
                             </div>
                             <div className="recent-post-area">
-                                <div className="recent-items">
-                                    <div className="recent-thumb">
-                                        <img src="/assets/images/blog/blogRecentThumb1_1.jpg" alt="img" />
+                                {data.slice(1, 4).map((item, index) => (
+                                    <div key={index} className="recent-items">
+                                        <div className="recent-thumb">
+                                            <img src={item.img} alt="img" />
+                                        </div>
+                                        <div className="recent-content">
+                                            <ul>
+                                                <li>
+                                                    <img src="/assets/images/icon/calendarIcon.svg" alt="icon" />
+                                                    {item.date}
+                                                </li>
+                                            </ul>
+                                            <h6>
+                                                <Link to="/blog/blog-details">
+                                                    {item.title}
+                                                </Link>
+                                            </h6>
+                                        </div>
                                     </div>
-                                    <div className="recent-content">
-                                        <ul>
-                                            <li>
-                                                <img src="/assets/images/icon/calendarIcon.svg" alt="icon" />
-                                                18 Dec, 2024
-                                            </li>
-                                        </ul>
-                                        <h6>
-                                            <Link to="/blog/blog-details">
-                                                Keep Your Business Safe & <br/>
-                                                Endure High Availability
-                                            </Link>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="recent-items">
-                                    <div className="recent-thumb">
-                                        <img src="/assets/images/blog/blogRecentThumb1_2.jpg" alt="img" />
-                                    </div>
-                                    <div className="recent-content">
-                                        <ul>
-                                            <li>
-                                                <img src="/assets/images/icon/calendarIcon.svg" alt="icon" />
-                                                18 Dec, 2024
-                                            </li>
-                                        </ul>
-                                        <h6>
-                                            <Link to="/blog/blog-details">
-                                                Tacking the Changes of <br/>
-                                                Retail Industry
-                                            </Link>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="recent-items">
-                                    <div className="recent-thumb">
-                                        <img src="/assets/images/blog/blogRecentThumb1_3.jpg" alt="img" />
-                                    </div>
-                                    <div className="recent-content">
-                                        <ul>
-                                            <li>
-                                                <img src="/assets/images/icon/calendarIcon.svg" alt="icon" />
-                                                18 Dec, 2024
-                                            </li>
-                                        </ul>
-                                        <h6>
-                                            <Link to="/blog/blog-details">
-                                                What’s the Holding Back <br/>
-                                                the It Solution
-                                            </Link>
-                                        </h6>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                         <div className="single-sidebar-widget wow fadeInUp" data-wow-delay=".9s">
@@ -303,15 +160,14 @@ const BlogDetails = () => {
                             </div>
                             <div className="news-widget-categories">
                                 <div className="tagcloud">
-                                    <a href="#">Security</a>
-                                    <a href="#">Business</a>
-                                    <a href="#">Digital</a>
-                                    <a href="#">Technology</a>
-                                    <a href="#">Change</a>
-                                    <a href="#">Video</a>
-                                    <a href="#">UI/UX Desing</a>
-                                    <a href="#">Startup</a>
-                                    <a href="#">Services</a>
+                                    <a href="#">Verblijf</a>
+                                    <a href="#">Naturalisatie</a>
+                                    <a href="#">Asiel</a>
+                                    <a href="#">Documenten</a>
+                                    <a href="#">Beleid</a>
+                                    <a href="#">Procedures</a>
+                                    <a href="#">Leges</a>
+                                    <a href="#">Deadlines</a>
                                 </div>
                             </div>
                         </div>

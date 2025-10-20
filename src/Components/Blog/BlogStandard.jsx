@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import data from '../../Data/blog.json';
 
 const BlogStandard = () => {
+    // Use first 3 articles from blog.json
+    const blogPosts = data.slice(0, 3);
+    
     return (
         <section className="news-standard fix section-padding">
         <div className="container">
@@ -8,114 +12,48 @@ const BlogStandard = () => {
                 <div className="col-12 col-lg-8">
 
                     <div className="news-standard-wrapper">
-                        <div className="news-standard-items wow fadeInUp" data-wow-delay=".2s">
-                            <div className="news-thumb">
-                                <img src="/assets/images/blog/blogThumb4_1.jpg" alt="img" />
-                                <div className="post-date">
-                                    <h3>
-                                        27 <br/>
-                                        <span>Feb</span>
-                                    </h3>
+                        {blogPosts.map((item, index) => {
+                            // Parse date from blog.json (format: "15 januari 2024")
+                            const dateParts = item.date.split(' ');
+                            const day = dateParts[0];
+                            const month = dateParts[1].substring(0, 3); // First 3 letters
+                            
+                            return (
+                                <div key={index} className="news-standard-items wow fadeInUp" data-wow-delay={`.${(index + 1) * 2}s`}>
+                                    <div className="news-thumb">
+                                        <img src={item.img} alt="img" />
+                                        <div className="post-date">
+                                            <h3>
+                                                {day} <br/>
+                                                <span>{month}</span>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div className="news-content">
+                                        <ul>
+                                            <li>
+                                                <i className="bi bi-person"></i>
+                                                {item.author}
+                                            </li>
+                                            <li>
+                                                <i className="bi bi-tag"></i>
+                                                {item.category}
+                                            </li>
+                                        </ul>
+                                        <h3>
+                                            <Link to="/blog/blog-details">{item.title}</Link>
+                                        </h3>
+                                        <p>
+                                            {item.excerpt}
+                                        </p>
+                                        <Link to="/blog/blog-details" className="theme-btn mt-4">
+                                            Lees Meer
+                                            <i className="bi bi-arrow-right"></i>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="news-content">
-                                <ul>
-                                    <li>
-                                    <i className="bi bi-person"></i>
-                                        By Admin
-                                    </li>
-                                    <li>
-                                    <i className="bi bi-chat"></i>
-                                        3 Comments
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <Link to="/blog/blog-details">Choose The Best IT Service Company in the City.</Link>
-                                </h3>
-                                <p>
-                                    Pellentesque egestas rutrum nibh facilisis ultrices. Phasellus in magna ut orci
-                                    malesuada the sollicitudin. Aenean faucibus scelerisque convallis. Quisque interdum
-                                    mauris id nunc molestie tincidunt erat gravida. Nullam dui libero, mollis ac quam
-                                    et, venenatis.
-                                </p>
-                                <Link to="/blog/blog-details" className="theme-btn mt-4">
-                                    Read More
-                                    <i className="bi bi-arrow-right"></i>
-                                </Link>
-                            </div>
-                        </div>
-                        <div className="news-standard-items wow fadeInUp" data-wow-delay=".4s">
-                            <div className="news-thumb">
-                                <img src="/assets/images/blog/blogThumb4_2.jpg" alt="img" />
-                                <div className="post-date">
-                                    <h3>
-                                        19 <br/>
-                                        <span>Feb</span>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div className="news-content">
-                                <ul>
-                                    <li>
-                                    <i className="bi bi-person"></i>
-                                        By Admin
-                                    </li>
-                                    <li>
-                                    <i className="bi bi-chat"></i>
-                                        2 Comments
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <Link to="/blog/blog-details">Keep Your Business Safe Ensure High Availability</Link>
-                                </h3>
-                                <p>
-                                    Pellentesque egestas rutrum nibh facilisis ultrices. Phasellus in magna ut orci
-                                    malesuada the sollicitudin. Aenean faucibus scelerisque convallis. Quisque interdum
-                                    mauris id nunc molestie tincidunt erat gravida. Nullam dui libero, mollis ac quam
-                                    et, venenatis.
-                                </p>
-                                <Link to="/blog/blog-details" className="theme-btn mt-4">
-                                    Read More
-                                    <i className="bi bi-arrow-right"></i>
-                                </Link>
-                            </div>
-                        </div>
-                        <div className="news-standard-items wow fadeInUp" data-wow-delay=".6s">
-                            <div className="news-thumb">
-                                <img src="/assets/images/blog/blogThumb4_3.jpg" alt="img" />
-                                <div className="post-date">
-                                    <h3>
-                                        28 <br/>
-                                        <span>Feb</span>
-                                    </h3>
-                                </div>
-                            </div>
-                            <div className="news-content">
-                                <ul>
-                                    <li>
-                                    <i className="bi bi-person"></i>
-                                        By Admin
-                                    </li>
-                                    <li>
-                                    <i className="bi bi-chat"></i>
-                                        0 Comments
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <Link to="/blog/blog-details">Tackling the Changes of Retell Industry</Link>
-                                </h3>
-                                <p>
-                                    Pellentesque egestas rutrum nibh facilisis ultrices. Phasellus in magna ut orci
-                                    malesuada the sollicitudin. Aenean faucibus scelerisque convallis. Quisque interdum
-                                    mauris id nunc molestie tincidunt erat gravida. Nullam dui libero, mollis ac quam
-                                    et, venenatis.
-                                </p>
-                                <Link to="/blog/blog-details" className="theme-btn mt-4">
-                                    Read More
-                                    <i className="bi bi-arrow-right"></i>
-                                </Link>
-                            </div>
-                        </div>
+                            );
+                        })}
 
                     </div>
                     
@@ -125,92 +63,54 @@ const BlogStandard = () => {
                     <div className="main-sidebar">
                         <div className="single-sidebar-widget wow fadeInUp" data-wow-delay=".2s">
                             <div className="wid-title">
-                                <h3>Search</h3>
+                                <h3>Zoeken</h3>
                             </div>
                             <div className="search-widget">
                                 <form action="#">
-                                    <input type="text" placeholder="Search here" />
+                                    <input type="text" placeholder="Zoek hier..." />
                                     <button type="submit"><i className="bi bi-search"></i></button>
                                 </form>
                             </div>
                         </div>
                         <div className="single-sidebar-widget wow fadeInUp" data-wow-delay=".4s">
                             <div className="wid-title">
-                                <h3>Categories</h3>
+                                <h3>Categorieën</h3>
                             </div>
                             <div className="news-widget-categories">
                                 <ul>
-                                    <li><Link to="/blog/blog-details">Database Security <span>(08)</span></Link></li>
-                                    <li><Link to="/blog/blog-details">IT Consultancy <span>(11)</span></Link></li>
-                                    <li className="active"><Link to="/blog/blog-details">App Development <span>(12)</span></Link>
-                                    </li>
-                                    <li><Link to="/blog/blog-details">UI/UX Design <span>(18)</span></Link></li>
-                                    <li><Link to="/blog/blog-details">Cyber Security <span>(07)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Beleid <span>(2)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Nieuws <span>(2)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Wijziging <span>(1)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Feestdag <span>(1)</span></Link></li>
+                                    <li><Link to="/blog/blog-details">Naturalisatie <span>(0)</span></Link></li>
                                 </ul>
                             </div>
                         </div>
                         <div className="single-sidebar-widget wow fadeInUp" data-wow-delay=".6s">
                             <div className="wid-title">
-                                <h3>Recent Post</h3>
+                                <h3>Recente Berichten</h3>
                             </div>
                             <div className="recent-post-area">
-                                <div className="recent-items">
-                                    <div className="recent-thumb">
-                                        <img src="/assets/images/blog/blogRecentThumb1_1.jpg" alt="img" />
+                                {data.slice(0, 3).map((item, index) => (
+                                    <div key={index} className="recent-items">
+                                        <div className="recent-thumb">
+                                            <img src={item.img} alt="img" />
+                                        </div>
+                                        <div className="recent-content">
+                                            <ul>
+                                                <li>
+                                                    <img src="/assets/images/icon/calendarIcon.svg" alt="icon" />
+                                                    {item.date}
+                                                </li>
+                                            </ul>
+                                            <h6>
+                                                <Link to="/blog/blog-details">
+                                                    {item.title}
+                                                </Link>
+                                            </h6>
+                                        </div>
                                     </div>
-                                    <div className="recent-content">
-                                        <ul>
-                                            <li>
-                                                <img src="/assets/images/icon/calendarIcon.svg" alt="icon" />
-                                                18 Dec, 2024
-                                            </li>
-                                        </ul>
-                                        <h6>
-                                            <Link to="/blog/blog-details">
-                                                Keep Your Business Safe & <br/>
-                                                Endure High Availability
-                                            </Link>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="recent-items">
-                                    <div className="recent-thumb">
-                                        <img src="/assets/images/blog/blogRecentThumb1_2.jpg" alt="img" />
-                                    </div>
-                                    <div className="recent-content">
-                                        <ul>
-                                            <li>
-                                                <img src="/assets/images/icon/calendarIcon.svg" alt="icon" />
-                                                18 Dec, 2024
-                                            </li>
-                                        </ul>
-                                        <h6>
-                                            <Link to="/blog/blog-details">
-                                                Tacking the Changes of <br/>
-                                                Retail Industry
-                                            </Link>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="recent-items">
-                                    <div className="recent-thumb">
-                                        <img src="/assets/images/blog/blogRecentThumb1_3.jpg" alt="img" />
-                                    </div>
-                                    <div className="recent-content">
-                                        <ul>
-                                            <li>
-                                                <img src="/assets/images/icon/calendarIcon.svg" alt="icon" />
-                                                18 Dec, 2024
-                                            </li>
-                                        </ul>
-                                        <h6>
-                                            <Link to="/blog/blog-details">
-                                                What’s the Holding Back <br/>
-                                                the It Solution
-                                            </Link>
-                                        </h6>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                         <div className="single-sidebar-widget wow fadeInUp" data-wow-delay=".9s">
@@ -219,15 +119,14 @@ const BlogStandard = () => {
                             </div>
                             <div className="news-widget-categories">
                                 <div className="tagcloud">
-                                    <a href="#">Security</a>
-                                    <a href="#">Business</a>
-                                    <a href="#">Digital</a>
-                                    <a href="#">Technology</a>
-                                    <a href="#">Change</a>
-                                    <a href="#">Video</a>
-                                    <a href="#">UI/UX Desing</a>
-                                    <a href="#">Startup</a>
-                                    <a href="#">Services</a>
+                                    <a href="#">Verblijf</a>
+                                    <a href="#">Naturalisatie</a>
+                                    <a href="#">Asiel</a>
+                                    <a href="#">Documenten</a>
+                                    <a href="#">Beleid</a>
+                                    <a href="#">Procedures</a>
+                                    <a href="#">Leges</a>
+                                    <a href="#">Deadlines</a>
                                 </div>
                             </div>
                         </div>

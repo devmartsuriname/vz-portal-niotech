@@ -6,7 +6,7 @@ const BlogDetaillsPage = () => {
         <div>
          <BreadCumb
                 bgimg="/assets/images/bg/breadcumgBg.png"
-                Title="Blog Details"
+                Title="Nieuws Details"
             ></BreadCumb>
             <BlogDetails></BlogDetails>            
         </div>

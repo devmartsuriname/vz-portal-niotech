@@ -6,8 +6,8 @@ const BlogStandardPage = () => {
         <div>
         <BreadCumb
                 bgimg="/assets/images/bg/breadcumgBg.png"
-                Title="Blog Standard"
-            ></BreadCumb> 
+                Title="Nieuws - Standaard Weergave"
+            ></BreadCumb>
             <BlogStandard></BlogStandard>         
         </div>
     );
