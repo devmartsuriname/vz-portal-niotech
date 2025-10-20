@@ -25,7 +25,7 @@ const Faq1 = () => {
     }, [firstItemOpen]);
 
     const FaqContent = {
-        Content:'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly',
+        Content:'Hier vindt u antwoorden op de meest gestelde vragen over verblijfsvergunningen, naturalisatie en andere vreemdelingenzaken procedures in Suriname.',
         img1:'/assets/images/faq/faqThumb1_2.png',
         img2:'/assets/images/faq/faqThumb1_1.png'
       }
@@ -40,14 +40,14 @@ const Faq1 = () => {
                             <div className="faq-content style1">
                                 <div className="section-title">
                                     <SectionTitle
-                                        SubTitle="FAQs"
-                                        Title="Frequently Ask Questions"
+                                        SubTitle="Veelgestelde Vragen"
+                                        Title="Veelgestelde Vragen over Vreemdelingenzaken"
                                     ></SectionTitle>                                    
                                     <p className="section-desc wow fadeInUp" data-wow-delay=".6s">{FaqContent.Content}</p>
                                 </div>
                                 <div className="faq-accordion">
                                     <div className="accordion" id="accordion">
-                                    {data.slice(0,3).map((item, index)=>(
+                                    {data.map((item, index)=>(
                                         <div key={index} className={`accordion-item mb-3 wow fadeInUp ${index === openItemIndex ? "active" : "" }`} data-wow-delay=".3s">
                                             <h5 onClick={() => handleItemClick(index)} className="accordion-header">
                                                 <button className="accordion-button collapsed" type="button"
