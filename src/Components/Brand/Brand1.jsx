@@ -51,8 +51,20 @@ const Brand1 = () => {
                                     <Slider {...settings}>
                                     {data.map((item, index)=>(
                                         <div key={index} className="swiper-slide">
-                                            <div className="brand-logo">
-                                                <img src={item.img} alt={item.alt || "Partner logo"} />
+                                            <div className="brand-logo" style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                padding: '20px',
+                                                minHeight: '80px'
+                                            }}>
+                                                <span style={{
+                                                    fontSize: '18px',
+                                                    fontWeight: '600',
+                                                    color: '#333',
+                                                    textAlign: 'center',
+                                                    lineHeight: '1.4'
+                                                }}>{item.alt}</span>
                                             </div>
                                         </div>
                                         ))}
