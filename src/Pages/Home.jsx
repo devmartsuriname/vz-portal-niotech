@@ -6,11 +6,8 @@ import Counter1 from "../Components/Counter/Counter1";
 import Cta1 from "../Components/Cta/Cta1";
 import Faq1 from "../Components/Faq/Faq1";
 import Feature1 from "../Components/Feature/Feature1";
-import Feature2 from "../Components/Feature/Feature2";
 import HeroBanner1 from "../Components/HeroBanner/HeroBanner1";
 import HowWork from "../Components/HowWork/HowWork";
-
-import Testimonial from "../Components/Testimonial/Testimonial";
 
 const Home = () => {
     return (
@@ -64,9 +61,6 @@ const Home = () => {
             <Feature1></Feature1>
             <Counter1></Counter1>
             <Faq1></Faq1>
-            <Testimonial></Testimonial>
-            <Feature2></Feature2>
-            
             <Cta1
                 subtitle="Klaar om te beginnen?"
                 title="Dien vandaag nog uw aanvraag in via ons digitale portaal"
