@@ -23,9 +23,11 @@ import BlogStandardPage from "../Pages/BlogStandardPage";
 import BlogLeftPage from "../Pages/BlogLeftPage";
 import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
 import FaqPage from "../Pages/FaqPage";
+import { adminRoutes } from './AdminRoutes';
 
 
 export const router = createBrowserRouter([
+    adminRoutes,
     {
       path: "/",
       element: <Layout4></Layout4>,

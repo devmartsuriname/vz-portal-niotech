@@ -4,6 +4,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { router } from './Routes/Routes.jsx';
+import { AuthProvider } from '@/integrations/supabase/auth';
 import "slick-carousel/slick/slick.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -11,6 +12,8 @@ import './assets/main.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
