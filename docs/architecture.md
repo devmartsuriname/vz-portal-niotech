@@ -6,6 +6,22 @@ For complete style guide and component documentation, see [Style Guide Uniformit
 
 ---
 
+## Backend Standards
+
+For complete admin style guide and component documentation, see [Admin Style Guide Uniformity](/docs/AdminStyleGuideUniformity.md).
+
+### Admin Interface Overview
+- **Layout:** AdminLayout with Darkone Bootstrap 5 theme
+- **Components:** VerticalNavigationBar (Sidebar), TopNavigationBar (Topbar with search/theme toggle), Footer
+- **Theme System:** Dual light/dark mode controlled via `data-bs-theme` attribute
+- **Primary Color:** #7e67fe (Purple)
+- **Typography:** Play, sans-serif
+- **Sidebar:** 250px (full) / 75px (collapsed), fixed left positioning
+- **Topbar:** 70px height, sticky positioning, responsive search bar
+- **Footer:** 60px height, animated gradient text effect
+
+---
+
 ## Header Position & Spacing
 
 ### Current Configuration
