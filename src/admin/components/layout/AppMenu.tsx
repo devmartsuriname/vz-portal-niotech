@@ -15,7 +15,7 @@ const AppMenu = ({ menuItems }: AppMenuProps) => {
   };
 
   return (
-    <ul className="menu">
+    <ul className="navbar-nav" id="navbar-nav">
       {menuItems.map((item, idx) => {
         if (item.isTitle) {
           return (
@@ -26,10 +26,17 @@ const AppMenu = ({ menuItems }: AppMenuProps) => {
         }
 
         return (
-          <li key={idx} className={isActiveRoute(item.url) ? 'active' : ''}>
-            <Link to={item.url || '#'} className="menu-link">
-              {item.icon && <IconifyIcon icon={item.icon} className="menu-icon" />}
-              <span className="menu-text">{item.label}</span>
+          <li key={idx} className="nav-item">
+            <Link 
+              to={item.url || '#'} 
+              className={`nav-link ${isActiveRoute(item.url) ? 'active' : ''}`}
+            >
+              {item.icon && (
+                <span className="nav-icon">
+                  <IconifyIcon icon={item.icon} />
+                </span>
+              )}
+              <span className="nav-text">{item.label}</span>
             </Link>
           </li>
         );
