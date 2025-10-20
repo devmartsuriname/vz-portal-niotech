@@ -1,5 +1,11 @@
 # Architecture Documentation
 
+## Frontend Standards
+
+For complete style guide and component documentation, see [Style Guide Uniformity](/docs/StyleGuideUniformity.md).
+
+---
+
 ## Header Position & Spacing
 
 ### Current Configuration
