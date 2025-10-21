@@ -3,7 +3,7 @@
 
 **Version:** 1.0  
 **Date:** 2025-01-20  
-**Status:** Design Complete — Implementation Pending (Phase 2-3)  
+**Status:** ✅ IMPLEMENTED (Phase 3 Complete)  
 
 ---
 
@@ -713,6 +713,173 @@ Content-Type: application/json
   "submissionId": "uuid-submission-1"
 }
 ```
+
+---
+
+## 9. Wizard Hooks
+
+The wizard implementation provides three custom React hooks for managing the multi-step application flow.
+
+---
+
+### useWizardRules()
+
+**Description:** Fetches and caches wizard rules (questions) from the database  
+**Return Type:** `{ data, error, isLoading }` (React Query result)
+
+**Example Usage:**
+```javascript
+import { useWizardRules } from '@/hooks/useWizardRules';
+
+function WizardComponent() {
+  const { data: rules, isLoading, error } = useWizardRules();
+  
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading wizard rules</div>;
+  
+  return <div>{rules.length} questions loaded</div>;
+}
+```
+
+**Helper Functions:**
+
+**`getNextQuestionKey(currentRule, selectedAnswer)`**  
+Returns the next question key based on the current rule and user's selected answer.
+
+**`getRuleByQuestionKey(rules, questionKey)`**  
+Finds and returns a specific rule by its question key.
+
+**Example:**
+```javascript
+import { getNextQuestionKey, getRuleByQuestionKey } from '@/hooks/useWizardRules';
+
+const currentRule = rules.find(r => r.question_key === 'step_1');
+const selectedAnswer = 'residence';
+const nextKey = getNextQuestionKey(currentRule, selectedAnswer);
+const nextRule = getRuleByQuestionKey(rules, nextKey);
+```
+
+---
+
+### useWizardState()
+
+**Description:** Manages wizard navigation state with localStorage persistence  
+**Return Type:** Object with state and navigation functions
+
+**Returned Values:**
+```javascript
+{
+  currentStep: number,           // Current step index (0-based)
+  answers: object,               // Map of question keys to user answers
+  questionPath: array,           // Array of visited question keys
+  isComplete: boolean,           // Whether wizard is complete
+  currentQuestionKey: string,    // Current question key (e.g., 'step_1')
+  canGoBack: boolean,           // Whether user can navigate back
+  updateAnswer: (key, value) => void,
+  goToNextStep: (nextKey) => void,
+  goToPreviousStep: () => void,
+  resetWizard: () => void,
+  completeWizard: () => void
+}
+```
+
+**Example Usage:**
+```javascript
+import { useWizardState } from '@/hooks/useWizardState';
+
+function WizardFlow() {
+  const {
+    currentStep,
+    answers,
+    currentQuestionKey,
+    canGoBack,
+    updateAnswer,
+    goToNextStep,
+    goToPreviousStep
+  } = useWizardState();
+  
+  const handleAnswer = (value) => {
+    updateAnswer(currentQuestionKey, value);
+    const nextKey = determineNextQuestion(value);
+    goToNextStep(nextKey);
+  };
+  
+  return (
+    <div>
+      <h2>Step {currentStep + 1}</h2>
+      {canGoBack && (
+        <button onClick={goToPreviousStep}>Back</button>
+      )}
+      {/* Render current question */}
+    </div>
+  );
+}
+```
+
+**Progress Persistence:**
+- Automatically saves progress to `localStorage` after each step
+- Progress expires after 24 hours
+- Restored automatically on page reload
+
+---
+
+### useWizardSubmission()
+
+**Description:** Handles wizard evaluation and final submission  
+**Return Type:** Object with submission functions and state
+
+**Returned Values:**
+```javascript
+{
+  submitApplication: (wizardData) => Promise<submissionId>,
+  evaluateWizard: (answers) => Promise<result>,
+  isSubmitting: boolean,
+  submissionId: string | null
+}
+```
+
+**Example Usage:**
+```javascript
+import { useWizardSubmission } from '@/hooks/useWizardSubmission';
+
+function SubmissionStep() {
+  const { submitApplication, isSubmitting } = useWizardSubmission();
+  
+  const handleSubmit = async () => {
+    try {
+      const submissionId = await submitApplication({
+        answers: wizardAnswers,
+        personalInfo: {
+          firstName: 'Maria',
+          lastName: 'Santos',
+          email: 'maria@example.com',
+          // ...
+        },
+        files: uploadedFiles
+      });
+      
+      // Navigate to confirmation page
+      navigate(`/confirmation/${submissionId}`);
+    } catch (error) {
+      console.error('Submission failed:', error);
+    }
+  };
+  
+  return (
+    <button onClick={handleSubmit} disabled={isSubmitting}>
+      {isSubmitting ? 'Submitting...' : 'Submit Application'}
+    </button>
+  );
+}
+```
+
+**Submission Process:**
+1. Evaluates wizard answers via `evaluate-wizard` Edge Function
+2. Creates authenticated user session (or signs up if needed)
+3. Creates submission record in database
+4. Uploads all files to storage
+5. Links files to submission via `submission_files` table
+6. Triggers email notification via `send-submission-notification`
 
 ---
 
