@@ -14,16 +14,427 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      announcements: {
+        Row: {
+          content: string
+          created_at: string | null
+          created_by: string
+          ends_at: string | null
+          id: string
+          is_active: boolean | null
+          starts_at: string | null
+          title: string
+          type: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          created_by: string
+          ends_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          starts_at?: string | null
+          title: string
+          type?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          created_by?: string
+          ends_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          starts_at?: string | null
+          title?: string
+          type?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      application_documents: {
+        Row: {
+          application_type_id: string
+          created_at: string | null
+          display_order: number | null
+          document_type_id: string
+          id: string
+          is_mandatory: boolean | null
+        }
+        Insert: {
+          application_type_id: string
+          created_at?: string | null
+          display_order?: number | null
+          document_type_id: string
+          id?: string
+          is_mandatory?: boolean | null
+        }
+        Update: {
+          application_type_id?: string
+          created_at?: string | null
+          display_order?: number | null
+          document_type_id?: string
+          id?: string
+          is_mandatory?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "application_documents_application_type_id_fkey"
+            columns: ["application_type_id"]
+            isOneToOne: false
+            referencedRelation: "application_types"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "application_documents_document_type_id_fkey"
+            columns: ["document_type_id"]
+            isOneToOne: false
+            referencedRelation: "document_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      application_types: {
+        Row: {
+          base_fee: number | null
+          created_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          processing_days: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          base_fee?: number | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          processing_days?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          base_fee?: number | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          processing_days?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      document_types: {
+        Row: {
+          allowed_formats: string[] | null
+          created_at: string | null
+          description: string | null
+          id: string
+          is_required: boolean | null
+          max_file_size_mb: number | null
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          allowed_formats?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_required?: boolean | null
+          max_file_size_mb?: number | null
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          allowed_formats?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_required?: boolean | null
+          max_file_size_mb?: number | null
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      faq_items: {
+        Row: {
+          answer: string
+          category: string | null
+          created_at: string | null
+          created_by: string
+          display_order: number | null
+          id: string
+          is_published: boolean | null
+          question: string
+          updated_at: string | null
+        }
+        Insert: {
+          answer: string
+          category?: string | null
+          created_at?: string | null
+          created_by: string
+          display_order?: number | null
+          id?: string
+          is_published?: boolean | null
+          question: string
+          updated_at?: string | null
+        }
+        Update: {
+          answer?: string
+          category?: string | null
+          created_at?: string | null
+          created_by?: string
+          display_order?: number | null
+          id?: string
+          is_published?: boolean | null
+          question?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      pages: {
+        Row: {
+          content: string | null
+          created_at: string | null
+          created_by: string
+          id: string
+          is_published: boolean | null
+          meta_description: string | null
+          published_at: string | null
+          slug: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string | null
+          created_by: string
+          id?: string
+          is_published?: boolean | null
+          meta_description?: string | null
+          published_at?: string | null
+          slug: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          content?: string | null
+          created_at?: string | null
+          created_by?: string
+          id?: string
+          is_published?: boolean | null
+          meta_description?: string | null
+          published_at?: string | null
+          slug?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      submission_files: {
+        Row: {
+          document_type_id: string
+          file_name: string
+          file_path: string
+          file_size_bytes: number
+          id: string
+          is_verified: boolean | null
+          mime_type: string
+          submission_id: string
+          uploaded_at: string | null
+          uploaded_by: string
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          document_type_id: string
+          file_name: string
+          file_path: string
+          file_size_bytes: number
+          id?: string
+          is_verified?: boolean | null
+          mime_type: string
+          submission_id: string
+          uploaded_at?: string | null
+          uploaded_by: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          document_type_id?: string
+          file_name?: string
+          file_path?: string
+          file_size_bytes?: number
+          id?: string
+          is_verified?: boolean | null
+          mime_type?: string
+          submission_id?: string
+          uploaded_at?: string | null
+          uploaded_by?: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "submission_files_document_type_id_fkey"
+            columns: ["document_type_id"]
+            isOneToOne: false
+            referencedRelation: "document_types"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "submission_files_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      submissions: {
+        Row: {
+          admin_notes: string | null
+          applicant_data: Json | null
+          application_type_id: string
+          created_at: string | null
+          id: string
+          reviewed_at: string | null
+          status: string
+          submitted_at: string | null
+          updated_at: string | null
+          user_id: string
+          wizard_answers: Json | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          applicant_data?: Json | null
+          application_type_id: string
+          created_at?: string | null
+          id?: string
+          reviewed_at?: string | null
+          status?: string
+          submitted_at?: string | null
+          updated_at?: string | null
+          user_id: string
+          wizard_answers?: Json | null
+        }
+        Update: {
+          admin_notes?: string | null
+          applicant_data?: Json | null
+          application_type_id?: string
+          created_at?: string | null
+          id?: string
+          reviewed_at?: string | null
+          status?: string
+          submitted_at?: string | null
+          updated_at?: string | null
+          user_id?: string
+          wizard_answers?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "submissions_application_type_id_fkey"
+            columns: ["application_type_id"]
+            isOneToOne: false
+            referencedRelation: "application_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      wizard_rules: {
+        Row: {
+          created_at: string | null
+          display_order: number | null
+          id: string
+          is_active: boolean | null
+          next_question_map: Json | null
+          options: Json | null
+          question_key: string
+          question_text: string
+          question_type: string
+          result_application_type_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          is_active?: boolean | null
+          next_question_map?: Json | null
+          options?: Json | null
+          question_key: string
+          question_text: string
+          question_type: string
+          result_application_type_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          is_active?: boolean | null
+          next_question_map?: Json | null
+          options?: Json | null
+          question_key?: string
+          question_text?: string
+          question_type?: string
+          result_application_type_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wizard_rules_result_application_type_id_fkey"
+            columns: ["result_application_type_id"]
+            isOneToOne: false
+            referencedRelation: "application_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +561,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
