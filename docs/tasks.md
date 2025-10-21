@@ -340,42 +340,68 @@
 
 ---
 
-## PHASE 4: ADMIN DASHBOARD & DATA SYNC (8 days)
+## PHASE 4: QA TESTING & ADMIN ENHANCEMENT (6-8 days)
 
-### 4.1 Admin Pages Development (3 days)
+**Note:** Phase 3 delivered all core admin pages ahead of schedule. Phase 4 now focuses on comprehensive QA testing and enhancement of remaining features.
 
-| Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
-|----------|------|--------|-------|----------|--------------|-----------------|
-| P0 | Create Dashboard.tsx with stats and charts | 🔵 TODO | Frontend Dev | 1d | Phase 3 complete | - |
-| P0 | Create SubmissionsList.tsx | 🔵 TODO | Frontend Dev | 0.5d | Dashboard complete | - |
-| P0 | Create SubmissionDetails.tsx | 🔵 TODO | Frontend Dev | 0.5d | SubmissionsList | - |
-| P0 | Create UsersList.tsx | 🔵 TODO | Frontend Dev | 0.5d | SubmissionDetails | - |
-| P1 | Create PagesList.tsx (Content Management) | 🔵 TODO | Frontend Dev | 0.25d | UsersList | - |
-| P1 | Create FAQList.tsx | 🔵 TODO | Frontend Dev | 0.25d | PagesList | - |
-| P1 | Create AnnouncementsList.tsx | 🔵 TODO | Frontend Dev | 0.25d | FAQList | - |
-| P1 | Create WizardRulesManager.tsx | 🔵 TODO | Frontend Dev | 0.5d | AnnouncementsList | - |
-
-### 4.2 Data Synchronization (2 days)
+### 4.1 QA Testing & Validation (3 days) 🔄 IN PROGRESS
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|
-| P0 | Enable Supabase Realtime for submissions | 🔵 TODO | Backend Dev | 0.5d | Admin pages complete | - |
-| P0 | Implement real-time submission updates | 🔵 TODO | Frontend Dev | 0.5d | Realtime enabled | - |
-| P0 | Implement status change notifications | 🔵 TODO | Frontend Dev | 0.5d | Real-time updates | - |
+| P0 | Execute automated pre-testing verification | ✅ COMPLETE | QA Lead | 0.5d | Phase 3 complete | 2025-01-21 |
+| P0 | Identify and log security advisories | ✅ COMPLETE | QA Lead | 0.25d | Pre-testing done | 2025-01-21 |
+| P0 | Establish performance baselines | ✅ COMPLETE | QA Lead | 0.25d | Pre-testing done | 2025-01-21 |
+| P0 | Initialize bug tracking system | ✅ COMPLETE | QA Lead | 0.25d | Pre-testing done | 2025-01-21 |
+| P0 | Create test infrastructure documentation | ✅ COMPLETE | QA Lead | 0.25d | Bug tracking ready | 2025-01-21 |
+| P0 | Execute manual test scenarios (TS-01 to TS-10) | 🟡 PENDING | Manual Tester | 1.5d | Test accounts created | - |
+| P1 | Browser compatibility testing (4 browsers) | 🟡 PENDING | QA Lead | 0.5d | Manual tests complete | - |
+| P1 | Mobile responsiveness testing (3 breakpoints) | 🟡 PENDING | QA Lead | 0.5d | Browser tests complete | - |
+| P1 | Performance testing (Lighthouse audits) | 🟡 PENDING | QA Lead | 0.25d | Manual tests complete | - |
+| P1 | Accessibility testing (WCAG 2.1 AA) | 🟡 PENDING | QA Lead | 0.25d | Manual tests complete | - |
+| P2 | Security validation (RLS policies, JWT) | 🟡 PENDING | Backend Dev | 0.25d | Manual tests complete | - |
 
-### 4.3 Reporting & Analytics (2 days)
+### 4.2 Bug Fixes & Validation (1-2 days)
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|
-| P0 | Create Reports.tsx page | 🔵 TODO | Frontend Dev | 1d | Data sync complete | - |
-| P0 | Implement CSV export functionality | 🔵 TODO | Frontend Dev | 0.5d | Reports page | - |
-| P1 | Implement Excel export | 🔵 TODO | Frontend Dev | 0.5d | CSV export | - |
+| P0 | Resolve all Critical (P0) bugs | 🟢 N/A | Dev Team | Variable | QA complete | - |
+| P1 | Resolve 80%+ High (P1) bugs | 🟡 PENDING | Dev Team | Variable | P0 bugs fixed | - |
+| P2 | Address Medium (P2) security advisory | 🟡 PENDING | Backend Admin | 0.25d | Manual config | - |
+| P1 | Re-test fixed bugs | 🟡 PENDING | QA Lead | 0.5d | Bugs resolved | - |
+| P1 | Update bug tracking documentation | 🟡 PENDING | QA Lead | 0.25d | Testing complete | - |
 
-### 4.4 Admin Settings (1 day)
+### 4.3 Missing Admin Modules (2-3 days)
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|
-| P1 | Create Settings.tsx page | 🔵 TODO | Frontend Dev | 1d | Reports complete | - |
+| P0 | Create Reports.tsx with analytics charts | 🔵 TODO | Frontend Dev | 1d | Bug fixes complete | - |
+| P0 | Implement useReports hook (SQL aggregations) | 🔵 TODO | Backend Dev | 0.5d | Reports.tsx started | - |
+| P1 | Implement CSV export functionality | 🔵 TODO | Frontend Dev | 0.5d | Reports page complete | - |
+| P1 | Create useRealtimeNotifications hook | 🔵 TODO | Frontend Dev | 0.5d | Reports complete | - |
+| P1 | Implement toast notifications (sonner) | 🔵 TODO | Frontend Dev | 0.25d | Hook created | - |
+| P1 | Add notification badge to sidebar | 🔵 TODO | Frontend Dev | 0.25d | Toast notifications | - |
+| P2 | Create DocumentPreviewModal component | 🔵 TODO | Frontend Dev | 0.5d | Notifications complete | - |
+| P3 | Create Settings.tsx page (optional) | ⏭️ DEFER | Frontend Dev | 1d | Phase 5 consideration | - |
+
+### 4.4 Performance Optimization (1 day)
+
+| Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
+|----------|------|--------|-------|----------|--------------|-----------------|
+| P1 | Optimize bundle size (code splitting, tree shaking) | 🔵 TODO | Frontend Dev | 0.5d | Modules complete | - |
+| P1 | Convert large images to WebP format | 🔵 TODO | Frontend Dev | 0.25d | Bundle optimized | - |
+| P1 | Add database indexes (submissions, files) | 🔵 TODO | Backend Dev | 0.25d | Bundle optimized | - |
+| P1 | Optimize React Query cache strategies | 🔵 TODO | Frontend Dev | 0.25d | DB indexes added | - |
+| P2 | Review Edge Function cold start times | 🔵 TODO | Backend Dev | 0.25d | Cache optimized | - |
+
+### 4.5 Documentation Updates (0.5 days)
+
+| Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
+|----------|------|--------|-------|----------|--------------|-----------------|
+| P0 | Update /docs/QA.md with test results | 🔵 TODO | QA Lead | 0.25d | Manual tests complete | - |
+| P0 | Create /docs/phase4-completion-report.md | 🔵 TODO | QA Lead | 0.25d | All testing complete | - |
+| P1 | Update /docs/backend-architecture.md | 🔵 TODO | Backend Dev | 0.25d | Modules complete | - |
+| P1 | Update /docs/admin-user-guide.md (Reports section) | 🔵 TODO | Frontend Dev | 0.25d | Reports deployed | - |
+| P1 | Update /docs/api-reference.md (new hooks) | 🔵 TODO | Backend Dev | 0.25d | Hooks deployed | - |
 
 ---
 

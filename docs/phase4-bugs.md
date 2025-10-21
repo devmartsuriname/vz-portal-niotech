@@ -13,9 +13,9 @@
 |----------|-------|------|-------------|----------|
 | Critical | 0 | 0 | 0 | 0 |
 | High | 0 | 0 | 0 | 0 |
-| Medium | 0 | 0 | 0 | 0 |
+| Medium | 1 | 1 | 0 | 0 |
 | Low | 0 | 0 | 0 | 0 |
-| **TOTAL** | **0** | **0** | **0** | **0** |
+| **TOTAL** | **1** | **1** | **0** | **0** |
 
 ---
 
@@ -102,9 +102,40 @@
 
 ## Active Issues
 
-### No Active Issues
+### Issue #001: Leaked Password Protection Disabled (Security Advisory)
+- **Severity:** Medium (Security Best Practice)
+- **Status:** Open - Requires Manual Configuration
+- **Affected Component:** Supabase Auth Configuration
+- **Test Case:** Security Validation (Section 1.4)
+- **Discovered By:** Supabase Linter (Automated)
+- **Discovered Date:** 2025-01-21
+- **Assigned To:** Backend Administrator
+- **Steps to Reproduce:**
+  1. Run `supabase linter` command
+  2. Observe WARN: "Leaked Password Protection Disabled"
+- **Expected Behavior:** Leaked password protection should be enabled to prevent users from using compromised passwords
+- **Actual Behavior:** Feature is currently disabled in auth settings
+- **Screenshot:** N/A (Configuration issue)
+- **Console Logs:** 
+  ```
+  WARN 1: Leaked Password Protection Disabled
+  Level: WARN
+  Description: Leaked password protection is currently disabled.
+  Categories: SECURITY
+  How to fix: https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection
+  ```
+- **Browser/Device:** N/A (Backend configuration)
+- **Fix Required:** Enable leaked password protection in Auth settings via backend dashboard
+- **Priority:** P2 (Medium) - Security enhancement, not blocking core functionality
+- **Fix Applied:** Pending manual configuration
+- **Verified By:** Pending
+- **Verified Date:** Pending
 
-All systems operational. Issues discovered during Phase 4 QA testing will be documented here.
+---
+
+### No Other Active Issues
+
+All core functionality operational. Manual testing (TS-01 to TS-09) pending.
 
 ---
 
@@ -153,11 +184,25 @@ Resolved bugs from Phase 4 testing will be archived here with resolution details
 - ⚠️ Test submission has 0 files uploaded (needs manual file upload test)
 - ✅ No console errors detected
 - ✅ Home, Aanvraag Indienen, and Wizard pages render correctly
+- ✅ Automated verification 87.5% complete (14/16 checks passed)
+
+### Phase 4 Section 2 Testing (2025-01-21)
+- ✅ Security advisory identified (leaked password protection)
+- ✅ Performance baseline screenshots captured
+- ✅ Bug tracking system initialized
+- ✅ Test infrastructure documented
+- ⚠️ 1 medium-severity security advisory requires manual configuration
+
+**Performance Baseline (Screenshots Captured):**
+- Home page: Renders correctly with hero section
+- Aanvraag Indienen page: Wizard introduction displays properly
+- Admin Dashboard: Sign-in page renders (auth-protected as expected)
 
 **Next Steps:**
-- Execute manual test scenarios TS-01 through TS-10
-- Capture screenshots for each test
-- Document any issues discovered
+- Configure leaked password protection via backend dashboard
+- Execute manual test scenarios TS-01 through TS-09
+- Capture detailed screenshots for each test scenario
+- Document any additional issues discovered
 
 ---
 
