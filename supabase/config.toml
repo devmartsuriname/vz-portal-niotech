@@ -1,1 +1,13 @@
 project_id = "aexfhtrvblxjydnvtejr"
+
+[functions.send-submission-notification]
+verify_jwt = false
+
+[functions.validate-file]
+verify_jwt = false
+
+[functions.evaluate-wizard]
+verify_jwt = false
+
+[functions.send-status-update-notification]
+verify_jwt = true

@@ -1,3 +1,4 @@
+import React from 'react';
 import SignIn from '../admin/pages/auth/SignIn';
 import SignUp from '../admin/pages/auth/SignUp';
 import Dashboard from '../admin/pages/dashboard/Dashboard';
@@ -31,6 +32,22 @@ export const adminRoutes = {
         {
           path: 'dashboard',
           element: <Dashboard />,
+        },
+        {
+          path: 'submissions',
+          element: React.lazy(() => import('../admin/pages/submissions/SubmissionsList')),
+        },
+        {
+          path: 'submissions/:id',
+          element: React.lazy(() => import('../admin/pages/submissions/SubmissionDetails')),
+        },
+        {
+          path: 'content',
+          element: React.lazy(() => import('../admin/pages/content/ContentManager')),
+        },
+        {
+          path: 'users/roles',
+          element: React.lazy(() => import('../admin/pages/users/UserRolesManager')),
         },
       ],
     },
