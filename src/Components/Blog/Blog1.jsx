@@ -1,5 +1,29 @@
 import { Link } from "react-router-dom";
-import data from "../../Data/blog.json";
+
+// Static announcements data for VZ Juspol Portal
+const announcements = [
+    {
+        img: "/assets/images/blog/blogThumb1_1.jpg",
+        category: "Aankondiging",
+        title: "Nieuwe online diensten beschikbaar voor visumaanvragen",
+        author: "VZ Juspol",
+        date: "15 Jan 2025"
+    },
+    {
+        img: "/assets/images/blog/blogThumb1_2.jpg",
+        category: "Update",
+        title: "Verkorte verwerkingstijd voor bepaalde verblijfsvergunningen",
+        author: "VZ Juspol",
+        date: "10 Jan 2025"
+    },
+    {
+        img: "/assets/images/blog/blogThumb1_3.jpg",
+        category: "Belangrijk",
+        title: "Openingstijden tijdens feestdagen en nationale vrije dagen",
+        author: "VZ Juspol",
+        date: "05 Jan 2025"
+    }
+];
 
 const Blog1 = () => {
     return (
@@ -14,7 +38,7 @@ const Blog1 = () => {
                         <h2 className="title wow fadeInUp" data-wow-delay=".4s">Recente Artikelen en Laatste Nieuws over Vreemdelingenzaken</h2>
                     </div>
                     <div className="row gy-5">
-                        {data.slice(0, 3).map((item, index) => (
+                        {announcements.map((item, index) => (
                             <div key={index} className="col-xl-4 col-md-6">
                                 <div className="blog-card style1 wow fadeInUp" data-wow-delay={`.${(index + 1) * 2}s`}>
                                     <div className="thumb">
@@ -25,7 +49,7 @@ const Blog1 = () => {
                                             <img src="/assets/images/icon/FolderIcon.svg" alt="icon" />
                                             {item.category}
                                         </div>
-                                        <h3><Link to="/blog/blog-details">{item.title}</Link></h3>
+                                        <h3><Link to="/contact">{item.title}</Link></h3>
                                         <div className="blog-meta">
                                             <div className="item child1">
                                                 <span className="icon">
