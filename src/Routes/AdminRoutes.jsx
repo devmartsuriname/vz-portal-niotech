@@ -10,6 +10,8 @@ const SubmissionsList = lazy(() => import('../admin/pages/submissions/Submission
 const SubmissionDetails = lazy(() => import('../admin/pages/submissions/SubmissionDetails'));
 const ContentManager = lazy(() => import('../admin/pages/content/ContentManager'));
 const UserRolesManager = lazy(() => import('../admin/pages/users/UserRolesManager'));
+const WizardRulesManager = lazy(() => import('../admin/pages/wizard/WizardRulesManager'));
+const DocumentMappingManager = lazy(() => import('../admin/pages/wizard/DocumentMappingManager'));
 
 export const adminRoutes = {
   path: '/admin',
@@ -53,6 +55,14 @@ export const adminRoutes = {
         {
           path: 'users/roles',
           element: <UserRolesManager />,
+        },
+        {
+          path: 'wizard/rules',
+          element: <WizardRulesManager />,
+        },
+        {
+          path: 'wizard/documents',
+          element: <DocumentMappingManager />,
         },
       ],
     },

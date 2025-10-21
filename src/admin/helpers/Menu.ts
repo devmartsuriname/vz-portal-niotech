@@ -52,6 +52,25 @@ export const getMenuItems = (): MenuItemType[] => {
         },
       ],
     },
+    {
+      key: 'wizard',
+      label: 'Wizard Beheer',
+      icon: 'solar:routing-2-bold-duotone',
+      children: [
+        {
+          key: 'wizard-rules',
+          label: 'Wizard Regels',
+          url: '/admin/wizard/rules',
+          parentKey: 'wizard',
+        },
+        {
+          key: 'wizard-documents',
+          label: 'Document Mappings',
+          url: '/admin/wizard/documents',
+          parentKey: 'wizard',
+        },
+      ],
+    },
   ];
 };
 
