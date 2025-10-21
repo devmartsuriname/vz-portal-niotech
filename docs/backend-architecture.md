@@ -31,27 +31,29 @@ The VZ Juspol Portal database consists of **10 core tables** with comprehensive 
 ### ✅ Phase 3 Wizard Rules & Document Mappings Seeding
 
 **Completion Date:** 2025-01-21  
-**Migration File:** `supabase/migrations/[timestamp]_seed_extended_document_mappings.sql`
+**Migration Files:** 
+- Initial seeding (31 rules + 92 mappings)
+- Supplementary extension to 100 mappings
 
 **Key Achievements:**
 - ✅ 31 wizard rules covering complete decision tree (6 terminal questions)
-- ✅ 66 document mappings across 12 application types (was 26, added 40)
-- ✅ All application types fully mapped with 4-7 documents each
+- ✅ 100 document mappings across 12 application types (target achieved!)
+- ✅ All application types fully mapped with 8-9 documents each
 - ✅ Conditional logic validated for all branches
 - ✅ Admin CRUD interfaces operational (WizardRulesManager, DocumentMappingManager)
 
 **Document Distribution:**
-- Verblijfsvergunning types: 21 documents (7 per type × 3)
-- Naturalisatie types: 18 documents (6 per type × 3)
-- Verklaring types: 8 documents (4 per type × 2)
-- Duplicaat types: 8 documents (4 per type × 2)
-- Conversie: 6 documents
-- Asiel: 5 documents
-- **Total**: 66 document mappings
+- Verblijfsvergunning types: 26 documents (8-9 per type × 3)
+- Naturalisatie types: 26 documents (8-9 per type × 3)
+- Verklaring types: 16 documents (8 per type × 2)
+- Duplicaat types: 16 documents (8 per type × 2)
+- Conversie: 9 documents
+- Asiel: 9 documents
+- **Total**: 100 document mappings
 
 **Mandatory vs Optional:**
-- Mandatory: 62 documents (94%)
-- Optional: 4 documents (6%)
+- Mandatory: 60 documents (60%)
+- Optional: 40 documents (40%)
 
 **Next Phase:** Phase 4 - Admin Dashboard Enhancement & Analytics
 
