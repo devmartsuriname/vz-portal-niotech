@@ -8,9 +8,9 @@ import '../assets/scss/style.scss';
 
 const AdminLayout = () => {
   useEffect(() => {
-    document.documentElement.setAttribute('data-bs-theme', 'light');
-    document.documentElement.setAttribute('data-sidebar-color', 'light');
-    document.documentElement.setAttribute('data-topbar-color', 'light');
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
+    document.documentElement.setAttribute('data-sidebar-color', 'dark');
+    document.documentElement.setAttribute('data-topbar-color', 'dark');
     document.documentElement.setAttribute('data-sidebar-size', 'default');
   }, []);
 

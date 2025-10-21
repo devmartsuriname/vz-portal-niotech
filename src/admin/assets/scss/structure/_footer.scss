@@ -33,3 +33,11 @@
         background-position: 200% center;
     }
 }
+
+html[data-bs-theme="dark"] {
+  .footer {
+    background-color: $body-secondary-bg-dark;
+    color: $body-color-dark;
+    border-top-color: $border-color-dark;
+  }
+}

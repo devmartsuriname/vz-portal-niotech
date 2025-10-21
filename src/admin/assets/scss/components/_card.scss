@@ -46,3 +46,19 @@
     margin-bottom: $spacer;
     color: $text-muted;
 }
+
+// Dark Mode Card Styling
+html[data-bs-theme="dark"],
+[data-bs-theme="dark"] {
+  .card {
+    background-color: $body-secondary-bg-dark !important;
+    border-color: $border-color-dark !important;
+    color: $body-color-dark;
+  }
+  
+  .card-header,
+  .card-footer {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: $border-color-dark;
+  }
+}

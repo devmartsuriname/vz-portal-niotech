@@ -28,3 +28,20 @@ iconify-icon {
     width: 1em;
     height: 1em;
 }
+
+// Dark Mode Body & Layout
+html[data-bs-theme="dark"],
+[data-bs-theme="dark"] {
+  body {
+    background-color: $body-bg-dark !important;
+    color: $body-color-dark !important;
+  }
+  
+  .page-content {
+    background-color: $body-bg-dark !important;
+  }
+  
+  .container-fluid {
+    background-color: transparent;
+  }
+}
