@@ -18,6 +18,7 @@ import BlogPage from "../Pages/BlogPage";
 import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
 import BlogStandardPage from "../Pages/BlogStandardPage";
 import { adminRoutes } from './AdminRoutes';
+import RouteError from "../components/common/RouteError";
 
 // Lazy load wizard components to ensure React Query is initialized
 const ApplicationWizard = lazy(() => import("../Pages/Wizard/ApplicationWizard"));
@@ -77,6 +78,7 @@ export const router = createBrowserRouter([
         {
           path: "/wizard",
           element: <Suspense fallback={<div>Loading...</div>}><ApplicationWizard /></Suspense>,
+          errorElement: <RouteError />,
         },
         {
           path: "/wizard/confirmation/:submissionId",
