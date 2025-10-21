@@ -42,6 +42,7 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "@supabase/supabase-js": "^2.76.0",
     "@tanstack/react-query": "^5.83.0",
+    "@vitejs/plugin-react": "^5.0.4",
     "apexcharts": "^3.54.1",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",

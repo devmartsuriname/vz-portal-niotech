@@ -28,14 +28,16 @@ const queryClient = new QueryClient({
   },
 });
 
+const AppTree = (
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
+);
+
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <RouterProvider router={router} />
-        </AuthProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
-  </StrictMode>,
-)
+  import.meta.env.DEV ? AppTree : <StrictMode>{AppTree}</StrictMode>
+);
