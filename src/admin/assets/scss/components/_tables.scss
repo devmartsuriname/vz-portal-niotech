@@ -57,7 +57,7 @@ th {
 
 html[data-bs-theme="dark"] {
     .table {
-        --#{$prefix}table-bg: #{$body-secondary-bg-dark};
+        --#{$prefix}table-bg: #{$table-bg-dark};
         --#{$prefix}table-color: #{$body-color-dark};
         --#{$prefix}table-striped-bg: rgba(255, 255, 255, 0.02);
         --#{$prefix}table-hover-bg: rgba(255, 255, 255, 0.04);
