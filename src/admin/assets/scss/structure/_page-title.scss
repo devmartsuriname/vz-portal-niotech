@@ -11,3 +11,24 @@
     align-items: center;
     gap: $spacer * 0.5;
 }
+
+// Improve contrast for dark mode
+html[data-bs-theme="dark"],
+[data-bs-theme="dark"] {
+  .page-title-box {
+    .page-title {
+      color: $body-emphasis-color-dark !important; // brighter for readability
+      font-weight: 600;
+    }
+
+    .breadcrumb {
+      .breadcrumb-item,
+      .breadcrumb-item a {
+        color: $body-secondary-color-dark !important;
+      }
+      .breadcrumb-item.active {
+        color: $body-emphasis-color-dark !important;
+      }
+    }
+  }
+}
