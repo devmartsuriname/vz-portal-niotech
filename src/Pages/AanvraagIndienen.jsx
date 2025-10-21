@@ -1,6 +1,5 @@
 import BreadCumb from "../Components/Common/BreadCumb";
 import { Link } from "react-router-dom";
-import DownloadableForms from "../Components/DownloadableForms";
 
 const AanvraagIndienen = () => {
   return (
@@ -20,17 +19,6 @@ const AanvraagIndienen = () => {
                 De wizard begeleidt u door het hele proces en genereert automatisch de juiste 
                 documentenlijst op basis van uw antwoorden.
               </p>
-            </div>
-          </div>
-
-          <div className="row mb-5">
-            <div className="col-12">
-              <h3 className="mb-4">Download Vereiste Documentenlijsten</h3>
-              <p className="text mb-4">
-                Download eerst de relevante documentenlijst voordat u de wizard start. 
-                Zo weet u precies welke documenten u nodig heeft voor uw aanvraag.
-              </p>
-              <DownloadableForms showFilter={true} />
             </div>
           </div>
 
