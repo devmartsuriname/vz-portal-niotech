@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         "@": path.resolve(__dirname, "./src"),
         react: path.resolve(__dirname, "node_modules/react/index.js"),
+        "react-dom/client": path.resolve(__dirname, "node_modules/react-dom/client.js"),
         "react-dom": path.resolve(__dirname, "node_modules/react-dom/index.js"),
         "react/jsx-runtime": path.resolve(__dirname, "node_modules/react/jsx-runtime.js"),
         "react/jsx-dev-runtime": path.resolve(__dirname, "node_modules/react/jsx-dev-runtime.js"),
@@ -25,7 +26,7 @@ export default defineConfig(({ mode }) => {
       dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
     },
     optimizeDeps: {
-      include: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+      include: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
       force: true,
     },
     build: {
