@@ -5,10 +5,7 @@ import Layout4 from "../Layout/Layout4";
 import AboutPage from "../Pages/AboutPage";
 import Home from "../Pages/Home";
 import ServicePage from "../Pages/ServicePage";
-import ServiceDetailPage from "../Pages/ServiceDetailPage";
 import ContactPage from "../Pages/ContactPage";
-import BlogStandardPage from "../Pages/BlogStandardPage";
-import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
 import FaqPage from "../Pages/FaqPage";
 import Instructies from "../Pages/Instructies";
 import DocumentenLijsten from "../Pages/DocumentenLijsten";
@@ -38,20 +35,8 @@ export const router = createBrowserRouter([
           element: <ServicePage></ServicePage>,
         }, 
         {
-          path: "/service/service-details",
-          element: <ServiceDetailPage></ServiceDetailPage>,
-        },
-        {
           path: "/faq",
           element: <FaqPage></FaqPage>,
-        },
-        {
-          path: "/blog",
-          element: <BlogStandardPage></BlogStandardPage>,
-        },
-        {
-          path: "/blog/blog-details",
-          element: <BlogDetaillsPage></BlogDetaillsPage>,
         },
         {
           path: "/contact",

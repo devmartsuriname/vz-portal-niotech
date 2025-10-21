@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import { router } from './Routes/Routes.jsx';
 import { AuthProvider } from '@/integrations/supabase/auth';
+import ErrorBoundary from './components/common/ErrorBoundary';
 import "slick-carousel/slick/slick.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -13,8 +14,10 @@ import './assets/main.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ErrorBoundary>
   </StrictMode>,
 )

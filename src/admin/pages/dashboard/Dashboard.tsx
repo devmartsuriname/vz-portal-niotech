@@ -7,7 +7,7 @@ import PageTitle from '@/admin/components/PageTitle';
 const Dashboard = () => {
   return (
     <>
-      <PageTitle subName="Darkone" title="Dashboard" />
+      <PageTitle subName="VZ Juspol Admin Portal" title="Dashboard" />
       <Cards />
       <Chart />
       <User />
