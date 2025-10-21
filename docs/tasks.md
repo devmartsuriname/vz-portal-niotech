@@ -213,16 +213,47 @@
 - ✅ Allowed MIME types: application/pdf, image/jpeg, image/png
 - ✅ Upload and view policies implemented
 
-### 2.4 Edge Functions Setup (2 days)
+### 2.4 Edge Functions Setup (2 days) ✅ COMPLETE
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|
-| P0 | Create send-submission-notification function | 🔵 TODO | Backend Dev | 0.5d | Storage configured | - |
-| P0 | Create validate-file function | 🔵 TODO | Backend Dev | 0.5d | Storage configured | - |
-| P0 | Create evaluate-wizard function | 🔵 TODO | Backend Dev | 0.5d | Storage configured | - |
-| P1 | Create send-status-update-notification function | 🔵 TODO | Backend Dev | 0.5d | Storage configured | - |
+| P0 | Create send-submission-notification function | 🟢 COMPLETE | Backend Dev | 0.5d | Storage configured | 2025-01-21 |
+| P0 | Create validate-file function | 🟢 COMPLETE | Backend Dev | 0.5d | Storage configured | 2025-01-21 |
+| P0 | Create evaluate-wizard function | 🟢 COMPLETE | Backend Dev | 0.5d | Storage configured | 2025-01-21 |
+| P1 | Create send-status-update-notification function | 🟢 COMPLETE | Backend Dev | 0.5d | Storage configured | 2025-01-21 |
 
-### 2.5 Data Population & Testing (2 days)
+**Phase 2.4 Summary:**
+- ✅ All 4 Edge Functions deployed successfully
+- ✅ CORS configured for all functions
+- ✅ Resend API integration via fetch (no npm package dependency)
+- ✅ JWT verification configured per function (validate-file, evaluate-wizard: false; send-status-update-notification: true)
+- ✅ Comprehensive error handling and logging in all functions
+- **Config File:** `supabase/config.toml` updated
+
+### 2.5 Admin Backend Integration (2 days) ✅ COMPLETE
+
+| Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
+|----------|------|--------|-------|----------|--------------|-----------------|
+| P0 | Create useSubmissions hook | 🟢 COMPLETE | Backend Dev | 0.5d | Edge functions complete | 2025-01-21 |
+| P0 | Create useContent hooks | 🟢 COMPLETE | Backend Dev | 0.5d | Edge functions complete | 2025-01-21 |
+| P0 | Create useUserRoles hook | 🟢 COMPLETE | Backend Dev | 0.5d | Edge functions complete | 2025-01-21 |
+| P0 | Build Dashboard with real data | 🟢 COMPLETE | Frontend Dev | 0.5d | Hooks complete | 2025-01-21 |
+| P0 | Build Submissions List page | 🟢 COMPLETE | Frontend Dev | 0.5d | Hooks complete | 2025-01-21 |
+| P0 | Build Submission Details page | 🟢 COMPLETE | Frontend Dev | 0.5d | Hooks complete | 2025-01-21 |
+| P0 | Build Content Manager | 🟢 COMPLETE | Frontend Dev | 0.5d | Hooks complete | 2025-01-21 |
+| P0 | Build User Roles Manager | 🟢 COMPLETE | Frontend Dev | 0.5d | Hooks complete | 2025-01-21 |
+| P0 | Update admin menu navigation | 🟢 COMPLETE | Frontend Dev | 0.25d | All pages built | 2025-01-21 |
+| P0 | Enable Realtime for submissions | 🟢 COMPLETE | Backend Dev | 0.25d | All pages built | 2025-01-21 |
+
+**Phase 2.5 Summary:**
+- ✅ 3 custom hooks created (`useSubmissions`, `useContent`, `useUserRoles`)
+- ✅ 5 admin pages built: Dashboard, Submissions List/Details, Content Manager, User Roles Manager
+- ✅ Demo components removed (Cards.tsx, Chart.tsx, User.tsx)
+- ✅ Clean admin menu with Dutch labels
+- ✅ Lazy loading implemented for admin routes
+- ✅ Realtime enabled for `submissions` and `submission_files` tables
+
+### 2.6 Data Population & Testing (2 days)
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|

@@ -1,10 +1,15 @@
-import React from 'react';
+import { lazy } from 'react';
 import SignIn from '../admin/pages/auth/SignIn';
 import SignUp from '../admin/pages/auth/SignUp';
 import Dashboard from '../admin/pages/dashboard/Dashboard';
 import AdminLayout from '../admin/layout/AdminLayout';
 import { ProtectedRoute } from '../components/auth/ProtectedRoute';
 import { Navigate } from 'react-router-dom';
+
+const SubmissionsList = lazy(() => import('../admin/pages/submissions/SubmissionsList'));
+const SubmissionDetails = lazy(() => import('../admin/pages/submissions/SubmissionDetails'));
+const ContentManager = lazy(() => import('../admin/pages/content/ContentManager'));
+const UserRolesManager = lazy(() => import('../admin/pages/users/UserRolesManager'));
 
 export const adminRoutes = {
   path: '/admin',
@@ -35,19 +40,19 @@ export const adminRoutes = {
         },
         {
           path: 'submissions',
-          element: React.lazy(() => import('../admin/pages/submissions/SubmissionsList')),
+          element: <SubmissionsList />,
         },
         {
           path: 'submissions/:id',
-          element: React.lazy(() => import('../admin/pages/submissions/SubmissionDetails')),
+          element: <SubmissionDetails />,
         },
         {
           path: 'content',
-          element: React.lazy(() => import('../admin/pages/content/ContentManager')),
+          element: <ContentManager />,
         },
         {
           path: 'users/roles',
-          element: React.lazy(() => import('../admin/pages/users/UserRolesManager')),
+          element: <UserRolesManager />,
         },
       ],
     },

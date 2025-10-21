@@ -1,8 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { Resend } from "npm:resend@4.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.76.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
 const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
@@ -118,35 +117,43 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Send email to user
-    const emailResponse = await resend.emails.send({
-      from: "VZ Juspol Portal <onboarding@resend.dev>",
-      to: [user.email],
-      subject: emailSubject,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: ${statusColor};">${emailSubject}</h1>
-          ${emailContent}
-          <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #374151;">Status Wijziging</h3>
-            <p><strong>Van:</strong> ${oldStatusLabel}</p>
-            <p><strong>Naar:</strong> <span style="color: ${statusColor}; font-weight: bold;">${newStatusLabel}</span></p>
-            <p><strong>Referentie:</strong> ${submission_id.substring(0, 8).toUpperCase()}</p>
+    const emailResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "VZ Juspol Portal <onboarding@resend.dev>",
+        to: [user.email],
+        subject: emailSubject,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h1 style="color: ${statusColor};">${emailSubject}</h1>
+            ${emailContent}
+            <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="margin-top: 0; color: #374151;">Status Wijziging</h3>
+              <p><strong>Van:</strong> ${oldStatusLabel}</p>
+              <p><strong>Naar:</strong> <span style="color: ${statusColor}; font-weight: bold;">${newStatusLabel}</span></p>
+              <p><strong>Referentie:</strong> ${submission_id.substring(0, 8).toUpperCase()}</p>
+            </div>
+            <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
+              Met vriendelijke groet,<br>
+              Vreemdelingenzaken Juspol<br>
+              Ministerie van Justitie en Politie
+            </p>
           </div>
-          <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
-            Met vriendelijke groet,<br>
-            Vreemdelingenzaken Juspol<br>
-            Ministerie van Justitie en Politie
-          </p>
-        </div>
-      `,
+        `,
+      }),
     });
 
-    console.log("Status update email sent:", emailResponse);
+    const emailData = await emailResponse.json();
+    console.log("Status update email sent:", emailData);
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        email_id: emailResponse.data?.id 
+        email_id: emailData.id 
       }),
       {
         status: 200,
