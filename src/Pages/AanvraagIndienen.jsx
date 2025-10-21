@@ -54,15 +54,12 @@ const AanvraagIndienen = () => {
 
           <div className="row">
             <div className="col-12 text-center">
-              <button className="theme-btn me-3" disabled>
+              <Link to="/wizard" className="theme-btn me-3">
                 <span>
                   Start Wizard
                   <i className="bi bi-arrow-right ms-2"></i>
                 </span>
-              </button>
-              <small className="text-muted d-block mt-3">
-                (Wizard wordt geactiveerd in Phase 2 met backend integratie)
-              </small>
+              </Link>
               
               <div className="mt-4">
                 <Link to="/instructies" className="btn btn-outline-primary me-2">

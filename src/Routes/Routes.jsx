@@ -13,6 +13,8 @@ import AanvraagIndienen from "../Pages/AanvraagIndienen";
 import Vergunningen from "../Pages/Vergunningen";
 import Overzicht from "../Pages/Overzicht";
 import Feedback from "../Pages/Feedback";
+import ApplicationWizard from "../Pages/Wizard/ApplicationWizard";
+import ConfirmationPage from "../Pages/Wizard/ConfirmationPage";
 import BlogPage from "../Pages/BlogPage";
 import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
 import BlogStandardPage from "../Pages/BlogStandardPage";
@@ -68,6 +70,14 @@ export const router = createBrowserRouter([
         {
           path: "/feedback",
           element: <Feedback></Feedback>,
+        },
+        {
+          path: "/wizard",
+          element: <ApplicationWizard></ApplicationWizard>,
+        },
+        {
+          path: "/wizard/confirmation/:submissionId",
+          element: <ConfirmationPage></ConfirmationPage>,
         },
         {
           path: "/blog",
