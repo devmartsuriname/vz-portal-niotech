@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+// React imports not needed here
 import {
     createBrowserRouter,
   } from "react-router-dom";
@@ -20,9 +20,9 @@ import BlogStandardPage from "../Pages/BlogStandardPage";
 import { adminRoutes } from './AdminRoutes';
 import RouteError from "../components/common/RouteError";
 
-// Lazy load wizard components to ensure React Query is initialized
-const ApplicationWizard = lazy(() => import("../Pages/Wizard/ApplicationWizard"));
-const ConfirmationPage = lazy(() => import("../Pages/Wizard/ConfirmationPage"));
+// Wizard components (eager load to avoid duplicate React issues)
+import ApplicationWizard from "../Pages/Wizard/ApplicationWizard";
+import ConfirmationPage from "../Pages/Wizard/ConfirmationPage";
 
 
 export const router = createBrowserRouter([
@@ -77,12 +77,12 @@ export const router = createBrowserRouter([
         },
         {
           path: "/wizard",
-          element: <Suspense fallback={<div>Loading...</div>}><ApplicationWizard /></Suspense>,
+          element: <ApplicationWizard />,
           errorElement: <RouteError />,
         },
         {
           path: "/wizard/confirmation/:submissionId",
-          element: <Suspense fallback={<div>Loading...</div>}><ConfirmationPage /></Suspense>,
+          element: <ConfirmationPage />,
         },
         {
           path: "/blog",
