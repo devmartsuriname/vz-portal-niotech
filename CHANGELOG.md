@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.1] - 2025-01-20
+
+### Added
+- Blog routes configured (`/blog`, `/blog/blog-details`, `/blog/blog-standard`)
+- Full blog functionality restored and integrated with VZ content
+
+### Removed
+- `ServiceDetailPage.jsx` (unused Niotech demo page)
+
+---
+
 ## [1.0.0] - 2025-01-26
 
 ### ✅ Phase 1: Frontend Development — COMPLETE

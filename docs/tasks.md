@@ -87,6 +87,8 @@
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|
 | P0 | Add new routes to Routes.jsx | 🔵 TODO | Dev Team | 0.5d | All pages created | - |
+| P0 | Configure blog routes (/blog, /blog/blog-details, /blog/blog-standard) | 🟢 COMPLETE | Dev Team | 0.25d | Blog pages exist | 2025-01-20 |
+| P0 | Remove unused demo pages (ServiceDetailPage) | 🟢 COMPLETE | Dev Team | 0.25d | Routes configured | 2025-01-20 |
 | P1 | Configure redirects (blog → nieuws) | 🔵 TODO | Dev Team | 0.25d | Routes added | - |
 
 ### 1.8 Asset Organization (1 day)

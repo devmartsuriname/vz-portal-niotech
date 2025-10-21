@@ -225,15 +225,40 @@ This document tracks the complete replacement of Niotech demo content with offic
 
 ---
 
-## Blog/News Page Content Mapping
+## Blog/Nieuws Section
+
+### Routes & Pages
+- **Route:** `/blog` → **Page:** `BlogPage.jsx` → Nieuws & Aankondigingen listing
+- **Route:** `/blog/blog-details` → **Page:** `BlogDetaillsPage.jsx` → Individual news article detail view
+- **Route:** `/blog/blog-standard` → **Page:** `BlogStandardPage.jsx` → Standard news layout view
+
+### Components
+- **Component:** `Blog1.jsx` → Homepage news preview (displays 3 most recent items)
+- **Component:** `Blog2.jsx` → Full news listing page component
+- **Component:** `BlogStandard.jsx` → Standard news layout with sidebar
+- **Component:** `BlogDetails.jsx` → Individual article detail view with sidebar
+
+### Data Source
+- **File:** `blog.json` → Contains 6 VZ-specific news articles with official government content
+
+### Blog Content Mapping
 
 | Element | Original (Niotech) | New (VZ Juspol) | Source | Status | Updated |
 |---------|-------------------|-----------------|--------|--------|---------|
-| **Page Title** | "Blog" | "Nieuws" | Content Swap Plan | 🔵 Pending | - |
-| **Post 1** | Tech blog post | "Nieuwe richtlijnen voor verblijfsvergunningen (2024)" | Juspol Press Releases | 🔵 Pending | - |
-| **Post 2** | Design blog post | "Wijzigingen in naturalisatieprocedure" | Juspol Press Releases | 🔵 Pending | - |
-| **Post 3** | Marketing blog post | "Feestdagen: aangepaste openingstijden" | Juspol Press Releases | 🔵 Pending | - |
-| **Total Posts** | 12 posts | 3-6 placeholder posts (Phase 1), dynamic from DB (Phase 2) | announcements.json | 🔵 Pending | - |
+| **Page Title** | "Blog" | "Nieuws & Aankondigingen" | Content Swap Plan | 🟢 Complete | 2025-01-20 |
+| **Post 1** | Tech blog post | "Nieuwe richtlijnen voor verblijfsvergunningen (2024)" | blog.json | 🟢 Complete | 2025-01-20 |
+| **Post 2** | Design blog post | "Wijzigingen in naturalisatieprocedure" | blog.json | 🟢 Complete | 2025-01-20 |
+| **Post 3** | Marketing blog post | "Feestdagen: aangepaste openingstijden" | blog.json | 🟢 Complete | 2025-01-20 |
+| **Post 4** | - | "Digitale indiening nu beschikbaar" | blog.json | 🟢 Complete | 2025-01-20 |
+| **Post 5** | - | "Verlenging van verblijfsvergunningen" | blog.json | 🟢 Complete | 2025-01-20 |
+| **Post 6** | - | "Asielprocedure versneld" | blog.json | 🟢 Complete | 2025-01-20 |
+| **Total Posts** | 12 posts | 6 VZ-specific articles (Phase 1), expandable via database (Phase 2) | blog.json | 🟢 Complete | 2025-01-20 |
+
+### Navigation
+- **Header Link:** "Nieuws" → `/blog` (configured in `Nav.jsx` line 56)
+
+### Status
+✅ **Complete** — All blog routes configured, components integrated, VZ content loaded
 
 ---
 

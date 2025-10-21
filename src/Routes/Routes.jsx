@@ -13,6 +13,9 @@ import AanvraagIndienen from "../Pages/AanvraagIndienen";
 import Vergunningen from "../Pages/Vergunningen";
 import Overzicht from "../Pages/Overzicht";
 import Feedback from "../Pages/Feedback";
+import BlogPage from "../Pages/BlogPage";
+import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
+import BlogStandardPage from "../Pages/BlogStandardPage";
 import { adminRoutes } from './AdminRoutes';
 
 
@@ -66,6 +69,18 @@ export const router = createBrowserRouter([
           path: "/feedback",
           element: <Feedback></Feedback>,
         },
+        {
+          path: "/blog",
+          element: <BlogPage></BlogPage>,
+        },
+        {
+          path: "/blog/blog-details",
+          element: <BlogDetaillsPage></BlogDetaillsPage>,
+        },
+        {
+          path: "/blog/blog-standard",
+          element: <BlogStandardPage></BlogStandardPage>,
+        },
       ],
-    },             
+    },
   ]);
