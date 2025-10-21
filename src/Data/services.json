@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Verblijfsvergunningen",
+    "description": "Aanvragen voor tijdelijke en permanente verblijfsvergunningen",
+    "icon": "bi-file-earmark-text",
+    "link": "/diensten#verblijfsvergunningen"
+  },
+  {
+    "id": 2,
+    "title": "Naturalisatie",
+    "description": "Surinaams staatsburgerschap via naturalisatie",
+    "icon": "bi-flag",
+    "link": "/diensten#naturalisatie"
+  },
+  {
+    "id": 3,
+    "title": "Verklaringen",
+    "description": "Officiële verklaringen en certificaten",
+    "icon": "bi-award",
+    "link": "/diensten#verklaringen"
+  },
+  {
+    "id": 4,
+    "title": "Asiel",
+    "description": "Asielaanvragen en bescherming",
+    "icon": "bi-shield-check",
+    "link": "/asiel"
+  }
+]
