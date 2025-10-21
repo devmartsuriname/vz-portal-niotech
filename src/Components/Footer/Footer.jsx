@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import servicesData from "../Data/services.json";
+import servicesData from "../../Data/services.json";
 
 const Footer = () => {
     return (
