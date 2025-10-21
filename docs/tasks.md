@@ -360,7 +360,30 @@
 | P1 | Accessibility testing (WCAG 2.1 AA) | 🟡 PENDING | QA Lead | 0.25d | Manual tests complete | - |
 | P2 | Security validation (RLS policies, JWT) | 🟡 PENDING | Backend Dev | 0.25d | Manual tests complete | - |
 
-### 4.2 Bug Fixes & Validation (1-2 days)
+### 4.2 Document Accessibility Integration (0.5 days) ✅ COMPLETE
+
+| Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
+|----------|------|--------|-------|----------|--------------|-----------------|
+| P0 | Move 14 official PDFs to public assets | ✅ COMPLETE | Dev Team | 0.25d | Phase 3 complete | 2025-01-21 |
+| P0 | Create forms.json data file | ✅ COMPLETE | Dev Team | 0.25d | PDFs moved | 2025-01-21 |
+| P0 | Build DownloadableForms component | ✅ COMPLETE | Frontend Dev | 0.5d | forms.json created | 2025-01-21 |
+| P0 | Update DocumentenLijsten page | ✅ COMPLETE | Frontend Dev | 0.25d | Component built | 2025-01-21 |
+| P0 | Update Instructies page | ✅ COMPLETE | Frontend Dev | 0.25d | Component built | 2025-01-21 |
+| P0 | Update AanvraagIndienen page | ✅ COMPLETE | Frontend Dev | 0.25d | Component built | 2025-01-21 |
+
+**Phase 4.2 Summary:**
+- ✅ All 14 official VZ PDF documents moved to `/public/assets/documents/`
+- ✅ `forms.json` data file created with complete metadata
+- ✅ `DownloadableForms` reusable component built
+- ✅ 3 pages updated with download functionality
+- ✅ Download column added to DocumentenLijsten table
+- ✅ Download links integrated in Instructies accordion
+- ✅ Download section added to AanvraagIndienen page
+- ✅ All 14 documents downloadable for public users
+- ✅ 100% PRD compliance for document downloads
+- **Actual Duration:** ~2 hours (faster than estimated 4 hours)
+
+### 4.3 Bug Fixes & Validation (1-2 days)
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|
@@ -370,7 +393,7 @@
 | P1 | Re-test fixed bugs | 🟡 PENDING | QA Lead | 0.5d | Bugs resolved | - |
 | P1 | Update bug tracking documentation | 🟡 PENDING | QA Lead | 0.25d | Testing complete | - |
 
-### 4.3 Missing Admin Modules (2-3 days)
+### 4.4 Missing Admin Modules (2-3 days)
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|
@@ -383,7 +406,7 @@
 | P2 | Create DocumentPreviewModal component | 🔵 TODO | Frontend Dev | 0.5d | Notifications complete | - |
 | P3 | Create Settings.tsx page (optional) | ⏭️ DEFER | Frontend Dev | 1d | Phase 5 consideration | - |
 
-### 4.4 Performance Optimization (1 day)
+### 4.5 Performance Optimization (1 day)
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|
@@ -393,7 +416,7 @@
 | P1 | Optimize React Query cache strategies | 🔵 TODO | Frontend Dev | 0.25d | DB indexes added | - |
 | P2 | Review Edge Function cold start times | 🔵 TODO | Backend Dev | 0.25d | Cache optimized | - |
 
-### 4.5 Documentation Updates (0.5 days)
+### 4.6 Documentation Updates (0.5 days)
 
 | Priority | Task | Status | Owner | Duration | Dependencies | Completion Date |
 |----------|------|--------|-------|----------|--------------|-----------------|

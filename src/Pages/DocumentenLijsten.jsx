@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BreadCumb from "../Components/Common/BreadCumb";
 import documentsData from "../Data/documents.json";
+import formsData from "../Data/forms.json";
 
 const DocumentenLijsten = () => {
   const [filter, setFilter] = useState("all");
@@ -73,24 +74,46 @@ const DocumentenLijsten = () => {
                       <th>Geldigheidsduur</th>
                       <th>Vertaling Vereist</th>
                       <th>Vereist Voor</th>
+                      <th>Download Checklist</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredDocs.map((doc) => (
-                      <tr key={doc.id}>
-                        <td><strong>{doc.name}</strong></td>
-                        <td>{doc.category}</td>
-                        <td>{doc.validity}</td>
-                        <td>{doc.translation}</td>
-                        <td>
-                          {doc.required_for.map((type, idx) => (
-                            <span key={idx} className="badge bg-secondary me-1">
-                              {type}
-                            </span>
-                          ))}
-                        </td>
-                      </tr>
-                    ))}
+                    {filteredDocs.map((doc) => {
+                      const checklist = formsData.find(form => 
+                        form.application_types.some(type => doc.required_for.includes(type))
+                      );
+
+                      return (
+                        <tr key={doc.id}>
+                          <td><strong>{doc.name}</strong></td>
+                          <td>{doc.category}</td>
+                          <td>{doc.validity}</td>
+                          <td>{doc.translation}</td>
+                          <td>
+                            {doc.required_for.map((type, idx) => (
+                              <span key={idx} className="badge bg-secondary me-1">
+                                {type}
+                              </span>
+                            ))}
+                          </td>
+                          <td>
+                            {checklist ? (
+                              <a 
+                                href={checklist.download_url} 
+                                download={checklist.filename}
+                                className="btn btn-sm btn-primary"
+                                title={`Download ${checklist.title}`}
+                                aria-label={`Download ${checklist.title}`}
+                              >
+                                <i className="bi bi-download" aria-hidden="true"></i> PDF
+                              </a>
+                            ) : (
+                              <span className="text-muted small">N/A</span>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

@@ -1,0 +1,156 @@
+[
+  {
+    "id": "verblijf-surinaamse",
+    "title": "Aanvraag Verblijf (Surinaamse Origine)",
+    "category": "Verblijf",
+    "description": "Documentenlijst voor verblijfsaanvraag Surinaamse origine",
+    "filename": "verblijf-surinaamse.pdf",
+    "download_url": "/assets/documents/checklists/verblijf-surinaamse.pdf",
+    "application_types": ["Verblijf"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "verblijf-overige",
+    "title": "Aanvraag Verblijf (Overige)",
+    "category": "Verblijf",
+    "description": "Documentenlijst voor verblijfsaanvraag overige vreemdelingen",
+    "filename": "verblijf-overige.pdf",
+    "download_url": "/assets/documents/checklists/verblijf-overige.pdf",
+    "application_types": ["Verblijf"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "verblijf-verlenging",
+    "title": "Aanvraag Verlenging Verblijf",
+    "category": "Verblijf",
+    "description": "Documentenlijst voor verlenging verblijfsvergunning",
+    "filename": "verblijf-verlenging.pdf",
+    "download_url": "/assets/documents/checklists/verblijf-verlenging.pdf",
+    "application_types": ["Verblijf"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "naturalisatie-surinaamse",
+    "title": "Aanvraag Naturalisatie (Surinaamse Origine)",
+    "category": "Naturalisatie",
+    "description": "Documentenlijst voor naturalisatie Surinaamse origine",
+    "filename": "naturalisatie-surinaamse.pdf",
+    "download_url": "/assets/documents/checklists/naturalisatie-surinaamse.pdf",
+    "application_types": ["Naturalisatie"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "naturalisatie-overige",
+    "title": "Aanvraag Naturalisatie (Overige Vreemdelingen)",
+    "category": "Naturalisatie",
+    "description": "Documentenlijst voor naturalisatie overige vreemdelingen",
+    "filename": "naturalisatie-overige.pdf",
+    "download_url": "/assets/documents/checklists/naturalisatie-overige.pdf",
+    "application_types": ["Naturalisatie"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "verklaring-art21",
+    "title": "Aanvraag Verklaring van Ingezetenschap (Art. 21)",
+    "category": "Verklaringen",
+    "description": "Documentenlijst voor verklaring van ingezetenschap",
+    "filename": "verklaring-ingezetenschap-art21.pdf",
+    "download_url": "/assets/documents/checklists/verklaring-ingezetenschap-art21.pdf",
+    "application_types": ["Verklaringen"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "verklaring-naturalisatie",
+    "title": "Aanvraag Verklaring van Naturalisatie",
+    "category": "Verklaringen",
+    "description": "Documentenlijst voor verklaring van naturalisatie",
+    "filename": "verklaring-naturalisatie.pdf",
+    "download_url": "/assets/documents/checklists/verklaring-naturalisatie.pdf",
+    "application_types": ["Verklaringen"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "verklaring-art5",
+    "title": "Aanvraag Verklaring van Naturalisatie door Optie (Art. 5)",
+    "category": "Verklaringen",
+    "description": "Documentenlijst voor naturalisatie door optie artikel 5",
+    "filename": "verklaring-naturalisatie-art5.pdf",
+    "download_url": "/assets/documents/checklists/verklaring-naturalisatie-art5.pdf",
+    "application_types": ["Verklaringen", "Naturalisatie"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "verklaring-art12",
+    "title": "Aanvraag Verklaring van Naturalisatie door Huwelijk (Art. 12)",
+    "category": "Verklaringen",
+    "description": "Documentenlijst voor naturalisatie door huwelijk artikel 12",
+    "filename": "verklaring-naturalisatie-art12.pdf",
+    "download_url": "/assets/documents/checklists/verklaring-naturalisatie-art12.pdf",
+    "application_types": ["Verklaringen", "Naturalisatie"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "duplicaat",
+    "title": "Aanvraag Duplicaat Verblijfsvergunning",
+    "category": "Duplicaat",
+    "description": "Documentenlijst voor duplicaat aanvraag",
+    "filename": "duplicaat.pdf",
+    "download_url": "/assets/documents/checklists/duplicaat.pdf",
+    "application_types": ["Duplicaat"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "vestiging-conversie",
+    "title": "Aanvraag Omzetten naar Vestigingsvergunning",
+    "category": "Vestiging",
+    "description": "Documentenlijst voor conversie naar vestigingsvergunning",
+    "filename": "vestiging-conversie.pdf",
+    "download_url": "/assets/documents/checklists/vestiging-conversie.pdf",
+    "application_types": ["Vestiging"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "vestiging-overige",
+    "title": "Aanvraag Vestiging (Overige)",
+    "category": "Vestiging",
+    "description": "Documentenlijst voor vestigingsaanvraag overige",
+    "filename": "vestiging-overige.pdf",
+    "download_url": "/assets/documents/checklists/vestiging-overige.pdf",
+    "application_types": ["Vestiging"],
+    "icon": "bi-file-earmark-pdf",
+    "color": "danger"
+  },
+  {
+    "id": "garantstelling",
+    "title": "Garantstellingsformulier",
+    "category": "Formulieren",
+    "description": "Formulier voor garantstelling door Surinaamse sponsor",
+    "filename": "garantstelling.pdf",
+    "download_url": "/assets/documents/forms/garantstelling.pdf",
+    "application_types": ["Verblijf"],
+    "icon": "bi-file-earmark-text",
+    "color": "primary"
+  },
+  {
+    "id": "minderjarige-kinderen",
+    "title": "Formulier Minderjarige Kinderen",
+    "category": "Formulieren",
+    "description": "Formulier nadere informatie minderjarige kinderen",
+    "filename": "minderjarige-kinderen.pdf",
+    "download_url": "/assets/documents/forms/minderjarige-kinderen.pdf",
+    "application_types": ["Alle"],
+    "icon": "bi-file-earmark-text",
+    "color": "primary"
+  }
+]

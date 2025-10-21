@@ -1,5 +1,6 @@
 import BreadCumb from "../Components/Common/BreadCumb";
 import { Link } from "react-router-dom";
+import DownloadableForms from "../Components/DownloadableForms";
 
 const Instructies = () => {
   return (
@@ -173,6 +174,14 @@ const Instructies = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-5">
+                <h3 className="mb-4">Download Documentenlijsten</h3>
+                <p className="text mb-4">
+                  Download de volledige documentenlijst voor uw aanvraagtype. Deze checklists helpen u alle benodigde documenten te verzamelen.
+                </p>
+                <DownloadableForms showFilter={true} />
               </div>
             </div>
 

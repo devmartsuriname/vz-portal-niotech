@@ -12,10 +12,10 @@
 | Severity | Total | Open | In Progress | Resolved |
 |----------|-------|------|-------------|----------|
 | Critical | 0 | 0 | 0 | 0 |
-| High | 0 | 0 | 0 | 0 |
+| High | 1 | 0 | 0 | 1 |
 | Medium | 1 | 1 | 0 | 0 |
 | Low | 0 | 0 | 0 | 0 |
-| **TOTAL** | **1** | **1** | **0** | **0** |
+| **TOTAL** | **2** | **1** | **0** | **1** |
 
 ---
 
@@ -133,6 +133,35 @@
 
 ---
 
+### Issue #002: Missing Document Download Links — Section 2
+- **Severity:** High (P1)
+- **Status:** ✅ Resolved
+- **Affected Component:** DocumentenLijsten, Instructies, AanvraagIndienen
+- **Reported:** 2025-01-21 (Phase 4 Section 2)
+- **Resolution Date:** 2025-01-21
+- **Description:** 
+  - 14 official VZ PDF documents were not accessible for download from frontend
+  - No public storage directory existed for application forms
+  - UI lacked download buttons/links
+- **Root Cause:** 
+  - PDFs were in repository but not in public asset directory
+  - No `forms.json` data file existed
+  - Components not updated with download functionality
+- **Fix Applied:**
+  - Created `public/assets/documents/` directory structure (checklists/ and forms/)
+  - Moved all 14 official PDFs to public directory with standardized naming
+  - Created `src/Data/forms.json` with complete metadata
+  - Built `DownloadableForms` reusable component
+  - Updated 3 pages: DocumentenLijsten, Instructies, AanvraagIndienen
+  - Added download column to DocumentenLijsten table
+  - Integrated download links in Instructies accordion
+  - Added download section to AanvraagIndienen page
+- **Test Results:** All 14 documents downloadable (TS-11 to TS-24)
+- **Verified By:** Development Team
+- **Verified Date:** 2025-01-21
+
+---
+
 ### No Other Active Issues
 
 All core functionality operational. Manual testing (TS-01 to TS-09) pending.
@@ -141,9 +170,11 @@ All core functionality operational. Manual testing (TS-01 to TS-09) pending.
 
 ## Resolved Issues
 
-### No Resolved Issues Yet
-
-Resolved bugs from Phase 4 testing will be archived here with resolution details.
+### Issue #002: Missing Document Download Links (RESOLVED)
+- **Original Severity:** High (P1)
+- **Resolution Date:** 2025-01-21
+- **Resolution:** All 14 official PDFs moved to public assets, forms.json created, DownloadableForms component built, 3 pages updated with download functionality
+- **Verification:** All 14 documents downloadable and accessible to public users
 
 ---
 
