@@ -15,6 +15,8 @@ const ApplicationWizard = () => {
     currentStep,
     answers,
     currentQuestionKey,
+    wizardPhase,
+    setWizardPhase,
     updateAnswer,
     goToNextStep,
     goToPreviousStep,
@@ -26,10 +28,31 @@ const ApplicationWizard = () => {
   const { data: rules, isLoading } = useWizardRules();
   const { evaluateWizard, submitApplication, isSubmitting } = useWizardSubmission();
 
-  const [wizardPhase, setWizardPhase] = useState('questions'); // questions | documents | personal-info | summary
   const [evaluation, setEvaluation] = useState(null);
   const [personalInfo, setPersonalInfo] = useState({});
   const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  // Safety validation: Ensure wizard state is consistent on mount
+  useEffect(() => {
+    // If we're not in questions phase but have no evaluation, reset everything
+    if (wizardPhase === 'documents' && !evaluation) {
+      console.warn('Invalid state: documents phase without evaluation, resetting wizard');
+      resetWizard();
+      setEvaluation(null);
+      setPersonalInfo({});
+      setUploadedFiles([]);
+    }
+    // If we're in personal-info but no uploaded files, go back
+    if (wizardPhase === 'personal-info' && uploadedFiles.length === 0) {
+      console.warn('Invalid state: personal-info phase without files, going back to documents');
+      setWizardPhase('documents');
+    }
+    // If we're in summary but no personal info, go back
+    if (wizardPhase === 'summary' && Object.keys(personalInfo).length === 0) {
+      console.warn('Invalid state: summary phase without personal info, going back');
+      setWizardPhase('personal-info');
+    }
+  }, [wizardPhase, evaluation, uploadedFiles, personalInfo, resetWizard, setWizardPhase]);
 
   const currentRule = getRuleByQuestionKey(rules, currentQuestionKey);
   const isLastQuestion = currentRule?.result_application_type_id != null;
@@ -196,9 +219,14 @@ const ApplicationWizard = () => {
                       Vorige
                     </button>
 
-                    {wizardPhase !== 'summary' && (
+                  {wizardPhase !== 'summary' && (
                       <button
-                        onClick={resetWizard}
+                        onClick={() => {
+                          resetWizard();
+                          setEvaluation(null);
+                          setPersonalInfo({});
+                          setUploadedFiles([]);
+                        }}
                         className="btn btn-link text-danger"
                       >
                         Opnieuw beginnen

@@ -7,6 +7,7 @@ export const useWizardState = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [questionPath, setQuestionPath] = useState(['application_type']);
+  const [wizardPhase, setWizardPhase] = useState('questions');
   const [isComplete, setIsComplete] = useState(false);
 
   // Load saved progress on mount
@@ -21,6 +22,7 @@ export const useWizardState = () => {
           // Validate that we have a proper question path
           const questionPath = data.questionPath || ['application_type'];
           const currentStep = data.currentStep || 0;
+          const savedPhase = data.wizardPhase || 'questions';
           
           // Ensure we always start with application_type and don't load corrupted state
           if (questionPath.length === 0 || questionPath[0] !== 'application_type') {
@@ -29,9 +31,17 @@ export const useWizardState = () => {
             return;
           }
           
+          // Validate wizardPhase - if phase is advanced but no corresponding data exists, reset
+          if (savedPhase !== 'questions' && Object.keys(data.answers || {}).length === 0) {
+            console.warn('Invalid wizard phase without answers, resetting to questions');
+            localStorage.removeItem(STORAGE_KEY);
+            return;
+          }
+          
           setAnswers(data.answers || {});
           setCurrentStep(currentStep);
           setQuestionPath(questionPath);
+          setWizardPhase(savedPhase);
         } else {
           localStorage.removeItem(STORAGE_KEY);
         }
@@ -48,16 +58,17 @@ export const useWizardState = () => {
       answers,
       currentStep,
       questionPath,
+      wizardPhase,
       timestamp: Date.now()
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
-  }, [answers, currentStep, questionPath]);
+  }, [answers, currentStep, questionPath, wizardPhase]);
 
   useEffect(() => {
-    if (Object.keys(answers).length > 0) {
+    if (Object.keys(answers).length > 0 || wizardPhase !== 'questions') {
       saveProgress();
     }
-  }, [answers, currentStep, questionPath, saveProgress]);
+  }, [answers, currentStep, questionPath, wizardPhase, saveProgress]);
 
   const updateAnswer = useCallback((questionKey, value) => {
     setAnswers(prev => ({
@@ -84,6 +95,7 @@ export const useWizardState = () => {
     setCurrentStep(0);
     setAnswers({});
     setQuestionPath(['application_type']);
+    setWizardPhase('questions');
     setIsComplete(false);
     localStorage.removeItem(STORAGE_KEY);
   }, []);
@@ -97,6 +109,8 @@ export const useWizardState = () => {
     currentStep,
     answers,
     questionPath,
+    wizardPhase,
+    setWizardPhase,
     isComplete,
     currentQuestionKey: questionPath[currentStep],
     updateAnswer,
