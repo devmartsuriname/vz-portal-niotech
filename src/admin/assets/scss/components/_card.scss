@@ -51,7 +51,7 @@
 html[data-bs-theme="dark"],
 [data-bs-theme="dark"] {
   .card {
-    background-color: $card-bg-dark !important;
+    background-color: $body-secondary-bg-dark !important;
     border-color: $border-color-dark !important;
     color: $body-color-dark;
   }
