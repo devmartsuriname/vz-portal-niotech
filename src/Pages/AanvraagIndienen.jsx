@@ -1,5 +1,6 @@
 import BreadCumb from "../Components/Common/BreadCumb";
 import { Link } from "react-router-dom";
+import DownloadableForms from "../Components/DownloadableForms";
 
 const AanvraagIndienen = () => {
   return (
@@ -23,6 +24,17 @@ const AanvraagIndienen = () => {
           </div>
 
           <div className="row mb-5">
+            <div className="col-12">
+              <h3 className="mb-4">Download Vereiste Documentenlijsten</h3>
+              <p className="text mb-4">
+                Download eerst de relevante documentenlijst voordat u de wizard start. 
+                Zo weet u precies welke documenten u nodig heeft voor uw aanvraag.
+              </p>
+              <DownloadableForms showFilter={true} />
+            </div>
+          </div>
+
+          <div className="row mb-5 mt-5">
             <div className="col-md-4">
               <div className="feature-box style3 text-center">
                 <div className="icon mb-3">
