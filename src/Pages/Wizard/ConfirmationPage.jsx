@@ -14,7 +14,8 @@ const ConfirmationPage = () => {
 
   return (
     <>
-      <BreadCumb pageTitle="Bevestiging" />
+      <BreadCumb Title="Bevestiging" />
+      <div className="wizard-breadcrumb-spacer" />
       
       <section className="py-20">
         <div className="container">

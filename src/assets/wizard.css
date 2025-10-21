@@ -1,4 +1,16 @@
 /* Wizard Styles */
+
+/* Breadcrumb spacing */
+.wizard-breadcrumb-spacer {
+  height: 2rem;
+}
+
+@media (min-width: 768px) {
+  .wizard-breadcrumb-spacer {
+    height: 3.5rem;
+  }
+}
+
 .wizard-step {
   animation: fadeIn 0.4s ease-out;
 }

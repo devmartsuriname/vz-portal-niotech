@@ -108,7 +108,8 @@ const ApplicationWizard = () => {
 
   return (
     <>
-      <BreadCumb pageTitle="Aanvraag Wizard" />
+      <BreadCumb Title="Aanvraag Wizard" />
+      <div className="wizard-breadcrumb-spacer" />
       
       <section className="pt-24 pb-20 min-vh-100">
         <div className="container mb-24">
