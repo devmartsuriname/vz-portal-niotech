@@ -110,7 +110,7 @@ const ApplicationWizard = () => {
     <>
       <BreadCumb pageTitle="Aanvraag Wizard" />
       
-      <section className="py-24 min-vh-100">
+      <section className="pt-24 pb-20 min-vh-100">
         <div className="container mb-24">
           <div className="row justify-content-center">
             <div className="col-lg-10">
