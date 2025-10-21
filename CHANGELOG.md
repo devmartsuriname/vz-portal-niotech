@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.1] - 2025-01-26
+
+### Removed
+- Deleted unused blog page files (BlogPage, BlogDetailsPage, BlogStandardPage)
+- Removed /blog route from navigation menu
+- Cleaned up demo component files (Blog2, BlogStandard, BlogDetails)
+- Removed unused data files (blog.json, testimonial2.json)
+- Completed root directory cleanup for Phase 2 readiness
+
+---
+
 ## [1.0.0] - 2025-01-26
 
 ### ✅ Phase 1: Frontend Development — COMPLETE
