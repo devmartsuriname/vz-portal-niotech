@@ -1,7 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
 export const useWizardRules = () => {
+  // Development guard: ensure QueryClient is available
+  const queryClient = useQueryClient();
+  
+  if (!queryClient) {
+    console.error('[useWizardRules] QueryClient not available - React Query may not be initialized');
+  }
+
   return useQuery({
     queryKey: ['wizard-rules'],
     queryFn: async () => {

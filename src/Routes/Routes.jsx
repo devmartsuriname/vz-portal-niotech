@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import {
     createBrowserRouter,
   } from "react-router-dom";
@@ -13,12 +14,14 @@ import AanvraagIndienen from "../Pages/AanvraagIndienen";
 import Vergunningen from "../Pages/Vergunningen";
 import Overzicht from "../Pages/Overzicht";
 import Feedback from "../Pages/Feedback";
-import ApplicationWizard from "../Pages/Wizard/ApplicationWizard";
-import ConfirmationPage from "../Pages/Wizard/ConfirmationPage";
 import BlogPage from "../Pages/BlogPage";
 import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
 import BlogStandardPage from "../Pages/BlogStandardPage";
 import { adminRoutes } from './AdminRoutes';
+
+// Lazy load wizard components to ensure React Query is initialized
+const ApplicationWizard = lazy(() => import("../Pages/Wizard/ApplicationWizard"));
+const ConfirmationPage = lazy(() => import("../Pages/Wizard/ConfirmationPage"));
 
 
 export const router = createBrowserRouter([
@@ -73,11 +76,11 @@ export const router = createBrowserRouter([
         },
         {
           path: "/wizard",
-          element: <ApplicationWizard></ApplicationWizard>,
+          element: <Suspense fallback={<div>Loading...</div>}><ApplicationWizard /></Suspense>,
         },
         {
           path: "/wizard/confirmation/:submissionId",
-          element: <ConfirmationPage></ConfirmationPage>,
+          element: <Suspense fallback={<div>Loading...</div>}><ConfirmationPage /></Suspense>,
         },
         {
           path: "/blog",
