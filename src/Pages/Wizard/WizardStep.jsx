@@ -6,6 +6,17 @@ const WizardStep = ({ rule, currentAnswer, onAnswerSelect }) => {
   if (!rule) return null;
 
   const options = Array.isArray(rule.options) ? rule.options : [];
+  
+  // Handle edge case: single-choice with no options (should not happen after DB fix)
+  if (rule.question_type === 'single-choice' && options.length === 0) {
+    console.error('Single-choice question has no options:', rule.question_key);
+    return (
+      <div className="text-center text-danger">
+        <i className="bi bi-exclamation-triangle fs-1 mb-3 d-block"></i>
+        <p>Er is een probleem met deze vraag. Neem contact op met support.</p>
+      </div>
+    );
+  }
 
   const handleSelect = (value) => {
     setSelectedValue(value);

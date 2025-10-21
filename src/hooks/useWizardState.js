@@ -18,9 +18,20 @@ export const useWizardState = () => {
         const hoursSince = (Date.now() - timestamp) / (1000 * 60 * 60);
         
         if (hoursSince < EXPIRATION_HOURS) {
+          // Validate that we have a proper question path
+          const questionPath = data.questionPath || ['application_type'];
+          const currentStep = data.currentStep || 0;
+          
+          // Ensure we always start with application_type and don't load corrupted state
+          if (questionPath.length === 0 || questionPath[0] !== 'application_type') {
+            console.warn('Invalid saved wizard state detected, resetting to start');
+            localStorage.removeItem(STORAGE_KEY);
+            return;
+          }
+          
           setAnswers(data.answers || {});
-          setCurrentStep(data.currentStep || 0);
-          setQuestionPath(data.questionPath || ['application_type']);
+          setCurrentStep(currentStep);
+          setQuestionPath(questionPath);
         } else {
           localStorage.removeItem(STORAGE_KEY);
         }

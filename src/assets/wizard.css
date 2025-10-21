@@ -3,6 +3,11 @@
   animation: fadeIn 0.4s ease-out;
 }
 
+/* Wizard container spacing */
+.wizard-container {
+  margin-bottom: 8rem;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
