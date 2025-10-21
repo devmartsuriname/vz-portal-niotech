@@ -117,30 +117,40 @@ const ApplicationWizard = () => {
               {/* Progress Bar */}
               <div className="mb-5">
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h5 className="mb-0">Voortgang</h5>
-                  <span className="text-muted">
+                  <h5 className="mb-0 text-dark fw-semibold">
+                    <i className="bi bi-list-check me-2 text-primary"></i>
+                    Voortgang
+                  </h5>
+                  <span className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 fs-6">
                     {wizardPhase === 'questions' && `Stap ${currentStep + 1}`}
                     {wizardPhase === 'documents' && 'Documenten'}
                     {wizardPhase === 'personal-info' && 'Persoonlijke Gegevens'}
                     {wizardPhase === 'summary' && 'Overzicht'}
                   </span>
                 </div>
-                <div className="progress" style={{ height: '8px' }}>
+                <div className="progress" style={{ height: '12px', borderRadius: '8px' }}>
                   <div 
-                    className="progress-bar bg-primary" 
+                    className="progress-bar" 
                     role="progressbar" 
                     style={{ 
                       width: wizardPhase === 'questions' ? '25%' : 
                              wizardPhase === 'documents' ? '50%' : 
-                             wizardPhase === 'personal-info' ? '75%' : '100%' 
+                             wizardPhase === 'personal-info' ? '75%' : '100%',
+                      background: 'linear-gradient(90deg, #7444FD 0%, #9F7AFF 100%)',
+                      transition: 'width 0.5s ease'
                     }}
+                    aria-valuenow={wizardPhase === 'questions' ? 25 : 
+                                   wizardPhase === 'documents' ? 50 : 
+                                   wizardPhase === 'personal-info' ? 75 : 100}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
                   />
                 </div>
               </div>
 
               {/* Wizard Content */}
-              <div className="card border-0 shadow-sm">
-                <div className="card-body p-5">
+              <div className="card border-0 shadow-lg" style={{ borderRadius: '16px' }}>
+                <div className="card-body p-4 p-md-5">
                   {wizardPhase === 'questions' && currentRule && (
                     <WizardStep
                       rule={currentRule}
