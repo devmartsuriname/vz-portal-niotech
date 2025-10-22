@@ -169,7 +169,7 @@ line-height: 35.04px;
 - Mobile menu with `cs_mobile_toggle_active` state
 
 **Customization Points:**
-- Logo: `/assets/images/logo/logo.svg`
+- Logo: `/assets/branding/logo-vz.svg` (Main logo)
 - Menu items: Edit `src/Components/Header/Nav.jsx`
 - CTA button text/link: Line 67-72
 
@@ -778,7 +778,7 @@ function Layout4() {
 **Customization Points:**
 
 1. **Logo**
-   - Path: `/assets/images/logo/logo.svg`
+   - Path: `/assets/branding/logo-vz.svg` (Main logo)
    - Edit: Line 44 in `Header4.jsx`
 
 2. **Navigation Menu**
@@ -1200,9 +1200,10 @@ function BlogComponent() {
 **Path convention:**
 ```
 /assets/images/[category]/[filename]
+/assets/branding/[filename]  (Official VZ branding assets)
 
 Examples:
-/assets/images/logo/logo.svg
+/assets/branding/logo-vz.svg (VZ official logo)
 /assets/images/icon/service-icon.svg
 /assets/images/bg/breadcumb-bg.jpg
 /assets/images/hero/hero-image-1.png
