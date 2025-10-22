@@ -6892,6 +6892,176 @@ input.main-search-input::placeholder {
   margin-top: 40px;
 }
 
+/* ============================================
+   Service Carousel Redesign Styles
+   ============================================ */
+
+/* Section Description */
+.wcu-section .section-description {
+  max-width: 740px;
+  margin: 20px auto 0;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* Carousel Wrapper */
+.service-carousel-wrapper {
+  margin-top: 60px;
+  position: relative;
+}
+
+/* Service Card in Carousel */
+.service-card-carousel {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(116, 68, 253, 0.08);
+}
+
+.service-card-carousel:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(116, 68, 253, 0.15);
+  border-color: rgba(116, 68, 253, 0.2);
+}
+
+/* Icon Wrapper */
+.service-card-carousel .service-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(116, 68, 253, 0.1) 0%, rgba(12, 135, 240, 0.1) 100%);
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.service-card-carousel:hover .service-icon-wrapper {
+  transform: scale(1.05);
+}
+
+.service-card-carousel .service-icon-wrapper img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+/* Content Styling */
+.service-card-carousel .service-content h4 {
+  color: var(--title);
+  font-family: "Urbanist", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.44px;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.service-card-carousel:hover .service-content h4 {
+  color: var(--theme);
+}
+
+.service-card-carousel .service-content .text {
+  color: var(--text);
+  font-family: "Urbanist", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+/* Carousel Navigation Buttons */
+.carousel-nav-btn {
+  background: #ffffff !important;
+  border: 2px solid var(--theme) !important;
+  color: var(--theme) !important;
+  width: 48px !important;
+  height: 48px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(116, 68, 253, 0.15) !important;
+}
+
+.carousel-nav-btn:hover:not(:disabled) {
+  background: var(--theme) !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 16px rgba(116, 68, 253, 0.25) !important;
+}
+
+.carousel-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: #e0e0e0 !important;
+  color: #999999 !important;
+  box-shadow: none !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1199px) {
+  .wcu-wrapper.style1 {
+    margin-top: 50px;
+  }
+  
+  .service-carousel-wrapper {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .service-card-carousel {
+    padding: 24px 20px;
+    gap: 16px;
+  }
+  
+  .service-card-carousel .service-icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .service-card-carousel .service-icon-wrapper img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .service-card-carousel .service-content h4 {
+    font-size: 20px;
+  }
+  
+  .service-card-carousel .service-content .text {
+    font-size: 14px;
+  }
+  
+  .wcu-section .section-description {
+    font-size: 15px;
+    padding: 0 15px;
+  }
+  
+  .carousel-nav-btn {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .service-carousel-wrapper {
+    margin-top: 30px;
+  }
+  
+  .service-card-carousel {
+    padding: 20px 16px;
+  }
+}
+
 /* 22.Counter */
 .counter-wrapper.style1 {
   border-radius: 30px;
