@@ -1,5 +1,5 @@
 <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Shield Icon Only -->
   <path d="M27 4C27 4 19 6 11 6C11 6 11 18 11 27C11 36 19 46 27 50C35 46 43 36 43 27C43 18 43 6 43 6C35 6 27 4 27 4Z" fill="#7444FD"/>
-  <path d="M27 14L23 24H31L27 34L31 24H23L27 14Z" fill="white"/>
+  <text x="27" y="32" font-family="Urbanist, Arial, sans-serif" font-size="16" font-weight="700" fill="white" text-anchor="middle">VZ</text>
 </svg>
