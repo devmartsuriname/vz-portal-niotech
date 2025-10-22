@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import PageTitle from '@/admin/components/PageTitle';
 import TableSkeleton from '@/admin/components/ui/TableSkeleton';
 import EmptyState from '@/admin/components/ui/EmptyState';
+import { toast } from 'sonner';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   draft: { label: 'Concept', className: 'badge bg-secondary' },
@@ -18,9 +19,12 @@ const STATUS_BADGES: Record<string, { label: string; className: string }> = {
 
 const SubmissionsList = () => {
   const queryClient = useQueryClient();
-  const { submissions, isLoading, error } = useSubmissions();
+  const { submissions, isLoading, error, updateSubmissionStatus } = useSubmissions();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [bulkAction, setBulkAction] = useState<string>('');
+  const [isBulkProcessing, setIsBulkProcessing] = useState(false);
 
   useEffect(() => {
     const channel = supabase
@@ -31,6 +35,57 @@ const SubmissionsList = () => {
       .subscribe();
     return () => { supabase.removeChannel(channel); };
   }, [queryClient]);
+
+  const toggleSelectAll = () => {
+    if (selectedIds.length === filteredSubmissions?.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(filteredSubmissions?.map(s => s.id) || []);
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds(prev =>
+      prev.includes(id) ? prev.filter(sid => sid !== id) : [...prev, id]
+    );
+  };
+
+  const handleBulkAction = async () => {
+    if (!bulkAction || selectedIds.length === 0) return;
+
+    setIsBulkProcessing(true);
+    let successCount = 0;
+    let errorCount = 0;
+
+    try {
+      for (const submissionId of selectedIds) {
+        const submission = submissions?.find(s => s.id === submissionId);
+        if (!submission) continue;
+
+        try {
+          await updateSubmissionStatus.mutateAsync({
+            id: submissionId,
+            status: bulkAction,
+          });
+          successCount++;
+        } catch (error) {
+          errorCount++;
+        }
+      }
+
+      if (successCount > 0) {
+        toast.success(`${successCount} aanvragen bijgewerkt`);
+      }
+      if (errorCount > 0) {
+        toast.error(`${errorCount} aanvragen mislukt`);
+      }
+
+      setSelectedIds([]);
+      setBulkAction('');
+    } finally {
+      setIsBulkProcessing(false);
+    }
+  };
 
   const filteredSubmissions = submissions?.filter((submission) => {
     const matchesSearch = searchTerm === '' || 
@@ -57,6 +112,54 @@ const SubmissionsList = () => {
 
       <div className="card">
         <div className="card-body">
+          {/* Bulk Actions Bar */}
+          {selectedIds.length > 0 && (
+            <div className="alert alert-info d-flex justify-content-between align-items-center mb-3">
+              <span>
+                <i className="bx bx-check-square me-2"></i>
+                {selectedIds.length} aanvragen geselecteerd
+              </span>
+              <div className="d-flex gap-2">
+                <select
+                  className="form-select form-select-sm"
+                  style={{ width: 'auto' }}
+                  value={bulkAction}
+                  onChange={(e) => setBulkAction(e.target.value)}
+                >
+                  <option value="">Selecteer actie...</option>
+                  <option value="under_review">Zet op In Behandeling</option>
+                  <option value="approved">Goedkeuren</option>
+                  <option value="rejected">Afwijzen</option>
+                  <option value="additional_info_required">Info Vereist</option>
+                </select>
+                <button
+                  className="btn btn-sm btn-primary"
+                  onClick={handleBulkAction}
+                  disabled={!bulkAction || isBulkProcessing}
+                >
+                  {isBulkProcessing ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-2"></span>
+                      Verwerken...
+                    </>
+                  ) : (
+                    <>
+                      <i className="bx bx-play me-1"></i>
+                      Uitvoeren
+                    </>
+                  )}
+                </button>
+                <button
+                  className="btn btn-sm btn-secondary"
+                  onClick={() => setSelectedIds([])}
+                >
+                  <i className="bx bx-x me-1"></i>
+                  Wissen
+                </button>
+              </div>
+            </div>
+          )}
+
           <div className="row mb-3">
             <div className="col-md-6">
               <input
@@ -102,6 +205,14 @@ const SubmissionsList = () => {
               <table className="table table-hover table-striped">
                 <thead>
                   <tr>
+                    <th style={{ width: '40px' }}>
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={selectedIds.length === filteredSubmissions?.length && filteredSubmissions.length > 0}
+                        onChange={toggleSelectAll}
+                      />
+                    </th>
                     <th>Referentie</th>
                     <th>Type</th>
                     <th>Status</th>
@@ -113,6 +224,14 @@ const SubmissionsList = () => {
                 <tbody>
                   {filteredSubmissions?.map((submission) => (
                     <tr key={submission.id}>
+                      <td>
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          checked={selectedIds.includes(submission.id)}
+                          onChange={() => toggleSelect(submission.id)}
+                        />
+                      </td>
                       <td>
                         <code className="text-primary">
                           {submission.id.substring(0, 8).toUpperCase()}

@@ -10,6 +10,7 @@ const SubmissionsList = lazy(() => import('../admin/pages/submissions/Submission
 const SubmissionDetails = lazy(() => import('../admin/pages/submissions/SubmissionDetails'));
 const ContentManager = lazy(() => import('../admin/pages/content/ContentManager'));
 const Reports = lazy(() => import('../admin/pages/reports/Reports'));
+const ActivityLogs = lazy(() => import('../admin/pages/activity/ActivityLogs'));
 const Settings = lazy(() => import('../admin/pages/settings/Settings'));
 const UserRolesManager = lazy(() => import('../admin/pages/users/UserRolesManager'));
 const WizardRulesManager = lazy(() => import('../admin/pages/wizard/WizardRulesManager'));
@@ -57,6 +58,10 @@ export const adminRoutes = {
         {
           path: 'reports',
           element: <Reports />,
+        },
+        {
+          path: 'activity',
+          element: <ActivityLogs />,
         },
         {
           path: 'settings',

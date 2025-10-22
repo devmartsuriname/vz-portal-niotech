@@ -46,6 +46,12 @@ export const getMenuItems = (): MenuItemType[] => {
       url: '/admin/reports',
     },
     {
+      key: 'activity',
+      label: 'Activiteiten Log',
+      icon: 'solar:history-bold-duotone',
+      url: '/admin/activity',
+    },
+    {
       key: 'settings',
       label: 'Instellingen',
       icon: 'solar:settings-bold-duotone',
