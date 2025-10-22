@@ -191,15 +191,42 @@ html[data-bs-theme="dark"] {
     --#{$prefix}btn-active-border-color: #{shade-color($purple, 15%)} !important;
     background-color: $purple !important;
     border-color: $purple !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
     
+    // Enhanced hover with glow effect
     &:hover {
         background-color: shade-color($purple, 10%) !important;
         border-color: shade-color($purple, 10%) !important;
+        box-shadow: 0 4px 12px rgba(108, 93, 211, 0.3),
+                    0 0 16px rgba(108, 93, 211, 0.2);
+        transform: translateY(-1px);
     }
     
     &:active, &.active {
         background-color: shade-color($purple, 15%) !important;
         border-color: shade-color($purple, 15%) !important;
+        transform: translateY(0);
+    }
+    
+    // Ripple effect
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    &:active::before {
+        width: 300px;
+        height: 300px;
     }
 }
 

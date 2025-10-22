@@ -4,11 +4,28 @@
 
 .card {
     margin-bottom: $spacer;
-    transition: all .35s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: $box-shadow;
     // background-image: var(--bs-gradient);
     border-style: double;
     border-width: 3px;
+    position: relative;
+    
+    // Enhanced hover effect with purple glow
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 
+                    0 0 20px rgba(108, 93, 211, 0.15);
+    }
+}
+
+// Card hover lift animation (specific class for interactive cards)
+.card-hover-lift {
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15),
+                    0 0 24px rgba(108, 93, 211, 0.2);
+    }
 }
 
 .card-link+.card-link {
@@ -67,6 +84,12 @@ html[data-bs-theme="dark"],
     .text-muted {
       color: #9ca8b6 !important;
     }
+    
+    // Dark mode enhanced hover with purple glow
+    &:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3),
+                    0 0 20px rgba(136, 120, 255, 0.25);
+    }
   }
   
   .card-header,
@@ -77,5 +100,10 @@ html[data-bs-theme="dark"],
     h4, h5, .card-title {
       color: #e1e7ef !important;
     }
+  }
+  
+  .card-hover-lift:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4),
+                  0 0 24px rgba(136, 120, 255, 0.3);
   }
 }

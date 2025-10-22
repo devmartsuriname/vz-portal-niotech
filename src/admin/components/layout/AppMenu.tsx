@@ -47,7 +47,7 @@ const MenuItemWithChildren = ({
       >
         {item.icon && (
           <span className="nav-icon">
-            <IconifyIcon icon={item.icon} />
+            <IconifyIcon icon={item.icon} className="icon-scale" />
           </span>
         )}
         <span className="nav-text">{item.label}</span>
@@ -113,7 +113,7 @@ const MenuItemLink = ({ item, className }: { item: MenuItemType; className?: str
     >
       {item.icon && (
         <span className="nav-icon">
-          <IconifyIcon icon={item.icon} />
+          <IconifyIcon icon={item.icon} className="icon-scale" />
         </span>
       )}
       <span className="nav-text">{item.label}</span>
@@ -213,7 +213,7 @@ const AppMenu = ({ menuItems }: AppMenuProps) => {
             >
               {item.icon && (
                 <span className="nav-icon">
-                  <IconifyIcon icon={item.icon} />
+                  <IconifyIcon icon={item.icon} className="icon-scale" />
                 </span>
               )}
               <span className="nav-text">{item.label}</span>

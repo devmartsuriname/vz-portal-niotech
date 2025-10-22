@@ -3,6 +3,7 @@ import IconifyIcon from '@/admin/components/wrapper/IconifyIcon';
 import ProfileDropdown from './ProfileDropdown';
 import ThemeModeToggle from './ThemeModeToggle';
 import NotificationDropdown from './NotificationDropdown';
+import CompactModeToggle from '@/admin/components/ui/CompactModeToggle';
 
 const TopNavigationBar = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -17,7 +18,7 @@ const TopNavigationBar = () => {
       <div className="navbar-header">
         <div className="d-flex align-items-center gap-2">
           <button className="btn btn-sm topbar-button" onClick={toggleSidebar}>
-            <IconifyIcon icon="solar:hamburger-menu-line-duotone" className="fs-24" />
+            <IconifyIcon icon="solar:hamburger-menu-line-duotone" className="fs-24 icon-rotate" />
           </button>
 
           <div className="app-search d-none d-md-block">
@@ -40,6 +41,7 @@ const TopNavigationBar = () => {
 
         <div className="d-flex align-items-center gap-1">
           <NotificationDropdown />
+          <CompactModeToggle />
           <ThemeModeToggle />
           <ProfileDropdown />
         </div>
