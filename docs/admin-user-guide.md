@@ -1,669 +1,341 @@
-# Admin User Guide
-**Vreemdelingen Zaken Juspol Portal 2.0**
+# 📘 Admin User Guide — VZ Juspol Portal 2.0
 
 **Version:** 1.0  
-**Date:** 2025-01-20  
-**Target Audience:** Admin Users, Moderators, VZ Case Officers  
+**Last Updated:** 2025-10-22  
+**Target Audience:** System Administrators, Content Managers, Case Officers
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [Getting Started](#getting-started)
-2. [Dashboard Overview](#dashboard-overview)
-3. [Managing Submissions](#managing-submissions)
-4. [Document Review](#document-review)
-5. [User Management](#user-management)
-6. [Content Management](#content-management)
-7. [Wizard Configuration](#wizard-configuration)
-8. [Reports & Analytics](#reports--analytics)
-9. [System Settings](#system-settings)
-10. [Troubleshooting](#troubleshooting)
+1. [Introduction](#1-introduction)
+2. [Login & User Roles](#2-login--user-roles)
+3. [Dashboard Overview](#3-dashboard-overview)
+4. [Managing Content](#4-managing-content)
+5. [System Settings](#5-system-settings)
+6. [Security & Best Practices](#6-security--best-practices)
+7. [Troubleshooting](#7-troubleshooting)
 
 ---
 
-## Getting Started
+## 1. Introduction
 
-### Accessing the Admin Portal
+The **VZ Juspol Admin Portal** is the backend management system for the Vreemdelingenzaken (Immigration Affairs) digital services platform. It provides tools for:
 
-1. Navigate to: `https://vreemdelingenzaken.juspol.sr/admin/auth/sign-in`
-2. Enter your email and password
-3. Click **"Inloggen"** (Sign In)
+- Managing citizen applications and submissions
+- Publishing and updating content (pages, FAQs, announcements)
+- Configuring wizard logic and document requirements
+- Monitoring system activity and generating reports
+- Managing user roles and permissions
 
-**First-Time Login:**
-- You will receive credentials from the system administrator
-- Change your password immediately after first login
-- Enable two-factor authentication (if available)
-
----
-
-### Dashboard Orientation
-
-After login, you will see the **Dashboard** with:
-- **Stat Cards** — Total, Pending, Approved, Rejected submissions
-- **Recent Submissions Table** — Last 10 applications
-- **Status Distribution Chart** — Pie chart showing submission breakdown
-- **Processing Time Trends** — Line chart (future feature)
-
-**Navigation Sidebar (Left):**
-- 🏠 Dashboard
-- 📋 Aanvragen (Applications)
-- 📄 Documenten (Documents)
-- 🧙 Wizard Configuratie (Wizard Config)
-- 👥 Gebruikers (Users)
-- 📝 Content Beheer (Content Management)
-- 📊 Rapporten (Reports)
-- ⚙️ Instellingen (Settings)
+### System Access
+- **URL:** `/admin` (appended to your domain)
+- **Browser Requirements:** Chrome, Firefox, Safari, or Edge (latest versions)
+- **Screen Resolution:** Minimum 1280×720 (optimized for 1920×1080)
 
 ---
 
-## Dashboard Overview
+## 2. Login & User Roles
 
-### Stat Cards
+### 2.1 Accessing the Admin Panel
 
-**Total Submissions:**  
-Shows the total number of applications submitted since system launch.
+1. Navigate to `/admin/auth/sign-in`
+2. Enter your registered email address
+3. Enter your password
+4. Click **Sign In**
 
-**Pending Review:**  
-Applications with status `SUBMITTED` or `UNDER_REVIEW` that require action.
+**Note:** New users must be registered by an existing administrator. Self-registration is disabled for security.
 
-**Approved:**  
-Applications with status `APPROVED` or `COMPLETED`.
+### 2.2 User Roles & Permissions
 
-**Rejected:**  
-Applications with status `REJECTED`.
+The system uses three role levels:
 
-### Recent Submissions Table
+| Role | Permissions | Use Case |
+|------|-------------|----------|
+| **Admin** | Full system access: manage users, settings, content, submissions | System administrators |
+| **Moderator** | View and update submissions, manage content | Case officers, content managers |
+| **User** | View own submissions only | Public citizens (frontend access) |
 
-Displays the 10 most recent submissions with:
-- **Agenummer** — Unique agenda number (e.g., VZ-2025-000001)
-- **Naam** — Applicant's full name
-- **Type** — Application type (e.g., Verblijf, Naturalisatie)
-- **Datum** — Submission date
-- **Status** — Current status with color badge
-- **Actie** — Quick action button (👁️ View)
+**Role Assignment:**  
+Only administrators can assign roles via the **Users** module or database.
 
-**Quick Actions:**
-- Click 👁️ icon to view submission details
-- Hover over status badge to see status notes
+### 2.3 Password Reset
+
+*Currently manual — contact system administrator*
 
 ---
 
-## Managing Submissions
+## 3. Dashboard Overview
 
-### Viewing Submissions List
+Upon successful login, you'll see the **Admin Dashboard** with the following sections:
 
-1. Click **"Aanvragen"** in sidebar
-2. You will see a searchable, filterable table
+### 3.1 Statistics Cards (Top Row)
+- **Totale Aanvragen** — Total applications submitted
+- **In Behandeling** — Applications currently under review
+- **Goedgekeurd** — Approved applications
+- **Afgewezen** — Rejected applications
 
-**Search & Filters:**
-- **Search by:** Agenda number, name, email
-- **Filter by Status:** All, Pending, Under Review, Approved, Rejected
-- **Filter by Type:** Residence, Naturalization, Declaration, etc.
-- **Date Range:** Select start and end dates
+### 3.2 Charts & Analytics
+- **Aanvragen per Maand** — Monthly submission trends (bar chart)
+- **Aanvraag Status Verdeling** — Status distribution (donut chart)
 
-**Table Columns:**
-- Agenummer
-- Naam
-- Type
-- Email
-- Telefoon
-- Datum Ingediend
-- Status
-- Actie
+### 3.3 Sidebar Navigation
 
-**Pagination:**
-- Default: 25 submissions per page
-- Options: 10, 25, 50, 100 per page
-- Navigate: Previous, 1, 2, 3..., Next
-
----
-
-### Viewing Submission Details
-
-1. Click **👁️ View** on any submission
-2. Submission Details page opens
-
-**Page Sections:**
-
-**1. Applicant Information**
-- Full Name
-- Date of Birth
-- Nationality
-- Email
-- Phone
-- Address
-
-**2. Application Information**
-- Application Type (e.g., Verblijf - Surinaamse origine)
-- Agenda Number
-- Status
-- Fee Amount
-- Processing Days (estimated)
-- Submitted Date
-- Reviewed By (admin name, if reviewed)
-- Reviewed Date
-
-**3. Wizard Answers**
-- Question: "Wat wilt u aanvragen?" → Answer: "Verblijfsvergunning"
-- Question: "Bent u van Surinaamse origine?" → Answer: "Ja"
-- Number of People: 1
-
-**4. Uploaded Documents**
-Table showing:
-- Document Name (e.g., Paspoort)
-- File Name (e.g., passport.pdf)
-- File Size (e.g., 350KB)
-- Upload Date
-- Validation Status (Pending, Valid, Invalid)
-- Actions (📥 Download, 👁️ Preview)
-
-**5. Admin Notes**
-Text area for internal notes (not visible to applicant)
-
-**6. Status Update Section**
-- Dropdown to change status
-- Text area for status notes (sent to applicant via email)
-- **Save Changes** button
+| Module | Purpose |
+|--------|---------|
+| 📊 **Dashboard** | Overview and statistics |
+| 📝 **Aanvragen** (Submissions) | Manage citizen applications |
+| 📄 **Vergunningen** (Permits) | Issued permits registry |
+| ✉️ **Email Templates** | Configure notification emails |
+| 📑 **Content Manager** | Pages, FAQs, Announcements |
+| ⚙️ **Settings** | System configuration |
+| 👥 **Gebruikers** (Users) | User management |
+| 🧙 **Wizard Rules** | Configure application wizard logic |
 
 ---
 
-### Updating Submission Status
+## 4. Managing Content
 
-**Step-by-Step:**
+### 4.1 Submissions (Aanvragen)
 
-1. Open submission details
-2. Scroll to **"Status Bijwerken"** (Update Status) section
-3. Select new status from dropdown:
-   - **SUBMITTED** — Initial state (auto-set on submission)
-   - **UNDER_REVIEW** — You are currently reviewing
-   - **ADDITIONAL_INFO** — Waiting for additional info from applicant
-   - **APPROVED** — Application approved
-   - **REJECTED** — Application rejected
-   - **COMPLETED** — Process fully completed
-4. Enter notes in **"Status Opmerkingen"** field (optional but recommended)
-5. Click **"Status Bijwerken"** button
-6. System will:
-   - Update submission record
-   - Send email notification to applicant
-   - Log admin action
+**Path:** `/admin/aanvragen`
 
-**Example Status Notes:**
-- ✅ "Alle documenten zijn gecontroleerd en goedgekeurd"
-- ❌ "Geboorteakte mist beëdigde vertaling. Graag opnieuw indienen."
-- ⚠️ "Wachten op verificatie van UNHCR-certificaat"
+#### Viewing Submissions
+- **All Submissions Table:** Displays reference ID, applicant name, application type, status, and submission date
+- **Search:** Filter by name, reference number, or application type
+- **Filter by Status:** Draft, Submitted, Under Review, Approved, Rejected
 
----
+#### Updating a Submission
+1. Click on a submission row to view details
+2. Review uploaded documents (right panel)
+3. Add **Admin Notes** (optional)
+4. Update **Status** dropdown:
+   - `draft` → Application not yet submitted
+   - `submitted` → Awaiting review
+   - `under_review` → Currently being processed
+   - `approved` → Application accepted
+   - `rejected` → Application denied
+5. Click **Save Changes**
 
-## Document Review
-
-### Viewing Uploaded Documents
-
-From Submission Details page:
-1. Scroll to **"Geüploade Documenten"** section
-2. Table shows all uploaded files
-
-**Document Validation Status:**
-- 🟡 **Pending** — Not yet reviewed
-- 🟢 **Valid** — Approved by admin
-- 🔴 **Invalid** — Rejected (see notes)
-
-### Downloading Documents
-
-1. Click **📥 Download** icon next to file
-2. PDF opens in new tab or downloads to your computer
-
-### Previewing Documents
-
-1. Click **👁️ Preview** icon
-2. PDF preview opens in modal overlay
-3. Review document quality, completeness
-4. Close modal when done
-
-### Validating Documents
-
-**Manual Validation Steps:**
-
-1. Download/preview document
-2. Check:
-   - ✅ Correct document type (e.g., passport, not driver's license)
-   - ✅ Legible scan quality (no blurriness)
-   - ✅ Valid date (not expired, if applicable)
-   - ✅ Translation included (if required)
-   - ✅ All pages included (for multi-page docs)
-3. Update validation status:
-   - If valid → Change to **"Valid"**
-   - If invalid → Change to **"Invalid"** and add notes
-4. Save changes
-
-**Example Validation Notes:**
-- ❌ "Paspoort is verlopen. Geldig tot 2023-05-10. Nieuwe kopie vereist."
-- ❌ "Geboorteakte mist beëdigde vertaling naar het Nederlands."
-- ❌ "Scan is onleesbaar. Graag opnieuw scannen met hogere resolutie."
+**Automatic Emails:**  
+Status changes trigger notification emails to the applicant (configured in Email Templates).
 
 ---
 
-## User Management
+### 4.2 Vergunningen (Permits)
 
-### Viewing Users
+**Path:** `/admin/vergunningen`
 
-1. Click **"Gebruikers"** in sidebar
-2. User list table displays:
-   - Email
-   - Role (Admin, Moderator, Viewer)
-   - Status (Active, Inactive)
-   - Last Login
-   - Actions
+#### Adding a New Permit
+1. Click **Add New Permit**
+2. Fill in required fields:
+   - **Code:** Permit type code (e.g., `RV`, `NT`, `AS`)
+   - **Agenda Number:** Official reference number
+   - **Name:** Applicant surname
+   - **Given Names:** Applicant first name(s)
+   - **Issued Date:** Date permit was granted
+   - **Expires At:** Expiration date (if applicable)
+   - **Status:** `active`, `expired`, `revoked`
+3. Click **Submit**
 
-### Adding New User
+#### Managing Existing Permits
+- **Search:** By name, agenda number, or code
+- **Edit:** Click pencil icon to modify details
+- **Delete:** Click trash icon (requires confirmation)
 
-**⚠️ Only Admins can add users**
-
-1. Click **"Nieuwe Gebruiker"** button
-2. Fill in form:
-   - **Email** — User's official work email
-   - **Role** — Select: Admin, Moderator, or Viewer
-3. Click **"Uitnodiging Versturen"** (Send Invitation)
-4. User receives email with setup link
-5. User sets their own password
-
-**Role Permissions:**
-
-| Permission | Admin | Moderator | Viewer |
-|-----------|-------|-----------|--------|
-| View submissions | ✅ | ✅ | ✅ |
-| Update submission status | ✅ | ✅ | ❌ |
-| Validate documents | ✅ | ✅ | ❌ |
-| Manage users | ✅ | ❌ | ❌ |
-| Manage content (CMS) | ✅ | ✅ | ❌ |
-| Configure wizard | ✅ | ❌ | ❌ |
-| View reports | ✅ | ✅ | ✅ |
-| System settings | ✅ | ❌ | ❌ |
-
-### Changing User Roles
-
-1. Find user in list
-2. Click **✏️ Edit** icon
-3. Select new role from dropdown
-4. Click **"Opslaan"** (Save)
-5. User receives email notification of role change
-
-### Deactivating Users
-
-**⚠️ Only Admins can deactivate users**
-
-1. Find user in list
-2. Click **🚫 Deactivate** button
-3. Confirm action in modal
-4. User can no longer log in
-5. User's past actions remain in audit log
+**Note:** Active permits are displayed on the public `/vergunningen` page.
 
 ---
 
-## Content Management
+### 4.3 Email Templates
 
-### Managing Pages
+**Path:** `/admin/email-templates`
 
-**Purpose:** Edit static pages like "About", "Instructions", "Privacy"
+#### Editing a Template
+1. Select template from list:
+   - `submission_received` — Initial confirmation email
+   - `status_update` — Status change notification
+   - `document_request` — Request for additional documents
+   - `approval_notification` — Application approved
+   - `rejection_notification` — Application denied
+2. Edit **Subject** and **Body HTML**
+3. Use variables:
+   - `{{applicant_name}}` — Applicant's full name
+   - `{{reference_number}}` — Submission reference ID
+   - `{{status}}` — Current application status
+   - `{{admin_notes}}` — Notes entered by case officer
+4. Preview changes in right panel
+5. Click **Save Template**
 
-1. Click **"Content Beheer"** → **"Pagina's"** (Pages)
-2. Page list displays:
-   - Slug (URL path, e.g., `/over-ons`)
-   - Title
-   - Status (Published, Draft)
-   - Last Updated
-   - Actions
-
-**Editing a Page:**
-1. Click **✏️ Edit** icon
-2. WYSIWYG editor opens
-3. Edit content (headings, paragraphs, lists, images)
-4. Update SEO metadata:
-   - **Meta Title** (for search engines)
-   - **Meta Description** (max 160 characters)
-   - **Keywords** (comma-separated)
-5. Toggle **"Gepubliceerd"** (Published) switch
-6. Click **"Opslaan"** (Save)
+**Warning:** Do not remove required variables or emails may fail to send.
 
 ---
 
-### Managing FAQs
+### 4.4 Content Manager
 
-**Purpose:** Add, edit, delete FAQ items
+**Path:** `/admin/content`
 
-1. Click **"Content Beheer"** → **"FAQ"**
-2. FAQ list displays:
-   - Question
-   - Category (General, Documents, Fees, etc.)
-   - Status (Active, Inactive)
-   - Display Order
-   - Actions
+#### Managing Pages
+- **View All Pages:** List of CMS-managed pages
+- **Create New Page:**
+  1. Click **Add New Page**
+  2. Enter **Title** and **Slug** (URL path)
+  3. Add **Content** (supports Markdown)
+  4. Set **Meta Description** (SEO)
+  5. Toggle **Published** status
+  6. Click **Save**
 
-**Adding New FAQ:**
-1. Click **"Nieuwe FAQ"** button
-2. Fill in form:
-   - **Vraag** (Question) — Clear, concise question
-   - **Antwoord** (Answer) — Detailed answer (supports Markdown)
-   - **Categorie** — Select or create category
-   - **Weergavevolgorde** — Display order (1 = first)
-3. Click **"Opslaan"**
+#### Managing FAQs
+- **Add FAQ:**
+  1. Click **Add FAQ**
+  2. Enter **Question** and **Answer**
+  3. Select **Category** (optional)
+  4. Set **Display Order**
+  5. Toggle **Published**
+  6. Click **Save**
 
-**Editing FAQ:**
-1. Click **✏️ Edit** icon
-2. Update question, answer, or category
-3. Click **"Opslaan"**
+#### Managing Announcements
+- **Create Announcement:**
+  1. Click **Add Announcement**
+  2. Enter **Title** and **Content**
+  3. Select **Type:** `info`, `warning`, `success`, `error`
+  4. Set **Start Date** and **End Date** (optional)
+  5. Toggle **Active**
+  6. Click **Save**
 
-**Deleting FAQ:**
-1. Click **🗑️ Delete** icon
-2. Confirm deletion in modal
-3. FAQ removed from public site
-
----
-
-### Managing Announcements
-
-**Purpose:** Create news posts and policy updates
-
-1. Click **"Content Beheer"** → **"Aankondigingen"**
-2. Announcements list displays:
-   - Title
-   - Category (Beleid, Nieuws, Feestdag)
-   - Published Date
-   - Status (Published, Draft)
-   - Actions
-
-**Creating New Announcement:**
-1. Click **"Nieuwe Aankondiging"** button
-2. Fill in form:
-   - **Titel** — Headline
-   - **Samenvatting** (Excerpt) — Brief summary (150 characters)
-   - **Inhoud** (Content) — Full article (WYSIWYG editor)
-   - **Categorie** — Select category
-   - **Featured Image** — Upload image (recommended: 600×400px)
-   - **Gepubliceerd** — Toggle to publish immediately or save as draft
-3. Click **"Opslaan"**
-
-**Scheduling Announcements:**
-- Set **"Publicatiedatum"** (Publication Date) to future date
-- Announcement will appear on public site on that date
+**Note:** Active announcements appear on the frontend homepage as alert banners.
 
 ---
 
-## Wizard Configuration
+### 4.5 Wizard Rules Configuration
 
-**⚠️ Advanced Feature — Only Admins with technical knowledge**
+**Path:** `/admin/wizard`
 
-### Overview
+The wizard is a multi-step questionnaire that determines which application type a citizen needs.
 
-The Wizard Configuration interface allows you to:
-- Add, edit, delete wizard questions
-- Configure conditional logic (if/then rules)
-- Map questions to application type outcomes
-- Test wizard flow
+#### Understanding Wizard Rules
+Each rule consists of:
+- **Question Key:** Unique identifier (e.g., `purpose_of_stay`)
+- **Question Text:** Text displayed to user
+- **Question Type:** `single_choice`, `multiple_choice`, `yes_no`
+- **Options:** Array of possible answers (JSON format)
+- **Next Question Map:** Navigation logic (JSON format)
+- **Result Application Type:** Final outcome (if terminal question)
 
-### Viewing Decision Tree
+#### Editing a Rule
+1. Click on a rule from the list
+2. Modify **Question Text** or **Options**
+3. Update **Next Question Map** to change conditional navigation:
+   ```json
+   {
+     "work": "work_type",
+     "study": "study_level",
+     "family": "family_relation"
+   }
+   ```
+4. Set **Result Application Type** if this is a terminal question
+5. Toggle **Active** status
+6. Click **Save**
 
-1. Click **"Wizard Configuratie"** in sidebar
-2. Visual tree diagram displays:
-   - Root question (Step 1)
-   - Branching paths (Steps 2-8)
-   - Outcomes (application types)
-
-### Adding New Question
-
-**Example: Add question for "Married to Surinamese citizen?"**
-
-1. Click **"Nieuwe Vraag"** button
-2. Fill in form:
-   - **Step Number** — 8 (or next available)
-   - **Question Text** — "Bent u getrouwd met een Surinaams staatsburger?"
-   - **Question Type** — Single Choice
-   - **Parent Step** — 3 (Naturalization branch)
-   - **Help Text** — Additional guidance for users
-3. Add **Options**:
-   - Option 1: Value = `yes`, Label = `Ja`, Next Step = (empty), Result = `NAT_ART12`
-   - Option 2: Value = `no`, Label = `Nee`, Next Step = 9 (or another question)
-4. Click **"Opslaan"**
-
-### Editing Existing Question
-
-1. Click question node in tree diagram
-2. Edit form appears
-3. Update question text, options, or logic
-4. Click **"Opslaan"**
-
-### Testing Wizard Flow
-
-1. Click **"Test Wizard"** button
-2. Wizard opens in preview mode
-3. Answer questions as a user would
-4. Verify correct application type determined
-5. Check document checklist generated correctly
-
-**Common Issues:**
-- ❌ Question not appearing → Check parent_step reference
-- ❌ Wrong application type outcome → Verify options `result` field
-- ❌ Document not appearing → Check `application_documents` mapping
+**Caution:** Incorrect navigation logic can break the wizard flow. Test changes thoroughly.
 
 ---
 
-## Reports & Analytics
+## 5. System Settings
 
-### Viewing Reports
+**Path:** `/admin/settings`
 
-1. Click **"Rapporten"** in sidebar
-2. Select report type:
-   - **Submission Statistics**
-   - **Document Analysis**
-   - **User Activity**
-   - **Performance Metrics**
+### 5.1 General Settings
+- **Site Name:** Display name for frontend
+- **Contact Email:** Default contact address
+- **Office Hours:** Displayed on Contact page
+- **Maintenance Mode:** Disable public access temporarily
 
----
+### 5.2 Application Settings
+- **Default Application Fee:** Base processing fee (SRD)
+- **Max File Upload Size:** Per-document size limit (MB)
+- **Allowed File Types:** Permitted document formats (PDF, JPG, PNG)
+- **Processing Time Estimate:** Average days to process application
 
-### Submission Statistics Report
-
-**Filters:**
-- Date Range (Last 7 days, Last 30 days, Last 12 months, Custom)
-- Application Type (All, Residence, Naturalization, etc.)
-- Status (All, Approved, Rejected)
-
-**Metrics Displayed:**
-- Total Submissions (count)
-- Approval Rate (percentage)
-- Rejection Rate (percentage)
-- Average Processing Time (days)
-- Submissions by Month (bar chart)
-- Application Type Distribution (pie chart)
-
-**Exporting:**
-- Click **"Exporteren naar CSV"** button
-- File downloads with all data points
+### 5.3 Notification Settings
+- **Email Notifications Enabled:** Master toggle for all emails
+- **Admin Email Recipients:** Comma-separated list for new submission alerts
+- **SMTP Configuration:** *(Managed via Supabase Resend integration)*
 
 ---
 
-### Document Analysis Report
+## 6. Security & Best Practices
 
-Shows:
-- Most Frequently Required Documents (bar chart)
-- Document Validation Failure Rate (percentage per document type)
-- Translation Requirements Overview (how many docs need translation)
+### 6.1 Role-Based Access Control (RBAC)
+- All tables use **Row Level Security (RLS)**
+- Users can only access data relevant to their role
+- Authentication is required for all admin routes
 
-**Use Case:** Identify bottlenecks (e.g., if 60% of birth certificates fail validation, improve instructions)
+### 6.2 Data Privacy
+- **PII Protection:** Submission data is encrypted at rest
+- **Access Logging:** All admin actions are logged in `activity_logs` table
+- **Audit Trail:** View user activity via **Activity Logs** (future module)
 
----
+### 6.3 Best Practices
+✅ **Do:**
+- Log out when leaving your workstation
+- Use strong passwords (min. 12 characters)
+- Review submissions promptly (within 24-48 hours)
+- Add clear admin notes when changing status
 
-### User Activity Report
-
-**⚠️ Admin Only**
-
-Shows:
-- Admin Login History (timestamp, IP address)
-- Actions Performed (approvals, rejections, status changes)
-- Average Response Time (how long admin takes to review submission)
-
-**Privacy Note:** This data is logged for audit purposes only.
-
----
-
-## System Settings
-
-**⚠️ Admin Only**
-
-### General Settings
-
-1. Click **"Instellingen"** → **"Algemeen"**
-2. Configure:
-   - **System Name** — "Vreemdelingenzaken Juspol Portal"
-   - **Contact Email** — info@juspol.sr
-   - **Office Hours** — Maandag-Vrijdag: 08:00-15:00
-   - **Default Language** — Nederlands (NL)
+❌ **Don't:**
+- Share your login credentials
+- Leave sensitive data visible on screen in public areas
+- Delete records without approval
+- Modify wizard rules without testing
 
 ---
 
-### Email Settings
+## 7. Troubleshooting
 
-Configure email notifications:
-- **SMTP Host** — e.g., smtp.gmail.com
-- **SMTP Port** — e.g., 587
-- **SMTP Username** — email account
-- **SMTP Password** — encrypted password
-- **Sender Name** — "VZ Juspol"
-- **Sender Email** — noreply@juspol.sr
+### Common Issues
 
-**Email Templates:**
-- Submission Confirmation
-- Status Update Notification
-- Rejection Notification
+#### 7.1 "Unable to view submissions"
+**Cause:** Missing admin role  
+**Solution:** Contact system administrator to assign `admin` role to your account
 
-**Testing:**
-- Click **"Testmail Versturen"** to send test email
+#### 7.2 "File upload failed"
+**Cause:** File size exceeds limit or unsupported format  
+**Solution:**
+- Check file size (max 5MB per document by default)
+- Ensure file is PDF, JPG, or PNG format
+- Verify storage bucket has sufficient space
 
----
+#### 7.3 "Email not sending"
+**Cause:** Template missing variables or RESEND_API_KEY not configured  
+**Solution:**
+- Verify template includes all required variables (`{{applicant_name}}`, etc.)
+- Check Supabase Edge Functions logs for errors
+- Confirm RESEND_API_KEY is set in Secrets
 
-### Application Settings
-
-Configure application rules:
-- **Default Processing Times** (per application type)
-- **Fee Amounts** (in SRD)
-- **File Upload Limits** — Currently 400KB (change with caution)
-- **Allowed File Types** — PDF only (do not change)
-
----
-
-### Security Settings
-
-- **Session Timeout** — Default: 24 hours
-- **Password Requirements** — Min 8 characters, uppercase, lowercase, number
-- **Two-Factor Authentication** — Enable/Disable (future feature)
-- **IP Whitelist** — Restrict admin access to specific IPs (optional)
+#### 7.4 "Wizard not loading"
+**Cause:** JavaScript error or missing wizard rules  
+**Solution:**
+- Check browser console for errors (F12)
+- Verify at least one wizard rule is marked `is_active: true`
+- Clear browser cache and reload
 
 ---
 
-## Troubleshooting
+## 📞 Support & Contact
 
-### Issue: Cannot Log In
+**Technical Support:**  
+Email: support@vreemdelingenzaken.sr  
+Phone: +597-XXX-XXXX (Office hours: 08:00-16:00 AST)
 
-**Symptoms:**
-- "Invalid email or password" error
+**System Administrator:**  
+Email: admin@juspol.gov.sr
 
-**Solutions:**
-1. Verify email address is correct (case-sensitive)
-2. Check Caps Lock is off
-3. Click **"Wachtwoord Vergeten"** (Forgot Password) to reset
-4. Contact system administrator if issue persists
-
----
-
-### Issue: Submission Not Appearing in List
-
-**Symptoms:**
-- User reports submission, but you don't see it
-
-**Solutions:**
-1. Check filters — Ensure "All Statuses" selected
-2. Search by agenda number or email
-3. Check date range filter — Expand to "All Time"
-4. Query database directly (technical admin only)
+**Documentation:**  
+Full technical documentation available at `/docs/` in project repository
 
 ---
 
-### Issue: Email Notifications Not Sending
-
-**Symptoms:**
-- Applicants not receiving confirmation emails
-
-**Solutions:**
-1. Go to **Instellingen → Email**
-2. Click **"Testmail Versturen"** to test SMTP connection
-3. Check spam folder (ask applicant)
-4. Verify Edge Function `send-submission-notification` is deployed
-5. Check Edge Function logs for errors
-
----
-
-### Issue: Document Won't Download
-
-**Symptoms:**
-- Click download icon, nothing happens
-
-**Solutions:**
-1. Check browser console for errors (F12 → Console tab)
-2. Verify you have permission to view this submission
-3. Check file still exists in Supabase Storage (technical admin only)
-4. Try different browser (Chrome, Firefox)
-
----
-
-### Issue: Wizard Configuration Changes Not Saving
-
-**Symptoms:**
-- Edit wizard question, click Save, changes revert
-
-**Solutions:**
-1. Check you have Admin role (only Admins can edit wizard)
-2. Verify form validation — All required fields filled
-3. Check browser console for errors
-4. Clear browser cache and retry
-
----
-
-## Keyboard Shortcuts
-
-| Shortcut | Action |
-|----------|--------|
-| `Ctrl + K` | Open search |
-| `Ctrl + S` | Save changes (in forms) |
-| `Esc` | Close modal |
-| `/` | Focus search bar |
-
----
-
-## Support & Contact
-
-**Technical Issues:**  
-Email: support@lovable.dev (for Lovable Cloud issues)  
-Email: it@juspol.sr (for VZ-specific issues)
-
-**Training:**  
-Contact your supervisor to schedule training sessions.
-
-**Feedback:**  
-Submit feature requests via the "Feedback" button in the bottom-right corner.
-
----
-
-## Appendix: Glossary
-
-- **Agenda Number** — Unique identifier (e.g., VZ-2025-000001)
-- **RLS** — Row Level Security (database access control)
-- **Edge Function** — Serverless function running on Supabase
-- **WYSIWYG** — What You See Is What You Get (visual editor)
-- **CMS** — Content Management System
-
----
-
-**Document Control:**  
-- Version: 1.0
-- Last Updated: 2025-01-20
-- Owner: Product Team
-- Feedback: admin-feedback@vz.juspol.sr
+**Last Updated:** 2025-10-22  
+**Document Version:** 1.0  
+**Next Review Date:** 2025-12-22
