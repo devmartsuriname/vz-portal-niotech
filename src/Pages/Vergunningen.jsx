@@ -39,7 +39,7 @@ const Vergunningen = () => {
           {/* Results Table */}
           <div className="row">
             <div className="col-12">
-              <div className="card shadow-sm">
+              <div className="card shadow-sm card-hover-lift">
                 <div className="card-body">
                   {isLoading ? (
                     <div className="text-center py-5">
@@ -56,7 +56,7 @@ const Vergunningen = () => {
                   ) : (
                     <>
                       <div className="table-responsive">
-                        <table className="table table-hover align-middle">
+                        <table className="table table-hover table-clickable align-middle">
                           <thead className="table-light">
                             <tr>
                               <th scope="col">Code</th>
@@ -69,7 +69,16 @@ const Vergunningen = () => {
                             {permits?.map((permit) => (
                               <tr key={permit.id}>
                                 <td>
-                                  <span className="badge bg-primary">{permit.code}</span>
+                                  <span 
+                                    className="badge" 
+                                    style={{
+                                      background: 'linear-gradient(135deg, #6c5dd3 0%, #8878ff 100%)',
+                                      color: '#ffffff',
+                                      fontWeight: '600'
+                                    }}
+                                  >
+                                    {permit.code}
+                                  </span>
                                 </td>
                                 <td>
                                   <strong>{permit.agenda_number}</strong>
