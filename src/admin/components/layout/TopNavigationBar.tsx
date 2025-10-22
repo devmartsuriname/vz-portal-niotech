@@ -17,21 +17,29 @@ const TopNavigationBar = () => {
     <div className="app-topbar">
       <div className="navbar-header">
         <div className="d-flex align-items-center gap-2">
-          <button className="btn btn-sm topbar-button" onClick={toggleSidebar}>
-            <IconifyIcon icon="solar:hamburger-menu-line-duotone" className="fs-24 icon-rotate" />
+          <button 
+            className="btn btn-sm topbar-button" 
+            onClick={toggleSidebar}
+            data-tooltip="Toggle sidebar menu"
+            aria-label="Toggle sidebar navigation"
+          >
+            <IconifyIcon icon="solar:hamburger-menu-line-duotone" className="fs-24 icon-rotate" aria-hidden="true" />
           </button>
 
           <div className="app-search d-none d-md-block">
-            <form>
+            <form role="search">
               <div className="position-relative">
+                <label htmlFor="admin-search" className="visually-hidden">Search admin panel</label>
                 <input
+                  id="admin-search"
                   type="search"
                   className="form-control"
                   placeholder="Search..."
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
+                  aria-label="Search admin panel"
                 />
-                <span className="search-widget-icon">
+                <span className="search-widget-icon" aria-hidden="true">
                   <IconifyIcon icon="solar:magnifer-linear" />
                 </span>
               </div>

@@ -33,9 +33,16 @@ const ThemeModeToggle = () => {
 
   return (
     <div className="topbar-item">
-      <button className="topbar-button" id="light-dark-mode" onClick={toggleTheme}>
-        <IconifyIcon icon="solar:moon-bold-duotone" className="fs-24 light-mode" />
-        <IconifyIcon icon="solar:sun-bold-duotone" className="fs-24 dark-mode" />
+      <button 
+        className="topbar-button" 
+        id="light-dark-mode" 
+        onClick={toggleTheme}
+        data-tooltip={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        aria-pressed={theme === 'dark'}
+      >
+        <IconifyIcon icon="solar:moon-bold-duotone" className="fs-24 light-mode" aria-hidden="true" />
+        <IconifyIcon icon="solar:sun-bold-duotone" className="fs-24 dark-mode" aria-hidden="true" />
       </button>
     </div>
   );

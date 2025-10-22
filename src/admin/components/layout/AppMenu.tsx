@@ -43,17 +43,18 @@ const MenuItemWithChildren = ({
           'menu-open': open,
         })}
         aria-expanded={open}
+        aria-label={`${item.label} menu - ${open ? 'Expanded' : 'Collapsed'}`}
         onClick={toggleMenuItem}
       >
         {item.icon && (
-          <span className="nav-icon">
+          <span className="nav-icon" aria-hidden="true">
             <IconifyIcon icon={item.icon} className="icon-scale" />
           </span>
         )}
         <span className="nav-text">{item.label}</span>
-        {!item.badge && <span className="menu-arrow"><IconifyIcon icon="bx:chevron-down" /></span>}
+        {!item.badge && <span className="menu-arrow" aria-hidden="true"><IconifyIcon icon="bx:chevron-down" /></span>}
         {item.badge && (
-          <span className={`badge bg-${item.badge.variant} rounded-pill ms-auto`}>
+          <span className={`badge bg-${item.badge.variant} rounded-pill ms-auto`} aria-label={`${item.badge.text} notifications`}>
             {item.badge.text}
           </span>
         )}
@@ -110,15 +111,16 @@ const MenuItemLink = ({ item, className }: { item: MenuItemType; className?: str
         disabled: item.isDisabled,
       })}
       aria-disabled={item.isDisabled}
+      aria-label={`${item.label} - Navigate to ${item.label}`}
     >
       {item.icon && (
-        <span className="nav-icon">
+        <span className="nav-icon" aria-hidden="true">
           <IconifyIcon icon={item.icon} className="icon-scale" />
         </span>
       )}
       <span className="nav-text">{item.label}</span>
       {item.badge && (
-        <span className={`badge bg-${item.badge.variant} rounded-pill ms-auto`}>
+        <span className={`badge bg-${item.badge.variant} rounded-pill ms-auto`} aria-label={`${item.badge.text} items`}>
           {item.badge.text}
         </span>
       )}
@@ -177,11 +179,11 @@ const AppMenu = ({ menuItems }: AppMenuProps) => {
   }, [activeMenu]);
 
   return (
-    <ul className="navbar-nav" id="navbar-nav">
+    <ul className="navbar-nav" id="navbar-nav" role="navigation" aria-label="Main navigation">
       {menuItems.map((item, idx) => {
         if (item.isTitle) {
           return (
-            <li key={idx} className="menu-title">
+            <li key={idx} className="menu-title" role="presentation">
               {item.label}
             </li>
           );
@@ -210,15 +212,17 @@ const AppMenu = ({ menuItems }: AppMenuProps) => {
                 disabled: item.isDisabled,
               })}
               aria-disabled={item.isDisabled}
+              aria-current={activeMenuItems.includes(item.key) ? 'page' : undefined}
+              aria-label={`${item.label} - Navigate to ${item.label} section`}
             >
               {item.icon && (
-                <span className="nav-icon">
+                <span className="nav-icon" aria-hidden="true">
                   <IconifyIcon icon={item.icon} className="icon-scale" />
                 </span>
               )}
               <span className="nav-text">{item.label}</span>
               {item.badge && (
-                <span className={`badge bg-${item.badge.variant} rounded-pill ms-auto`}>
+                <span className={`badge bg-${item.badge.variant} rounded-pill ms-auto`} aria-label={`${item.badge.text} notifications`}>
                   {item.badge.text}
                 </span>
               )}

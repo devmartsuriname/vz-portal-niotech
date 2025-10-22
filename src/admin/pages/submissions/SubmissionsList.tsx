@@ -136,15 +136,16 @@ const SubmissionsList = () => {
                   className="btn btn-sm btn-primary"
                   onClick={handleBulkAction}
                   disabled={!bulkAction || isBulkProcessing}
+                  aria-label="Execute bulk action on selected submissions"
                 >
                   {isBulkProcessing ? (
                     <>
-                      <span className="spinner-border spinner-border-sm me-2"></span>
+                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                       Verwerken...
                     </>
                   ) : (
                     <>
-                      <i className="bx bx-play me-1"></i>
+                      <i className="bx bx-play me-1" aria-hidden="true"></i>
                       Uitvoeren
                     </>
                   )}
@@ -152,8 +153,10 @@ const SubmissionsList = () => {
                 <button
                   className="btn btn-sm btn-secondary"
                   onClick={() => setSelectedIds([])}
+                  aria-label="Clear selection"
+                  title="Clear all selected submissions"
                 >
-                  <i className="bx bx-x me-1"></i>
+                  <i className="bx bx-x me-1" aria-hidden="true"></i>
                   Wissen
                 </button>
               </div>
@@ -162,19 +165,25 @@ const SubmissionsList = () => {
 
           <div className="row mb-3">
             <div className="col-md-6">
+              <label htmlFor="submission-search" className="visually-hidden">Search submissions</label>
               <input
+                id="submission-search"
                 type="text"
                 className="form-control"
                 placeholder="Zoek op ID of type..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                aria-label="Search submissions by ID or type"
               />
             </div>
             <div className="col-md-3">
+              <label htmlFor="status-filter" className="visually-hidden">Filter by status</label>
               <select
+                id="status-filter"
                 className="form-select"
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
+                aria-label="Filter submissions by status"
               >
                 <option value="all">Alle Statussen</option>
                 <option value="draft">Concept</option>
@@ -186,7 +195,7 @@ const SubmissionsList = () => {
               </select>
             </div>
             <div className="col-md-3 text-end">
-              <span className="badge bg-primary fs-5">
+              <span className="badge bg-primary fs-5" role="status" aria-live="polite">
                 {filteredSubmissions?.length || 0} Aanvragen
               </span>
             </div>
@@ -202,34 +211,46 @@ const SubmissionsList = () => {
             />
           ) : (
             <div className="table-responsive">
-              <table className="table table-hover table-striped">
+              <table className="table table-hover table-striped" role="grid" aria-label="List of submitted applications">
                 <thead>
-                  <tr>
-                    <th style={{ width: '40px' }}>
+                  <tr role="row">
+                    <th scope="col" style={{ width: '40px' }}>
                       <input
                         type="checkbox"
                         className="form-check-input"
                         checked={selectedIds.length === filteredSubmissions?.length && filteredSubmissions.length > 0}
                         onChange={toggleSelectAll}
+                        aria-label="Select all submissions"
                       />
                     </th>
-                    <th>Referentie</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Ingediend</th>
-                    <th>Laatst Bijgewerkt</th>
-                    <th>Acties</th>
+                    <th scope="col">Referentie</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ingediend</th>
+                    <th scope="col">Laatst Bijgewerkt</th>
+                    <th scope="col">Acties</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredSubmissions?.map((submission) => (
-                    <tr key={submission.id}>
+                    <tr 
+                      key={submission.id}
+                      role="row"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          window.location.href = `/admin/submissions/${submission.id}`;
+                        }
+                      }}
+                    >
                       <td>
                         <input
                           type="checkbox"
                           className="form-check-input"
                           checked={selectedIds.includes(submission.id)}
                           onChange={() => toggleSelect(submission.id)}
+                          aria-label={`Select submission ${submission.id.substring(0, 8)}`}
                         />
                       </td>
                       <td>
@@ -253,8 +274,10 @@ const SubmissionsList = () => {
                         <Link
                           to={`/admin/submissions/${submission.id}`}
                           className="btn btn-sm btn-primary"
+                          aria-label={`View details for submission ${submission.id.substring(0, 8)}`}
+                          title="View submission details"
                         >
-                          <i className="bx bx-show me-1"></i>
+                          <i className="bx bx-show me-1" aria-hidden="true"></i>
                           Details
                       </Link>
                     </td>

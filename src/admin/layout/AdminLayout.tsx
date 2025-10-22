@@ -66,14 +66,19 @@ const AdminLayout = () => {
 
   return (
     <div className="wrapper">
+      <a href="#main-content" className="skip-to-main">
+        Skip to main content
+      </a>
       <TopNavigationBar />
       <VerticalNavigationBar />
       <AnimationStar />
       <div className="page-content">
         <div className="container-fluid">
-          <Suspense fallback={<TableSkeleton rows={8} columns={5} />}>
-            <Outlet />
-          </Suspense>
+          <main id="main-content" tabIndex={-1}>
+            <Suspense fallback={<TableSkeleton rows={8} columns={5} />}>
+              <Outlet />
+            </Suspense>
+          </main>
           <Footer />
         </div>
       </div>

@@ -8,3 +8,75 @@ $value in $theme-colors {
         --#{$prefix}tooltip-bg: var(--#{$prefix}#{$color}) !important;
     }
 }
+
+// ============================================
+// Custom Accessible Tooltip Component
+// ============================================
+
+// Tooltip base styles - enhance native title tooltips
+[data-tooltip] {
+  position: relative;
+  
+  &::before,
+  &::after {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    z-index: 1000;
+  }
+  
+  // Tooltip content
+  &::before {
+    content: attr(data-tooltip);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  // Tooltip arrow
+  &::after {
+    content: '';
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+  }
+  
+  &:hover::before,
+  &:hover::after,
+  &:focus-visible::before,
+  &:focus-visible::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// Dark theme adjustments
+[data-bs-theme="dark"] {
+  [data-tooltip] {
+    &::before {
+      background: rgba(255, 255, 255, 0.95);
+      color: $dark;
+    }
+    
+    &::after {
+      border-top-color: rgba(255, 255, 255, 0.95);
+    }
+  }
+}
+
+// Tooltip for icon-only buttons
+.btn[data-tooltip] {
+  &::before {
+    font-weight: 500;
+  }
+}
