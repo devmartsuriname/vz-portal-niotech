@@ -7085,6 +7085,40 @@ input.main-search-input::placeholder {
   padding-bottom: 30px;
 }
 
+/* FAQ Section - Single Column Centered Layout */
+.faq-section .text-center .section-title {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.faq-section .faq-description {
+  max-width: 740px;
+  margin: 16px auto 0;
+  line-height: 1.7;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.faq-section .faq-content.style1 {
+  margin-top: 0;
+}
+
+.faq-section .faq-accordion {
+  text-align: left;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .faq-section .faq-description {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  
+  .faq-section .text-center {
+    padding: 0 15px;
+  }
+}
+
 /* 24.Testimonial */
 .testimonial-container-wrapper.style2 {
   position: relative;
