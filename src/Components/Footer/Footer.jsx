@@ -14,7 +14,7 @@ const Footer = () => {
                             <div className="single-footer-widget">
                                 <div className="widget-head">
                                     <Link to="/">
-                                        <img src="/assets/images/logo/logo.svg" alt="logo-img" />
+                                        <img src="/assets/branding/logo-vz-white.svg" alt="Vreemdelingen Zaken Suriname" />
                                     </Link>
                                 </div>
                                 <div className="footer-content">

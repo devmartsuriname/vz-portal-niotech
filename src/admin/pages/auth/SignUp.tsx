@@ -3,8 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardBody, Col, Row } from 'react-bootstrap';
 import { useAuth } from '@/integrations/supabase/auth';
 import { useToast } from '@/hooks/use-toast';
-import logoDark from '@/admin/assets/images/logo-dark.png';
-import logoLight from '@/admin/assets/images/logo-light.png';
 import '@/admin/assets/scss/style.scss';
 
 const SignUp = () => {
@@ -85,10 +83,10 @@ const SignUp = () => {
                 <div className="text-center mb-4">
                   <div className="auth-logo">
                     <Link to="/admin/dashboard" className="logo-dark">
-                      <img src={logoDark} alt="dark logo" height="28" loading="eager" decoding="async" />
+                      <img src="/assets/branding/logo-vz.svg" alt="Vreemdelingen Zaken Suriname" height="28" loading="eager" decoding="async" />
                     </Link>
                     <Link to="/admin/dashboard" className="logo-light">
-                      <img src={logoLight} alt="light logo" height="28" loading="eager" decoding="async" />
+                      <img src="/assets/branding/logo-vz-white.svg" alt="Vreemdelingen Zaken Suriname" height="28" loading="eager" decoding="async" />
                     </Link>
                   </div>
                 </div>
