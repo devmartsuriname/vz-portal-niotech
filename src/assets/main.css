@@ -6893,6 +6893,60 @@ input.main-search-input::placeholder {
 }
 
 /* ============================================
+   Embla Carousel Base Styles (Required)
+   ============================================ */
+
+/* Embla Viewport - Must have overflow hidden */
+.embla {
+  overflow: hidden;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Embla Container - MUST be display flex */
+.embla__container {
+  display: flex !important;
+  flex-direction: row;
+  gap: 24px;
+}
+
+/* Embla Slides - Prevent shrinking */
+.embla__slide {
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+/* Desktop: 3 slides visible */
+@media (min-width: 1024px) {
+  .embla__slide {
+    flex: 0 0 calc(33.333% - 16px);
+  }
+}
+
+/* Tablet: 2 slides visible */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .embla__slide {
+    flex: 0 0 calc(50% - 12px);
+  }
+  .embla__container {
+    gap: 16px;
+  }
+}
+
+/* Mobile: 1 slide visible */
+@media (max-width: 767px) {
+  .embla__slide {
+    flex: 0 0 100%;
+  }
+  .embla__container {
+    gap: 0;
+  }
+}
+
+/* ============================================
    Service Carousel Redesign Styles
    ============================================ */
 
@@ -6910,6 +6964,7 @@ input.main-search-input::placeholder {
 .service-carousel-wrapper {
   margin-top: 60px;
   position: relative;
+  padding: 0 70px; /* Space for buttons */
 }
 
 /* Service Card in Carousel */
@@ -6982,28 +7037,59 @@ input.main-search-input::placeholder {
 
 /* Carousel Navigation Buttons */
 .carousel-nav-btn {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  
   background: #ffffff !important;
   border: 2px solid var(--theme) !important;
   color: var(--theme) !important;
   width: 48px !important;
   height: 48px !important;
+  border-radius: 50% !important;
+  
   transition: all 0.3s ease !important;
   box-shadow: 0 4px 12px rgba(116, 68, 253, 0.15) !important;
+  
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Override Shadcn's default positioning */
+.carousel-nav-btn[class*="CarouselPrevious"] {
+  left: 0 !important;
+}
+
+.carousel-nav-btn[class*="CarouselNext"] {
+  right: 0 !important;
 }
 
 .carousel-nav-btn:hover:not(:disabled) {
   background: var(--theme) !important;
   color: #ffffff !important;
-  transform: scale(1.05) !important;
+  transform: translateY(-50%) scale(1.08) !important;
   box-shadow: 0 6px 16px rgba(116, 68, 253, 0.25) !important;
 }
 
 .carousel-nav-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
   border-color: #e0e0e0 !important;
   color: #999999 !important;
   box-shadow: none !important;
+  background: #f5f5f5 !important;
+}
+
+/* Hide button text, show only icons */
+.carousel-nav-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.carousel-nav-btn .sr-only {
+  display: none;
 }
 
 /* Responsive Adjustments */
@@ -7014,6 +7100,23 @@ input.main-search-input::placeholder {
   
   .service-carousel-wrapper {
     margin-top: 40px;
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 991px) {
+  .service-carousel-wrapper {
+    padding: 0 50px;
+  }
+  
+  .carousel-nav-btn {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  
+  .carousel-nav-btn svg {
+    width: 18px !important;
+    height: 18px !important;
   }
 }
 
@@ -7046,19 +7149,50 @@ input.main-search-input::placeholder {
     padding: 0 15px;
   }
   
+  .service-carousel-wrapper {
+    padding: 0 45px;
+  }
+  
   .carousel-nav-btn {
     width: 40px !important;
     height: 40px !important;
+  }
+  
+  .carousel-nav-btn svg {
+    width: 16px !important;
+    height: 16px !important;
   }
 }
 
 @media (max-width: 575px) {
   .service-carousel-wrapper {
     margin-top: 30px;
+    padding: 0 38px;
   }
   
   .service-card-carousel {
     padding: 20px 16px;
+  }
+  
+  .carousel-nav-btn {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .service-carousel-wrapper {
+    padding: 0 32px;
+  }
+  
+  .carousel-nav-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .carousel-nav-btn svg {
+    width: 14px !important;
+    height: 14px !important;
   }
 }
 

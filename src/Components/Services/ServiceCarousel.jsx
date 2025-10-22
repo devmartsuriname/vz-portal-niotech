@@ -9,11 +9,11 @@ const ServiceCarousel = () => {
           align: "start",
           loop: true,
         }}
-        className="w-full max-w-6xl mx-auto"
+        className="embla w-full max-w-7xl mx-auto"
       >
-        <CarouselContent className="-ml-2 md:-ml-4">
+        <CarouselContent className="embla__container">
           {data.map((service, index) => (
-            <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={index} className="embla__slide">
               <div className="service-card-carousel">
                 <div className="service-icon-wrapper">
                   <img src={service.img} alt={service.title} />
