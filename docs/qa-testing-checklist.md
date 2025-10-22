@@ -12,6 +12,40 @@ This document provides a comprehensive checklist for testing all modules and fea
 
 ---
 
+## 🛠️ Console Warnings — Expected Behavior
+
+### Development Environment
+When running the application in the Lovable editor, you may see the following **expected and harmless** console messages:
+
+#### Editor-Specific Warnings (Safe to Ignore)
+- `[Violation] Added non-passive event listener...` — Browser performance hint from editor iframe
+- `i18next::backendConnector...` — Editor i18n initialization (not part of app code)
+- `rudderanalytics/index.js` warnings — Editor analytics (not part of app code)
+- Chrome extension messages (e.g., React DevTools, Vue DevTools) — Browser extensions
+
+#### Application Diagnostic Logs
+- `[DIAG] React version: X.X.X | Instance ID: ...` — Only appears when `VITE_DIAG_LOGS=true` in `.env`
+- `[DIAG] Total React instances loaded: 1` — Confirms single React instance (expected in dev)
+
+To **enable** diagnostic logging during development:
+```bash
+# Add to .env file
+VITE_DIAG_LOGS=true
+```
+
+To **disable** diagnostic logging (cleaner console):
+```bash
+# Remove from .env or set to false
+VITE_DIAG_LOGS=false
+```
+
+### Critical Errors (Never Ignore)
+- `🚨 MULTIPLE REACT INSTANCES DETECTED` — Indicates React context breaking (requires immediate fix)
+- `Uncaught TypeError`, `Cannot read property of undefined` — Application runtime errors
+- Failed network requests (4xx/5xx status codes) — Backend/API issues
+
+---
+
 ## 🎯 Day 1: Module and Functional Testing
 
 ### 1️⃣ Dashboard Testing (30 minutes)

@@ -22,10 +22,15 @@ export function assertSingleReact() {
       react: React
     };
     
-    console.info('[DIAG] React version:', v, '| Instance ID:', reactInstanceId);
-    console.info('[DIAG] Total React instances loaded:', instances.length);
+    // Only log in dev when VITE_DIAG_LOGS is explicitly enabled
+    const shouldLog = import.meta.env.DEV && import.meta.env.VITE_DIAG_LOGS === 'true';
     
-    // ⚠️ ALERT if multiple instances detected
+    if (shouldLog) {
+      console.info('[DIAG] React version:', v, '| Instance ID:', reactInstanceId);
+      console.info('[DIAG] Total React instances loaded:', instances.length);
+    }
+    
+    // ⚠️ ALWAYS ALERT if multiple instances detected (critical error)
     if (instances.length > 1) {
       console.error('🚨 MULTIPLE REACT INSTANCES DETECTED:', instances);
     }
