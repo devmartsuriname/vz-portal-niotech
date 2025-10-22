@@ -70,7 +70,7 @@ const WizardRulesManager = () => {
 
   if (isLoading) {
     return (
-      <div className="page-content">
+      <>
         <PageTitle
           title="Wizard Rules Manager"
           subName="Dashboard"
@@ -80,12 +80,12 @@ const WizardRulesManager = () => {
             <span className="visually-hidden">Laden...</span>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="page-content">
+    <>
       <PageTitle
         title="Wizard Rules Manager"
         subName="Dashboard"
@@ -200,7 +200,7 @@ const WizardRulesManager = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

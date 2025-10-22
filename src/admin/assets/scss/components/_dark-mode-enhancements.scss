@@ -1,0 +1,91 @@
+// Dark Mode Text Contrast Enhancements
+html[data-bs-theme="dark"] {
+  
+  // Global body text
+  body {
+    color: #e1e7ef !important;
+  }
+  
+  // All headings
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: #ffffff !important;
+  }
+  
+  // Muted text - more visible
+  .text-muted {
+    color: #9ca8b6 !important;
+  }
+  
+  // Labels and form text
+  label, .form-label {
+    color: #d4dae0 !important;
+  }
+  
+  // Code elements
+  code {
+    color: #9e87ff !important;
+    background-color: rgba(126, 103, 254, 0.1) !important;
+  }
+  
+  // Badges - ensure text is visible
+  .badge {
+    font-weight: 600;
+    
+    &.bg-primary {
+      background-color: #7e67fe !important;
+      color: #ffffff !important;
+    }
+    
+    &.bg-info {
+      background-color: #1ab0f8 !important;
+      color: #ffffff !important;
+    }
+    
+    &.bg-success {
+      background-color: #21d760 !important;
+      color: #ffffff !important;
+    }
+    
+    &.bg-warning {
+      background-color: #f0934e !important;
+      color: #000000 !important;
+    }
+    
+    &.bg-danger {
+      background-color: #ed321f !important;
+      color: #ffffff !important;
+    }
+  }
+  
+  // Form controls
+  .form-control, .form-select {
+    background-color: #232a31 !important;
+    border-color: #4a5663 !important;
+    color: #e1e7ef !important;
+    
+    &::placeholder {
+      color: #6c7a89 !important;
+    }
+    
+    &:focus {
+      border-color: #7e67fe !important;
+      box-shadow: 0 0 0 0.2rem rgba(126, 103, 254, 0.25) !important;
+    }
+  }
+  
+  // Dropdowns
+  .dropdown-menu {
+    background-color: #1d2329 !important;
+    border-color: #3d4752 !important;
+    
+    .dropdown-item {
+      color: #e1e7ef !important;
+      
+      &:hover, &:focus {
+        background-color: rgba(126, 103, 254, 0.1) !important;
+        color: #ffffff !important;
+      }
+    }
+  }
+}

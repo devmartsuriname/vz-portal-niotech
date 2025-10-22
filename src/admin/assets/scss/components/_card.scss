@@ -54,11 +54,28 @@ html[data-bs-theme="dark"],
     background-color: $body-secondary-bg-dark !important;
     border-color: $border-color-dark !important;
     color: $body-color-dark;
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: #e1e7ef !important;
+    }
+    
+    .fs-22 {
+      color: #ffffff !important;
+      font-weight: 600;
+    }
+    
+    .text-muted {
+      color: #9ca8b6 !important;
+    }
   }
   
   .card-header,
   .card-footer {
     background-color: rgba(0, 0, 0, 0.1);
     border-color: $border-color-dark;
+    
+    h4, h5, .card-title {
+      color: #e1e7ef !important;
+    }
   }
 }

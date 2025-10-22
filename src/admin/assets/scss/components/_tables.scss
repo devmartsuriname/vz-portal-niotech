@@ -58,15 +58,20 @@ th {
 html[data-bs-theme="dark"] {
     .table {
         --#{$prefix}table-bg: #{$body-secondary-bg-dark};
-        --#{$prefix}table-color: #{$body-color-dark};
-        --#{$prefix}table-striped-bg: rgba(255, 255, 255, 0.02);
-        --#{$prefix}table-hover-bg: rgba(255, 255, 255, 0.04);
-        --#{$prefix}table-border-color: #{$border-color-dark};
+        --#{$prefix}table-color: #e1e7ef;
+        --#{$prefix}table-striped-bg: rgba(255, 255, 255, 0.03);
+        --#{$prefix}table-hover-bg: rgba(255, 255, 255, 0.06);
+        --#{$prefix}table-border-color: #3d4752;
+        
+        thead th {
+          color: #ffffff;
+          border-bottom: 2px solid #4a5663;
+        }
     }
     
     .table-light {
-        --#{$prefix}table-color: var(--#{$prefix}body-color);
+        --#{$prefix}table-color: #e1e7ef;
         --#{$prefix}table-bg: #{$body-tertiary-bg-dark};
-        --#{$prefix}table-border-color: #{$table-group-separator-color};
+        --#{$prefix}table-border-color: #3d4752;
     }
 }

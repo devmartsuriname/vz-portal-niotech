@@ -29,7 +29,7 @@
 html[data-bs-theme="dark"],
 [data-bs-theme="dark"] {
 
-    --#{$prefix}border-color: #2f3944;
+    --#{$prefix}border-color: #3d4752;
 
     --#{$prefix}light: #{$body-tertiary-bg-dark};
     --#{$prefix}dark: #{$body-tertiary-color-dark};
@@ -40,8 +40,8 @@ html[data-bs-theme="dark"],
     // Heading Variable
     --#{$prefix}headings-color: #{$body-color-dark};
 
-    --#{$prefix}input-border-color: #3a4551;
-    --#{$prefix}input-focus-border-color: #4a5663;
+    --#{$prefix}input-border-color: #4a5663;
+    --#{$prefix}input-focus-border-color: #5d6b7a;
 }
 
 

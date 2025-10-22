@@ -86,7 +86,7 @@ const DocumentMappingManager = () => {
 
   if (isLoading) {
     return (
-      <div className="page-content">
+      <>
         <PageTitle
           title="Document Mapping Manager"
           subName="Dashboard"
@@ -96,12 +96,12 @@ const DocumentMappingManager = () => {
             <span className="visually-hidden">Laden...</span>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="page-content">
+    <>
       <PageTitle
         title="Document Mapping Manager"
         subName="Dashboard"
@@ -244,7 +244,7 @@ const DocumentMappingManager = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -180,3 +180,38 @@ html[data-bs-theme="dark"] {
         --#{$prefix}btn-active-border-color: var(--#{$prefix}tertiary-color);
     }
 }
+
+// Force Darkone Purple Primary Color Override
+.btn-primary {
+    --#{$prefix}btn-bg: #{$purple} !important;
+    --#{$prefix}btn-border-color: #{$purple} !important;
+    --#{$prefix}btn-hover-bg: #{shade-color($purple, 10%)} !important;
+    --#{$prefix}btn-hover-border-color: #{shade-color($purple, 10%)} !important;
+    --#{$prefix}btn-active-bg: #{shade-color($purple, 15%)} !important;
+    --#{$prefix}btn-active-border-color: #{shade-color($purple, 15%)} !important;
+    background-color: $purple !important;
+    border-color: $purple !important;
+    
+    &:hover {
+        background-color: shade-color($purple, 10%) !important;
+        border-color: shade-color($purple, 10%) !important;
+    }
+    
+    &:active, &.active {
+        background-color: shade-color($purple, 15%) !important;
+        border-color: shade-color($purple, 15%) !important;
+    }
+}
+
+.btn-outline-primary {
+    --#{$prefix}btn-color: #{$purple} !important;
+    --#{$prefix}btn-border-color: #{$purple} !important;
+    color: $purple !important;
+    border-color: $purple !important;
+    
+    &:hover {
+        background-color: $purple !important;
+        border-color: $purple !important;
+        color: $white !important;
+    }
+}
