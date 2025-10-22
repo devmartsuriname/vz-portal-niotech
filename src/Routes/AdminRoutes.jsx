@@ -9,6 +9,7 @@ import { Navigate } from 'react-router-dom';
 const SubmissionsList = lazy(() => import('../admin/pages/submissions/SubmissionsList'));
 const SubmissionDetails = lazy(() => import('../admin/pages/submissions/SubmissionDetails'));
 const ContentManager = lazy(() => import('../admin/pages/content/ContentManager'));
+const Reports = lazy(() => import('../admin/pages/reports/Reports'));
 const Settings = lazy(() => import('../admin/pages/settings/Settings'));
 const UserRolesManager = lazy(() => import('../admin/pages/users/UserRolesManager'));
 const WizardRulesManager = lazy(() => import('../admin/pages/wizard/WizardRulesManager'));
@@ -52,6 +53,10 @@ export const adminRoutes = {
         {
           path: 'content',
           element: <ContentManager />,
+        },
+        {
+          path: 'reports',
+          element: <Reports />,
         },
         {
           path: 'settings',

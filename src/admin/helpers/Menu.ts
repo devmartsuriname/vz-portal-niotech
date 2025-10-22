@@ -40,6 +40,12 @@ export const getMenuItems = (): MenuItemType[] => {
       url: '/admin/content',
     },
     {
+      key: 'reports',
+      label: 'Rapporten',
+      icon: 'solar:chart-2-bold-duotone',
+      url: '/admin/reports',
+    },
+    {
       key: 'settings',
       label: 'Instellingen',
       icon: 'solar:settings-bold-duotone',
