@@ -1,10 +1,11 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import SignIn from '../admin/pages/auth/SignIn';
 import SignUp from '../admin/pages/auth/SignUp';
 import Dashboard from '../admin/pages/dashboard/Dashboard';
 import AdminLayout from '../admin/layout/AdminLayout';
 import { ProtectedRoute } from '../components/auth/ProtectedRoute';
 import { Navigate } from 'react-router-dom';
+import TableSkeleton from '../admin/components/ui/TableSkeleton';
 
 const SubmissionsList = lazy(() => import('../admin/pages/submissions/SubmissionsList'));
 const SubmissionDetails = lazy(() => import('../admin/pages/submissions/SubmissionDetails'));
@@ -45,39 +46,75 @@ export const adminRoutes = {
         },
         {
           path: 'submissions',
-          element: <SubmissionsList />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={10} columns={6} />}>
+              <SubmissionsList />
+            </Suspense>
+          ),
         },
         {
           path: 'submissions/:id',
-          element: <SubmissionDetails />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={5} columns={2} />}>
+              <SubmissionDetails />
+            </Suspense>
+          ),
         },
         {
           path: 'content',
-          element: <ContentManager />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={8} columns={5} />}>
+              <ContentManager />
+            </Suspense>
+          ),
         },
         {
           path: 'reports',
-          element: <Reports />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={6} columns={4} />}>
+              <Reports />
+            </Suspense>
+          ),
         },
         {
           path: 'activity',
-          element: <ActivityLogs />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={10} columns={5} />}>
+              <ActivityLogs />
+            </Suspense>
+          ),
         },
         {
           path: 'settings',
-          element: <Settings />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={4} columns={2} />}>
+              <Settings />
+            </Suspense>
+          ),
         },
         {
           path: 'users/roles',
-          element: <UserRolesManager />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={6} columns={4} />}>
+              <UserRolesManager />
+            </Suspense>
+          ),
         },
         {
           path: 'wizard/rules',
-          element: <WizardRulesManager />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={8} columns={5} />}>
+              <WizardRulesManager />
+            </Suspense>
+          ),
         },
         {
           path: 'wizard/documents',
-          element: <DocumentMappingManager />,
+          element: (
+            <Suspense fallback={<TableSkeleton rows={8} columns={4} />}>
+              <DocumentMappingManager />
+            </Suspense>
+          ),
         },
       ],
     },

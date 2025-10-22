@@ -98,4 +98,8 @@ export const router = createBrowserRouter([
         },
       ],
     },
-  ]);
+  ], {
+    future: {
+      v7_startTransition: true,
+    },
+  });

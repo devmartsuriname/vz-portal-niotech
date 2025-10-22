@@ -4,13 +4,15 @@
 
 // Core files
 @import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
 @import 'gridjs/dist/theme/mermaid.css';
 
-
+// Import custom variables BEFORE Bootstrap variables to override defaults
 @import "config/variables";
 @import "config/variables-dark";
 @import "config/theme-mode";
+
+// Import Bootstrap variables after custom config
+@import "bootstrap/scss/variables";
 
 @import "bootstrap/scss/bootstrap";
 
