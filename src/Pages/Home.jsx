@@ -1,5 +1,5 @@
 import About1 from "../Components/About/About1";
-import Blog1 from "../Components/Blog/Blog1";
+import BlogCarousel from "../Components/Blog/BlogCarousel";
 import Brand1 from "../Components/Brand/Brand1";
 import Choose1 from "../Components/Choose/Choose1";
 import Counter1 from "../Components/Counter/Counter1";
@@ -71,7 +71,7 @@ const Home = () => {
                 btnname2="Lees Instructies"
                 img="/assets/images/cta/ctaThumb1_1.png"
             ></Cta1>
-            <Blog1></Blog1>
+            <BlogCarousel></BlogCarousel>
         </div>
     );
 };
