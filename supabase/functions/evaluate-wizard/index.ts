@@ -54,6 +54,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Build evaluation path
     const evaluationPath: string[] = [];
     let currentApplicationTypeId: string | null = null;
+    let foundTerminalQuestion = false;
 
     // Process answers sequentially based on wizard logic
     for (const rule of wizardRules) {
@@ -65,10 +66,13 @@ const handler = async (req: Request): Promise<Response> => {
 
       evaluationPath.push(`${rule.question_key}:${JSON.stringify(answer.answer)}`);
 
-      // Check if this rule determines the application type
+      // Check if this rule determines the application type (terminal question)
       if (rule.result_application_type_id) {
         currentApplicationTypeId = rule.result_application_type_id;
-        console.log(`Rule ${rule.question_key} determined application type: ${currentApplicationTypeId}`);
+        foundTerminalQuestion = true;
+        console.log(`Terminal question found: ${rule.question_key} -> application type: ${currentApplicationTypeId}`);
+        // Once we find the terminal question with result, we have our application type
+        break;
       }
 
       // Check next_question_map for conditional navigation
@@ -80,6 +84,10 @@ const handler = async (req: Request): Promise<Response> => {
           console.log(`Next question mapped: ${nextQuestionKey}`);
         }
       }
+    }
+
+    if (!foundTerminalQuestion) {
+      console.warn('No terminal question found in answers. User may not have completed the wizard.');
     }
 
     // Fetch application type details

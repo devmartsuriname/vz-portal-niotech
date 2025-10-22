@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { useWizardState } from '@/hooks/useWizardState';
 import { useWizardRules, getRuleByQuestionKey, getNextQuestionKey } from '@/hooks/useWizardRules';
 import { useWizardSubmission } from '@/hooks/useWizardSubmission';
@@ -42,28 +43,27 @@ const ApplicationWizard = () => {
       setPersonalInfo({});
       setUploadedFiles([]);
     }
-    // If we're in personal-info but no uploaded files, go back
-    if (wizardPhase === 'personal-info' && uploadedFiles.length === 0) {
-      console.warn('Invalid state: personal-info phase without files, going back to documents');
-      setWizardPhase('documents');
-    }
     // If we're in summary but no personal info, go back
     if (wizardPhase === 'summary' && Object.keys(personalInfo).length === 0) {
       console.warn('Invalid state: summary phase without personal info, going back');
       setWizardPhase('personal-info');
     }
-  }, [wizardPhase, evaluation, uploadedFiles, personalInfo, resetWizard, setWizardPhase]);
+  }, [wizardPhase, evaluation, personalInfo, resetWizard, setWizardPhase]);
 
   const currentRule = getRuleByQuestionKey(rules, currentQuestionKey);
   const isLastQuestion = currentRule?.result_application_type_id != null;
 
-  const handleAnswerSelect = (value) => {
+  const [isEvaluating, setIsEvaluating] = useState(false);
+
+  const handleAnswerSelect = async (value) => {
     updateAnswer(currentQuestionKey, value);
 
-    if (isLastQuestion) {
-      // Move to document checklist
-      handleEvaluateAndProceed();
-    } else {
+    if (isLastQuestion && !isEvaluating) {
+      // Prevent double evaluation
+      setIsEvaluating(true);
+      await handleEvaluateAndProceed();
+      setIsEvaluating(false);
+    } else if (!isLastQuestion) {
       const nextKey = getNextQuestionKey(currentRule, value);
       if (nextKey) {
         goToNextStep(nextKey);
@@ -73,11 +73,20 @@ const ApplicationWizard = () => {
 
   const handleEvaluateAndProceed = async () => {
     try {
+      console.log('Starting evaluation with answers:', answers);
       const result = await evaluateWizard(answers);
+      console.log('Evaluation result:', result);
+      
+      if (!result) {
+        toast.error('Evaluatie mislukt. Probeer het opnieuw.');
+        return;
+      }
+      
       setEvaluation(result);
       setWizardPhase('documents');
     } catch (error) {
       console.error('Evaluation failed:', error);
+      toast.error('Er is een fout opgetreden bij het evalueren van uw antwoorden.');
     }
   };
 

@@ -34,13 +34,21 @@ const DocumentChecklist = ({ requiredDocuments, onComplete }) => {
   };
 
   if (!requiredDocuments || requiredDocuments.length === 0) {
+    console.log('No documents required, showing continue button');
     return (
       <div className="text-center py-5">
-        <i className="bi bi-exclamation-circle text-warning" style={{ fontSize: '3rem' }}></i>
+        <i className="bi bi-check-circle text-success" style={{ fontSize: '3rem' }}></i>
         <h4 className="mt-3">Geen documenten vereist</h4>
-        <p className="text-muted">Voor deze aanvraag zijn geen documenten nodig.</p>
-        <button onClick={() => onComplete([])} className="btn btn-primary mt-3">
-          Doorgaan
+        <p className="text-muted">Voor deze aanvraag zijn geen documenten nodig. Klik op doorgaan om verder te gaan met uw persoonlijke gegevens.</p>
+        <button 
+          onClick={() => {
+            console.log('Continue button clicked, calling onComplete with empty array');
+            onComplete([]);
+          }} 
+          className="btn btn-primary btn-lg mt-3"
+        >
+          Doorgaan naar Persoonlijke Gegevens
+          <i className="bi bi-arrow-right ms-2"></i>
         </button>
       </div>
     );
