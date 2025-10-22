@@ -1,23 +1,33 @@
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
+// Lightweight local-fetch version to avoid React Query context issues in editor iframe
 export const useWizardRules = () => {
-  // Removed useQueryClient dev guard to avoid context mismatch in editor iframe
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  return useQuery({
-    queryKey: ['wizard-rules'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('wizard_rules')
-        .select('*')
-        .eq('is_active', true)
-        .order('display_order', { ascending: true });
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const { data, error } = await supabase
+          .from('wizard_rules')
+          .select('*')
+          .eq('is_active', true)
+          .order('display_order', { ascending: true });
+        if (error) throw error;
+        if (!cancelled) setData(data);
+      } catch (e) {
+        if (!cancelled) setError(e);
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
 
-      if (error) throw error;
-      return data;
-    },
-    staleTime: 1000 * 60 * 10, // Cache for 10 minutes
-  });
+  return { data, error, isLoading };
 };
 
 export const getNextQuestionKey = (currentRule, selectedAnswer) => {

@@ -1,14 +1,11 @@
 import { defineConfig } from "vite";
-import reactBabel from "@vitejs/plugin-react";
+import reactSWC from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const reactPlugin = reactBabel({
-    // Force consistent JSX runtime
-    jsxRuntime: 'automatic',
-  });
+  const reactPlugin = reactSWC();
   
   return {
     server: {
