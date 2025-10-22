@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSubmissionDetails } from '@/integrations/supabase/hooks/useSubmissions';
 import PageTitle from '@/admin/components/PageTitle';
+import DocumentPreviewModal from '@/admin/components/modals/DocumentPreviewModal';
 import { toast } from 'sonner';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
@@ -19,6 +20,12 @@ const SubmissionDetails = () => {
   const [newStatus, setNewStatus] = useState('');
   const [adminNotes, setAdminNotes] = useState('');
   const [isUpdating, setIsUpdating] = useState(false);
+  const [previewFile, setPreviewFile] = useState<{
+    id: string;
+    name: string;
+    path: string;
+    mimeType: string;
+  } | null>(null);
 
   const handleStatusUpdate = async () => {
     if (!newStatus || !submission) {
@@ -216,6 +223,17 @@ const SubmissionDetails = () => {
                             )}
                           </td>
                           <td>
+                            <button
+                              className="btn btn-sm btn-primary me-2"
+                              onClick={() => setPreviewFile({
+                                id: file.id,
+                                name: file.file_name,
+                                path: file.file_path,
+                                mimeType: file.mime_type
+                              })}
+                            >
+                              <i className="bx bx-show"></i> Bekijken
+                            </button>
                             {!file.is_verified ? (
                               <button
                                 className="btn btn-sm btn-success me-2"
@@ -307,6 +325,17 @@ const SubmissionDetails = () => {
           </div>
         </div>
       </div>
+
+      {previewFile && (
+        <DocumentPreviewModal
+          show={!!previewFile}
+          onHide={() => setPreviewFile(null)}
+          fileId={previewFile.id}
+          fileName={previewFile.name}
+          filePath={previewFile.path}
+          mimeType={previewFile.mimeType}
+        />
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSubmissions } from '@/integrations/supabase/hooks/useSubmissions';
+import { useApplicationTypes } from '@/integrations/supabase/hooks/useApplicationTypes';
 import PageTitle from '@/admin/components/PageTitle';
 import SubmissionTrendsChart from '@/admin/components/charts/SubmissionTrendsChart';
 import StatusDistributionChart from '@/admin/components/charts/StatusDistributionChart';
@@ -8,6 +9,7 @@ import { toast } from 'sonner';
 
 const Reports = () => {
   const { submissions, isLoading } = useSubmissions();
+  const { data: applicationTypes } = useApplicationTypes();
   const [dateRange, setDateRange] = useState('30'); // days
   const [selectedType, setSelectedType] = useState('all');
 
@@ -28,24 +30,42 @@ const Reports = () => {
       return;
     }
 
-    const headers = ['Referentie', 'Type', 'Status', 'Ingediend', 'Laatst Bijgewerkt'];
-    const rows = filteredSubmissions.map((sub) => [
-      sub.id.substring(0, 8).toUpperCase(),
-      (sub.application_types as any)?.name || 'Onbekend',
-      sub.status,
-      sub.submitted_at ? new Date(sub.submitted_at).toLocaleDateString('nl-NL') : '-',
-      new Date(sub.updated_at).toLocaleDateString('nl-NL'),
-    ]);
+    const headers = [
+      'Referentie',
+      'Type',
+      'Status',
+      'Ingediend',
+      'Laatst Bijgewerkt',
+      'Naam',
+      'Email',
+      'Telefoon',
+      'Adres'
+    ];
+    
+    const rows = filteredSubmissions.map((sub) => {
+      const applicantData = sub.applicant_data as any || {};
+      return [
+        sub.id.substring(0, 8).toUpperCase(),
+        (sub.application_types as any)?.name || 'Onbekend',
+        sub.status,
+        sub.submitted_at ? new Date(sub.submitted_at).toLocaleDateString('nl-NL') : '-',
+        new Date(sub.updated_at).toLocaleDateString('nl-NL'),
+        applicantData.fullName || applicantData.name || '-',
+        applicantData.email || '-',
+        applicantData.phone || applicantData.phoneNumber || '-',
+        applicantData.address || '-'
+      ].map(field => `"${String(field).replace(/"/g, '""')}"`); // Escape CSV fields
+    });
 
     const csvContent = [
       headers.join(','),
       ...rows.map((row) => row.join(',')),
     ].join('\n');
 
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' }); // Add BOM for Excel
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `submissions-export-${new Date().toISOString().split('T')[0]}.csv`;
+    link.download = `aanvragen-export-${new Date().toISOString().split('T')[0]}.csv`;
     link.click();
 
     toast.success('Data geëxporteerd naar CSV');
@@ -90,7 +110,11 @@ const Reports = () => {
             onChange={(e) => setSelectedType(e.target.value)}
           >
             <option value="all">Alle Types</option>
-            {/* Add more options dynamically based on available types */}
+            {applicationTypes?.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="col-md-4 d-flex align-items-end">

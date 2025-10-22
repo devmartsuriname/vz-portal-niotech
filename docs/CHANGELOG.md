@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] - 2025-10-22
+
+### ✅ Phase 4.4: Admin Enhancements — COMPLETE
+
+#### Added
+- **Reports Module:**
+  - Created `useApplicationTypes` hook in `/src/integrations/supabase/hooks/useApplicationTypes.ts`
+  - Dynamic application type filter in Reports page
+  - Real-time statistics cards (Total, Approved, Under Review, Approval Rate)
+  - Three interactive ApexCharts:
+    - SubmissionTrendsChart (line chart showing submission trends over time)
+    - StatusDistributionChart (donut chart showing status breakdown)
+    - ProcessingTimeChart (bar chart showing average processing time per type)
+  
+- **CSV Export Enhancement:**
+  - Extended export fields to include applicant data:
+    - Reference ID, Type, Status, Submission Date, Last Updated
+    - Full Name, Email, Phone Number, Address
+  - Proper CSV field escaping for special characters (double quotes)
+  - UTF-8 BOM encoding for Excel compatibility
+  - Localized filename: `aanvragen-export-YYYY-MM-DD.csv`
+  
+- **Document Preview System:**
+  - Created `DocumentPreviewModal` component in `/src/admin/components/modals/`
+  - Image preview support (jpg, png, gif, etc.)
+  - PDF preview with inline iframe rendering
+  - Download functionality for all file types
+  - Loading state with spinner
+  - Error handling for failed file loads
+  - Integrated "View" button into SubmissionDetails page
+
+#### Changed
+- Reports page now loads application types dynamically for filtering
+- CSV export includes more comprehensive applicant information
+- Submission details page now allows document preview before verification
+
+#### Technical Details
+- Files Created: `useApplicationTypes.ts`, `DocumentPreviewModal.tsx`
+- Files Modified: `Reports.tsx`, `SubmissionDetails.tsx`
+- Components: 2 new, 2 enhanced
+- Hooks: 1 new custom hook
+
+---
+
 ## [1.1.0] - 2025-10-22
 
 ### ✅ Phase 4.1: QA & Documentation Update — COMPLETE
@@ -139,11 +183,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 🚀 Upcoming Features
 
-### Phase 4.4 — Admin Enhancements (Planned)
-- Reports module with analytics
-- CSV export functionality
-- DocumentPreviewModal component
-- Advanced filtering and saved filters
+### Phase 4.4 — Admin Enhancements (✅ COMPLETE)
+- ✅ Reports module with analytics
+  - Dynamic application type filtering
+  - Real-time statistics cards
+  - Three interactive charts (trends, status, processing time)
+- ✅ CSV export functionality
+  - Extended data fields (applicant name, email, phone, address)
+  - Proper UTF-8 BOM encoding for Excel compatibility
+  - CSV field escaping for special characters
+- ✅ DocumentPreviewModal component
+  - Image and PDF preview support
+  - Download functionality for all file types
+  - Integrated into submission details page
 
 ### Phase 5 — QA & Deployment (Planned)
 - Cross-browser compatibility testing
@@ -176,5 +228,5 @@ References: #task-id, /docs/file.md
 ---
 
 **Last Updated:** 2025-10-22  
-**Current Version:** 1.1.0  
-**Status:** ✅ Phase 4.1 Complete — Ready for Phase 4.4
+**Current Version:** 1.2.0  
+**Status:** ✅ Phase 4 Complete — Ready for Phase 5 (QA & Deployment)
