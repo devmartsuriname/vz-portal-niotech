@@ -5,7 +5,10 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const reactPlugin = reactBabel();
+  const reactPlugin = reactBabel({
+    // Force consistent JSX runtime
+    jsxRuntime: 'automatic',
+  });
   
   return {
     server: {
@@ -19,11 +22,22 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
+        // CRITICAL: Force all React imports to resolve to same instance
+        'react': path.resolve(__dirname, './node_modules/react'),
+        'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+        'react/jsx-runtime': path.resolve(__dirname, './node_modules/react/jsx-runtime'),
+        'react/jsx-dev-runtime': path.resolve(__dirname, './node_modules/react/jsx-dev-runtime'),
       },
       dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
     },
     optimizeDeps: {
       include: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+      // Force re-optimization on server restart
+      force: mode === 'development',
+      // Prevent Vite from pre-bundling React in separate chunks
+      esbuildOptions: {
+        target: 'esnext',
+      },
     },
     build: {
       rollupOptions: {
