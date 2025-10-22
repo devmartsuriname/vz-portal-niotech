@@ -54,13 +54,22 @@ const Faq1 = () => {
                                 {data.map((item, index)=>(
                                     <div key={index} className={`accordion-item mb-3 wow fadeInUp ${index === openItemIndex ? "active" : "" }`} data-wow-delay=".3s">
                                         <h5 onClick={() => handleItemClick(index)} className="accordion-header">
-                                            <button className="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true"
-                                                aria-controls="faq1">
+                                            <button 
+                                                className={`accordion-button ${index === openItemIndex ? '' : 'collapsed'}`}
+                                                type="button"
+                                                data-bs-toggle="collapse" 
+                                                data-bs-target={`#faq-${index}`}
+                                                aria-expanded={index === openItemIndex}
+                                                aria-controls={`faq-${index}`}
+                                            >
                                                 {item.title}
                                             </button>
                                         </h5>
-                                        <div ref={accordionContentRef} id="faq1" className="accordion-collapse collapse" data-bs-parent="#accordion">
+                                        <div 
+                                            id={`faq-${index}`}
+                                            className={`accordion-collapse collapse ${index === openItemIndex ? 'show' : ''}`}
+                                            data-bs-parent="#accordion"
+                                        >
                                             <div className="accordion-body">
                                             {item.desc}
                                             </div>
