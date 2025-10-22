@@ -6964,7 +6964,7 @@ input.main-search-input::placeholder {
 .service-carousel-wrapper {
   margin-top: 60px;
   position: relative;
-  padding: 0 70px; /* Space for buttons */
+  padding-bottom: 50px; /* Space for dots */
 }
 
 /* Service Card in Carousel */
@@ -7035,61 +7035,44 @@ input.main-search-input::placeholder {
   margin: 0;
 }
 
-/* Carousel Navigation Buttons */
-.carousel-nav-btn {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  z-index: 10 !important;
-  
-  background: #ffffff !important;
-  border: 2px solid var(--theme) !important;
-  color: var(--theme) !important;
-  width: 48px !important;
-  height: 48px !important;
-  border-radius: 50% !important;
-  
-  transition: all 0.3s ease !important;
-  box-shadow: 0 4px 12px rgba(116, 68, 253, 0.15) !important;
-  
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+/* Carousel Dot Navigation */
+.carousel-dots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 36px;
+  padding: 0 20px;
 }
 
-/* Override Shadcn's default positioning */
-.carousel-nav-btn[class*="CarouselPrevious"] {
-  left: 0 !important;
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(116, 68, 253, 0.2);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
-.carousel-nav-btn[class*="CarouselNext"] {
-  right: 0 !important;
+.carousel-dot:hover {
+  background: rgba(116, 68, 253, 0.4);
+  transform: scale(1.2);
 }
 
-.carousel-nav-btn:hover:not(:disabled) {
-  background: var(--theme) !important;
-  color: #ffffff !important;
-  transform: translateY(-50%) scale(1.08) !important;
-  box-shadow: 0 6px 16px rgba(116, 68, 253, 0.25) !important;
+.carousel-dot.active {
+  width: 32px;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--theme);
+  box-shadow: 0 2px 8px rgba(116, 68, 253, 0.3);
 }
 
-.carousel-nav-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  border-color: #e0e0e0 !important;
-  color: #999999 !important;
-  box-shadow: none !important;
-  background: #f5f5f5 !important;
-}
-
-/* Hide button text, show only icons */
-.carousel-nav-btn svg {
-  width: 20px !important;
-  height: 20px !important;
-}
-
-.carousel-nav-btn .sr-only {
-  display: none;
+.carousel-dot:focus-visible {
+  outline: 2px solid var(--theme);
+  outline-offset: 3px;
 }
 
 /* Responsive Adjustments */
@@ -7100,23 +7083,28 @@ input.main-search-input::placeholder {
   
   .service-carousel-wrapper {
     margin-top: 40px;
-    padding: 0 60px;
+    padding-bottom: 45px;
   }
 }
 
 @media (max-width: 991px) {
   .service-carousel-wrapper {
-    padding: 0 50px;
+    padding-bottom: 40px;
   }
   
-  .carousel-nav-btn {
-    width: 44px !important;
-    height: 44px !important;
+  .carousel-dots-container {
+    gap: 10px;
+    margin-top: 32px;
   }
   
-  .carousel-nav-btn svg {
-    width: 18px !important;
-    height: 18px !important;
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .carousel-dot.active {
+    width: 28px;
+    height: 8px;
   }
 }
 
@@ -7150,49 +7138,50 @@ input.main-search-input::placeholder {
   }
   
   .service-carousel-wrapper {
-    padding: 0 45px;
+    padding-bottom: 35px;
   }
   
-  .carousel-nav-btn {
-    width: 40px !important;
-    height: 40px !important;
+  .carousel-dots-container {
+    gap: 8px;
+    margin-top: 28px;
   }
   
-  .carousel-nav-btn svg {
-    width: 16px !important;
-    height: 16px !important;
+  .carousel-dot {
+    width: 7px;
+    height: 7px;
+  }
+  
+  .carousel-dot.active {
+    width: 24px;
+    height: 7px;
   }
 }
 
 @media (max-width: 575px) {
   .service-carousel-wrapper {
     margin-top: 30px;
-    padding: 0 38px;
+    padding-bottom: 30px;
   }
   
   .service-card-carousel {
     padding: 20px 16px;
   }
-  
-  .carousel-nav-btn {
-    width: 36px !important;
-    height: 36px !important;
-  }
 }
 
 @media (max-width: 400px) {
-  .service-carousel-wrapper {
-    padding: 0 32px;
+  .carousel-dots-container {
+    gap: 6px;
+    margin-top: 24px;
   }
   
-  .carousel-nav-btn {
-    width: 32px !important;
-    height: 32px !important;
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
   }
   
-  .carousel-nav-btn svg {
-    width: 14px !important;
-    height: 14px !important;
+  .carousel-dot.active {
+    width: 20px;
+    height: 6px;
   }
 }
 
