@@ -236,6 +236,45 @@ export type Database = {
         }
         Relationships: []
       }
+      issued_permits: {
+        Row: {
+          agenda_number: string
+          code: string
+          created_at: string | null
+          expires_at: string | null
+          given_names: string
+          id: string
+          issued_date: string | null
+          name: string
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          agenda_number: string
+          code: string
+          created_at?: string | null
+          expires_at?: string | null
+          given_names: string
+          id?: string
+          issued_date?: string | null
+          name: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          agenda_number?: string
+          code?: string
+          created_at?: string | null
+          expires_at?: string | null
+          given_names?: string
+          id?: string
+          issued_date?: string | null
+          name?: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       notifications: {
         Row: {
           created_at: string | null
