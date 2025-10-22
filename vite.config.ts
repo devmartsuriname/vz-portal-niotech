@@ -27,11 +27,13 @@ export default defineConfig(({ mode }) => {
         'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
         'react/jsx-runtime': path.resolve(__dirname, './node_modules/react/jsx-runtime'),
         'react/jsx-dev-runtime': path.resolve(__dirname, './node_modules/react/jsx-dev-runtime'),
+        // Ensure a single React Query instance
+        '@tanstack/react-query': path.resolve(__dirname, './node_modules/@tanstack/react-query'),
       },
-      dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+      dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime', '@tanstack/react-query'],
     },
     optimizeDeps: {
-      include: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+      include: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime', '@tanstack/react-query'],
       // Force re-optimization on server restart
       force: mode === 'development',
       // Prevent Vite from pre-bundling React in separate chunks
