@@ -51,23 +51,26 @@ const ApplicationWizard = () => {
   }, [wizardPhase, evaluation, personalInfo, resetWizard, setWizardPhase]);
 
   const currentRule = getRuleByQuestionKey(rules, currentQuestionKey);
-  const isLastQuestion = currentRule?.result_application_type_id != null;
 
   const [isEvaluating, setIsEvaluating] = useState(false);
 
   const handleAnswerSelect = async (value) => {
+    const newAnswers = { ...answers, [value]: value };
     updateAnswer(currentQuestionKey, value);
 
-    if (isLastQuestion && !isEvaluating) {
-      // Prevent double evaluation
+    // Check if there's a next question
+    const nextKey = getNextQuestionKey(currentRule, value);
+    
+    if (nextKey) {
+      // There's a next question, go to it
+      console.log(`Moving to next question: ${nextKey}`);
+      goToNextStep(nextKey);
+    } else if (!isEvaluating) {
+      // No next question means we've completed the wizard - evaluate now
+      console.log('No next question found, evaluating wizard...');
       setIsEvaluating(true);
       await handleEvaluateAndProceed();
       setIsEvaluating(false);
-    } else if (!isLastQuestion) {
-      const nextKey = getNextQuestionKey(currentRule, value);
-      if (nextKey) {
-        goToNextStep(nextKey);
-      }
     }
   };
 

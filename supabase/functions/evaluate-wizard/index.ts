@@ -70,7 +70,9 @@ const handler = async (req: Request): Promise<Response> => {
       if (rule.result_application_type_id) {
         currentApplicationTypeId = rule.result_application_type_id;
         foundTerminalQuestion = true;
-        console.log(`Terminal question found: ${rule.question_key} -> application type: ${currentApplicationTypeId}`);
+        console.log(`✓ Terminal question found: ${rule.question_key}`);
+        console.log(`  Application Type ID: ${currentApplicationTypeId}`);
+        console.log(`  Answer provided: ${JSON.stringify(answer.answer)}`);
         // Once we find the terminal question with result, we have our application type
         break;
       }
