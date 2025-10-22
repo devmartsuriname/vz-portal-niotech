@@ -85,10 +85,10 @@ const SignUp = () => {
                 <div className="text-center mb-4">
                   <div className="auth-logo">
                     <Link to="/admin/dashboard" className="logo-dark">
-                      <img src={logoDark} alt="dark logo" height="28" />
+                      <img src={logoDark} alt="dark logo" height="28" loading="eager" decoding="async" />
                     </Link>
                     <Link to="/admin/dashboard" className="logo-light">
-                      <img src={logoLight} alt="light logo" height="28" />
+                      <img src={logoLight} alt="light logo" height="28" loading="eager" decoding="async" />
                     </Link>
                   </div>
                 </div>

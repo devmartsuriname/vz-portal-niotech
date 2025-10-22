@@ -1,0 +1,77 @@
+// ============================================
+// Performance Optimizations
+// ============================================
+
+// Content visibility for better rendering performance
+.table tbody tr,
+.card-body > div,
+.list-group-item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 50px;
+}
+
+// Optimize animations for better performance
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    will-change: auto !important;
+  }
+  
+  .card-hover-lift:hover,
+  .table-hover tbody tr:hover {
+    will-change: transform, box-shadow;
+  }
+  
+  .btn:hover {
+    will-change: transform, background-color, box-shadow;
+  }
+}
+
+// GPU acceleration for smoother animations
+.card-hover-lift,
+.table-hover tbody tr,
+.btn {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+// Optimize image rendering
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+// Reduce repaints on scroll
+.page-content {
+  contain: layout style paint;
+}
+
+// Optimize font rendering
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Lazy load off-screen content
+.table-responsive {
+  contain: layout style paint;
+}
+
+// Reduce layout shifts
+.avatar-sm,
+.avatar-title {
+  min-width: 40px;
+  min-height: 40px;
+}
+
+// Optimize animation performance
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

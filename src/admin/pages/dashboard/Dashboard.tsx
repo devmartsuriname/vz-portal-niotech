@@ -6,6 +6,50 @@ import { useQueries, useQueryClient } from '@tanstack/react-query';
 
 const Dashboard = () => {
   const queryClient = useQueryClient();
+
+  // Prefetch critical data for faster navigation
+  useEffect(() => {
+    // Prefetch submitted submissions for quick admin review
+    queryClient.prefetchQuery({
+      queryKey: ['submissions', { status: 'submitted' }],
+      queryFn: async () => {
+        const { data } = await supabase
+          .from('submissions')
+          .select('*')
+          .eq('status', 'submitted')
+          .order('created_at', { ascending: false })
+          .limit(20);
+        return data;
+      },
+    });
+
+    // Prefetch unread notifications
+    queryClient.prefetchQuery({
+      queryKey: ['notifications', { unread: true }],
+      queryFn: async () => {
+        const { data } = await supabase
+          .from('notifications')
+          .select('*')
+          .eq('is_read', false)
+          .order('created_at', { ascending: false })
+          .limit(10);
+        return data;
+      },
+    });
+
+    // Prefetch recent activity logs
+    queryClient.prefetchQuery({
+      queryKey: ['activity_logs', { recent: true }],
+      queryFn: async () => {
+        const { data } = await supabase
+          .from('activity_logs')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(20);
+        return data;
+      },
+    });
+  }, [queryClient]);
   
   // Parallel data fetching using useQueries for better performance
   const results = useQueries({
