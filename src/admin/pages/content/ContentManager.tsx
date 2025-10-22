@@ -5,10 +5,11 @@ import { useQueryClient } from '@tanstack/react-query';
 import PageTitle from '@/admin/components/PageTitle';
 import { toast } from 'sonner';
 import ConfirmDialog from '@/admin/components/ui/ConfirmDialog';
+import PageBuilderTab from './PageBuilderTab';
 
 const ContentManager = () => {
   const queryClient = useQueryClient();
-  const [activeTab, setActiveTab] = useState<'pages' | 'faqs' | 'announcements'>('pages');
+  const [activeTab, setActiveTab] = useState<'pages' | 'builder' | 'faqs' | 'announcements'>('pages');
 
   // Subscribe to realtime announcements updates
   useEffect(() => {
@@ -51,6 +52,15 @@ const ContentManager = () => {
             </li>
             <li className="nav-item">
               <button
+                className={`nav-link ${activeTab === 'builder' ? 'active' : ''}`}
+                onClick={() => setActiveTab('builder')}
+              >
+                <i className="bx bx-layer me-2"></i>
+                Page Builder
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
                 className={`nav-link ${activeTab === 'faqs' ? 'active' : ''}`}
                 onClick={() => setActiveTab('faqs')}
               >
@@ -70,6 +80,7 @@ const ContentManager = () => {
           </ul>
 
           {activeTab === 'pages' && <PagesTab />}
+          {activeTab === 'builder' && <PageBuilderTab />}
           {activeTab === 'faqs' && <FAQsTab />}
           {activeTab === 'announcements' && <AnnouncementsTab />}
         </div>

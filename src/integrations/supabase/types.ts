@@ -362,6 +362,7 @@ export type Database = {
           is_published: boolean | null
           meta_description: string | null
           published_at: string | null
+          sections: Json | null
           slug: string
           title: string
           updated_at: string | null
@@ -374,6 +375,7 @@ export type Database = {
           is_published?: boolean | null
           meta_description?: string | null
           published_at?: string | null
+          sections?: Json | null
           slug: string
           title: string
           updated_at?: string | null
@@ -386,6 +388,7 @@ export type Database = {
           is_published?: boolean | null
           meta_description?: string | null
           published_at?: string | null
+          sections?: Json | null
           slug?: string
           title?: string
           updated_at?: string | null
