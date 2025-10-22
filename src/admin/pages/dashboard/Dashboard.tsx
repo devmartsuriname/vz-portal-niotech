@@ -1,18 +1,70 @@
 import PageTitle from '@/admin/components/PageTitle';
-import { useSubmissions } from '@/integrations/supabase/hooks/useSubmissions';
-import { usePages, useFAQs, useAnnouncements } from '@/integrations/supabase/hooks/useContent';
 import { Link } from 'react-router-dom';
-
 import { useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useQueryClient } from '@tanstack/react-query';
+import { useQueries, useQueryClient } from '@tanstack/react-query';
 
 const Dashboard = () => {
   const queryClient = useQueryClient();
-  const { submissions, isLoading: submissionsLoading } = useSubmissions();
-  const { pages, isLoading: pagesLoading } = usePages();
-  const { faqs, isLoading: faqsLoading } = useFAQs();
-  const { announcements, isLoading: announcementsLoading } = useAnnouncements();
+  
+  // Parallel data fetching using useQueries for better performance
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ['submissions'] as const,
+        queryFn: async () => {
+          const { data, error } = await supabase
+            .from('submissions')
+            .select('*, application_types(name)')
+            .order('created_at', { ascending: false });
+          if (error) throw error;
+          return data;
+        },
+      },
+      {
+        queryKey: ['pages'] as const,
+        queryFn: async () => {
+          const { data, error } = await supabase
+            .from('pages')
+            .select('*')
+            .order('created_at', { ascending: false });
+          if (error) throw error;
+          return data;
+        },
+      },
+      {
+        queryKey: ['faqs'] as const,
+        queryFn: async () => {
+          const { data, error } = await supabase
+            .from('faq_items')
+            .select('*')
+            .order('display_order', { ascending: true });
+          if (error) throw error;
+          return data;
+        },
+      },
+      {
+        queryKey: ['announcements'] as const,
+        queryFn: async () => {
+          const { data, error } = await supabase
+            .from('announcements')
+            .select('*')
+            .order('created_at', { ascending: false });
+          if (error) throw error;
+          return data;
+        },
+      },
+    ],
+  });
+
+  const submissions = results[0].data;
+  const submissionsLoading = results[0].isLoading;
+  const pages = results[1].data;
+  const pagesLoading = results[1].isLoading;
+  const faqs = results[2].data;
+  const faqsLoading = results[2].isLoading;
+  const announcements = results[3].data;
+  const announcementsLoading = results[3].isLoading;
 
   // Subscribe to realtime submissions updates
   useEffect(() => {
@@ -25,8 +77,7 @@ const Dashboard = () => {
           schema: 'public',
           table: 'submissions'
         },
-        (payload) => {
-          console.log('Submissions update:', payload);
+        () => {
           queryClient.invalidateQueries({ queryKey: ['submissions'] });
         }
       )

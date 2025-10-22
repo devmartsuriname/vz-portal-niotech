@@ -5,6 +5,7 @@ import AppMenu from './AppMenu';
 
 const VerticalNavigationBar = () => {
   const menuItems = getMenuItems();
+  
   return (
     <div className="app-sidebar">
       <LogoBox />
