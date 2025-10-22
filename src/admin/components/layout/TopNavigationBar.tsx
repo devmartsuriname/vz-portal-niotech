@@ -2,6 +2,7 @@ import { useState } from 'react';
 import IconifyIcon from '@/admin/components/wrapper/IconifyIcon';
 import ProfileDropdown from './ProfileDropdown';
 import ThemeModeToggle from './ThemeModeToggle';
+import NotificationDropdown from './NotificationDropdown';
 
 const TopNavigationBar = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -38,6 +39,7 @@ const TopNavigationBar = () => {
         </div>
 
         <div className="d-flex align-items-center gap-1">
+          <NotificationDropdown />
           <ThemeModeToggle />
           <ProfileDropdown />
         </div>

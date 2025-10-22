@@ -4,6 +4,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import PageTitle from '@/admin/components/PageTitle';
+import TableSkeleton from '@/admin/components/ui/TableSkeleton';
+import EmptyState from '@/admin/components/ui/EmptyState';
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
   draft: { label: 'Concept', className: 'badge bg-secondary' },
@@ -88,11 +90,13 @@ const SubmissionsList = () => {
           </div>
 
           {isLoading ? (
-            <div className="text-center py-5">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Laden...</span>
-              </div>
-            </div>
+            <TableSkeleton rows={10} columns={6} />
+          ) : filteredSubmissions && filteredSubmissions.length === 0 ? (
+            <EmptyState
+              icon="bx bx-file"
+              title="Geen aanvragen gevonden"
+              description="Er zijn nog geen aanvragen of je filterinstellingen retourneren geen resultaten."
+            />
           ) : (
             <div className="table-responsive">
               <table className="table table-hover table-striped">
@@ -133,18 +137,11 @@ const SubmissionsList = () => {
                         >
                           <i className="bx bx-show me-1"></i>
                           Details
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                  {filteredSubmissions?.length === 0 && (
-                    <tr>
-                      <td colSpan={6} className="text-center py-4 text-muted">
-                        Geen aanvragen gevonden
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
               </table>
             </div>
           )}

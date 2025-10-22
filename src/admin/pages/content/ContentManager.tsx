@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useQueryClient } from '@tanstack/react-query';
 import PageTitle from '@/admin/components/PageTitle';
 import { toast } from 'sonner';
+import ConfirmDialog from '@/admin/components/ui/ConfirmDialog';
 
 const ContentManager = () => {
   const queryClient = useQueryClient();
@@ -81,6 +82,10 @@ const PagesTab = () => {
   const { pages, isLoading, createPage, updatePage, deletePage } = usePages();
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; id: string | null }>({ 
+    isOpen: false, 
+    id: null 
+  });
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -124,13 +129,19 @@ const PagesTab = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Weet u zeker dat u deze pagina wilt verwijderen?')) {
-      try {
-        await deletePage.mutateAsync(id);
-        toast.success('Pagina verwijderd');
-      } catch (err: any) {
-        toast.error('Fout bij het verwijderen');
-      }
+    setDeleteConfirm({ isOpen: true, id });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteConfirm.id) return;
+    
+    try {
+      await deletePage.mutateAsync(deleteConfirm.id);
+      toast.success('Pagina verwijderd');
+    } catch (err: any) {
+      toast.error('Fout bij het verwijderen');
+    } finally {
+      setDeleteConfirm({ isOpen: false, id: null });
     }
   };
 
@@ -263,6 +274,10 @@ const FAQsTab = () => {
   const { faqs, isLoading, createFAQ, updateFAQ, deleteFAQ } = useFAQs();
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; id: string | null }>({ 
+    isOpen: false, 
+    id: null 
+  });
   const [formData, setFormData] = useState({
     question: '',
     answer: '',
@@ -306,13 +321,19 @@ const FAQsTab = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Weet u zeker dat u deze FAQ wilt verwijderen?')) {
-      try {
-        await deleteFAQ.mutateAsync(id);
-        toast.success('FAQ verwijderd');
-      } catch (err: any) {
-        toast.error('Fout bij het verwijderen');
-      }
+    setDeleteConfirm({ isOpen: true, id });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteConfirm.id) return;
+    
+    try {
+      await deleteFAQ.mutateAsync(deleteConfirm.id);
+      toast.success('FAQ verwijderd');
+    } catch (err: any) {
+      toast.error('Fout bij het verwijderen');
+    } finally {
+      setDeleteConfirm({ isOpen: false, id: null });
     }
   };
 
@@ -445,6 +466,10 @@ const AnnouncementsTab = () => {
   const { announcements, isLoading, createAnnouncement, updateAnnouncement, deleteAnnouncement } = useAnnouncements();
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; id: string | null }>({ 
+    isOpen: false, 
+    id: null 
+  });
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -490,13 +515,19 @@ const AnnouncementsTab = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Weet u zeker dat u deze aankondiging wilt verwijderen?')) {
-      try {
-        await deleteAnnouncement.mutateAsync(id);
-        toast.success('Aankondiging verwijderd');
-      } catch (err: any) {
-        toast.error('Fout bij het verwijderen');
-      }
+    setDeleteConfirm({ isOpen: true, id });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteConfirm.id) return;
+    
+    try {
+      await deleteAnnouncement.mutateAsync(deleteConfirm.id);
+      toast.success('Aankondiging verwijderd');
+    } catch (err: any) {
+      toast.error('Fout bij het verwijderen');
+    } finally {
+      setDeleteConfirm({ isOpen: false, id: null });
     }
   };
 
@@ -639,6 +670,14 @@ const AnnouncementsTab = () => {
           </tbody>
         </table>
       </div>
+
+      <ConfirmDialog
+        isOpen={deleteConfirm.isOpen}
+        title="Aankondiging Verwijderen"
+        message="Weet u zeker dat u deze aankondiging wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
+        onConfirm={confirmDelete}
+        onCancel={() => setDeleteConfirm({ isOpen: false, id: null })}
+      />
     </div>
   );
 };
