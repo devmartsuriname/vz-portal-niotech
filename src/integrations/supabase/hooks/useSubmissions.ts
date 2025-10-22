@@ -173,11 +173,59 @@ export const useSubmissionDetails = (submissionId: string) => {
     },
   });
 
+  const updateSubmissionStatus = useMutation({
+    mutationFn: async ({ 
+      submissionId, 
+      oldStatus,
+      newStatus,
+      adminNotes 
+    }: { 
+      submissionId: string;
+      oldStatus: string;
+      newStatus: string;
+      adminNotes?: string;
+    }) => {
+      const updates: any = { 
+        status: newStatus,
+        reviewed_at: new Date().toISOString()
+      };
+      
+      if (adminNotes) {
+        updates.admin_notes = adminNotes;
+      }
+
+      const { data, error } = await supabase
+        .from('submissions')
+        .update(updates)
+        .eq('id', submissionId)
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      await supabase.functions.invoke('send-status-update-notification', {
+        body: {
+          submission_id: submissionId,
+          old_status: oldStatus,
+          new_status: newStatus,
+          admin_notes: adminNotes,
+        },
+      });
+
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['submission', submissionId] });
+      queryClient.invalidateQueries({ queryKey: ['submissions'] });
+    },
+  });
+
   return {
     submission,
     files,
     isLoading: isLoading || filesLoading,
     error,
     verifyFile,
+    updateSubmissionStatus,
   };
 };

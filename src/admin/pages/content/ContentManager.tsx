@@ -1,10 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePages, useFAQs, useAnnouncements } from '@/integrations/supabase/hooks/useContent';
+import { supabase } from '@/integrations/supabase/client';
+import { useQueryClient } from '@tanstack/react-query';
 import PageTitle from '@/admin/components/PageTitle';
 import { toast } from 'sonner';
 
 const ContentManager = () => {
+  const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState<'pages' | 'faqs' | 'announcements'>('pages');
+
+  // Subscribe to realtime announcements updates
+  useEffect(() => {
+    const channel = supabase
+      .channel('content-manager-announcements')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'announcements'
+        },
+        (payload) => {
+          console.log('Announcements realtime update:', payload);
+          queryClient.invalidateQueries({ queryKey: ['announcements'] });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [queryClient]);
 
   return (
     <div className="container-fluid">

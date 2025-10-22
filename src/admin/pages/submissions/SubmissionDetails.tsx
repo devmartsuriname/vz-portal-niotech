@@ -15,25 +15,30 @@ const STATUS_BADGES: Record<string, { label: string; className: string }> = {
 
 const SubmissionDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { submission, files, isLoading, error, verifyFile } = useSubmissionDetails(id!);
+  const { submission, files, isLoading, error, verifyFile, updateSubmissionStatus } = useSubmissionDetails(id!);
   const [newStatus, setNewStatus] = useState('');
   const [adminNotes, setAdminNotes] = useState('');
   const [isUpdating, setIsUpdating] = useState(false);
 
   const handleStatusUpdate = async () => {
-    if (!newStatus) {
+    if (!newStatus || !submission) {
       toast.error('Selecteer een nieuwe status');
       return;
     }
 
     setIsUpdating(true);
     try {
-      // This would call the updateSubmissionStatus mutation
-      toast.success('Status succesvol bijgewerkt');
+      await updateSubmissionStatus.mutateAsync({
+        submissionId: id!,
+        oldStatus: submission.status,
+        newStatus: newStatus,
+        adminNotes: adminNotes || undefined,
+      });
+      toast.success('Status succesvol bijgewerkt en notificatie verzonden');
       setNewStatus('');
       setAdminNotes('');
     } catch (err: any) {
-      toast.error('Fout bij het bijwerken van de status');
+      toast.error('Fout bij het bijwerken van de status: ' + err.message);
     } finally {
       setIsUpdating(false);
     }

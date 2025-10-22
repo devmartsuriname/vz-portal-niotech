@@ -40,6 +40,12 @@ export const getMenuItems = (): MenuItemType[] => {
       url: '/admin/content',
     },
     {
+      key: 'settings',
+      label: 'Instellingen',
+      icon: 'solar:settings-bold-duotone',
+      url: '/admin/settings',
+    },
+    {
       key: 'users',
       label: 'Gebruikers',
       icon: 'solar:users-group-rounded-bold-duotone',

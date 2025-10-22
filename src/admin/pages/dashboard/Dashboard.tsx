@@ -3,11 +3,39 @@ import { useSubmissions } from '@/integrations/supabase/hooks/useSubmissions';
 import { usePages, useFAQs, useAnnouncements } from '@/integrations/supabase/hooks/useContent';
 import { Link } from 'react-router-dom';
 
+import { useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { useQueryClient } from '@tanstack/react-query';
+
 const Dashboard = () => {
+  const queryClient = useQueryClient();
   const { submissions, isLoading: submissionsLoading } = useSubmissions();
   const { pages, isLoading: pagesLoading } = usePages();
   const { faqs, isLoading: faqsLoading } = useFAQs();
   const { announcements, isLoading: announcementsLoading } = useAnnouncements();
+
+  // Subscribe to realtime submissions updates
+  useEffect(() => {
+    const channel = supabase
+      .channel('dashboard-submissions')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'submissions'
+        },
+        (payload) => {
+          console.log('Submissions update:', payload);
+          queryClient.invalidateQueries({ queryKey: ['submissions'] });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [queryClient]);
 
   const submittedCount = submissions?.filter(s => s.status === 'submitted').length || 0;
   const underReviewCount = submissions?.filter(s => s.status === 'under_review').length || 0;

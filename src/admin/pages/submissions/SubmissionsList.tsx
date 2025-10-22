@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSubmissions } from '@/integrations/supabase/hooks/useSubmissions';
+import { supabase } from '@/integrations/supabase/client';
+import { useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import PageTitle from '@/admin/components/PageTitle';
 
@@ -13,9 +15,20 @@ const STATUS_BADGES: Record<string, { label: string; className: string }> = {
 };
 
 const SubmissionsList = () => {
+  const queryClient = useQueryClient();
   const { submissions, isLoading, error } = useSubmissions();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+
+  useEffect(() => {
+    const channel = supabase
+      .channel('submissions-list')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'submissions' }, () => {
+        queryClient.invalidateQueries({ queryKey: ['submissions'] });
+      })
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, [queryClient]);
 
   const filteredSubmissions = submissions?.filter((submission) => {
     const matchesSearch = searchTerm === '' || 
