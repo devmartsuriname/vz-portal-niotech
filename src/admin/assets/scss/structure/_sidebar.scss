@@ -549,19 +549,65 @@
      }
  }
  
- // Sidenav Dark and Brand
- html[data-bs-theme='dark'],
- html[data-sidebar-color='dark'],
- html[data-sidebar-color='brand'] {
-     .app-sidebar {
-         .logo-box {
-             .logo-light {
-                 display: block;
-             }
- 
-             .logo-dark {
-                 display: none;
-             }
-         }
-     }
- }
+// Sidenav Dark and Brand
+html[data-bs-theme='dark'],
+html[data-sidebar-color='dark'],
+html[data-sidebar-color='brand'] {
+    .app-sidebar {
+        // Gradient background with purple accent
+        background: linear-gradient(180deg, #1d2329 0%, #242b33 100%);
+        border-right-color: rgba(136, 120, 255, 0.15) !important;
+        box-shadow: 4px 0 20px rgba(136, 120, 255, 0.1);
+        
+        .logo-box {
+            background: linear-gradient(180deg, rgba(136, 120, 255, 0.05) 0%, transparent 100%);
+            
+            .logo-light {
+                display: block;
+            }
+
+            .logo-dark {
+                display: none;
+            }
+        }
+        
+        // Enhanced active menu item with purple glow
+        .navbar-nav {
+            .nav-link.active {
+                background: linear-gradient(90deg, rgba(136, 120, 255, 0.15) 0%, rgba(136, 120, 255, 0.05) 100%);
+                border-left: 3px solid #8878ff;
+                padding-left: calc($sidebar-item-padding-x - 3px);
+                box-shadow: 0 0 15px rgba(136, 120, 255, 0.2);
+                color: #8878ff;
+                font-weight: $font-weight-semibold;
+            }
+            
+            .nav-link:hover {
+                background: rgba(136, 120, 255, 0.08);
+                color: #8878ff;
+            }
+            
+            // Submenu styling
+            .sub-navbar-nav {
+                .sub-nav-link.active {
+                    color: #8878ff;
+                    font-weight: $font-weight-semibold;
+                    
+                    &::before {
+                        background-color: #8878ff;
+                        opacity: 1;
+                    }
+                }
+                
+                .sub-nav-link:hover {
+                    color: #8878ff;
+                }
+            }
+        }
+        
+        // Menu title with purple tint
+        .menu-title {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+}
