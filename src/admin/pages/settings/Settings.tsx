@@ -3,9 +3,10 @@ import PageTitle from '@/admin/components/PageTitle';
 import ResendAPITab from './tabs/ResendAPITab';
 import GeneralSettingsTab from './tabs/GeneralSettingsTab';
 import DocumentSettingsTab from './tabs/DocumentSettingsTab';
+import EmailTemplatesTab from './tabs/EmailTemplatesTab';
 
 const Settings = () => {
-  const [activeTab, setActiveTab] = useState<'general' | 'email' | 'documents'>('general');
+  const [activeTab, setActiveTab] = useState<'general' | 'email' | 'templates' | 'documents'>('general');
 
   return (
     <div className="container-fluid">
@@ -34,6 +35,15 @@ const Settings = () => {
             </li>
             <li className="nav-item">
               <button
+                className={`nav-link ${activeTab === 'templates' ? 'active' : ''}`}
+                onClick={() => setActiveTab('templates')}
+              >
+                <i className="bx bx-mail-send me-2"></i>
+                Email Templates
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
                 className={`nav-link ${activeTab === 'documents' ? 'active' : ''}`}
                 onClick={() => setActiveTab('documents')}
               >
@@ -45,6 +55,7 @@ const Settings = () => {
 
           {activeTab === 'general' && <GeneralSettingsTab />}
           {activeTab === 'email' && <ResendAPITab />}
+          {activeTab === 'templates' && <EmailTemplatesTab />}
           {activeTab === 'documents' && <DocumentSettingsTab />}
         </div>
       </div>

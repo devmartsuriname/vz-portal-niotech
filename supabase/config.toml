@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.send-status-update-notification]
 verify_jwt = true
+
+[functions.send-test-email]
+verify_jwt = true
