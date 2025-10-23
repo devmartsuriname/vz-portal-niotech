@@ -39,9 +39,21 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
+      cssCodeSplit: true, // Split CSS per route for better isolation
       rollupOptions: {
         output: {
-          manualChunks: undefined
+          // Separate vendor bundles for better caching
+          manualChunks: {
+            'vendor': ['react', 'react-dom', 'react-router-dom'],
+            'admin-vendor': ['react-bootstrap', 'bootstrap'],
+          },
+          // Separate CSS for admin routes
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name?.includes('admin') || assetInfo.name?.includes('style')) {
+              return 'assets/admin/[name]-[hash][extname]';
+            }
+            return 'assets/[name]-[hash][extname]';
+          }
         }
       }
     }
