@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './assets/main.css';
+import './assets/main-new.css';
 import './assets/wizard.css';
 
 // Run diagnostic to ensure single React instance
