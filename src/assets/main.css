@@ -12011,10 +12011,35 @@ textarea.is-invalid {
   .table thead th:nth-child(5), /* Verplicht */
   .table tbody td:nth-child(5),
   .table thead th:nth-child(6), /* Vereist Voor */
-  .table tbody td:nth-child(6),
-  .table thead th:nth-child(7), /* Download */
-  .table tbody td:nth-child(7) {
+  .table tbody td:nth-child(6) {
     white-space: nowrap;
+  }
+  
+  /* CRITICAL: Make PDF Download column sticky and always visible */
+  .table thead th:nth-child(7),
+  .table tbody td:nth-child(7) {
+    display: table-cell !important;
+    position: sticky;
+    right: 0;
+    background: white;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    white-space: nowrap;
+    min-width: 80px;
+  }
+  
+  /* Ensure table header for PDF column has same styling */
+  .table thead th:nth-child(7) {
+    background: #f8f9fa;
+  }
+  
+  /* Dark mode support for sticky PDF column */
+  html[data-bs-theme="dark"] .table tbody td:nth-child(7) {
+    background: #212529;
+  }
+  
+  html[data-bs-theme="dark"] .table thead th:nth-child(7) {
+    background: #1a1d20;
   }
 }
 
