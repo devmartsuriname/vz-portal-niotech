@@ -12,10 +12,10 @@
      ======================================== */
   
   /* Primary Brand Colors */
-  --vz-primary: 251 100% 60%;           /* #5236FF - Main purple */
-  --vz-primary-dark: 251 100% 50%;      /* Darker variant */
-  --vz-primary-light: 251 100% 70%;     /* Lighter variant */
-  --vz-primary-glow: 251 100% 80%;      /* For glow effects */
+  --vz-primary: 249 100% 60%;           /* #5833FF - Main purple */
+  --vz-primary-dark: 249 100% 50%;      /* Darker variant */
+  --vz-primary-light: 249 100% 70%;     /* Lighter variant */
+  --vz-primary-glow: 249 100% 80%;      /* For glow effects */
   
   /* Secondary Colors */
   --vz-secondary: 33 50% 96%;          /* #F9F3EF - Cream background */
@@ -161,14 +161,14 @@
   --shadow-xs: 0 1px 2px hsla(0, 0%, 0%, 0.05);
   --shadow-sm: 0 1px 3px hsla(0, 0%, 0%, 0.1);
   --shadow-md: 0 4px 6px hsla(0, 0%, 0%, 0.1);
-  --shadow-lg: 0 10px 20px hsla(251, 100%, 60%, 0.15);
-  --shadow-xl: 0 20px 40px hsla(251, 100%, 60%, 0.2);
-  --shadow-2xl: 0 25px 50px hsla(251, 100%, 60%, 0.25);
+  --shadow-lg: 0 10px 20px hsla(249, 100%, 60%, 0.15);
+  --shadow-xl: 0 20px 40px hsla(249, 100%, 60%, 0.2);
+  --shadow-2xl: 0 25px 50px hsla(249, 100%, 60%, 0.25);
   --shadow-inner: inset 0 2px 4px hsla(0, 0%, 0%, 0.06);
   
   /* Glow Effects */
-  --glow-primary: 0 0 20px hsla(251, 100%, 60%, 0.5);
-  --glow-primary-lg: 0 0 40px hsla(251, 100%, 60%, 0.6);
+  --glow-primary: 0 0 20px hsla(249, 100%, 60%, 0.5);
+  --glow-primary-lg: 0 0 40px hsla(249, 100%, 60%, 0.6);
   
   /* ========================================
      Z-INDEX SCALE
@@ -237,7 +237,7 @@
      MISC
      ======================================== */
   
-  --focus-ring: 0 0 0 3px hsla(251, 100%, 60%, 0.15);
+  --focus-ring: 0 0 0 3px hsla(249, 100%, 60%, 0.15);
   --focus-ring-offset: 2px;
 }
 

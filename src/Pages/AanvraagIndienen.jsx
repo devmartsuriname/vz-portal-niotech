@@ -26,7 +26,7 @@ const AanvraagIndienen = () => {
             <div className="col-md-4">
               <div className="feature-box style3 text-center">
                 <div className="icon mb-3">
-                  <i className="bi bi-list-check" style={{fontSize: '48px', color: '#5236FF'}}></i>
+                  <i className="bi bi-list-check" style={{fontSize: '48px', color: '#5833FF'}}></i>
                 </div>
                 <h4>Stap 1: Beantwoord Vragen</h4>
                 <p className="text">Volg de wizard en beantwoord enkele vragen over uw situatie</p>
@@ -35,7 +35,7 @@ const AanvraagIndienen = () => {
             <div className="col-md-4">
               <div className="feature-box style3 text-center">
                 <div className="icon mb-3">
-                  <i className="bi bi-file-earmark-arrow-up" style={{fontSize: '48px', color: '#5236FF'}}></i>
+                  <i className="bi bi-file-earmark-arrow-up" style={{fontSize: '48px', color: '#5833FF'}}></i>
                 </div>
                 <h4>Stap 2: Upload Documenten</h4>
                 <p className="text">Upload alle vereiste documenten (PDF, max 400KB per bestand)</p>
@@ -44,7 +44,7 @@ const AanvraagIndienen = () => {
             <div className="col-md-4">
               <div className="feature-box style3 text-center">
                 <div className="icon mb-3">
-                  <i className="bi bi-send-check" style={{fontSize: '48px', color: '#5236FF'}}></i>
+                  <i className="bi bi-send-check" style={{fontSize: '48px', color: '#5833FF'}}></i>
                 </div>
                 <h4>Stap 3: Verstuur Aanvraag</h4>
                 <p className="text">Ontvang direct een agenummer en bevestigingsmail</p>
