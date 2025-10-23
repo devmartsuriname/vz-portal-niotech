@@ -5,7 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 // DIAGNOSTIC: Log React instance being used
 if (typeof window !== 'undefined') {
   console.log('[useWizardRules] React version:', React.version);
-  console.log('[useWizardRules] React instance ID:', (window as any).__REACT_DIAG__?.instanceId);
+  console.log('[useWizardRules] React instance ID:', window.__REACT_DIAG__?.instanceId);
 }
 
 // Lightweight local-fetch version to avoid React Query context issues in editor iframe
