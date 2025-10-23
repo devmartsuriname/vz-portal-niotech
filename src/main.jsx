@@ -6,15 +6,19 @@ import { router } from './Routes/Routes.jsx';
 import { AuthProvider } from '@/integrations/supabase/auth';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import { assertSingleReact } from '@/utils/assertSingleReact';
+import { attachGlobalErrorListeners } from '@/utils/diag/errors';
+import { attachPerfProbe } from '@/utils/diag/perf';
 import "slick-carousel/slick/slick.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './assets/main.css';
+import './assets/a11y.css';
+import './assets/main-new.css';
 import './assets/wizard.css';
 
-// Run diagnostic to ensure single React instance
+// Run diagnostics
 assertSingleReact();
+attachGlobalErrorListeners();
+attachPerfProbe();
 
 const queryClient = new QueryClient({
   defaultOptions: {
