@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PageTitle from '@/admin/components/PageTitle';
-import ResendAPITab from './tabs/ResendAPITab';
+import { EmailSettingsTab } from './tabs/EmailSettingsTab';
 import GeneralSettingsTab from './tabs/GeneralSettingsTab';
 import DocumentSettingsTab from './tabs/DocumentSettingsTab';
 import EmailTemplatesTab from './tabs/EmailTemplatesTab';
@@ -30,7 +30,7 @@ const Settings = () => {
                 onClick={() => setActiveTab('email')}
               >
                 <i className="bx bx-envelope me-2"></i>
-                Email (Resend API)
+                Email Configuratie
               </button>
             </li>
             <li className="nav-item">
@@ -54,7 +54,7 @@ const Settings = () => {
           </ul>
 
           {activeTab === 'general' && <GeneralSettingsTab />}
-          {activeTab === 'email' && <ResendAPITab />}
+          {activeTab === 'email' && <EmailSettingsTab />}
           {activeTab === 'templates' && <EmailTemplatesTab />}
           {activeTab === 'documents' && <DocumentSettingsTab />}
         </div>

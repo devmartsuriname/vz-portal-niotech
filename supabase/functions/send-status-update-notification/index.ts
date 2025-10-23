@@ -1,7 +1,6 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.76.0";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
 const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
@@ -116,16 +115,10 @@ const handler = async (req: Request): Promise<Response> => {
         `;
     }
 
-    // Send email to user
-    const emailResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "VZ Juspol Portal <onboarding@resend.dev>",
-        to: [user.email],
+    // Send email via universal send-email function
+    const emailResult = await supabase.functions.invoke('send-email', {
+      body: {
+        to: user.email,
         subject: emailSubject,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -144,16 +137,20 @@ const handler = async (req: Request): Promise<Response> => {
             </p>
           </div>
         `,
-      }),
+      }
     });
 
-    const emailData = await emailResponse.json();
-    console.log("Status update email sent:", emailData);
+    if (emailResult.error) {
+      console.error("Failed to send status update email:", emailResult.error);
+      throw emailResult.error;
+    }
+
+    console.log('Status update email sent successfully:', emailResult.data?.id);
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        email_id: emailData.id 
+        email_id: emailResult.data?.id 
       }),
       {
         status: 200,

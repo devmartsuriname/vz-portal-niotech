@@ -1,7 +1,6 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.76.0";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
 const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
@@ -28,16 +27,20 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Processing notification for submission: ${submission_id}`);
 
-    // Send email to user
-    const userEmailResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "VZ Juspol Portal <onboarding@resend.dev>",
-        to: [user_email],
+    // Fetch wizard result recipient from settings
+    const { data: recipientSetting } = await supabase
+      .from('system_settings')
+      .select('setting_value')
+      .eq('setting_key', 'wizard_result_recipient')
+      .single();
+
+    const adminEmail = recipientSetting?.setting_value || 'admin@juspol.sr';
+    console.log('Admin notification will be sent to:', adminEmail);
+
+    // Send confirmation email to user
+    const userEmailResult = await supabase.functions.invoke('send-email', {
+      body: {
+        to: user_email,
         subject: "Aanvraag Ontvangen - VZ Juspol Portal",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -58,22 +61,19 @@ const handler = async (req: Request): Promise<Response> => {
             </p>
           </div>
         `,
-      }),
+      }
     });
 
-    const userEmailData = await userEmailResponse.json();
-    console.log("User email sent:", userEmailData);
+    if (userEmailResult.error) {
+      console.error("Failed to send user confirmation:", userEmailResult.error);
+    } else {
+      console.log("User email sent:", userEmailResult.data?.id);
+    }
 
-    // Send notification to admin team
-    const adminEmailResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "VZ Juspol Portal <onboarding@resend.dev>",
-        to: ["admin@juspol.sr"],
+    // Send notification to admin/result recipient
+    const adminEmailResult = await supabase.functions.invoke('send-email', {
+      body: {
+        to: adminEmail,
         subject: `Nieuwe Aanvraag: ${application_type_name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -88,17 +88,20 @@ const handler = async (req: Request): Promise<Response> => {
             <p>Log in op het admin portaal om deze aanvraag te beoordelen.</p>
           </div>
         `,
-      }),
+      }
     });
 
-    const adminEmailData = await adminEmailResponse.json();
-    console.log("Admin email sent:", adminEmailData);
+    if (adminEmailResult.error) {
+      console.error("Failed to send admin notification:", adminEmailResult.error);
+    } else {
+      console.log("Admin email sent:", adminEmailResult.data?.id);
+    }
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        user_email_id: userEmailData.id,
-        admin_email_id: adminEmailData.id 
+        user_email_id: userEmailResult.data?.id,
+        admin_email_id: adminEmailResult.data?.id 
       }),
       {
         status: 200,

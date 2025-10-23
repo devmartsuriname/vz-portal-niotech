@@ -11,6 +11,17 @@ export interface SystemSetting {
   updated_at: string;
 }
 
+interface SMTPTestConfig {
+  host: string;
+  port: number;
+  secure: boolean;
+  username: string;
+  password: string;
+  fromEmail: string;
+  fromName: string;
+  testEmail: string;
+}
+
 export const useSystemSettings = (category?: string) => {
   const queryClient = useQueryClient();
 
@@ -71,11 +82,33 @@ export const useSystemSettings = (category?: string) => {
     },
   });
 
+  const testSMTPConnection = useMutation({
+    mutationFn: async ({ host, port, secure, username, password, fromEmail, fromName, testEmail }: SMTPTestConfig) => {
+      const { data, error } = await supabase.functions.invoke('test-smtp-connection', {
+        body: {
+          smtp_host: host,
+          smtp_port: port,
+          smtp_secure: secure,
+          smtp_username: username,
+          smtp_password: password,
+          from_email: fromEmail,
+          from_name: fromName,
+          test_email: testEmail,
+        },
+      });
+
+      if (error) throw error;
+      if (!data.success) throw new Error(data.error);
+      return data;
+    },
+  });
+
   return {
     settings,
     isLoading,
     error,
     updateSetting,
     testResendConnection,
+    testSMTPConnection,
   };
 };

@@ -1,7 +1,6 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.76.0";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
 const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
@@ -16,7 +15,6 @@ interface TestEmailRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -30,7 +28,6 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Sending test email for template:", templateId, "to:", testEmail);
 
-    // Initialize Supabase client
     const supabaseClient = createClient(supabaseUrl, supabaseServiceKey);
 
     // Fetch template from database
@@ -73,11 +70,11 @@ const handler = async (req: Request): Promise<Response> => {
       bodyText = bodyText.replace(regex, value);
     });
 
-    // Handle conditional blocks (simple implementation)
+    // Handle conditional blocks
     bodyHtml = bodyHtml.replace(/{{#if [^}]+}}([\s\S]*?){{\/if}}/g, "$1");
     bodyText = bodyText.replace(/{{#if [^}]+}}([\s\S]*?){{\/if}}/g, "$1");
 
-    // Handle each loops (simple implementation for required_documents)
+    // Handle each loops
     bodyHtml = bodyHtml.replace(
       /{{#each required_documents}}([\s\S]*?){{\/each}}/g,
       (_match: string, content: string) => {
@@ -93,57 +90,28 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
 
-    // Get sender info from system settings
-    const { data: fromEmailSetting } = await supabaseClient
-      .from("system_settings")
-      .select("setting_value")
-      .eq("setting_key", "resend_from_email")
-      .single();
-
-    const { data: fromNameSetting } = await supabaseClient
-      .from("system_settings")
-      .select("setting_value")
-      .eq("setting_key", "resend_from_name")
-      .single();
-
-    const fromEmail = fromEmailSetting?.setting_value 
-      ? String(fromEmailSetting.setting_value).replace(/"/g, "")
-      : "onboarding@resend.dev";
-    
-    const fromName = fromNameSetting?.setting_value 
-      ? String(fromNameSetting.setting_value).replace(/"/g, "")
-      : "Vreemdelingenzaken";
-
-    // Send email via Resend API
-    const resendResponse = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: `${fromName} <${fromEmail}>`,
-        to: [testEmail],
+    // Send test email via universal send-email function
+    const emailResult = await supabaseClient.functions.invoke('send-email', {
+      body: {
+        to: testEmail,
         subject: `[TEST] ${subject}`,
         html: bodyHtml,
         text: bodyText || undefined,
-      }),
+      }
     });
 
-    if (!resendResponse.ok) {
-      const errorData = await resendResponse.text();
-      console.error("Resend API error:", errorData);
-      throw new Error(`Failed to send email: ${errorData}`);
+    if (emailResult.error) {
+      console.error('Failed to send test email:', emailResult.error);
+      throw emailResult.error;
     }
 
-    const emailResponse = await resendResponse.json();
-    console.log("Test email sent successfully:", emailResponse);
+    console.log("Test email sent successfully:", emailResult.data?.id);
 
     return new Response(
       JSON.stringify({ 
         success: true, 
         message: "Test email sent successfully",
-        emailId: emailResponse.id 
+        emailId: emailResult.data?.id 
       }),
       {
         status: 200,
@@ -158,7 +126,7 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(
       JSON.stringify({ 
         error: error.message,
-        details: "Failed to send test email. Please check your Resend API configuration."
+        details: "Failed to send test email. Please check your email configuration."
       }),
       {
         status: 500,
