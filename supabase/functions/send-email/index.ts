@@ -67,7 +67,14 @@ const handler = async (req: Request): Promise<Response> => {
       const smtpHost = settingsMap.smtp_host;
       const smtpPort = parseInt(settingsMap.smtp_port) || 587;
       const smtpUsername = settingsMap.smtp_username;
-      const smtpPassword = settingsMap.smtp_password;
+      
+      // Retrieve SMTP password from Vault
+      const { data: smtpPassword, error: vaultError } = await supabase.rpc('get_smtp_password');
+      
+      if (vaultError) {
+        console.error('[send-email] Vault error:', vaultError);
+        throw new Error('Failed to retrieve SMTP password from secure storage');
+      }
 
       if (!smtpHost || !smtpUsername || !smtpPassword) {
         throw new Error('SMTP settings incomplete. Please configure SMTP in admin settings.');

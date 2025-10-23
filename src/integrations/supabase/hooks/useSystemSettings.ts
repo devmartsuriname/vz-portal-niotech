@@ -45,6 +45,27 @@ export const useSystemSettings = (category?: string) => {
 
   const updateSetting = useMutation({
     mutationFn: async ({ key, value }: { key: string; value: any }) => {
+      // Special handling for smtp_password - store in vault
+      if (key === 'smtp_password' && value) {
+        const { error: vaultError } = await supabase.rpc('store_smtp_password', {
+          password_value: value
+        });
+        
+        if (vaultError) throw vaultError;
+        
+        // Don't store actual password in system_settings
+        const { data, error } = await supabase
+          .from('system_settings')
+          .update({ setting_value: '""' })
+          .eq('setting_key', key)
+          .select()
+          .single();
+
+        if (error) throw error;
+        return data;
+      }
+      
+      // Normal settings update
       const { data, error } = await supabase
         .from('system_settings')
         .update({ setting_value: value })

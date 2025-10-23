@@ -62,7 +62,8 @@ export const EmailSettingsTab = () => {
             setSmtpUsername(value || '');
             break;
           case 'smtp_password':
-            setSmtpPassword(value || '');
+            // Don't show actual password, use placeholder if exists
+            setSmtpPassword(value ? '••••••••' : '');
             break;
           case 'smtp_from_email':
             setSmtpFromEmail(value || '');
@@ -91,7 +92,10 @@ export const EmailSettingsTab = () => {
         await updateSetting.mutateAsync({ key: 'smtp_port', value: parseInt(smtpPort) });
         await updateSetting.mutateAsync({ key: 'smtp_secure', value: smtpSecure });
         await updateSetting.mutateAsync({ key: 'smtp_username', value: smtpUsername });
-        if (smtpPassword) await updateSetting.mutateAsync({ key: 'smtp_password', value: smtpPassword });
+        // Only update password if changed (not placeholder)
+        if (smtpPassword && smtpPassword !== '••••••••') {
+          await updateSetting.mutateAsync({ key: 'smtp_password', value: smtpPassword });
+        }
         await updateSetting.mutateAsync({ key: 'smtp_from_email', value: smtpFromEmail });
         await updateSetting.mutateAsync({ key: 'smtp_from_name', value: smtpFromName });
       }
@@ -102,7 +106,7 @@ export const EmailSettingsTab = () => {
 
       toast({
         title: 'Instellingen opgeslagen',
-        description: 'Email configuratie is bijgewerkt',
+        description: 'Email configuratie is bijgewerkt. SMTP wachtwoord is versleuteld opgeslagen.',
       });
     } catch (error: any) {
       toast({
@@ -167,7 +171,7 @@ export const EmailSettingsTab = () => {
 
   const isSaveDisabled = provider === 'resend' 
     ? !resendApiKey || !resendFromEmail 
-    : !smtpHost || !smtpUsername || !smtpPassword || !smtpFromEmail;
+    : !smtpHost || !smtpUsername || !smtpFromEmail;
 
   return (
     <div className="email-settings-tab">
@@ -275,6 +279,9 @@ export const EmailSettingsTab = () => {
               onChange={(e) => setSmtpPassword(e.target.value)}
               placeholder="••••••••"
             />
+            <Form.Text className="text-muted">
+              {smtpPassword === '••••••••' ? '🔒 Wachtwoord is versleuteld opgeslagen in Vault' : 'Vul nieuw wachtwoord in om bij te werken'}
+            </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Van Email *</Form.Label>

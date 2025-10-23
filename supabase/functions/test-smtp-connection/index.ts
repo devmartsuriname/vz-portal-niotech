@@ -11,7 +11,7 @@ interface SMTPTestRequest {
   smtp_port: number;
   smtp_secure: boolean;
   smtp_username: string;
-  smtp_password: string;
+  smtp_password?: string; // Optional - will use vault if not provided
   from_email: string;
   from_name: string;
   test_email: string;
