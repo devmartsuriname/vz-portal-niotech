@@ -19,7 +19,8 @@ const BreadCumb = ({Title,bgimg}) => {
                   <div className="page-heading">
                       <h1>{Title}</h1>
                       <div className="links">
-                      <Link to="/">Home<span className="slash">/</span></Link>{Title}
+                      <Link to="/" className="breadcrumb-link">Home<span className="slash">/</span></Link>
+                      <span className="breadcrumb-current">{Title}</span>
                       </div>
                   </div>
               </div>
