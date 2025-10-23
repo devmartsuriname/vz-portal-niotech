@@ -20,7 +20,7 @@
 
 /* Badge variants */
 .badge.bg-primary {
-  background: linear-gradient(135deg, hsl(251, 71%, 60%) 0%, hsl(251, 100%, 70%) 100%);
+  background: linear-gradient(135deg, hsl(249, 71%, 60%) 0%, hsl(249, 100%, 70%) 100%);
   color: hsl(var(--vz-white));
   font-weight: var(--font-semibold);
   position: relative;
