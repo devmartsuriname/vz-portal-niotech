@@ -11,6 +11,9 @@
 @import "config/variables-dark";
 @import "config/theme-mode";
 
+// Import icons before Bootstrap
+@import "icons";
+
 // Import Bootstrap variables after custom config
 @import "bootstrap/scss/variables";
 
