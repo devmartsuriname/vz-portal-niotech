@@ -56,6 +56,7 @@
           align-items: center;
           justify-content: center;
           height: $topbar-height;
+          position: relative;
 
           .topbar-button {
                border: none;
@@ -65,12 +66,26 @@
                color: $topbar-item-color;
                padding: $btn-padding-y $btn-padding-y;
                position: relative;
+               box-shadow: none;
+
+               i {
+                    color: $topbar-item-color;
+               }
 
                &.show,
                &.active,
                &:active,
                &:hover {
                     color: $primary;
+
+                    i {
+                         color: $primary;
+                    }
+               }
+
+               &:focus {
+                    box-shadow: none !important;
+                    outline: none;
                }
           }
      }
@@ -126,6 +141,23 @@
      
                .dark-mode {
                     display: block;
+               }
+          }
+
+          .topbar-item {
+               .topbar-button {
+                    i {
+                         color: var(--#{$prefix}light);
+                    }
+
+                    &.show,
+                    &.active,
+                    &:active,
+                    &:hover {
+                         i {
+                              color: $primary;
+                         }
+                    }
                }
           }
      }

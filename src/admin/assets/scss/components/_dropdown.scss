@@ -76,6 +76,11 @@
     animation-fill-mode: both;
     font-size: $font-size-base;
     top: 100%;
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    z-index: 1050;
+    position: absolute;
+    transform-origin: top;
 
     &.show {
         top: 100% !important;
@@ -84,6 +89,47 @@
 
     i {
         display: inline-block;
+    }
+}
+
+// Notification dropdown specific styles
+.notification-dropdown {
+    width: 360px !important;
+    max-height: 500px;
+
+    .notification-list {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .dropdown-item {
+        &:hover {
+            background-color: var(--bs-gray-100);
+        }
+
+        &.bg-light {
+            background-color: var(--bs-gray-100) !important;
+        }
+    }
+}
+
+// Dark mode specific styles
+[data-bs-theme="dark"] {
+    .dropdown-menu {
+        background-color: var(--bs-dark-bg-subtle);
+        border-color: var(--bs-border-color);
+    }
+
+    .notification-dropdown {
+        .dropdown-item {
+            &:hover {
+                background-color: var(--bs-gray-800);
+            }
+
+            &.bg-light {
+                background-color: var(--bs-gray-800) !important;
+            }
+        }
     }
 }
 
