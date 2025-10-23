@@ -5196,13 +5196,30 @@ input.main-search-input::placeholder {
   }
 }
 .breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links {
-  color: var(--theme);
+  color: var(--white);
   font-family: "Urbanist", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 28px;
   letter-spacing: -0.32px;
+}
+
+.breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links a {
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links .breadcrumb-current {
+  color: var(--white);
+  opacity: 1;
 }
 .breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links .slash {
   margin: 0 5px;
