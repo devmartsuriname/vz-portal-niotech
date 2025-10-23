@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './assets/a11y.css';
-import './assets/main-new.css';
+import './assets/main.css';
 import './assets/wizard.css';
 
 // Run diagnostics
