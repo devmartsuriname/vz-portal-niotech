@@ -167,6 +167,53 @@ export type Database = {
         }
         Relationships: []
       }
+      checklist_pdfs: {
+        Row: {
+          application_type_id: string
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          filename: string
+          id: string
+          is_active: boolean | null
+          storage_path: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          application_type_id: string
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          filename: string
+          id?: string
+          is_active?: boolean | null
+          storage_path: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          application_type_id?: string
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          filename?: string
+          id?: string
+          is_active?: boolean | null
+          storage_path?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "checklist_pdfs_application_type_id_fkey"
+            columns: ["application_type_id"]
+            isOneToOne: false
+            referencedRelation: "application_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       document_types: {
         Row: {
           allowed_formats: string[] | null
