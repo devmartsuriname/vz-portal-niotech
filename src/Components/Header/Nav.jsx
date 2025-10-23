@@ -10,9 +10,9 @@ export default function Nav({ setMobileToggle }) {
         </Link>
       </li>
       <li className="menu-item-has-children">
-        <Link to="#">Diensten</Link>
+        <Link to="#" aria-haspopup="true" aria-expanded="false">Diensten</Link>
         <DropDown>
-          <ul>
+          <ul role="menu">
             <li>
               <Link to="/instructies" onClick={() => setMobileToggle(false)}>
                 Instructies

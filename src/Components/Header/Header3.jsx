@@ -53,6 +53,16 @@ export default function Header3({ variant }) {
                         : 'cs-munu_toggle'
                     }
                     onClick={() => setMobileToggle(!mobileToggle)}
+                    role="button"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded={mobileToggle}
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setMobileToggle(!mobileToggle);
+                      }
+                    }}
                   >
                     <span></span>
                   </span>

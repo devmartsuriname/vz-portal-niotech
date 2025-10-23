@@ -7,7 +7,7 @@ const About3 = ({img1,subtitle,title,content,boxtitle1,boxcontent1,boxtitle2,box
                 <div className="row g-4">
                     <div className="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
                         <div className="thumb">
-                            <img src={img1} alt="img" />
+                            <img src={img1} alt="img" loading="lazy" />
                         </div>
                     </div>
                     <div className="col-lg-6">

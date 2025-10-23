@@ -55,7 +55,8 @@ const Vergunningen = () => {
                     </div>
                   ) : (
                     <>
-                      <div className="table-responsive">
+                      {/* Desktop Table View */}
+                      <div className="table-responsive d-none d-md-block">
                         <table className="table table-hover table-clickable align-middle">
                           <thead className="table-light">
                             <tr>
@@ -89,6 +90,37 @@ const Vergunningen = () => {
                             ))}
                           </tbody>
                         </table>
+                      </div>
+
+                      {/* Mobile Card View */}
+                      <div className="d-md-none">
+                        {permits?.map((permit) => (
+                          <div key={permit.id} className="permit-card mb-3 p-3 border rounded bg-white shadow-sm">
+                            <div className="d-flex justify-content-between align-items-start mb-2">
+                              <span 
+                                className="badge" 
+                                style={{
+                                  background: 'linear-gradient(135deg, #6c5dd3 0%, #8878ff 100%)',
+                                  color: '#ffffff',
+                                  fontWeight: '600'
+                                }}
+                              >
+                                {permit.code}
+                              </span>
+                              <strong className="text-primary">{permit.agenda_number}</strong>
+                            </div>
+                            <div className="permit-details">
+                              <div className="mb-1">
+                                <small className="text-muted d-block">Naam</small>
+                                <span className="fw-medium">{permit.name}</span>
+                              </div>
+                              <div>
+                                <small className="text-muted d-block">Voornamen</small>
+                                <span className="fw-medium">{permit.given_names}</span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
 
                       {permits?.length === 0 && (

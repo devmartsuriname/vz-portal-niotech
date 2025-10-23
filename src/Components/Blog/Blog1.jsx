@@ -18,7 +18,7 @@ const Blog1 = () => {
                             <div key={index} className="col-xl-4 col-md-6">
                                 <div className="blog-card style1 wow fadeInUp" data-wow-delay={`.${(index + 1) * 2}s`}>
                                     <div className="thumb">
-                                        <img src={item.img} alt="thumb" />
+                                        <img src={item.img} alt="thumb" loading="lazy" />
                                     </div>
                                     <div className="body">
                                         <div className="tag-meta">

@@ -12983,4 +12983,85 @@ select:focus-visible {
   .btn-group .btn {
     margin-bottom: 5px;
   }
+  
+  /* Mobile permit cards */
+  .permit-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .permit-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .permit-card .badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+  }
+  
+  .permit-details small {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY: Reduced Motion Support
+   ======================================== */
+
+/* Users who prefer reduced motion should have minimal animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Disable WOW.js animations for reduced motion */
+  .wow {
+    animation: none !important;
+  }
+  
+  /* Keep essential transforms but remove transitions */
+  .hover-scale:hover,
+  .card-hover-lift:hover,
+  .service-box.style3:hover {
+    transition: none !important;
+  }
+  
+  /* Disable accordion animations */
+  .accordion-collapse {
+    transition: none !important;
+  }
+  
+  /* Disable scroll-to-top animation */
+  .scroll-to-top {
+    transition: none !important;
+  }
+}
+
+/* For users who are OK with motion, ensure smooth animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Smooth transitions for interactive elements */
+  a,
+  button,
+  .btn,
+  .theme-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Smooth hover effects */
+  .hover-scale,
+  .card-hover-lift {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }

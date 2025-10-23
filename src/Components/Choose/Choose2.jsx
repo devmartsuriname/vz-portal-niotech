@@ -10,12 +10,12 @@ const Choose2 = ({img1,img2,img3,subtitle,title,content,boximg1,boxtitle1,boxcon
                             <div className="col-xl-6">
                                 <div className="wcu-thumb">
                                     <div className="main-thumb img-custom-anim-right wow fadeInUp" data-wow-delay=".4s">
-                                        <img src={img1} alt="thumb" />
+                                        <img src={img1} alt="thumb" loading="lazy" />
                                     </div>
                                     <div className="thumb2 float-bob-y"><img src={img2}
-                                            alt="thumb" /></div>
+                                            alt="thumb" loading="lazy" /></div>
                                     <div className="thumb3 float-bob-x"><img src={img3}
-                                            alt="thumb" /></div>
+                                            alt="thumb" loading="lazy" /></div>
                                 </div>
                             </div>
                             <div className="col-xl-6">
@@ -31,7 +31,7 @@ const Choose2 = ({img1,img2,img3,subtitle,title,content,boximg1,boxtitle1,boxcon
                                     </div>
                                     <div className="fancy-box style3 mb-20 wow fadeInUp" data-wow-delay=".4s">
                                         <div className="icon">
-                                            <img src={boximg1} alt="icon" />
+                                            <img src={boximg1} alt="icon" loading="lazy" />
                                         </div>
                                         <div className="content">
                                             <h4>{boxtitle1}</h4>
@@ -40,7 +40,7 @@ const Choose2 = ({img1,img2,img3,subtitle,title,content,boximg1,boxtitle1,boxcon
                                     </div>
                                     <div className="fancy-box style3 wow fadeInUp" data-wow-delay=".6s">
                                         <div className="icon">
-                                            <img src={boximg2} alt="icon" />
+                                            <img src={boximg2} alt="icon" loading="lazy" />
                                         </div>
                                         <div className="content">
                                             <h4>{boxtitle2}</h4>

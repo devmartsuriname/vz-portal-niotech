@@ -18,7 +18,7 @@ const About2 = ({subtitle,title,content,boximg1,boxtitle1,boxcontent1,boximg2,bo
                                     </div>
                                     <div className="fancy-box style3 mb-20 wow fadeInUp" data-wow-delay=".2s">
                                         <div className="icon">
-                                            <img src={boximg1} alt="icon" />
+                                            <img src={boximg1} alt="icon" loading="lazy" />
                                         </div>
                                         <div className="content">
                                             <h4>{boxtitle1}</h4>
@@ -27,7 +27,7 @@ const About2 = ({subtitle,title,content,boximg1,boxtitle1,boxcontent1,boximg2,bo
                                     </div>
                                     <div className="fancy-box style3 wow fadeInUp" data-wow-delay=".4s">
                                         <div className="icon">
-                                            <img src={boximg2} alt="icon" />
+                                            <img src={boximg2} alt="icon" loading="lazy" />
                                         </div>
                                         <div className="content">
                                             <h4>{boxtitle2}</h4>
@@ -39,9 +39,9 @@ const About2 = ({subtitle,title,content,boximg1,boxtitle1,boxcontent1,boximg2,bo
                             <div className="col-xl-6 order-1 order-xl-2">
                                 <div className="about-thumb">
                                     <img className="img-custom-anim-left wow fadeInUp" data-wow-delay=".4s"
-                                        src={img1} alt="thumb" />
+                                        src={img1} alt="thumb" loading="lazy" />
                                     <div className="absolute-thumb">
-                                        <img src={img2} alt="thumb" />
+                                        <img src={img2} alt="thumb" loading="lazy" />
                                     </div>
                                 </div>
                             </div>
