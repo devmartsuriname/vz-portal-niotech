@@ -73,11 +73,6 @@
                align-items: center;
                justify-content: center;
 
-               // Ensure all children inherit color
-               * {
-                    color: inherit;
-               }
-
                i {
                     color: $topbar-item-color;
                     display: inline-block;
@@ -114,10 +109,16 @@
           }
      }
 
-     .topbar-badge {
-          right: -7px;
-          top: 7px !important;
-     }
+.topbar-badge {
+     top: -2px !important;
+     right: -2px !important;
+     font-size: 0.65rem;
+     min-width: 18px;
+     height: 18px;
+     line-height: 18px;
+     padding: 0.25em 0.4em;
+     z-index: 10;
+}
 }
 
 

@@ -50,11 +50,10 @@ const NotificationDropdown = () => {
           className="topbar-button position-relative"
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
-          style={{ minWidth: '40px', minHeight: '40px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          <i className="bx bx-bell" style={{ fontSize: '24px', display: 'inline-block', lineHeight: '1' }}></i>
+          <i className="bx bx-bell fs-24"></i>
           {unreadCount > 0 && (
-            <span className="position-absolute badge rounded-pill bg-danger" style={{ top: '-2px', right: '-2px', fontSize: '0.65rem', minWidth: '18px', height: '18px', padding: '0.25em 0.4em' }}>
+            <span className="position-absolute topbar-badge badge rounded-pill bg-danger">
               {unreadCount > 99 ? '99+' : unreadCount}
             </span>
           )}
