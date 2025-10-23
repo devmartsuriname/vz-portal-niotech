@@ -19,6 +19,7 @@ import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
 import BlogStandardPage from "../Pages/BlogStandardPage";
 import { adminRoutes } from './AdminRoutes';
 import RouteError from "../components/common/RouteError";
+import NotFound from "../pages/NotFound";
 
 // Wizard components (eager load to avoid duplicate React issues)
 import ApplicationWizard from "../Pages/Wizard/ApplicationWizard";
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
         {
           path: "/blog/blog-standard",
           element: <BlogStandardPage></BlogStandardPage>,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
         },
       ],
     },

@@ -31,6 +31,9 @@ Description: Modular CSS Architecture for Vreemdelingenzaken Portal
 @import url('components/badges.css');
 @import url('components/navigation.css');
 
+/* 5. Page-Specific Styles */
+@import url('pages/error404.css');
+
 /* ========================================
    LEGACY STYLES (To be migrated)
    Import from original main.css for now
