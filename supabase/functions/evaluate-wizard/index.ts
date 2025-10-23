@@ -84,6 +84,17 @@ const handler = async (req: Request): Promise<Response> => {
         
         if (nextQuestionKey) {
           console.log(`Next question mapped: ${nextQuestionKey}`);
+          
+          // Check if the NEXT question is a terminal question (confirmation type)
+          const nextRule = wizardRules.find(r => r.question_key === nextQuestionKey);
+          if (nextRule?.result_application_type_id) {
+            currentApplicationTypeId = nextRule.result_application_type_id;
+            foundTerminalQuestion = true;
+            console.log(`✓ Terminal question reached via navigation: ${nextQuestionKey}`);
+            console.log(`  Application Type ID: ${currentApplicationTypeId}`);
+            // Break since we've found the application type through navigation
+            break;
+          }
         }
       }
     }
