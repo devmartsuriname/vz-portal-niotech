@@ -40,9 +40,10 @@ const ThemeModeToggle = () => {
         data-tooltip={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         aria-pressed={theme === 'dark'}
+        style={{ color: 'inherit' }}
       >
-        <IconifyIcon icon="solar:moon-bold-duotone" className="fs-24 light-mode" aria-hidden="true" />
-        <IconifyIcon icon="solar:sun-bold-duotone" className="fs-24 dark-mode" aria-hidden="true" />
+        <IconifyIcon icon="solar:moon-bold-duotone" className="fs-24 light-mode" aria-hidden="true" style={{ color: 'inherit' }} />
+        <IconifyIcon icon="solar:sun-bold-duotone" className="fs-24 dark-mode" aria-hidden="true" style={{ color: 'inherit' }} />
       </button>
     </div>
   );

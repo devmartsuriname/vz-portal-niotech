@@ -27,20 +27,24 @@ const CompactModeToggle = () => {
   };
 
   return (
-    <button
-      className="btn btn-sm topbar-button"
-      onClick={toggleCompactMode}
-      data-tooltip={isCompact ? 'Exit compact mode' : 'Enable compact mode'}
-      title={isCompact ? 'Normal Mode' : 'Compact Mode'}
-      aria-label={isCompact ? 'Switch to normal mode' : 'Switch to compact mode'}
-      aria-pressed={isCompact}
-    >
-      <IconifyIcon 
-        icon={isCompact ? "solar:maximize-square-3-bold-duotone" : "solar:minimize-square-3-bold-duotone"} 
-        className="fs-20 icon-scale"
-        aria-hidden="true"
-      />
-    </button>
+    <div className="topbar-item">
+      <button
+        className="topbar-button"
+        onClick={toggleCompactMode}
+        data-tooltip={isCompact ? 'Exit compact mode' : 'Enable compact mode'}
+        title={isCompact ? 'Normal Mode' : 'Compact Mode'}
+        aria-label={isCompact ? 'Switch to normal mode' : 'Switch to compact mode'}
+        aria-pressed={isCompact}
+        style={{ color: 'inherit' }}
+      >
+        <IconifyIcon 
+          icon={isCompact ? "solar:maximize-square-3-bold-duotone" : "solar:minimize-square-3-bold-duotone"} 
+          className="fs-24"
+          aria-hidden="true"
+          style={{ color: 'inherit' }}
+        />
+      </button>
+    </div>
   );
 };
 

@@ -73,6 +73,11 @@
                align-items: center;
                justify-content: center;
 
+               // Ensure all children inherit color
+               * {
+                    color: inherit;
+               }
+
                i {
                     color: $topbar-item-color;
                     display: inline-block;
@@ -83,13 +88,21 @@
                     font-style: normal;
                }
 
+               // For IconifyIcon (SVG elements)
+               svg {
+                    color: $topbar-item-color;
+                    fill: currentColor;
+                    width: 24px;
+                    height: 24px;
+               }
+
                &.show,
                &.active,
                &:active,
                &:hover {
                     color: $primary;
 
-                    i {
+                    i, svg {
                          color: $primary;
                     }
                }
@@ -164,11 +177,16 @@
                          font-family: 'boxicons' !important;
                     }
 
+                    // For IconifyIcon (SVG elements) in dark mode
+                    svg {
+                         color: var(--#{$prefix}light) !important;
+                    }
+
                     &.show,
                     &.active,
                     &:active,
                     &:hover {
-                         i {
+                         i, svg {
                               color: $primary !important;
                          }
                     }
