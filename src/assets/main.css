@@ -11944,6 +11944,279 @@ textarea.is-invalid {
   border-radius: 6px;
 }
 
+/* ============================================
+   Documentenlijsten Page - Responsive Enhancements
+   ============================================ */
+
+/* Enhanced Table Responsive Container */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(116, 68, 253, 0.3) transparent;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: rgba(116, 68, 253, 0.4);
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(116, 68, 253, 0.6);
+}
+
+/* Table Column Visibility Management */
+@media (max-width: 991px) {
+  /* Hide "Toegestane Formaten" and "Max. Bestandsgrootte" on tablets */
+  .table thead th:nth-child(3),
+  .table tbody td:nth-child(3),
+  .table thead th:nth-child(4),
+  .table tbody td:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* On mobile, show only: Document, Verplicht, Vereist Voor, PDF */
+  .table thead th:nth-child(2),
+  .table tbody td:nth-child(2) {
+    display: none; /* Hide Beschrijving */
+  }
+  
+  /* Compact padding for mobile */
+  .table th,
+  .table td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+  
+  /* First column (Document name) */
+  .table thead th:first-child,
+  .table tbody td:first-child {
+    min-width: 140px;
+    font-size: 13px;
+  }
+  
+  /* Keep essential columns visible */
+  .table thead th:nth-child(5), /* Verplicht */
+  .table tbody td:nth-child(5),
+  .table thead th:nth-child(6), /* Vereist Voor */
+  .table tbody td:nth-child(6),
+  .table thead th:nth-child(7), /* Download */
+  .table tbody td:nth-child(7) {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Ultra-compact for small mobile */
+  .table th,
+  .table td {
+    padding: 8px 6px;
+    font-size: 13px;
+  }
+  
+  .table thead th:first-child,
+  .table tbody td:first-child {
+    min-width: 120px;
+    max-width: 150px;
+  }
+}
+
+/* Badge Container for "Vereist Voor" Column */
+.vz-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 100%;
+  align-items: center;
+}
+
+.vz-badge-container .badge {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .vz-badge-container {
+    max-width: 200px;
+    gap: 4px;
+  }
+  
+  .vz-badge-container .badge {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .vz-badge-container {
+    max-width: 160px;
+  }
+}
+
+/* Filter Buttons Container */
+.vz-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.vz-filter-buttons button {
+  flex: 0 1 auto;
+  min-width: 140px;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 2px solid rgba(116, 68, 253, 0.3);
+  background: transparent;
+  color: #7444FD;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.vz-filter-buttons button:hover {
+  border-color: #7444FD;
+  background: rgba(116, 68, 253, 0.1);
+  transform: translateY(-2px);
+}
+
+.vz-filter-buttons button.active {
+  background: #7444FD;
+  color: white;
+  border-color: #7444FD;
+  box-shadow: 0 4px 12px rgba(116, 68, 253, 0.3);
+}
+
+@media (max-width: 768px) {
+  .vz-filter-buttons {
+    gap: 8px;
+    padding: 0 10px;
+  }
+  
+  .vz-filter-buttons button {
+    min-width: 110px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .vz-filter-buttons {
+    gap: 6px;
+    justify-content: stretch;
+  }
+  
+  .vz-filter-buttons button {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 0;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Summary Alert Responsive */
+.alert-info {
+  font-size: 15px;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+
+@media (max-width: 576px) {
+  .alert-info {
+    font-size: 14px;
+    padding: 12px 15px;
+    text-align: center;
+  }
+  
+  .alert-info strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+}
+
+/* Section Padding Mobile Optimization */
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  
+  .section-padding h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  
+  .section-padding .text {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-padding {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .section-padding h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .section-padding .text {
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+/* PDF Download Button Responsive */
+.btn-sm {
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+@media (max-width: 576px) {
+  .btn-sm {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+  
+  .btn-sm i {
+    font-size: 12px;
+  }
+}
+
+/* Keyboard Focus Enhancements */
+.vz-filter-buttons button:focus-visible {
+  outline: 3px solid rgba(116, 68, 253, 0.5);
+  outline-offset: 2px;
+}
+
+.table tbody tr:focus-within {
+  background-color: rgba(116, 68, 253, 0.05);
+  outline: 2px solid rgba(116, 68, 253, 0.3);
+}
+
+.btn-sm:focus-visible {
+  outline: 2px solid #7444FD;
+  outline-offset: 2px;
+}
+
 /* Counter Area */
 .counter-item {
   padding: 20px;

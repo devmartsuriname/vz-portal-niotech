@@ -69,7 +69,7 @@ const DocumentenLijsten = () => {
 
           <div className="row mb-4">
             <div className="col-12">
-              <div className="btn-group flex-wrap" role="group" aria-label="Filter documenten">
+              <div className="vz-filter-buttons" role="group" aria-label="Filter documenten">
                 {filterOptions.map(option => (
                   <button
                     key={option.value}
@@ -139,11 +139,13 @@ const DocumentenLijsten = () => {
                               <td><strong>{doc.name}</strong></td>
                               <td>{doc.description || '-'}</td>
                               <td>
-                                {doc.allowed_formats.map((format, idx) => (
-                                  <span key={idx} className="badge bg-info me-1">
-                                    {format.toUpperCase()}
-                                  </span>
-                                ))}
+                                <div className="vz-badge-container">
+                                  {doc.allowed_formats.map((format, idx) => (
+                                    <span key={idx} className="badge bg-info">
+                                      {format.toUpperCase()}
+                                    </span>
+                                  ))}
+                                </div>
                               </td>
                               <td>{doc.max_file_size_mb} MB</td>
                               <td>
@@ -154,11 +156,13 @@ const DocumentenLijsten = () => {
                                 )}
                               </td>
                               <td>
-                                {doc.application_types.map((type, idx) => (
-                                  <span key={idx} className="badge bg-secondary me-1 mb-1">
-                                    {type}
-                                  </span>
-                                ))}
+                                <div className="vz-badge-container">
+                                  {doc.application_types.map((type, idx) => (
+                                    <span key={idx} className="badge bg-secondary">
+                                      {type}
+                                    </span>
+                                  ))}
+                                </div>
                               </td>
                               <td>
                                 {checklistUrl ? (
