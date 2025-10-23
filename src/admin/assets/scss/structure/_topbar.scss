@@ -171,16 +171,16 @@
 
           .topbar-item {
                .topbar-button {
-                    color: var(--#{$prefix}light);
+                    color: #afb9cf;
                     
                     i {
-                         color: var(--#{$prefix}light) !important;
+                         color: #afb9cf !important;
                          font-family: 'boxicons' !important;
                     }
 
                     // For IconifyIcon (SVG elements) in dark mode
                     svg {
-                         color: var(--#{$prefix}light) !important;
+                         color: #afb9cf !important;
                     }
 
                     &.show,
