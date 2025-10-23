@@ -67,9 +67,20 @@
                padding: $btn-padding-y $btn-padding-y;
                position: relative;
                box-shadow: none;
+               min-width: 40px;
+               min-height: 40px;
+               display: inline-flex;
+               align-items: center;
+               justify-content: center;
 
                i {
                     color: $topbar-item-color;
+                    display: inline-block;
+                    font-family: 'boxicons' !important;
+                    font-size: 24px;
+                    line-height: 1;
+                    font-weight: normal;
+                    font-style: normal;
                }
 
                &.show,
@@ -146,8 +157,11 @@
 
           .topbar-item {
                .topbar-button {
+                    color: var(--#{$prefix}light);
+                    
                     i {
-                         color: var(--#{$prefix}light);
+                         color: var(--#{$prefix}light) !important;
+                         font-family: 'boxicons' !important;
                     }
 
                     &.show,
@@ -155,7 +169,7 @@
                     &:active,
                     &:hover {
                          i {
-                              color: $primary;
+                              color: $primary !important;
                          }
                     }
                }
