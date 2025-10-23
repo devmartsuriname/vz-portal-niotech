@@ -1,0 +1,256 @@
+/**
+ * Utility Classes
+ * Vreemdelingenzaken Suriname Portal
+ */
+
+/* Spacing Utilities */
+.section-padding {
+  padding: var(--space-32) 0;
+}
+
+.section-padding1 {
+  padding: 12.5rem 0 6.875rem;
+}
+
+.section-padding2 {
+  padding: 6.875rem 0 16.875rem;
+}
+
+.inner-section-padding {
+  padding: 7.5rem 0;
+}
+
+/* Responsive Spacing */
+@media (max-width: 1199px) {
+  .section-padding {
+    padding: var(--space-24) 0;
+  }
+  
+  .section-padding1 {
+    padding: 11.25rem 0 5.625rem;
+  }
+  
+  .section-padding2 {
+    padding: 5.625rem 0 15rem;
+  }
+  
+  .inner-section-padding {
+    padding: var(--space-24) 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .section-padding {
+    padding: var(--space-20) 0;
+  }
+  
+  .section-padding1 {
+    padding: 10.625rem 0 5rem;
+  }
+  
+  .section-padding2 {
+    padding: 5rem 0 14.375rem;
+  }
+  
+  .inner-section-padding {
+    padding: 5.625rem 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .section-padding {
+    padding: var(--space-16) 0;
+  }
+  
+  .section-padding2 {
+    padding: 5rem 0 11.875rem;
+  }
+  
+  .inner-section-padding {
+    padding: 5rem 0;
+  }
+}
+
+/* Background utilities */
+.background-image,
+[data-bg-src] {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* Mask content */
+.mask-content {
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: cover;
+  -webkit-mask-size: cover;
+  mask-position: center center;
+  -webkit-mask-position: center center;
+  width: 100%;
+}
+
+/* Display utilities */
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+/* Flex utilities */
+.align-items-center {
+  align-items: center !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+/* Visibility */
+.visible {
+  visibility: visible !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+/* Overflow */
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+
+/* Position */
+.position-relative {
+  position: relative !important;
+}
+
+.position-absolute {
+  position: absolute !important;
+}
+
+.position-fixed {
+  position: fixed !important;
+}
+
+/* Shadow utilities */
+.shadow-sm {
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.shadow {
+  box-shadow: var(--shadow-md) !important;
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* Border radius utilities */
+.rounded {
+  border-radius: var(--radius-md) !important;
+}
+
+.rounded-lg {
+  border-radius: var(--radius-lg) !important;
+}
+
+.rounded-full {
+  border-radius: var(--radius-full) !important;
+}
+
+/* Responsive utilities */
+@media (min-width: 768px) {
+  .d-md-none {
+    display: none !important;
+  }
+  
+  .d-md-block {
+    display: block !important;
+  }
+  
+  .d-md-flex {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .d-mobile-none {
+    display: none !important;
+  }
+}
+
+/* Container */
+.container {
+  width: 100%;
+  padding-right: var(--space-4);
+  padding-left: var(--space-4);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: var(--container-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: var(--container-lg);
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: var(--container-2xl);
+  }
+}
+
+/* Animation utilities */
+.hover-scale {
+  transition: var(--transition-normal);
+}
+
+.hover-scale:hover {
+  transform: translateY(-0.5rem);
+}
+
+.card-hover-lift {
+  transition: var(--transition-normal);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: var(--shadow-xl);
+}

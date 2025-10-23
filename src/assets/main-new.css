@@ -1,0 +1,141 @@
+/*-----------------------------------------------------------------
+Theme Name: Niotech (Vreemdelingenzaken Suriname Portal)
+Author: Themeservices / Devmart Suriname
+Version: 2.0.0 - Modular
+Description: Modular CSS Architecture for Vreemdelingenzaken Portal
+-----------------------------------------------------------------*/
+
+/* ========================================
+   IMPORT ORDER (CRITICAL)
+   ======================================== */
+
+/* 1. Design Tokens (Variables & Design System) */
+@import url('tokens.css');
+
+/* 2. Base Styles (Reset & Foundation) */
+@import url('base/reset.css');
+@import url('base/typography.css');
+@import url('base/utilities.css');
+
+/* 3. Layout Components */
+@import url('layout/header.css');
+@import url('layout/footer.css');
+@import url('layout/breadcrumb.css');
+
+/* 4. Reusable Components */
+@import url('components/buttons.css');
+@import url('components/forms.css');
+@import url('components/cards.css');
+@import url('components/tables.css');
+@import url('components/accordion.css');
+@import url('components/badges.css');
+@import url('components/navigation.css');
+
+/* ========================================
+   LEGACY STYLES (To be migrated)
+   Import from original main.css for now
+   ======================================== */
+
+/* Temporarily import remaining legacy styles */
+/* TODO: Extract and modularize these sections:
+   - Hero sections
+   - Service sections  
+   - Blog sections
+   - Team sections
+   - Pricing sections
+   - CTA sections
+   - About sections
+   - Contact sections
+   - FAQ page styles
+   - Wizard/form specific styles
+*/
+
+/* ========================================
+   GLOBAL OVERRIDES & PATCHES
+   ======================================== */
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Grid system (Bootstrap-compatible) */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: calc(var(--space-4) * -1);
+  margin-left: calc(var(--space-4) * -1);
+}
+
+.row > * {
+  padding-right: var(--space-4);
+  padding-left: var(--space-4);
+}
+
+/* Column system */
+.col,
+[class*="col-"] {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+/* Standard breakpoint columns */
+@media (min-width: 576px) {
+  .col-sm-6 { width: 50%; }
+  .col-sm-12 { width: 100%; }
+}
+
+@media (min-width: 768px) {
+  .col-md-4 { width: 33.333333%; }
+  .col-md-6 { width: 50%; }
+  .col-md-8 { width: 66.666667%; }
+  .col-md-12 { width: 100%; }
+}
+
+@media (min-width: 992px) {
+  .col-lg-3 { width: 25%; }
+  .col-lg-4 { width: 33.333333%; }
+  .col-lg-6 { width: 50%; }
+  .col-lg-8 { width: 66.666667%; }
+  .col-lg-9 { width: 75%; }
+  .col-lg-12 { width: 100%; }
+}
+
+@media (min-width: 1200px) {
+  .col-xl-3 { width: 25%; }
+  .col-xl-4 { width: 33.333333%; }
+  .col-xl-6 { width: 50%; }
+  .col-xl-8 { width: 66.666667%; }
+  .col-xl-12 { width: 100%; }
+}
+
+/* Spacing helpers */
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-5 { margin-bottom: var(--space-5); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
+.py-5 { padding-top: var(--space-5); padding-bottom: var(--space-5); }
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .cs_site_header,
+  .footer-section,
+  .scroll-to-top {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+}

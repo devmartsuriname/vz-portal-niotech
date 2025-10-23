@@ -1,0 +1,216 @@
+/**
+ * Navigation Components
+ * Vreemdelingenzaken Suriname Portal
+ */
+
+/* Main navigation */
+.cs_nav {
+  position: relative;
+}
+
+.cs_nav_list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cs_nav_list > li {
+  position: relative;
+}
+
+.cs_nav_list > li > a {
+  display: block;
+  padding: var(--space-3) 0;
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: hsl(var(--vz-text-primary));
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.cs_nav_list > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: hsl(var(--vz-primary));
+  transition: width var(--duration-fast) var(--ease-smooth);
+}
+
+.cs_nav_list > li > a:hover::after,
+.cs_nav_list > li.active > a::after {
+  width: 100%;
+}
+
+.cs_nav_list > li > a:hover {
+  color: hsl(var(--vz-primary));
+}
+
+/* Dropdown menus */
+.menu-item-has-children {
+  position: relative;
+}
+
+.menu-item-has-children > a::before {
+  content: '\f107';
+  font-family: 'bootstrap-icons';
+  margin-left: var(--space-1);
+  font-size: var(--text-xs);
+  transition: var(--transition-fast);
+}
+
+.menu-item-has-children:hover > a::before {
+  transform: rotate(180deg);
+}
+
+/* Dropdown container */
+.cs_nav_list .menu-item-has-children > ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 230px;
+  background-color: hsl(var(--vz-white));
+  border-top: 2px solid hsl(var(--vz-primary));
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3) 0;
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem);
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+              visibility var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-smooth);
+  z-index: var(--z-dropdown);
+  list-style: none;
+  margin: 0;
+}
+
+.menu-item-has-children:hover > ul {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown items */
+.cs_nav_list .menu-item-has-children > ul li {
+  margin: 0;
+}
+
+.cs_nav_list .menu-item-has-children > ul li a {
+  display: block;
+  padding: var(--space-2) var(--space-5);
+  color: hsl(var(--vz-text-primary));
+  font-size: var(--text-sm);
+  transition: var(--transition-fast);
+}
+
+.cs_nav_list .menu-item-has-children > ul li a:hover {
+  background-color: hsla(var(--vz-primary), 0.05);
+  color: hsl(var(--vz-primary));
+  padding-left: var(--space-6);
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, hsl(var(--vz-primary)) 0%, hsl(276, 67%, 65%) 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-normal);
+  z-index: var(--z-fixed);
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--glow-primary-lg);
+  background: linear-gradient(135deg, hsl(276, 67%, 65%) 0%, hsl(var(--vz-primary)) 100%);
+}
+
+.scroll-to-top:active {
+  transform: translateY(-3px);
+}
+
+/* Responsive navigation */
+@media (max-width: 991px) {
+  .cs_nav_list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+  }
+  
+  .cs_nav_list > li {
+    width: 100%;
+    border-bottom: 1px solid hsl(var(--vz-border-light));
+  }
+  
+  .cs_nav_list > li > a {
+    padding: var(--space-4);
+    width: 100%;
+  }
+  
+  .cs_nav_list > li > a::after {
+    display: none;
+  }
+  
+  /* Mobile dropdown */
+  .cs_nav_list .menu-item-has-children > ul {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: hsl(var(--vz-bg-surface));
+    padding: 0;
+    transform: none;
+    display: none;
+    border-radius: 0;
+  }
+  
+  .menu-item-has-children.mobile-open > ul {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .cs_nav_list .menu-item-has-children > ul li a {
+    padding: var(--space-3) var(--space-6);
+  }
+}
+
+@media (max-width: 767px) {
+  .scroll-to-top {
+    bottom: var(--space-4);
+    right: var(--space-4);
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Keyboard navigation */
+.cs_nav_list a:focus-visible {
+  outline: 2px solid hsl(var(--vz-primary));
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}

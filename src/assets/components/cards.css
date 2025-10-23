@@ -1,0 +1,180 @@
+/**
+ * Card Components
+ * Vreemdelingenzaken Suriname Portal
+ */
+
+/* Base card styles */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: hsl(var(--vz-white));
+  background-clip: border-box;
+  border: 1px solid hsl(var(--vz-border-light));
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Card sections */
+.card-header {
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: 0;
+  background-color: hsl(var(--vz-bg-surface));
+  border-bottom: 1px solid hsl(var(--vz-border-light));
+  border-top-left-radius: var(--radius-card);
+  border-top-right-radius: var(--radius-card);
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: var(--space-6);
+}
+
+.card-footer {
+  padding: var(--space-5) var(--space-6);
+  background-color: hsl(var(--vz-bg-surface));
+  border-top: 1px solid hsl(var(--vz-border-light));
+  border-bottom-left-radius: var(--radius-card);
+  border-bottom-right-radius: var(--radius-card);
+}
+
+/* Card title */
+.card-title {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: hsl(var(--vz-text-primary));
+}
+
+/* Card subtitle */
+.card-subtitle {
+  margin-top: calc(var(--space-3) * -1);
+  margin-bottom: 0;
+  color: hsl(var(--vz-text-secondary));
+}
+
+/* Card text */
+.card-text {
+  color: hsl(var(--vz-text-secondary));
+  line-height: var(--leading-relaxed);
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Card image */
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: 100%;
+}
+
+.card-img-top {
+  border-top-left-radius: var(--radius-card);
+  border-top-right-radius: var(--radius-card);
+}
+
+.card-img-bottom {
+  border-bottom-left-radius: var(--radius-card);
+  border-bottom-right-radius: var(--radius-card);
+}
+
+/* Card hover lift effect */
+.card-hover-lift {
+  transition: transform var(--duration-normal) var(--ease-smooth),
+              box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Service cards */
+.service-box {
+  padding: var(--space-8);
+  background: hsl(var(--vz-white));
+  border: 1px solid hsl(var(--vz-border-light));
+  border-radius: var(--radius-card);
+  transition: var(--transition-normal);
+}
+
+.service-box:hover {
+  border-color: hsl(var(--vz-primary));
+  background: hsl(var(--vz-bg-surface));
+  transform: translateY(-0.25rem);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Blog cards */
+.blog-card {
+  background: hsl(var(--vz-white));
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: var(--transition-normal);
+}
+
+.blog-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-0.25rem);
+}
+
+.blog-card .thumb {
+  overflow: hidden;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+.blog-card .thumb img {
+  width: 100%;
+  transition: var(--transition-slow);
+}
+
+.blog-card:hover .thumb img {
+  transform: scale(1.05);
+}
+
+/* Permit cards (mobile) */
+.permit-card {
+  background: hsl(var(--vz-white));
+  border: 1px solid hsl(var(--vz-border-light));
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-3);
+  transition: var(--transition-fast);
+}
+
+.permit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.permit-card .badge {
+  font-size: var(--text-xs);
+  padding: 0.35rem 0.65rem;
+}
+
+.permit-card .permit-details small {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: hsl(var(--vz-text-muted));
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .card-body {
+    padding: var(--space-4);
+  }
+  
+  .service-box {
+    padding: var(--space-5);
+  }
+}

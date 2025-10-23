@@ -1,0 +1,118 @@
+/**
+ * Base Reset Styles
+ * Vreemdelingenzaken Suriname Portal
+ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Remove default margin and padding */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: "Nunito", sans-serif;
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: hsl(var(--vz-text-secondary));
+  background-color: hsl(var(--vz-bg-body));
+  overflow-x: hidden;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Remove default button styles */
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Form elements inherit font */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Input focus */
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  color: hsl(0, 0%, 46%);
+}
+
+/* Link styles */
+a {
+  text-decoration: none;
+  outline: none !important;
+  cursor: pointer;
+  color: hsl(var(--vz-text-primary));
+  transition: var(--transition-normal);
+}
+
+a:hover {
+  color: hsl(var(--vz-primary)) !important;
+}
+
+/* Paragraph */
+p {
+  transition: var(--transition-normal);
+}
+
+span {
+  transition: var(--transition-normal);
+}

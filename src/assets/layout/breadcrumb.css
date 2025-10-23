@@ -1,0 +1,142 @@
+/**
+ * Breadcrumb Layout
+ * Vreemdelingenzaken Suriname Portal
+ */
+
+/* Breadcrumb section */
+.breadcumb-section {
+  position: relative;
+  padding: var(--space-32) 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.breadcumb-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    hsla(var(--vz-primary), 0.8) 0%,
+    hsla(276, 67%, 65%, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+/* Breadcrumb content */
+.breadcumb-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: hsl(var(--vz-white));
+}
+
+.breadcumb-title {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-extrabold);
+  color: hsl(var(--vz-white));
+  margin-bottom: var(--space-6);
+  text-shadow: 0 2px 10px hsla(0, 0%, 0%, 0.3);
+}
+
+/* Breadcrumb navigation */
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '/';
+  color: hsla(var(--vz-white), 0.7);
+}
+
+.breadcrumb-link {
+  color: hsla(var(--vz-white), 0.9);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.breadcrumb-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: hsl(var(--vz-white));
+  transition: width var(--duration-fast) var(--ease-smooth);
+}
+
+.breadcrumb-link:hover::after {
+  width: 100%;
+}
+
+.breadcrumb-current {
+  color: hsl(var(--vz-white));
+  font-weight: var(--font-semibold);
+}
+
+/* Icon in breadcrumb */
+.breadcrumb i {
+  font-size: var(--text-sm);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .breadcumb-section {
+    padding: var(--space-24) 0;
+  }
+  
+  .breadcumb-title {
+    font-size: var(--text-4xl);
+  }
+  
+  .breadcrumb {
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 767px) {
+  .breadcumb-section {
+    padding: var(--space-20) 0;
+  }
+  
+  .breadcumb-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+  
+  .breadcrumb {
+    font-size: var(--text-sm);
+    gap: var(--space-2);
+  }
+  
+  .breadcrumb-item + .breadcrumb-item::before {
+    font-size: var(--text-xs);
+  }
+}
+
+@media (max-width: 575px) {
+  .breadcumb-section {
+    padding: var(--space-16) 0;
+  }
+  
+  .breadcumb-title {
+    font-size: var(--text-2xl);
+  }
+}

@@ -1,0 +1,212 @@
+/**
+ * Footer Layout
+ * Vreemdelingenzaken Suriname Portal
+ */
+
+/* Footer base styles */
+.footer-section {
+  background-color: hsl(var(--vz-bg-secondary));
+  padding: var(--space-24) 0 var(--space-8);
+  position: relative;
+}
+
+/* Footer widgets */
+.footer-widgets-wrapper {
+  margin-bottom: var(--space-16);
+}
+
+.single-footer-widget {
+  margin-bottom: var(--space-8);
+}
+
+/* Footer widget headings */
+.single-footer-widget .widget-head h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: hsl(var(--vz-text-primary));
+  margin-bottom: var(--space-6);
+  position: relative;
+  padding-bottom: var(--space-3);
+}
+
+.single-footer-widget .widget-head h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background-color: hsl(var(--vz-primary));
+}
+
+/* Footer lists */
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: var(--space-3);
+}
+
+.footer-list li a {
+  color: hsl(var(--vz-text-secondary));
+  transition: var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-list li a:hover {
+  color: hsl(var(--vz-primary));
+  transform: translateX(0.25rem);
+}
+
+.footer-list li i {
+  margin-right: var(--space-2);
+  color: hsl(var(--vz-primary));
+}
+
+/* Footer contact info */
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.footer-contact-item i {
+  color: hsl(var(--vz-primary));
+  font-size: var(--text-lg);
+  margin-top: 0.25rem;
+}
+
+.footer-contact-item a {
+  color: hsl(var(--vz-text-secondary));
+  transition: var(--transition-fast);
+}
+
+.footer-contact-item a:hover {
+  color: hsl(var(--vz-primary));
+}
+
+/* Footer social */
+.footer-social {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, hsl(var(--vz-primary)) 0%, hsl(276, 67%, 65%) 100%);
+  color: hsl(var(--vz-white));
+  transition: var(--transition-fast);
+}
+
+.footer-social a:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Footer bottom */
+.footer-bottom {
+  padding-top: var(--space-8);
+  border-top: 1px solid hsl(var(--vz-border-light));
+}
+
+.footer-bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.copyright-text {
+  color: hsl(var(--vz-text-secondary));
+  font-size: var(--text-sm);
+}
+
+.copyright-text a {
+  color: hsl(var(--vz-primary));
+  font-weight: var(--font-medium);
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+}
+
+.footer-bottom-links a {
+  color: hsl(var(--vz-text-secondary));
+  font-size: var(--text-sm);
+  transition: var(--transition-fast);
+}
+
+.footer-bottom-links a:hover {
+  color: hsl(var(--vz-primary));
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .footer-section {
+    padding: var(--space-16) 0 var(--space-6);
+  }
+  
+  .footer-widgets-wrapper {
+    text-align: center;
+  }
+  
+  .single-footer-widget .widget-head h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .footer-list {
+    text-align: center;
+  }
+  
+  .footer-contact-info {
+    align-items: center;
+  }
+  
+  .footer-contact-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575px) {
+  .footer-section {
+    padding: var(--space-12) 0 var(--space-4);
+  }
+  
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+}
