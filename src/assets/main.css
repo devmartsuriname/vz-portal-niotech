@@ -1,11 +1,15 @@
 /*-----------------------------------------------------------------
-Theme Name: Niotech
+Theme Name: Niotech (Vreemdelingenzaken Suriname Portal)
 Author: Themeservices
 Author URI: https://themeforest.net/user/themeservices
 Version: 1.0.0 
-Description: Niotech - sass, App Landing Reactjs Template <
+Description: Niotech - sass, App Landing Reactjs Template
+-----------------------------------------------------------------*/
 
--------------------------------------------------------------------
+/* Import Design Token System */
+@import url('tokens.css');
+
+/*-----------------------------------------------------------------
  CSS TABLE OF CONTENTS
 -------------------------------------------------------------------
 
@@ -54,25 +58,26 @@ Description: Niotech - sass, App Landing Reactjs Template <
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 :root {
-  --body: #fff;
-  --black: #000;
-  --white: #fff;
-  --theme: #7444FD;
-  --theme2: #F9F3EF;
-  --theme3: #FAF8FF;
-  --title: #282C32;
-  --header: #282C32;
-  --orange: #e78c45;
-  --text: #858585;
-  --text2: #cbcbcb;
-  --border: #E6E6E6;
-  --border-2: #F1F1F1;
-  --border-3: #D8D8D8;
-  --border-4: #E0E0E0;
-  --border-5: #565656;
-  --bg-1: #161921;
-  --bg-2: #F6F7FF;
-  --box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.06);
+  /* Legacy variable mappings - migrate gradually to new token system */
+  --body: hsl(var(--vz-white));
+  --black: hsl(0, 0%, 0%);
+  --white: hsl(var(--vz-white));
+  --theme: hsl(var(--vz-primary));
+  --theme2: hsl(var(--vz-secondary));
+  --theme3: hsl(276, 100%, 98%);
+  --title: hsl(var(--vz-black));
+  --header: hsl(var(--vz-black));
+  --orange: hsl(24, 71%, 60%);
+  --text: hsl(var(--vz-text-secondary));
+  --text2: hsl(0, 0%, 80%);
+  --border: hsl(var(--vz-border-light));
+  --border-2: hsl(0, 0%, 95%);
+  --border-3: hsl(0, 0%, 85%);
+  --border-4: hsl(0, 0%, 88%);
+  --border-5: hsl(0, 0%, 34%);
+  --bg-1: hsl(220, 18%, 11%);
+  --bg-2: hsl(231, 100%, 98%);
+  --box-shadow: var(--shadow-md);
 }
 
 /* 03.Typography */
@@ -586,8 +591,8 @@ input[type=radio]:checked ~ label::before {
   fill: var(--white);
 }
 .theme-btn:hover {
-  color: var(--white) !important;
-  box-shadow: 0 8px 24px rgba(116, 68, 253, 0.35);
+  color: hsl(var(--vz-white)) !important;
+  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 .theme-btn:hover:before {
@@ -5301,7 +5306,7 @@ input.main-search-input::placeholder {
   content: "";
   width: 25px;
   height: 2px;
-  background-color: #7444FD;
+  background-color: hsl(var(--vz-primary));
 }
 .footer-widgets-wrapper .single-footer-widget .widget-head h3::after {
   position: absolute;
@@ -9464,7 +9469,7 @@ input.main-search-input::placeholder {
   padding: 10px 16px;
   border-radius: 100px;
   border: 1px solid rgba(30, 41, 46, 0.15);
-  color: var(--Primary-Font-Color, #282C32);
+  color: hsl(var(--vz-text-primary));
   font-family: "Urbanist", sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -9687,7 +9692,7 @@ input.main-search-input::placeholder {
   margin-top: 60px;
 }
 .project-details-wapper .single-desc .single-desc-title {
-  color: #282C32;
+  color: hsl(var(--vz-text-primary));
   font-family: "Urbanist", sans-serif;
   font-size: 32px;
   font-style: normal;
@@ -11441,9 +11446,9 @@ textarea.is-invalid {
     width: 230px;
     background-color:#fff;
     position: absolute;
-    border-top: 2px solid #7444fd;
-    -webkit-box-shadow: 0px 1px 2px 0px rgba(2, 0, 181, 0.1);
-    box-shadow: 0px 1px 2px 0px rgba(2, 0, 181, 0.1);
+    border-top: 2px solid hsl(var(--vz-primary));
+    -webkit-box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm);
     padding: 10px 0;
     z-index: 1000;
     opacity: 0;
@@ -11976,8 +11981,8 @@ textarea.is-invalid {
 }
 
 .service-box.style3:hover {
-  border-color: #7444FD;
-  background: #f8f9fa;
+  border-color: hsl(var(--vz-primary));
+  background: hsl(var(--vz-bg-surface));
 }
 
 /* Table Responsive Styles */
@@ -11988,10 +11993,10 @@ textarea.is-invalid {
 }
 
 .table th {
-  background: #7444FD;
+  background: hsl(var(--vz-primary));
   color: white;
-  font-weight: 600;
-  padding: 15px;
+  font-weight: var(--font-semibold);
+  padding: var(--space-4);
   border: none;
 }
 
@@ -12094,8 +12099,8 @@ textarea.is-invalid {
 }
 
 .badge.bg-primary::before {
-  background: #7444FD;
-  box-shadow: 0 0 8px rgba(116, 68, 253, 0.4);
+  background: hsl(var(--vz-primary));
+  box-shadow: var(--glow-primary);
 }
 
 .badge.bg-warning::before {
@@ -12291,7 +12296,7 @@ textarea.is-invalid {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7444FD 0%, #AC60E5 100%);
+  background: linear-gradient(135deg, hsl(var(--vz-primary)) 0%, hsl(276, 67%, 65%) 100%);
   color: white;
   border: none;
   cursor: pointer;
@@ -12305,8 +12310,8 @@ textarea.is-invalid {
 
 .scroll-to-top:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(116, 68, 253, 0.6);
-  background: linear-gradient(135deg, #AC60E5 0%, #7444FD 100%);
+  box-shadow: var(--glow-primary-lg);
+  background: linear-gradient(135deg, hsl(276, 67%, 65%) 0%, hsl(var(--vz-primary)) 100%);
 }
 
 .scroll-to-top:active {
@@ -12372,28 +12377,28 @@ select:focus,
 .form-clt input:focus,
 .form-clt textarea:focus {
   outline: none;
-  border-color: #7444FD !important;
-  box-shadow: 0 0 0 3px rgba(116, 68, 253, 0.15) !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-color: hsl(var(--vz-primary)) !important;
+  box-shadow: var(--focus-ring) !important;
+  transition: var(--transition-fast);
 }
 
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #7444FD;
-  outline-offset: 2px;
+  outline: 2px solid hsl(var(--vz-primary));
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* Button Group Focus */
 .btn:focus,
 .theme-btn:focus {
-  outline: 2px solid #7444FD;
+  outline: 2px solid hsl(var(--vz-primary));
   outline-offset: 3px;
 }
 
 .btn:focus-visible,
 .theme-btn:focus-visible {
-  outline: 2px solid #7444FD;
+  outline: 2px solid hsl(var(--vz-primary));
   outline-offset: 3px;
 }
 
@@ -12411,9 +12416,9 @@ select:focus-visible {
 }
 
 .accordion-button:not(.collapsed) {
-  background: linear-gradient(135deg, #7444FD 0%, #AC60E5 100%);
-  color: var(--white);
-  box-shadow: 0 2px 12px rgba(116, 68, 253, 0.2);
+  background: linear-gradient(135deg, hsl(var(--vz-primary)) 0%, hsl(276, 67%, 65%) 100%);
+  color: hsl(var(--vz-white));
+  box-shadow: var(--shadow-lg);
 }
 
 .accordion-button::after {
@@ -12577,8 +12582,8 @@ select:focus-visible {
     content: attr(data-label);
     display: block;
     font-weight: 600;
-    color: #7444FD;
-    font-size: 12px;
+    color: hsl(var(--vz-primary));
+    font-size: var(--text-xs);
     margin-bottom: 4px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -12720,27 +12725,27 @@ select:focus-visible {
 .vz-filter-buttons button {
   flex: 0 1 auto;
   min-width: 140px;
-  padding: 10px 20px;
-  font-size: 15px;
-  border-radius: 8px;
-  border: 2px solid rgba(116, 68, 253, 0.3);
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--text-base);
+  border-radius: var(--radius-lg);
+  border: 2px solid hsla(var(--vz-primary), 0.3);
   background: transparent;
-  color: #7444FD;
-  transition: all 0.3s ease;
-  font-weight: 500;
+  color: hsl(var(--vz-primary));
+  transition: var(--transition-normal);
+  font-weight: var(--font-medium);
 }
 
 .vz-filter-buttons button:hover {
-  border-color: #7444FD;
-  background: rgba(116, 68, 253, 0.1);
+  border-color: hsl(var(--vz-primary));
+  background: hsla(var(--vz-primary), 0.1);
   transform: translateY(-2px);
 }
 
 .vz-filter-buttons button.active {
-  background: #7444FD;
+  background: hsl(var(--vz-primary));
   color: white !important;
-  border-color: #7444FD;
-  box-shadow: 0 4px 12px rgba(116, 68, 253, 0.3);
+  border-color: hsl(var(--vz-primary));
+  box-shadow: var(--shadow-lg);
 }
 
 @media (max-width: 768px) {
@@ -12853,8 +12858,8 @@ select:focus-visible {
 }
 
 .btn-sm:focus-visible {
-  outline: 2px solid #7444FD;
-  outline-offset: 2px;
+  outline: 2px solid hsl(var(--vz-primary));
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* Counter Area */
@@ -12901,12 +12906,12 @@ select:focus-visible {
 }
 
 .cs_sidebar_links a:hover {
-  color: #7444FD;
+  color: hsl(var(--vz-primary));
 }
 
 .cs_sidebar_links i {
-  margin-right: 10px;
-  color: #7444FD;
+  margin-right: var(--space-2);
+  color: hsl(var(--vz-primary));
 }
 
 .cs_cta_card {
@@ -12921,8 +12926,8 @@ select:focus-visible {
 /* Form Enhancements */
 .form-control:focus,
 .form-select:focus {
-  border-color: #7444FD;
-  box-shadow: 0 0 0 0.2rem rgba(116, 68, 253, 0.25);
+  border-color: hsl(var(--vz-primary));
+  box-shadow: 0 0 0 0.2rem hsla(var(--vz-primary), 0.25);
 }
 
 /* Alert Styles */

@@ -1,0 +1,252 @@
+/**
+ * Design Token System
+ * Vreemdelingenzaken Suriname Portal
+ * 
+ * This file defines the core design tokens for consistent styling across the application.
+ * All tokens use HSL color format and rem-based spacing for accessibility and scalability.
+ */
+
+:root {
+  /* ========================================
+     COLOR PALETTE
+     ======================================== */
+  
+  /* Primary Brand Colors */
+  --vz-primary: 276 89% 67%;           /* #7444FD - Main purple */
+  --vz-primary-dark: 276 89% 57%;      /* Darker variant */
+  --vz-primary-light: 276 89% 77%;     /* Lighter variant */
+  --vz-primary-glow: 276 100% 85%;     /* For glow effects */
+  
+  /* Secondary Colors */
+  --vz-secondary: 33 50% 96%;          /* #F9F3EF - Cream background */
+  --vz-secondary-dark: 33 50% 86%;     /* Darker variant */
+  
+  /* Neutral Colors */
+  --vz-white: 0 0% 100%;               /* #FFFFFF */
+  --vz-black: 214 18% 19%;             /* #282C32 - Title color */
+  --vz-gray-50: 0 0% 98%;              /* Very light gray */
+  --vz-gray-100: 0 0% 90%;             /* #E6E6E6 - Border color */
+  --vz-gray-200: 0 0% 85%;             /* Light gray */
+  --vz-gray-300: 0 0% 75%;             /* Medium light gray */
+  --vz-gray-400: 0 0% 65%;             /* Medium gray */
+  --vz-gray-500: 0 0% 52%;             /* #858585 - Text muted */
+  --vz-gray-600: 0 0% 42%;             /* Dark gray */
+  --vz-gray-700: 0 0% 32%;             /* Darker gray */
+  --vz-gray-800: 0 0% 22%;             /* Very dark gray */
+  --vz-gray-900: 0 0% 12%;             /* Almost black */
+  
+  /* Semantic Colors */
+  --vz-success: 142 71% 45%;           /* Green for success states */
+  --vz-warning: 45 93% 47%;            /* Yellow/orange for warnings */
+  --vz-error: 0 72% 51%;               /* Red for errors */
+  --vz-info: 199 89% 48%;              /* Blue for info */
+  
+  /* Text Colors */
+  --vz-text-primary: var(--vz-black);
+  --vz-text-secondary: var(--vz-gray-500);
+  --vz-text-muted: var(--vz-gray-400);
+  --vz-text-inverse: var(--vz-white);
+  
+  /* Border Colors */
+  --vz-border-light: var(--vz-gray-100);
+  --vz-border-medium: var(--vz-gray-300);
+  --vz-border-dark: var(--vz-gray-500);
+  
+  /* Background Colors */
+  --vz-bg-body: var(--vz-white);
+  --vz-bg-surface: var(--vz-gray-50);
+  --vz-bg-secondary: var(--vz-secondary);
+  
+  /* ========================================
+     SPACING SCALE (rem-based)
+     ======================================== */
+  
+  --space-0: 0;
+  --space-1: 0.25rem;      /* 4px */
+  --space-2: 0.5rem;       /* 8px */
+  --space-3: 0.75rem;      /* 12px */
+  --space-4: 1rem;         /* 16px - base */
+  --space-5: 1.25rem;      /* 20px */
+  --space-6: 1.5rem;       /* 24px */
+  --space-7: 1.75rem;      /* 28px */
+  --space-8: 2rem;         /* 32px */
+  --space-10: 2.5rem;      /* 40px */
+  --space-12: 3rem;        /* 48px */
+  --space-14: 3.5rem;      /* 56px */
+  --space-16: 4rem;        /* 64px */
+  --space-20: 5rem;        /* 80px */
+  --space-24: 6rem;        /* 96px */
+  --space-28: 7rem;        /* 112px */
+  --space-32: 8rem;        /* 128px */
+  --space-40: 10rem;       /* 160px */
+  --space-48: 12rem;       /* 192px */
+  --space-56: 14rem;       /* 224px */
+  --space-64: 16rem;       /* 256px */
+  
+  /* Semantic Spacing Aliases */
+  --space-xs: var(--space-1);
+  --space-sm: var(--space-2);
+  --space-md: var(--space-4);
+  --space-lg: var(--space-6);
+  --space-xl: var(--space-8);
+  --space-2xl: var(--space-12);
+  --space-3xl: var(--space-16);
+  --space-4xl: var(--space-24);
+  
+  /* ========================================
+     BORDER RADIUS
+     ======================================== */
+  
+  --radius-none: 0;
+  --radius-xs: 0.125rem;   /* 2px */
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-md: 0.375rem;   /* 6px */
+  --radius-lg: 0.5rem;     /* 8px */
+  --radius-xl: 0.625rem;   /* 10px */
+  --radius-2xl: 0.75rem;   /* 12px */
+  --radius-3xl: 1rem;      /* 16px */
+  --radius-4xl: 1.25rem;   /* 20px */
+  --radius-full: 9999px;   /* Fully rounded */
+  
+  /* Semantic Radius Aliases */
+  --radius-button: var(--radius-xl);
+  --radius-card: var(--radius-4xl);
+  --radius-input: var(--radius-md);
+  
+  /* ========================================
+     TYPOGRAPHY SCALE
+     ======================================== */
+  
+  /* Font Sizes (rem-based) */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px - base */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+  --text-7xl: 4.5rem;      /* 72px */
+  
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+  
+  /* ========================================
+     SHADOWS
+     ======================================== */
+  
+  --shadow-xs: 0 1px 2px hsla(0, 0%, 0%, 0.05);
+  --shadow-sm: 0 1px 3px hsla(0, 0%, 0%, 0.1);
+  --shadow-md: 0 4px 6px hsla(0, 0%, 0%, 0.1);
+  --shadow-lg: 0 10px 20px hsla(276, 89%, 67%, 0.15);
+  --shadow-xl: 0 20px 40px hsla(276, 89%, 67%, 0.2);
+  --shadow-2xl: 0 25px 50px hsla(276, 89%, 67%, 0.25);
+  --shadow-inner: inset 0 2px 4px hsla(0, 0%, 0%, 0.06);
+  
+  /* Glow Effects */
+  --glow-primary: 0 0 20px hsla(276, 89%, 67%, 0.5);
+  --glow-primary-lg: 0 0 40px hsla(276, 89%, 67%, 0.6);
+  
+  /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+  
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-30: 30;
+  --z-40: 40;
+  --z-50: 50;
+  --z-auto: auto;
+  
+  /* Semantic Z-Index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  
+  /* ========================================
+     TRANSITIONS & ANIMATIONS
+     ======================================== */
+  
+  /* Durations */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  
+  /* Timing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Common Transitions */
+  --transition-fast: all var(--duration-fast) var(--ease-smooth);
+  --transition-normal: all var(--duration-normal) var(--ease-smooth);
+  --transition-slow: all var(--duration-slow) var(--ease-smooth);
+  
+  /* ========================================
+     BREAKPOINTS (for reference in CSS)
+     ======================================== */
+  
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
+  
+  /* ========================================
+     CONTAINER WIDTHS
+     ======================================== */
+  
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-2xl: 1320px;
+  
+  /* ========================================
+     MISC
+     ======================================== */
+  
+  --focus-ring: 0 0 0 3px hsla(276, 89%, 67%, 0.15);
+  --focus-ring-offset: 2px;
+}
+
+/* ========================================
+   DARK MODE OVERRIDES (if needed in future)
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode tokens can be added here when needed */
+  }
+}
