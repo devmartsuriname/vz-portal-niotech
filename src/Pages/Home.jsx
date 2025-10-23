@@ -7,9 +7,9 @@ import HowWork from "../Components/HowWork/HowWork";
 const BlogCarousel = lazy(() => import("../Components/Blog/BlogCarousel"));
 const Brand1 = lazy(() => import("../Components/Brand/Brand1"));
 const Choose1 = lazy(() => import("../Components/Choose/Choose1"));
-const Counter1 = lazy(() => import("../Components/Counter/Counter1"));
+
 const Cta1 = lazy(() => import("../Components/Cta/Cta1"));
-const Faq1 = lazy(() => import("../Components/Faq/Faq1"));
+
 const Feature1 = lazy(() => import("../Components/Feature/Feature1"));
 
 const Home = () => {
@@ -72,14 +72,6 @@ const Home = () => {
             
             <Suspense fallback={<div className="py-5"></div>}>
                 <Feature1></Feature1>
-            </Suspense>
-            
-            <Suspense fallback={<div className="py-5"></div>}>
-                <Counter1></Counter1>
-            </Suspense>
-            
-            <Suspense fallback={<div className="py-5"></div>}>
-                <Faq1></Faq1>
             </Suspense>
             
             <Suspense fallback={<div className="py-5"></div>}>
