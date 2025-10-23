@@ -12098,7 +12098,7 @@ textarea.is-invalid {
 
 .vz-filter-buttons button.active {
   background: #7444FD;
-  color: white;
+  color: white !important;
   border-color: #7444FD;
   box-shadow: 0 4px 12px rgba(116, 68, 253, 0.3);
 }

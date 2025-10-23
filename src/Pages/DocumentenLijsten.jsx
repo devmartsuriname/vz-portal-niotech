@@ -59,7 +59,7 @@ const DocumentenLijsten = () => {
       <div className="section-padding">
         <div className="container">
           <div className="row mb-4">
-            <div className="col-12">
+            <div className="col-12 text-center">
               <h2>Vereiste Documenten per Aanvraagtype</h2>
               <p className="text">
                 Bekijk alle documenten die u nodig heeft voor uw aanvraag. Selecteer een categorie om de lijst te filteren.
