@@ -88,7 +88,7 @@ const DocumentenLijsten = () => {
             <div className="col-12">
               {isLoading ? (
                 <div className="table-responsive">
-                  <table className="table table-striped">
+                  <table className="table">
                     <thead>
                       <tr>
                         <th>Document</th>
@@ -117,7 +117,7 @@ const DocumentenLijsten = () => {
                 </div>
               ) : (
                 <div className="table-responsive">
-                  <table className="table table-striped table-hover">
+                  <table className="table table-hover">
                     <thead>
                       <tr>
                         <th>Document</th>

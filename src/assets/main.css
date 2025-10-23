@@ -12012,7 +12012,7 @@ textarea.is-invalid {
   
   /* Style each row as a card */
   .table tbody tr {
-    background: white;
+    background: white !important;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -12021,7 +12021,14 @@ textarea.is-invalid {
     position: relative;
   }
   
+  /* Override Bootstrap striped and hover backgrounds */
+  .table tbody tr:nth-child(odd),
+  .table tbody tr:nth-child(even) {
+    background: white !important;
+  }
+  
   .table tbody tr:hover {
+    background: white !important;
     box-shadow: 0 4px 12px rgba(116, 68, 253, 0.15);
     transform: translateY(-2px);
     transition: all 0.3s ease;
