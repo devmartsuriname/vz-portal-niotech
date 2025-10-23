@@ -51,56 +51,83 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Loaded ${wizardRules.length} wizard rules`);
 
-    // Build evaluation path
-    const evaluationPath: string[] = [];
+    // Build fast lookup map for O(1) access to rules
+    const ruleMap = new Map<string, any>();
+    for (const r of wizardRules) {
+      ruleMap.set(r.question_key, r);
+    }
+
+    // Helper to normalize answer values (handles both string and array)
+    const normalizeAnswer = (value: string | string[]) =>
+      (Array.isArray(value) ? value[0] : value).toString().trim();
+
+    // Determine starting point for traversal (prefer 'application_type', else first answer)
+    let currentKey = answers.find(a => a.question_key === 'application_type')
+      ? 'application_type'
+      : (answers[0]?.question_key ?? null);
+
+    const visited = new Set<string>();
     let currentApplicationTypeId: string | null = null;
-    let foundTerminalQuestion = false;
+    const evaluationPath: string[] = [];
 
-    // Process answers sequentially based on wizard logic
-    for (const rule of wizardRules) {
-      const answer = answers.find((a) => a.question_key === rule.question_key);
+    console.log(`Starting traversal from: ${currentKey}`);
+
+    // Traverse the wizard path step by step following user's answers
+    while (currentKey && !visited.has(currentKey)) {
+      visited.add(currentKey);
+      const rule = ruleMap.get(currentKey);
       
-      if (!answer) {
-        continue;
-      }
-
-      evaluationPath.push(`${rule.question_key}:${JSON.stringify(answer.answer)}`);
-
-      // Check if this rule determines the application type (terminal question)
-      if (rule.result_application_type_id) {
-        currentApplicationTypeId = rule.result_application_type_id;
-        foundTerminalQuestion = true;
-        console.log(`✓ Terminal question found: ${rule.question_key}`);
-        console.log(`  Application Type ID: ${currentApplicationTypeId}`);
-        console.log(`  Answer provided: ${JSON.stringify(answer.answer)}`);
-        // Once we find the terminal question with result, we have our application type
+      if (!rule) {
+        console.warn(`Rule not found for key: ${currentKey}`);
         break;
       }
 
-      // Check next_question_map for conditional navigation
-      if (rule.next_question_map && typeof rule.next_question_map === "object") {
-        const answerValue = Array.isArray(answer.answer) ? answer.answer[0] : answer.answer;
-        const nextQuestionKey = (rule.next_question_map as Record<string, any>)[answerValue];
-        
-        if (nextQuestionKey) {
-          console.log(`Next question mapped: ${nextQuestionKey}`);
-          
-          // Check if the NEXT question is a terminal question (confirmation type)
-          const nextRule = wizardRules.find(r => r.question_key === nextQuestionKey);
-          if (nextRule?.result_application_type_id) {
-            currentApplicationTypeId = nextRule.result_application_type_id;
-            foundTerminalQuestion = true;
-            console.log(`✓ Terminal question reached via navigation: ${nextQuestionKey}`);
-            console.log(`  Application Type ID: ${currentApplicationTypeId}`);
-            // Break since we've found the application type through navigation
-            break;
-          }
-        }
+      // If current rule itself is terminal (rare but possible)
+      if (rule.result_application_type_id) {
+        currentApplicationTypeId = rule.result_application_type_id;
+        console.log(`✓ Terminal question found while traversing: ${currentKey}`);
+        console.log(`  Application Type ID: ${currentApplicationTypeId}`);
+        break;
       }
+
+      // Look up user's answer for current question
+      const answer = answers.find(a => a.question_key === currentKey);
+      if (!answer) {
+        console.log(`No answer for ${currentKey}. Stopping traversal.`);
+        break;
+      }
+
+      // Track evaluation path
+      evaluationPath.push(`${currentKey}:${JSON.stringify(answer.answer)}`);
+
+      // Follow next step based on answer value
+      let nextKey: string | undefined;
+      if (rule.next_question_map && typeof rule.next_question_map === 'object') {
+        const answerValue = normalizeAnswer(answer.answer);
+        nextKey = (rule.next_question_map as Record<string, any>)[answerValue];
+        console.log(`Traversing: ${currentKey} -> (${answerValue}) -> ${nextKey ?? 'end'}`);
+      }
+
+      if (!nextKey) {
+        console.log(`No next question from ${currentKey}. Stopping traversal.`);
+        break;
+      }
+
+      // Check if the NEXT rule is terminal (this is the key fix!)
+      const nextRule = ruleMap.get(nextKey);
+      if (nextRule?.result_application_type_id) {
+        currentApplicationTypeId = nextRule.result_application_type_id;
+        console.log(`✓ Terminal question reached via traversal: ${nextKey}`);
+        console.log(`  Application Type ID: ${currentApplicationTypeId}`);
+        break;
+      }
+
+      // Move forward in the path
+      currentKey = nextKey;
     }
 
-    if (!foundTerminalQuestion) {
-      console.warn('No terminal question found in answers. User may not have completed the wizard.');
+    if (!currentApplicationTypeId) {
+      console.warn('No terminal question found via traversal. User may not have completed the wizard.');
     }
 
     // Fetch application type details
