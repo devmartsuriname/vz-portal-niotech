@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardBody, Col, Row } from 'react-bootstrap';
 import { useAuth } from '@/integrations/supabase/auth';
 import { useToast } from '@/hooks/use-toast';
-import '@/admin/assets/scss/style.scss';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
