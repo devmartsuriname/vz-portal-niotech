@@ -5644,8 +5644,18 @@ input.main-search-input::placeholder {
 @media (max-width: 767px) {
   .footer-bottom .footer-wrapper {
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 15px;
     justify-content: center !important;
+    text-align: center;
+  }
+  
+  .footer-bottom .footer-wrapper p {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .footer-bottom .footer-wrapper .social-links {
+    justify-content: center;
   }
 }
 .footer-bottom .footer-wrapper p {
@@ -5676,6 +5686,16 @@ input.main-search-input::placeholder {
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center !important;
+    text-align: center;
+  }
+  
+  .footer-bottom.style1 .footer-wrapper p {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .footer-bottom.style1 .footer-wrapper .social-links {
+    justify-content: center;
   }
 }
 .footer-bottom.style1 .footer-wrapper p {
@@ -11381,7 +11401,7 @@ textarea.is-invalid {
     -webkit-box-shadow: 0px 1px 2px 0px rgba(2, 0, 181, 0.1);
     box-shadow: 0px 1px 2px 0px rgba(2, 0, 181, 0.1);
     padding: 10px 0;
-    z-index: 100;
+    z-index: 1000;
     opacity: 0;
     visibility: hidden;
     display: block !important;
@@ -11942,6 +11962,56 @@ textarea.is-invalid {
   font-weight: 500;
   padding: 5px 10px;
   border-radius: 6px;
+}
+
+/* ============================================
+   Priority 1 Critical Fixes
+   ============================================ */
+
+/* Touch Target Fix - Minimum 44x44px for mobile accessibility */
+@media (max-width: 767px) {
+  a, button, input[type="submit"], input[type="button"], 
+  .btn, .cs-munu_toggle, .search-widget-icon {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Adjust padding to maintain visual consistency */
+  .btn {
+    padding: 12px 24px;
+  }
+  
+  /* Ensure nav links have proper touch targets */
+  .cs_nav_list a {
+    min-height: 44px;
+    padding: 10px 20px;
+  }
+}
+
+/* Contact Map Overflow Fix */
+.contact-map {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.contact-map iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .contact-map {
+    margin-bottom: 30px;
+  }
+  
+  .contact-map iframe {
+    height: 350px;
+  }
 }
 
 /* ============================================
