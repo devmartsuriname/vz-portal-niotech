@@ -136,9 +136,9 @@ const DocumentenLijsten = () => {
                           
                           return (
                             <tr key={doc.id}>
-                              <td><strong>{doc.name}</strong></td>
-                              <td>{doc.description || '-'}</td>
-                              <td>
+                              <td data-label="Document"><strong>{doc.name}</strong></td>
+                              <td data-label="Beschrijving">{doc.description || '-'}</td>
+                              <td data-label="Toegestane Formaten">
                                 <div className="vz-badge-container">
                                   {doc.allowed_formats.map((format, idx) => (
                                     <span key={idx} className="badge bg-info">
@@ -147,15 +147,15 @@ const DocumentenLijsten = () => {
                                   ))}
                                 </div>
                               </td>
-                              <td>{doc.max_file_size_mb} MB</td>
-                              <td>
+                              <td data-label="Max. Bestandsgrootte">{doc.max_file_size_mb} MB</td>
+                              <td data-label="Verplicht">
                                 {doc.is_required ? (
                                   <span className="badge bg-danger">Verplicht</span>
                                 ) : (
                                   <span className="badge bg-secondary">Optioneel</span>
                                 )}
                               </td>
-                              <td>
+                              <td data-label="Vereist Voor">
                                 <div className="vz-badge-container">
                                   {doc.application_types.map((type, idx) => (
                                     <span key={idx} className="badge bg-secondary">
@@ -164,7 +164,7 @@ const DocumentenLijsten = () => {
                                   ))}
                                 </div>
                               </td>
-                              <td>
+                              <td data-label="Download Checklist">
                                 {checklistUrl ? (
                                   <a 
                                     href={checklistUrl}
