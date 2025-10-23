@@ -172,7 +172,7 @@ const ApplicationWizard = () => {
                       width: wizardPhase === 'questions' ? '25%' : 
                              wizardPhase === 'documents' ? '50%' : 
                              wizardPhase === 'personal-info' ? '75%' : '100%',
-                      background: 'linear-gradient(90deg, #5833FF 0%, #9F7AFF 100%)',
+                      background: 'linear-gradient(90deg, #7444FD 0%, #9F7AFF 100%)',
                       transition: 'width 0.5s ease'
                     }}
                     aria-valuenow={wizardPhase === 'questions' ? 25 : 

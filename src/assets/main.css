@@ -64,7 +64,7 @@ Description: Niotech - sass, App Landing Reactjs Template
   --white: hsl(var(--vz-white));
   --theme: hsl(var(--vz-primary));
   --theme2: hsl(var(--vz-secondary));
-  --theme3: hsl(249, 100%, 98%);
+  --theme3: hsl(254, 98%, 98%);
   --title: hsl(var(--vz-black));
   --header: hsl(var(--vz-black));
   --orange: hsl(24, 71%, 60%);
@@ -5587,7 +5587,7 @@ input.main-search-input::placeholder {
   padding: 52px 58px 52px 45px;
 }
 .footer-widgets-wrapper.style1 .single-footer-widget .contact-box .subtitle {
-  color: #5833FF;
+  color: #7444FD;
   font-family: "Nunito", sans-serif;
   font-size: 16px;
   font-style: normal;
