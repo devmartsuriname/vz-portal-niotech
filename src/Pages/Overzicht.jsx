@@ -8,7 +8,7 @@ const Overzicht = () => {
       description: "Lees alle instructies voor het indienen van aanvragen",
       icon: "bi-book",
       link: "/instructies",
-      color: "#7444FD"
+      color: "#5236FF"
     },
     {
       title: "Documentenlijsten",
@@ -22,7 +22,7 @@ const Overzicht = () => {
       description: "Start de digitale wizard voor uw aanvraag",
       icon: "bi-send",
       link: "/aanvraag-indienen",
-      color: "#7444FD"
+      color: "#5236FF"
     },
     {
       title: "Vergunningen",
@@ -36,7 +36,7 @@ const Overzicht = () => {
       description: "Neem contact op met ons kantoor",
       icon: "bi-envelope",
       link: "/contact",
-      color: "#7444FD"
+      color: "#5236FF"
     },
     {
       title: "Feedback",
@@ -98,25 +98,25 @@ const Overzicht = () => {
                 <div className="row text-center">
                   <div className="col-md-3 col-6">
                     <div className="counter-item">
-                      <h2 className="counter-number" style={{color: '#7444FD'}}>2000+</h2>
+                      <h2 className="counter-number" style={{color: '#5236FF'}}>2000+</h2>
                       <p className="text">Verwerkte Aanvragen</p>
                     </div>
                   </div>
                   <div className="col-md-3 col-6">
                     <div className="counter-item">
-                      <h2 className="counter-number" style={{color: '#7444FD'}}>15+</h2>
+                      <h2 className="counter-number" style={{color: '#5236FF'}}>15+</h2>
                       <p className="text">Jaar Ervaring</p>
                     </div>
                   </div>
                   <div className="col-md-3 col-6">
                     <div className="counter-item">
-                      <h2 className="counter-number" style={{color: '#7444FD'}}>98%</h2>
+                      <h2 className="counter-number" style={{color: '#5236FF'}}>98%</h2>
                       <p className="text">Succesrate</p>
                     </div>
                   </div>
                   <div className="col-md-3 col-6">
                     <div className="counter-item">
-                      <h2 className="counter-number" style={{color: '#7444FD'}}>24/7</h2>
+                      <h2 className="counter-number" style={{color: '#5236FF'}}>24/7</h2>
                       <p className="text">Ondersteuning</p>
                     </div>
                   </div>

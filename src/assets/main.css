@@ -64,7 +64,7 @@ Description: Niotech - sass, App Landing Reactjs Template
   --white: hsl(var(--vz-white));
   --theme: hsl(var(--vz-primary));
   --theme2: hsl(var(--vz-secondary));
-  --theme3: hsl(276, 100%, 98%);
+  --theme3: hsl(251, 100%, 98%);
   --title: hsl(var(--vz-black));
   --header: hsl(var(--vz-black));
   --orange: hsl(24, 71%, 60%);
@@ -12296,7 +12296,7 @@ textarea.is-invalid {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, hsl(var(--vz-primary)) 0%, hsl(276, 67%, 65%) 100%);
+  background: linear-gradient(135deg, hsl(var(--vz-primary)) 0%, hsl(251, 67%, 65%) 100%);
   color: white;
   border: none;
   cursor: pointer;
@@ -12311,7 +12311,7 @@ textarea.is-invalid {
 .scroll-to-top:hover {
   transform: translateY(-5px);
   box-shadow: var(--glow-primary-lg);
-  background: linear-gradient(135deg, hsl(276, 67%, 65%) 0%, hsl(var(--vz-primary)) 100%);
+  background: linear-gradient(135deg, hsl(251, 67%, 65%) 0%, hsl(var(--vz-primary)) 100%);
 }
 
 .scroll-to-top:active {
@@ -12416,7 +12416,7 @@ select:focus-visible {
 }
 
 .accordion-button:not(.collapsed) {
-  background: linear-gradient(135deg, hsl(var(--vz-primary)) 0%, hsl(276, 67%, 65%) 100%);
+  background: linear-gradient(135deg, hsl(var(--vz-primary)) 0%, hsl(251, 67%, 65%) 100%);
   color: hsl(var(--vz-white));
   box-shadow: var(--shadow-lg);
 }
