@@ -5795,6 +5795,18 @@ input.main-search-input::placeholder {
   border-radius: 50px;
   background: rgba(116, 68, 253, 0.06);
   margin-top: 40px;
+  overflow: hidden;
+}
+.intro-wrapper.style1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(116, 68, 253, 0.05) 0%, rgba(172, 96, 229, 0.03) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 @media (max-width: 767px) {
   .intro-wrapper.style1 {
@@ -6145,6 +6157,22 @@ input.main-search-input::placeholder {
 .hero-3 {
   padding: 100px 0;
   overflow: hidden;
+  position: relative;
+}
+.hero-3::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(116, 68, 253, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-3 > * {
+  position: relative;
+  z-index: 2;
 }
 .hero-3 .container-fluid {
   padding: 0 225px;
@@ -11978,6 +12006,276 @@ textarea.is-invalid {
   font-weight: 500;
   padding: 5px 10px;
   border-radius: 6px;
+}
+
+/* ============================================
+   Priority 3 Visual Polish
+   ============================================ */
+
+/* Hero Section Gradient Overlays */
+.intro-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(116, 68, 253, 0.05) 0%, rgba(172, 96, 229, 0.03) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.intro-wrapper > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-3::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(116, 68, 253, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Enhanced Card Hover Lift Animation */
+.service-box.style3 {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-md);
+}
+
+.service-box.style3:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-card-carousel {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card-carousel:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.hover-scale {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Badge Icon Indicators */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.badge.bg-success::before {
+  background: #28a745;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.4);
+}
+
+.badge.bg-primary::before {
+  background: #7444FD;
+  box-shadow: 0 0 8px rgba(116, 68, 253, 0.4);
+}
+
+.badge.bg-warning::before {
+  background: #ffc107;
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
+}
+
+.badge.bg-info::before {
+  background: #17a2b8;
+  box-shadow: 0 0 8px rgba(23, 162, 184, 0.4);
+}
+
+.badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Loading Skeleton Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.loading-skeleton-table,
+.loading-skeleton-grid,
+.loading-skeleton-list {
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.skeleton-row {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.skeleton-cell {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #f8f8f8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 6px;
+}
+
+.skeleton-text {
+  height: 16px;
+  flex: 1;
+}
+
+.skeleton-text.skeleton-short {
+  flex: 0.5;
+}
+
+.skeleton-badge {
+  height: 24px;
+  width: 80px;
+  border-radius: 12px;
+}
+
+.skeleton-button {
+  height: 36px;
+  width: 120px;
+  border-radius: 6px;
+}
+
+.skeleton-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.skeleton-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #f8f8f8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  margin-bottom: 20px;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 70%;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #f8f8f8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  margin-bottom: 12px;
+}
+
+.skeleton-item {
+  padding: 16px;
+  margin-bottom: 12px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Normalized Shadow System */
+:root {
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 30px rgba(116, 68, 253, 0.2);
+  --shadow-xl: 0 12px 40px rgba(116, 68, 253, 0.25);
+  --shadow-2xl: 0 20px 60px rgba(116, 68, 253, 0.3);
+  --shadow-glow: 0 0 20px rgba(116, 68, 253, 0.3);
+  --shadow-primary: 0 4px 20px rgba(116, 68, 253, 0.25);
+}
+
+/* Apply normalized shadows to components */
+.table-responsive {
+  box-shadow: var(--shadow-sm);
+}
+
+.service-box.style3 {
+  box-shadow: var(--shadow-md);
+}
+
+.service-box.style3:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card, .service-card-carousel {
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover, .service-card-carousel:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary, .theme-btn {
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover, .theme-btn:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.accordion-item.active {
+  box-shadow: var(--shadow-md);
+}
+
+/* Smooth shadow transitions */
+* {
+  transition-property: box-shadow, transform, opacity, background;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced Table Card Hover on Mobile */
+@media (max-width: 767px) {
+  .table tbody tr:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px) scale(1.01);
+  }
 }
 
 /* ============================================

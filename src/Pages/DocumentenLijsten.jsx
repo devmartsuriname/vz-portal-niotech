@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BreadCumb from "../Components/Common/BreadCumb";
 import { useDocumentsList } from "@/integrations/supabase/hooks/useDocumentsList";
+import LoadingSkeleton from "../Components/Common/LoadingSkeleton";
 
 const DocumentenLijsten = () => {
   const [filter, setFilter] = useState("all");
@@ -87,34 +88,7 @@ const DocumentenLijsten = () => {
           <div className="row">
             <div className="col-12">
               {isLoading ? (
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Document</th>
-                        <th>Beschrijving</th>
-                        <th>Toegestane Formaten</th>
-                        <th>Max. Bestandsgrootte</th>
-                        <th>Verplicht</th>
-                        <th>Vereist Voor</th>
-                        <th>Download Checklist</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[1, 2, 3, 4, 5].map(i => (
-                        <tr key={i}>
-                          <td><div className="placeholder-glow"><span className="placeholder col-8"></span></div></td>
-                          <td><div className="placeholder-glow"><span className="placeholder col-10"></span></div></td>
-                          <td><div className="placeholder-glow"><span className="placeholder col-6"></span></div></td>
-                          <td><div className="placeholder-glow"><span className="placeholder col-4"></span></div></td>
-                          <td><div className="placeholder-glow"><span className="placeholder col-6"></span></div></td>
-                          <td><div className="placeholder-glow"><span className="placeholder col-12"></span></div></td>
-                          <td><div className="placeholder-glow"><span className="placeholder col-5"></span></div></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                <LoadingSkeleton type="table" count={5} />
               ) : (
                 <div className="table-responsive">
                   <table className="table table-hover">
