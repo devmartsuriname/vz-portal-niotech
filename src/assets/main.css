@@ -5196,7 +5196,7 @@ input.main-search-input::placeholder {
   }
 }
 .breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links {
-  color: var(--white);
+  color: var(--black);
   font-family: "Urbanist", sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -5206,10 +5206,10 @@ input.main-search-input::placeholder {
 }
 
 .breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links a {
-  color: var(--white);
+  color: var(--black);
   text-decoration: none;
   transition: all 0.3s ease;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links a:hover {
@@ -5218,7 +5218,7 @@ input.main-search-input::placeholder {
 }
 
 .breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links .breadcrumb-current {
-  color: var(--white);
+  color: var(--black);
   opacity: 1;
 }
 .breadcumb-container-wrapper .breadcumb-wrapper .page-heading .links .slash {
