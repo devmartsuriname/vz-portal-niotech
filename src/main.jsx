@@ -9,7 +9,6 @@ import { assertSingleReact } from '@/utils/assertSingleReact';
 import { attachGlobalErrorListeners } from '@/utils/diag/errors';
 import { attachPerfProbe } from '@/utils/diag/perf';
 import "slick-carousel/slick/slick.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './assets/a11y.css';
 import './assets/main.css';
