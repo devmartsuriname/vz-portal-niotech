@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const feedbackSchema = z.object({
   name: z.string().trim().min(2, "Naam moet minimaal 2 karakters bevatten").max(100),
@@ -22,13 +23,31 @@ const Feedback = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const { error } = await supabase
+        .from('feedback_submissions')
+        .insert([{
+          name: data.name,
+          email: data.email,
+          rating: data.rating,
+          category: data.category,
+          message: data.message
+        }]);
+      
+      if (error) throw error;
+      
       toast.success("Bedankt voor uw feedback!", {
         description: "Uw feedback is ontvangen en wordt verwerkt."
       });
       reset();
-    }, 1500);
+    } catch (error) {
+      console.error('Feedback submission error:', error);
+      toast.error("Er is iets misgegaan", {
+        description: "Probeer het later opnieuw."
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

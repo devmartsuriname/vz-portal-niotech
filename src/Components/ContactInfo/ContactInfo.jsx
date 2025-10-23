@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 const contactFormSchema = z.object({
   name: z.string()
@@ -30,8 +31,15 @@ const ContactInfo = () => {
         setIsSubmitting(true);
         
         try {
-            // Phase 1: Show success message (Phase 2 will integrate with Supabase)
-            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate submission
+            const { error } = await supabase
+                .from('contact_submissions')
+                .insert([{
+                    name: data.name,
+                    email: data.email,
+                    message: data.message
+                }]);
+            
+            if (error) throw error;
             
             toast.success('Bericht verzonden!', {
                 description: 'Bedankt voor uw bericht. Wij nemen zo spoedig mogelijk contact met u op.'
@@ -39,6 +47,7 @@ const ContactInfo = () => {
             
             reset();
         } catch (error) {
+            console.error('Contact form submission error:', error);
             toast.error('Er is iets misgegaan', {
                 description: 'Probeer het later opnieuw of neem telefonisch contact met ons op.'
             });
