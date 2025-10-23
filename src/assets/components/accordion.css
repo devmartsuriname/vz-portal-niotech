@@ -21,7 +21,7 @@
 }
 
 .accordion-item.active {
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 /* Accordion header/button */
@@ -91,7 +91,7 @@
 /* FAQ specific styles */
 .faq-content .accordion-item {
   background: hsl(var(--vz-white));
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .faq-content .accordion-button {
