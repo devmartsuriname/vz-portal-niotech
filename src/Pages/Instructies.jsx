@@ -1,6 +1,5 @@
 import BreadCumb from "../Components/Common/BreadCumb";
 import { Link } from "react-router-dom";
-import DownloadableForms from "../Components/DownloadableForms";
 import { Accordion } from 'react-bootstrap';
 
 const Instructies = () => {
@@ -134,14 +133,6 @@ const Instructies = () => {
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
-
-              <div className="mt-5">
-                <h3 className="mb-4">Download Documentenlijsten</h3>
-                <p className="text mb-4">
-                  Download de volledige documentenlijst voor uw aanvraagtype. Deze checklists helpen u alle benodigde documenten te verzamelen.
-                </p>
-                <DownloadableForms showFilter={true} />
-              </div>
             </div>
 
             <div className="col-lg-4">
