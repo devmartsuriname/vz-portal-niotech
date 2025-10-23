@@ -69,7 +69,7 @@ const DocumentChecklist = ({ requiredDocuments, onComplete }) => {
                 <div className="d-flex justify-content-between align-items-start mb-3">
                   <div>
                     <h5 className="mb-1">
-                      {doc.document_name || 'Document'}
+                      {doc.document_type_name || 'Document'}
                       {doc.is_mandatory && <span className="text-danger ms-1">*</span>}
                     </h5>
                     {doc.description && (
