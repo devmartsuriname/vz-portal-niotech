@@ -253,6 +253,7 @@ export const EmailSettingsTab = () => {
               onChange={(e) => setSmtpPort(e.target.value)}
               placeholder="587"
             />
+            <Form.Text className="text-muted">587 (TLS) of 465 (SSL)</Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Check
@@ -261,6 +262,7 @@ export const EmailSettingsTab = () => {
               checked={smtpSecure}
               onChange={(e) => setSmtpSecure(e.target.checked)}
             />
+            <Form.Text className="text-muted d-block">Inschakelen voor poort 465 (SSL). Toegestaan voor poort 587 (STARTTLS)</Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Gebruikersnaam *</Form.Label>
@@ -270,6 +272,7 @@ export const EmailSettingsTab = () => {
               onChange={(e) => setSmtpUsername(e.target.value)}
               placeholder="noreply@vz-juspol.sr"
             />
+            <Form.Text className="text-muted">Meestal het volledige mailbox adres</Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Wachtwoord *</Form.Label>
@@ -291,6 +294,7 @@ export const EmailSettingsTab = () => {
               onChange={(e) => setSmtpFromEmail(e.target.value)}
               placeholder="noreply@vz-juspol.sr"
             />
+            <Form.Text className="text-muted">Afzender adres getoond aan ontvangers</Form.Text>
           </Form.Group>
           <Form.Group className="mb-4">
             <Form.Label>Van Naam *</Form.Label>
@@ -300,6 +304,7 @@ export const EmailSettingsTab = () => {
               onChange={(e) => setSmtpFromName(e.target.value)}
               placeholder="VZ Juspol Portal"
             />
+            <Form.Text className="text-muted">Afzender naam getoond aan ontvangers</Form.Text>
           </Form.Group>
         </>
       )}
