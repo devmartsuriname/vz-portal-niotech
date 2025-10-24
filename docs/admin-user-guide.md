@@ -257,10 +257,26 @@ Each rule consists of:
 - **Allowed File Types:** Permitted document formats (PDF, JPG, PNG)
 - **Processing Time Estimate:** Average days to process application
 
-### 5.3 Notification Settings
-- **Email Notifications Enabled:** Master toggle for all emails
-- **Admin Email Recipients:** Comma-separated list for new submission alerts
-- **SMTP Configuration:** *(Managed via Supabase Resend integration)*
+### 5.3 Email Configuration
+
+**Provider Selection:** Choose between Hostinger SMTP (primary) or Resend API (legacy)
+
+**Hostinger SMTP Settings:**
+- Host: `smtp.hostinger.com`
+- Port: 587 (TLS) or 465 (SSL)
+- Username: Full mailbox address (e.g., `noreply@vz-juspol.sr`)
+- Password: Securely encrypted in Vault (shows `••••••••` after saving)
+- From Email/Name: Sender information shown to recipients
+- Wizard Result Recipient: Destination for all wizard form submissions
+
+**Testing:** Use "Test Email Versturen" to verify configuration before saving.
+
+**Password Management:**
+- First time: Enter password, click Save → encrypted in Vault
+- Already saved: Password shows as `••••••••`, leave unchanged or enter new password to update
+- Test email works with masked password (retrieves from Vault automatically)
+
+**See:** [Email System Documentation](../email-system.md) for detailed setup guide
 
 ---
 

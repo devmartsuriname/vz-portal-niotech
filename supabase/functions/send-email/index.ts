@@ -28,6 +28,23 @@ const handler = async (req: Request): Promise<Response> => {
     
     console.log('[send-email] Processing email request to:', to);
 
+    // Input validation
+    if (!to || (Array.isArray(to) && to.length === 0)) {
+      throw new Error('Ontvanger email adres is verplicht');
+    }
+
+    if (Array.isArray(to) && to.length > 50) {
+      throw new Error('Maximum 50 ontvangers toegestaan');
+    }
+
+    if (!subject || subject.length > 255) {
+      throw new Error('Onderwerp is verplicht en moet korter dan 255 tekens zijn');
+    }
+
+    if (!html) {
+      throw new Error('Email inhoud is verplicht');
+    }
+
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -61,55 +78,109 @@ const handler = async (req: Request): Promise<Response> => {
     let emailResult;
 
     if (provider === 'smtp') {
-      console.log('[send-email] Sending via SMTP');
-      
-      // Validate SMTP settings
-      const smtpHost = settingsMap.smtp_host;
-      const smtpPort = parseInt(settingsMap.smtp_port) || 587;
-      const smtpUsername = settingsMap.smtp_username;
-      
-      // Retrieve SMTP password from Vault
-      const { data: smtpPassword, error: vaultError } = await supabase.rpc('get_smtp_password');
-      
-      if (vaultError) {
-        console.error('[send-email] Vault error:', vaultError);
-        throw new Error('Failed to retrieve SMTP password from secure storage');
+      try {
+        console.log('[send-email] Sending via SMTP');
+        
+        // Validate SMTP settings
+        const smtpHost = settingsMap.smtp_host;
+        const smtpPort = parseInt(settingsMap.smtp_port) || 587;
+        const smtpUsername = settingsMap.smtp_username;
+        
+        // Retrieve SMTP password from Vault
+        const { data: smtpPassword, error: vaultError } = await supabase.rpc('get_smtp_password');
+        
+        if (vaultError) {
+          console.error('[send-email] Vault error:', vaultError);
+          throw new Error('Failed to retrieve SMTP password from secure storage');
+        }
+
+        if (!smtpHost || !smtpUsername || !smtpPassword) {
+          throw new Error('SMTP settings incomplete. Please configure SMTP in admin settings.');
+        }
+
+        // Create nodemailer transport
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: settingsMap.smtp_secure !== false, // true for 465, false for other ports
+          auth: {
+            user: smtpUsername,
+            pass: smtpPassword,
+          },
+        });
+
+        // Send email via SMTP
+        emailResult = await transporter.sendMail({
+          from: fromAddress,
+          to: Array.isArray(to) ? to.join(', ') : to,
+          subject,
+          html,
+          text: text || html.replace(/<[^>]*>/g, ''), // Strip HTML for text version
+        });
+
+        console.log('[send-email] SMTP email sent:', emailResult.messageId);
+        
+        return new Response(
+          JSON.stringify({ 
+            success: true, 
+            id: emailResult.messageId,
+            provider: 'smtp'
+          }),
+          { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+        );
+
+      } catch (smtpError: any) {
+        console.error('[send-email] SMTP error:', smtpError);
+        
+        // Check for common SMTP errors and attempt Resend fallback
+        const isSmtpFailure = ['EAUTH', 'ETIMEDOUT', 'ESOCKET', 'ECONNREFUSED'].includes(smtpError.code);
+        const resendApiKey = settingsMap.resend_api_key || Deno.env.get('RESEND_API_KEY');
+        
+        if (isSmtpFailure && resendApiKey) {
+          console.log('[send-email] SMTP failed, attempting Resend fallback');
+          
+          try {
+            const resendResponse = await fetch('https://api.resend.com/emails', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${resendApiKey}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                from: fromAddress,
+                to: Array.isArray(to) ? to : [to],
+                subject,
+                html,
+                text,
+              }),
+            });
+
+            const resendData = await resendResponse.json();
+
+            if (!resendResponse.ok) {
+              throw new Error(resendData.message || 'Resend fallback also failed');
+            }
+
+            console.log('[send-email] Resend fallback successful:', resendData.id);
+
+            return new Response(
+              JSON.stringify({ 
+                success: true, 
+                id: resendData.id,
+                provider: 'smtp->resend',
+                fallback: true
+              }),
+              { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+            );
+          } catch (resendError: any) {
+            console.error('[send-email] Resend fallback failed:', resendError);
+            throw new Error(`SMTP failed: ${smtpError.message}. Resend fallback also failed: ${resendError.message}`);
+          }
+        }
+        
+        // No fallback available or non-transient error
+        throw smtpError;
       }
-
-      if (!smtpHost || !smtpUsername || !smtpPassword) {
-        throw new Error('SMTP settings incomplete. Please configure SMTP in admin settings.');
-      }
-
-      // Create nodemailer transport
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: settingsMap.smtp_secure !== false, // true for 465, false for other ports
-        auth: {
-          user: smtpUsername,
-          pass: smtpPassword,
-        },
-      });
-
-      // Send email via SMTP
-      emailResult = await transporter.sendMail({
-        from: fromAddress,
-        to: Array.isArray(to) ? to.join(', ') : to,
-        subject,
-        html,
-        text: text || html.replace(/<[^>]*>/g, ''), // Strip HTML for text version
-      });
-
-      console.log('[send-email] SMTP email sent:', emailResult.messageId);
-      
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          id: emailResult.messageId,
-          provider: 'smtp'
-        }),
-        { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
-      );
 
     } else {
       // Use Resend API

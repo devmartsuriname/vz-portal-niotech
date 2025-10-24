@@ -105,17 +105,23 @@ export const useSystemSettings = (category?: string) => {
 
   const testSMTPConnection = useMutation({
     mutationFn: async ({ host, port, secure, username, password, fromEmail, fromName, testEmail }: SMTPTestConfig) => {
+      const payload: any = {
+        smtp_host: host,
+        smtp_port: port,
+        smtp_secure: secure,
+        smtp_username: username,
+        from_email: fromEmail,
+        from_name: fromName,
+        test_email: testEmail,
+      };
+
+      // Omit password if masked or empty (function will fetch from Vault)
+      if (password && password !== '••••••••') {
+        payload.smtp_password = password;
+      }
+
       const { data, error } = await supabase.functions.invoke('test-smtp-connection', {
-        body: {
-          smtp_host: host,
-          smtp_port: port,
-          smtp_secure: secure,
-          smtp_username: username,
-          smtp_password: password,
-          from_email: fromEmail,
-          from_name: fromName,
-          test_email: testEmail,
-        },
+        body: payload,
       });
 
       if (error) throw error;

@@ -437,11 +437,156 @@ apikey: <anon_key>
 
 ## Edge Functions
 
-### 1. send-submission-notification
+### 1. send-email
+
+**Endpoint:** `/functions/v1/send-email`  
+**Method:** POST  
+**Authentication:** Service role (internal use only)
+
+**Description:** Universal email sender with dual-provider support (SMTP/Resend) and automatic fallback.
+
+**Request Body:**
+```json
+{
+  "to": "user@example.com",
+  "subject": "Uw aanvraag is ontvangen",
+  "html": "<h1>Bedankt</h1><p>We hebben uw aanvraag ontvangen.</p>",
+  "text": "Bedankt. We hebben uw aanvraag ontvangen.",
+  "from_override": {
+    "email": "custom@vz-juspol.sr",
+    "name": "Custom Sender"
+  }
+}
+```
+
+**Request Fields:**
+- `to` (string | string[]) — Recipient email(s), max 50
+- `subject` (string) — Email subject, max 255 characters, required
+- `html` (string) — HTML email body, required
+- `text` (string) — Plain text version (auto-generated if omitted)
+- `from_override` (object, optional) — Override default sender
+
+**Response (SMTP Success):**
+```json
+{
+  "success": true,
+  "id": "msg_abc123",
+  "provider": "smtp"
+}
+```
+
+**Response (Resend Success):**
+```json
+{
+  "success": true,
+  "id": "re_xyz789",
+  "provider": "resend"
+}
+```
+
+**Response (SMTP Failed, Resend Fallback):**
+```json
+{
+  "success": true,
+  "id": "re_fallback123",
+  "provider": "smtp->resend",
+  "fallback": true
+}
+```
+
+**Errors:**
+- `400` — Invalid input (missing required fields, too many recipients)
+- `500` — Email delivery failed (both SMTP and fallback)
+
+**Provider Selection Logic:**
+1. Reads `smtp_provider` from `system_settings`
+2. If `'smtp'`: Uses Hostinger SMTP, falls back to Resend on transient errors
+3. If `'resend'`: Uses Resend API directly
+4. Fetches SMTP password from Vault (`get_smtp_password()`)
+
+**Automatic Fallback Conditions:**
+- SMTP authentication failure (`EAUTH`)
+- Connection timeout (`ETIMEDOUT`)
+- Socket error (`ESOCKET`)
+- Connection refused (`ECONNREFUSED`)
+- AND Resend API key is configured
+
+---
+
+### 2. test-smtp-connection
+
+**Endpoint:** `/functions/v1/test-smtp-connection`  
+**Method:** POST  
+**Authentication:** None (CORS enabled)
+
+**Description:** Test SMTP configuration and send test email. Retrieves password from Vault if not provided.
+
+**Request Body:**
+```json
+{
+  "smtp_host": "smtp.hostinger.com",
+  "smtp_port": 587,
+  "smtp_secure": true,
+  "smtp_username": "noreply@vz-juspol.sr",
+  "smtp_password": "optional_password_or_masked",
+  "from_email": "noreply@vz-juspol.sr",
+  "from_name": "VZ Juspol Portal",
+  "test_email": "admin@vz-juspol.sr"
+}
+```
+
+**Request Fields:**
+- `smtp_host` (string) — SMTP server hostname, required
+- `smtp_port` (number) — SMTP port (1-65535), required
+- `smtp_secure` (boolean) — Enable SSL/TLS
+- `smtp_username` (string) — SMTP login username, required
+- `smtp_password` (string, optional) — SMTP password (fetches from Vault if omitted or `'••••••••'`)
+- `from_email` (string) — Sender email, required, validated
+- `from_name` (string) — Sender name
+- `test_email` (string) — Test recipient, required, validated
+
+**Password Behavior:**
+- If `smtp_password` is empty, null, or `'••••••••'`:
+  - Fetches password from Vault using `get_smtp_password()` RPC
+- Otherwise, uses provided password for testing
+
+**Response (Success):**
+```json
+{
+  "success": true,
+  "message": "Test email succesvol verzonden",
+  "messageId": "msg_abc123"
+}
+```
+
+**Response (Error):**
+```json
+{
+  "success": false,
+  "error": "Authenticatie mislukt. Controleer gebruikersnaam en wachtwoord."
+}
+```
+
+**Error Messages:**
+- `ETIMEDOUT` / `ECONNREFUSED` → "Kan geen verbinding maken met SMTP server. Controleer host en port."
+- `EAUTH` / `535` → "Authenticatie mislukt. Controleer gebruikersnaam en wachtwoord."
+- `ESOCKET` → "SSL/TLS verbinding mislukt. Controleer security instellingen."
+- Other → Original error message
+
+**Validation:**
+- Email format validation (regex, max 255 chars)
+- Port range validation (1-65535)
+- Required field validation
+
+---
+
+### 3. send-submission-notification
 
 **Endpoint:** `/functions/v1/send-submission-notification`  
 **Method:** POST  
 **Authentication:** None (invoked by server-side trigger)
+
+**Description:** Send email notification to applicant and admin when submission is created. Uses `send-email` function internally.
 
 **Request Body:**
 ```json
@@ -468,7 +613,7 @@ apikey: <anon_key>
 
 ---
 
-### 2. validate-file
+### 4. validate-file
 
 **Endpoint:** `/functions/v1/validate-file`  
 **Method:** POST  

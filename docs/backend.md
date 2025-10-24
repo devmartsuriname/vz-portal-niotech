@@ -23,6 +23,7 @@ The VZ Juspol Portal backend provides digital application management, document p
 6. **Content Module** — CMS for pages, FAQs, announcements
 7. **Reports Module** — Analytics and data export
 8. **Settings Module** — System-wide configuration
+9. **Email System** — Dual-provider email delivery (SMTP/Resend)
 
 ---
 
@@ -48,8 +49,37 @@ The VZ Juspol Portal backend provides digital application management, document p
 
 - Lovable Cloud (Supabase 2.76.0)
 - PostgreSQL database
-- Supabase Auth, Storage, Edge Functions, Realtime
+- Supabase Auth, Storage, Edge Functions, Realtime, Vault
 - Darkone Admin (React 18.3.1, Bootstrap 5.3.8)
+- Nodemailer (SMTP client)
+- Resend API (Email delivery fallback)
+
+---
+
+## Email System Architecture
+
+### Provider Support
+- **Primary:** Hostinger SMTP (smtp.hostinger.com)
+- **Fallback:** Resend API (api.resend.com)
+- **Selection:** Configured via `system_settings.smtp_provider`
+
+### Security
+- SMTP passwords stored encrypted in Supabase Vault
+- Admin-only access via RLS policies
+- Automatic audit logging for configuration changes
+
+### Email Functions
+1. **send-email** — Universal email sender with dual-provider support and automatic fallback
+2. **test-smtp-connection** — Test SMTP credentials with Vault password retrieval
+
+### Configuration Storage
+All email settings stored in `system_settings` table:
+- `smtp_provider` — 'smtp' or 'resend'
+- `smtp_host`, `smtp_port`, `smtp_secure`, `smtp_username`
+- `smtp_password` — Reference to Vault (empty string in table)
+- `smtp_from_email`, `smtp_from_name`
+- `wizard_result_recipient` — Destination for wizard submissions
+- `resend_api_key` — Legacy Resend configuration
 
 ---
 

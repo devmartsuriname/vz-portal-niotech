@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.76.0';
 import nodemailer from "https://esm.sh/nodemailer@6.9.7";
 
 const corsHeaders = {
@@ -11,7 +12,7 @@ interface SMTPTestRequest {
   smtp_port: number;
   smtp_secure: boolean;
   smtp_username: string;
-  smtp_password?: string; // Optional - will use vault if not provided
+  smtp_password?: string; // Optional - will use vault if not provided or masked
   from_email: string;
   from_name: string;
   test_email: string;
@@ -42,11 +43,77 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
     // Validate required fields
-    if (!smtp_host || !smtp_username || !smtp_password || !test_email) {
+    if (!smtp_host || !smtp_username || !test_email) {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: 'Vul alle verplichte velden in' 
+          error: 'Vul alle verplichte velden in (Host, Username, Test Email)' 
+        }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(test_email) || test_email.length > 255) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Ongeldig test email adres' 
+        }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    if (!emailRegex.test(from_email) || from_email.length > 255) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Ongeldig afzender email adres' 
+        }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    // Validate port number
+    if (isNaN(smtp_port) || smtp_port < 1 || smtp_port > 65535) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'Ongeldige poort nummer (1-65535)' 
+        }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    // Fetch password from Vault if not provided or masked
+    let finalPassword = smtp_password;
+    if (!finalPassword || finalPassword === '••••••••') {
+      console.log('[test-smtp] Password not provided or masked, fetching from Vault');
+      const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+      const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+      const supabaseAdmin = createClient(supabaseUrl, supabaseKey);
+      
+      const { data: vaultPassword, error: vaultError } = await supabaseAdmin.rpc('get_smtp_password');
+      
+      if (vaultError || !vaultPassword) {
+        return new Response(
+          JSON.stringify({ 
+            success: false, 
+            error: 'SMTP wachtwoord niet gevonden. Sla eerst SMTP configuratie op.' 
+          }),
+          { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+        );
+      }
+      
+      finalPassword = vaultPassword;
+    }
+
+    if (!finalPassword) {
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: 'SMTP wachtwoord is verplicht' 
         }),
         { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
@@ -59,7 +126,7 @@ const handler = async (req: Request): Promise<Response> => {
       secure: smtp_secure !== false,
       auth: {
         user: smtp_username,
-        pass: smtp_password,
+        pass: finalPassword,
       },
       connectionTimeout: 10000, // 10 seconds
     });
