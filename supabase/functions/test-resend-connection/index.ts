@@ -1,3 +1,13 @@
+/**
+ * @deprecated LEGACY: This function is retained for backward compatibility only.
+ * As of 2025-10-23, the system uses Hostinger SMTP as the primary provider.
+ * Resend API remains as a fallback mechanism handled by the send-email function.
+ * Direct testing of Resend connections via this endpoint is no longer actively used.
+ * 
+ * @see send-email/index.ts for current email delivery implementation
+ * @see test-smtp-connection/index.ts for SMTP testing
+ */
+
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {

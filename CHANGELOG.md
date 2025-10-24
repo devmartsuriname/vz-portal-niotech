@@ -7,6 +7,61 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.2] - 2025-10-23
+
+### ✅ Phase 7: Hostinger SMTP Migration — COMPLETE
+
+#### Added
+- **SMTP Integration:**
+  - Hostinger SMTP as primary email provider
+  - Dual-provider architecture (SMTP + Resend fallback)
+  - Supabase Vault encryption for SMTP passwords
+  - Edge Function: `test-smtp-connection` for SMTP validation
+  - Database functions: `store_smtp_password()`, `get_smtp_password()`
+
+- **Admin UI Enhancements:**
+  - Email provider toggle (Hostinger SMTP / Resend API)
+  - SMTP configuration fields with validation
+  - Password masking and secure storage
+  - Helper tooltips for all email settings
+  - Test email functionality for both providers
+
+- **Email System:**
+  - Universal `send-email` Edge Function with automatic fallback
+  - Dynamic wizard result routing via `wizard_result_recipient`
+  - HTML + plain text email support
+  - Input validation for all email parameters
+  - Comprehensive error handling and logging
+
+#### Changed
+- **Email Architecture:**
+  - Migrated from Resend-only to SMTP-first architecture
+  - Updated all notification functions to use universal `send-email`
+  - Enhanced admin settings tab renamed to "Email Settings"
+  - Improved error messages and user feedback
+
+#### Security
+- SMTP passwords encrypted in Supabase Vault
+- Passwords masked in UI (displayed as `••••••••`)
+- Admin-only access to email configuration
+- Sanitized email inputs to prevent injection
+- Audit logging for configuration changes
+
+#### Documentation
+- Created `email-system.md` with full architecture details
+- Updated `backend.md` with email system overview
+- Enhanced `api-reference.md` with edge function docs
+- Updated `admin-user-guide.md` with SMTP setup guide
+- Comprehensive troubleshooting section added
+
+#### Fixed
+- Input validation in `test-smtp-connection` and `send-email`
+- Proper error handling for SMTP authentication failures
+- Fallback mechanism for Resend when SMTP unavailable
+- Password retrieval from Vault when not provided
+
+---
+
 ## [1.0.1] - 2025-01-20
 
 ### Added

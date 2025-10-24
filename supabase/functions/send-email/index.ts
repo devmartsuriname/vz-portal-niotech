@@ -132,7 +132,9 @@ const handler = async (req: Request): Promise<Response> => {
       } catch (smtpError: any) {
         console.error('[send-email] SMTP error:', smtpError);
         
-        // Check for common SMTP errors and attempt Resend fallback
+        // Automatic fallback to Resend API on SMTP failure
+        // LEGACY INTEGRATION: Resend API serves as fallback provider
+        // Primary: Hostinger SMTP (as of 2025-10-23)
         const isSmtpFailure = ['EAUTH', 'ETIMEDOUT', 'ESOCKET', 'ECONNREFUSED'].includes(smtpError.code);
         const resendApiKey = settingsMap.resend_api_key || Deno.env.get('RESEND_API_KEY');
         
@@ -183,7 +185,9 @@ const handler = async (req: Request): Promise<Response> => {
       }
 
     } else {
-      // Use Resend API
+      // LEGACY: Resend API direct sending
+      // Note: As of 2025-10-23, Hostinger SMTP is the primary provider.
+      // Resend remains available as fallback and for backward compatibility.
       console.log('[send-email] Sending via Resend');
       
       const resendApiKey = settingsMap.resend_api_key || Deno.env.get('RESEND_API_KEY');
