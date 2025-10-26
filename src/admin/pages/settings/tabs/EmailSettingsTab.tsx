@@ -104,10 +104,21 @@ export const EmailSettingsTab = () => {
         await updateSetting.mutateAsync({ key: 'wizard_result_recipient', value: wizardResultRecipient });
       }
 
-      toast({
-        title: 'Instellingen opgeslagen',
-        description: 'Email configuratie is bijgewerkt. SMTP wachtwoord is versleuteld opgeslagen.',
-      });
+      // Provide contextual feedback based on configuration completeness
+      const providerName = provider === 'resend' ? 'Resend API' : 'Hostinger SMTP';
+      
+      if (isConfigComplete) {
+        toast({
+          title: 'Instellingen opgeslagen',
+          description: `${providerName} configuratie compleet. Emails kunnen worden verzonden.${provider === 'smtp' ? ' SMTP wachtwoord is versleuteld opgeslagen.' : ''}`,
+        });
+      } else {
+        toast({
+          title: 'Provider gewijzigd',
+          description: `${providerName} geselecteerd. Vul alle vereiste velden in om emails te kunnen versturen.`,
+          variant: 'default',
+        });
+      }
     } catch (error: any) {
       toast({
         title: 'Fout',
@@ -169,9 +180,13 @@ export const EmailSettingsTab = () => {
     );
   }
 
-  const isSaveDisabled = provider === 'resend' 
-    ? !resendApiKey || !resendFromEmail 
-    : !smtpHost || !smtpUsername || !smtpFromEmail;
+  // Check if provider-specific configuration is complete
+  const isResendConfigComplete = resendApiKey && resendFromEmail && resendFromName;
+  const isSmtpConfigComplete = smtpHost && smtpUsername && smtpFromEmail && smtpPassword && smtpPassword !== '••••••••';
+  const isConfigComplete = provider === 'resend' ? isResendConfigComplete : isSmtpConfigComplete;
+  
+  // Allow saving provider switch even if config is incomplete
+  const isSaveDisabled = updateSetting.isPending;
 
   return (
     <div className="email-settings-tab">
@@ -309,6 +324,18 @@ export const EmailSettingsTab = () => {
         </>
       )}
 
+      {/* Show configuration warning if incomplete */}
+      {!isConfigComplete && (
+        <Alert variant="warning" className="mb-4">
+          <strong>⚠️ Configuratie Onvolledig</strong>
+          <p className="mb-0 mt-2">
+            {provider === 'resend' 
+              ? 'Vul alle Resend API velden in om emails te kunnen versturen.' 
+              : 'Vul alle SMTP velden in (inclusief wachtwoord) om emails te kunnen versturen.'}
+          </p>
+        </Alert>
+      )}
+
       <hr className="my-4" />
 
       <h6 className="mb-3">Wizard Result Routing</h6>
@@ -328,9 +355,13 @@ export const EmailSettingsTab = () => {
       <Button
         variant="primary"
         onClick={handleSave}
-        disabled={updateSetting.isPending || isSaveDisabled}
+        disabled={isSaveDisabled}
       >
-        {updateSetting.isPending ? 'Opslaan...' : 'Opslaan'}
+        {updateSetting.isPending 
+          ? 'Opslaan...' 
+          : isConfigComplete 
+            ? 'Opslaan' 
+            : 'Provider Opslaan (Configuratie Onvolledig)'}
       </Button>
 
       <hr className="my-4" />
