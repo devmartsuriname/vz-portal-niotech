@@ -69,6 +69,10 @@ export default defineConfig(({ mode }) => {
             if (id.includes('node_modules/react-dom')) {
               return 'vendor-react';
             }
+            // React's internal scheduler
+            if (id.includes('scheduler')) {
+              return 'vendor-react';
+            }
             // Router bundle - keep separate but ensure it doesn't duplicate React
             if (id.includes('node_modules/react-router-dom') || 
                 id.includes('node_modules/react-router')) {

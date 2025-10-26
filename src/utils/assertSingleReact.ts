@@ -33,6 +33,11 @@ export function assertSingleReact() {
     // ⚠️ ALWAYS ALERT if multiple instances detected (critical error)
     if (instances.length > 1) {
       console.error('🚨 MULTIPLE REACT INSTANCES DETECTED:', instances);
+      
+      // CRITICAL: Throw in dev to prevent silent hook failures
+      if (import.meta.env.DEV) {
+        throw new Error('CRITICAL: Duplicate React instance detected. Fix bundle splitting config.');
+      }
     }
   }
 }
