@@ -62,14 +62,16 @@ export default defineConfig(({ mode }) => {
         output: {
           // Enhanced vendor bundles for granular caching and lazy loading
           manualChunks: (id) => {
-            // Core React bundle (rarely changes)
-            if (id.includes('node_modules/react/') || 
-                id.includes('node_modules/react-dom/') ||
-                id.includes('node_modules/react/jsx-runtime')) {
+            // Core React bundle (rarely changes) - broader pattern to catch all React imports
+            if (id.includes('node_modules/react') && !id.includes('node_modules/react-')) {
               return 'vendor-react';
             }
-            // Router bundle
-            if (id.includes('node_modules/react-router-dom')) {
+            if (id.includes('node_modules/react-dom')) {
+              return 'vendor-react';
+            }
+            // Router bundle - keep separate but ensure it doesn't duplicate React
+            if (id.includes('node_modules/react-router-dom') || 
+                id.includes('node_modules/react-router')) {
               return 'vendor-router';
             }
             // React Query (admin-heavy)
