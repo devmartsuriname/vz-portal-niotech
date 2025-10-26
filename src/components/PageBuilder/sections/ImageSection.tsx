@@ -1,4 +1,5 @@
 import { ImageSection as ImageSectionType } from '@/types/pageBuilder';
+import OptimizedImage from '@/components/common/OptimizedImage';
 
 interface ImageSectionProps {
   section: ImageSectionType;
@@ -20,15 +21,27 @@ const ImageSection = ({ section }: ImageSectionProps) => {
     full: 'col-12',
   }[width];
 
+  // Define explicit dimensions based on width class for CLS prevention
+  const imageDimensions = {
+    small: { width: 350, height: 263 },
+    medium: { width: 570, height: 428 },
+    large: { width: 970, height: 728 },
+    full: { width: 1200, height: 800 },
+  }[width];
+
   return (
     <section className="image-section py-4">
       <div className="container">
         <div className={`row justify-content-center ${alignmentClass}`}>
           <div className={widthClass}>
-            <img 
-              src={imageUrl} 
-              alt={alt} 
+            <OptimizedImage
+              src={imageUrl}
+              alt={alt}
+              width={imageDimensions.width}
+              height={imageDimensions.height}
               className="img-fluid rounded shadow"
+              loading="lazy"
+              sizes={`(max-width: 768px) 100vw, ${width === 'full' ? '100vw' : width === 'large' ? '80vw' : width === 'medium' ? '50vw' : '33vw'}`}
             />
             {caption && (
               <p className="text-muted mt-2 small">{caption}</p>

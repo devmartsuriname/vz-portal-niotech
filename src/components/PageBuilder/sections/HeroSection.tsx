@@ -1,4 +1,5 @@
 import { HeroSection as HeroSectionType } from '@/types/pageBuilder';
+import OptimizedImage from '@/components/common/OptimizedImage';
 
 interface HeroSectionProps {
   section: HeroSectionType;
@@ -17,14 +18,23 @@ const HeroSection = ({ section }: HeroSectionProps) => {
     <section 
       className="hero-section py-5 position-relative"
       style={{
-        backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
         minHeight: '400px',
       }}
     >
+      {/* Optimized background image with WebP support */}
       {backgroundImage && (
-        <div className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <>
+          <OptimizedImage
+            src={backgroundImage}
+            alt={title || 'Hero background'}
+            width={1920}
+            height={400}
+            priority
+            className="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+            style={{ objectFit: 'cover' }}
+          />
+          <div className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        </>
       )}
       <div className="container position-relative" style={{ zIndex: 1 }}>
         <div className={`hero-content py-5 ${alignmentClass}`}>
