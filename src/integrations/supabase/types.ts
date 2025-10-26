@@ -778,6 +778,27 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_contact_submissions_with_logging: {
+        Args: never
+        Returns: {
+          admin_notes: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          responded_at: string | null
+          responded_by: string | null
+          status: string
+          updated_at: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "contact_submissions"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
       get_smtp_password: { Args: never; Returns: string }
       has_role: {
         Args: {
@@ -785,6 +806,16 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      search_permit_public: {
+        Args: { search_agenda?: string; search_code?: string }
+        Returns: {
+          agenda_number: string
+          code: string
+          expires_at: string
+          issued_date: string
+          status: string
+        }[]
       }
       store_smtp_password: {
         Args: { password_value: string }

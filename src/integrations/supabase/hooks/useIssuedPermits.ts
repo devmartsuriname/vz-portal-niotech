@@ -2,38 +2,39 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../client";
 
 export interface IssuedPermit {
-  id: string;
   code: string;
   agenda_number: string;
-  name: string;
-  given_names: string;
   issued_date: string | null;
   expires_at: string | null;
   status: string;
+}
+
+export interface IssuedPermitFull extends IssuedPermit {
+  id: string;
+  name: string;
+  given_names: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export const useIssuedPermits = (searchQuery: string = "") => {
   return useQuery({
     queryKey: ["issued-permits", searchQuery],
     queryFn: async () => {
-      let query = supabase
-        .from("issued_permits")
-        .select("*")
-        .eq("status", "active")
-        .order("agenda_number", { ascending: false })
-        .limit(1000);
-
-      if (searchQuery.trim()) {
-        query = query.or(
-          `agenda_number.ilike.%${searchQuery}%,` +
-          `name.ilike.%${searchQuery}%,` +
-          `given_names.ilike.%${searchQuery}%`
-        );
+      if (!searchQuery.trim()) {
+        // No search query provided, return empty array for security
+        return [];
       }
 
-      const { data, error } = await query;
+      // Use secure RPC function that only searches by exact code or agenda_number
+      // and doesn't expose personal names to public
+      const { data, error } = await supabase.rpc("search_permit_public", {
+        search_code: searchQuery.trim(),
+        search_agenda: searchQuery.trim(),
+      });
+
       if (error) throw error;
-      return data as IssuedPermit[];
+      return (data || []) as IssuedPermit[];
     },
   });
 };
