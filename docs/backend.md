@@ -96,6 +96,19 @@ After Phase P1 code splitting optimizations, the Wizard system experienced dupli
 
 ---
 
+---
+
+## Frontend Changes
+
+### Icon System Migration (2025-10-27)
+**Issue:** Bootstrap Icons not loading on public frontend (only loaded in admin layout)  
+**Solution:** Migrated all 92 icon references to Boxicons (already in CDN)  
+**Files Modified:** 29 frontend components  
+**Impact:** Zero performance regression, restored dropdown icons  
+**Documentation:** See [Boxicons Migration Report](./boxicons-migration.md)
+
+---
+
 ## Links
 
 - [Backend Architecture](./backend-architecture.md)
@@ -103,3 +116,4 @@ After Phase P1 code splitting optimizations, the Wizard system experienced dupli
 - [API Reference](./api-reference.md)
 - [Admin User Guide](./admin-user-guide.md)
 - [Rollback & Restoration Report](./rollback.md)
+- [Boxicons Migration Report](./boxicons-migration.md)

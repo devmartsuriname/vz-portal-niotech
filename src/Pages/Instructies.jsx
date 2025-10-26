@@ -124,17 +124,17 @@ const Instructies = () => {
                   <ul className="cs_sidebar_links">
                     <li>
                       <Link to="/documenten-lijsten">
-                        <i className="bi bi-file-earmark-text"></i> Documentenlijsten
+                        <i className="bx bx-file"></i> Documentenlijsten
                       </Link>
                     </li>
                     <li>
                       <Link to="/aanvraag-indienen">
-                        <i className="bi bi-send"></i> Aanvraag Indienen
+                        <i className="bx bx-send"></i> Aanvraag Indienen
                       </Link>
                     </li>
                     <li>
                       <Link to="/contact">
-                        <i className="bi bi-envelope"></i> Contact
+                        <i className="bx bx-envelope"></i> Contact
                       </Link>
                     </li>
                   </ul>

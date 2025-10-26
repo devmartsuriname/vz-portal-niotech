@@ -54,7 +54,7 @@ const DownloadableForms = ({ showFilter = true, categoryFilter = null }) => {
                     className="btn btn-primary btn-sm"
                     aria-label={`Download ${form.title}`}
                   >
-                    <i className="bi bi-download me-1" aria-hidden="true"></i> Download
+                    <i className="bx bx-download me-1" aria-hidden="true"></i> Download
                   </a>
                 </div>
               </div>
@@ -67,7 +67,7 @@ const DownloadableForms = ({ showFilter = true, categoryFilter = null }) => {
         <div className="row">
           <div className="col-12">
             <div className="alert alert-info text-center">
-              <i className="bi bi-info-circle me-2"></i>
+              <i className="bx bx-info-circle me-2"></i>
               Geen documenten gevonden in deze categorie.
             </div>
           </div>

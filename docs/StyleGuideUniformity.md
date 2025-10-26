@@ -79,6 +79,61 @@ All colors are defined in `src/assets/main.css` under `:root`:
 
 ---
 
+## 1️⃣.1 Icon System
+
+**Standard:** Boxicons (v2.1.4)  
+**CDN:** `https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css`  
+**Location:** Loaded in `index.html` (line 7)
+
+### Icon Usage Guidelines
+
+| Use Case | Class Prefix | Example |
+|----------|-------------|---------|
+| Regular icons | `bx bx-*` | `<i class="bx bx-search"></i>` |
+| Solid icons | `bx bxs-*` | `<i class="bx bxs-check-circle"></i>` |
+| Logo icons | `bx bxl-*` | `<i class="bx bxl-facebook"></i>` |
+
+### Common Icon Mappings (Bootstrap → Boxicons)
+
+| Bootstrap Icons | Boxicons Equivalent | Notes |
+|----------------|---------------------|-------|
+| `bi-search` | `bx-search` | Same design |
+| `bi-arrow-right` | `bx-right-arrow-alt` | Alt variant matches style |
+| `bi-check-circle` | `bx-check-circle` | Regular outline |
+| `bi-check-circle-fill` | `bxs-check-circle` | Solid variant |
+| `bi-download` | `bx-download` | Same design |
+| `bi-trash` | `bx-trash` | Same design |
+| `bi-file-earmark-pdf` | `bxs-file-pdf` | Solid PDF icon |
+| `bi-facebook` | `bxl-facebook` | Logo variant |
+| `bi-cloud-upload` | `bx-cloud-upload` | Same design |
+| `bi-info-circle` | `bx-info-circle` | Same design |
+| `bi-send` | `bx-send` | Same design |
+| `bi-envelope` | `bx-envelope` | Same design |
+| `bi-home` | `bx-home` | Same design |
+
+### Icon Sizing
+
+- Default: `1em` (inherits parent font size)
+- Custom sizing: Use inline `style={{ fontSize: '2rem' }}`
+- Utility classes: Apply Bootstrap sizing (`fs-1` to `fs-6`) or custom CSS
+
+### Troubleshooting
+
+**Icons not visible?**
+1. Verify Boxicons CDN loaded in `index.html`
+2. Check class prefix (`bx bx-*` not `bi bi-*`)
+3. Confirm no typos in icon name
+4. Inspect browser console for 404 errors
+
+**Wrong icon style?**
+- Use `bx bx-*` for regular outline icons
+- Use `bx bxs-*` for solid/filled icons
+- Use `bx bxl-*` for brand logos
+
+**Browse all icons:** https://boxicons.com/
+
+---
+
 ## 2️⃣ Typography System
 
 ### Font Families

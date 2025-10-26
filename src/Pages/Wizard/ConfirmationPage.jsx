@@ -23,7 +23,7 @@ const ConfirmationPage = () => {
             <div className="col-lg-8">
               <div className="text-center">
                 <div className="mb-4">
-                  <i className="bi bi-check-circle-fill text-success" style={{ fontSize: '5rem' }}></i>
+                  <i className="bx bxs-check-circle text-success" style={{ fontSize: '5rem' }}></i>
                 </div>
                 
                 <h1 className="mb-3">Aanvraag Succesvol Ingediend!</h1>
@@ -45,7 +45,7 @@ const ConfirmationPage = () => {
 
                 <div className="alert alert-info text-start mb-4">
                   <h5 className="alert-heading">
-                    <i className="bi bi-info-circle me-2"></i>
+                    <i className="bx bx-info-circle me-2"></i>
                     Wat gebeurt er nu?
                   </h5>
                   <ul className="mb-0 ps-3">
@@ -58,11 +58,11 @@ const ConfirmationPage = () => {
 
                 <div className="d-flex gap-3 justify-content-center flex-wrap">
                   <Link to="/" className="btn btn-primary btn-lg">
-                    <i className="bi bi-house me-2"></i>
+                    <i className="bx bx-home me-2"></i>
                     Terug naar Home
                   </Link>
                   <Link to="/overzicht" className="btn btn-outline-primary btn-lg">
-                    <i className="bi bi-list-check me-2"></i>
+                    <i className="bx bx-list-check me-2"></i>
                     Mijn Aanvragen
                   </Link>
                 </div>

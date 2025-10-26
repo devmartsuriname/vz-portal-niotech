@@ -77,7 +77,7 @@ const FileUploader = ({ documentTypeId, onFilesSelected, maxFiles = 1, maxSizeMB
           className="d-none"
         />
         
-        <i className="bi bi-cloud-upload text-primary" style={{ fontSize: '2.5rem' }}></i>
+        <i className="bx bx-cloud-upload text-primary" style={{ fontSize: '2.5rem' }}></i>
         <p className="mb-2 mt-3">
           <strong>Klik om bestand(en) te selecteren</strong>
         </p>
@@ -91,7 +91,7 @@ const FileUploader = ({ documentTypeId, onFilesSelected, maxFiles = 1, maxSizeMB
           {selectedFiles.map((file, index) => (
             <div key={index} className="d-flex align-items-center justify-content-between p-3 bg-light rounded mb-2">
               <div className="d-flex align-items-center">
-                <i className="bi bi-file-earmark-pdf text-danger me-3" style={{ fontSize: '1.5rem' }}></i>
+                <i className="bx bxs-file-pdf text-danger me-3" style={{ fontSize: '1.5rem' }}></i>
                 <div>
                   <div className="fw-medium">{file.name}</div>
                   <small className="text-muted">{formatBytes(file.size)}</small>
@@ -101,7 +101,7 @@ const FileUploader = ({ documentTypeId, onFilesSelected, maxFiles = 1, maxSizeMB
                 onClick={() => handleRemoveFile(index)}
                 className="btn btn-sm btn-outline-danger"
               >
-                <i className="bi bi-trash"></i>
+                <i className="bx bx-trash"></i>
               </button>
             </div>
           ))}

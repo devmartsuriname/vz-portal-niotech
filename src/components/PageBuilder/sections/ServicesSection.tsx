@@ -53,7 +53,7 @@ const ServicesSection = ({ section }: ServicesSectionProps) => {
                         <h5 className="mb-1">{service.title}</h5>
                         <p className="mb-0 text-muted">{service.description}</p>
                       </div>
-                      <i className="bi bi-arrow-right text-muted"></i>
+                      <i className="bx bx-right-arrow-alt text-muted"></i>
                     </div>
                   </a>
                 ))}

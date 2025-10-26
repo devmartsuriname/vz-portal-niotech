@@ -187,13 +187,13 @@ const PersonalInfoForm = ({ onComplete, initialData = {} }) => {
         </div>
 
         <div className="alert alert-info mt-4">
-          <i className="bi bi-info-circle me-2"></i>
+          <i className="bx bx-info-circle me-2"></i>
           Uw gegevens worden veilig opgeslagen en alleen gebruikt voor deze aanvraag.
         </div>
 
         <button type="submit" className="btn btn-primary btn-lg w-100 mt-4">
           Doorgaan naar Overzicht
-          <i className="bi bi-arrow-right ms-2"></i>
+          <i className="bx bx-right-arrow-alt ms-2"></i>
         </button>
       </form>
     </div>

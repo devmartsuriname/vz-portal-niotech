@@ -82,7 +82,7 @@ const Overzicht = () => {
                       <p className="text">{card.description}</p>
                       <div className="mt-3">
                         <span className="text-primary">
-                          Bekijk meer <i className="bi bi-arrow-right ms-1"></i>
+                          Bekijk meer <i className="bx bx-right-arrow-alt ms-1"></i>
                         </span>
                       </div>
                     </div>

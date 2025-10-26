@@ -12,7 +12,7 @@ const WizardStep = ({ rule, currentAnswer, onAnswerSelect }) => {
     console.error('Single-choice question has no options:', rule.question_key);
     return (
       <div className="text-center text-danger">
-        <i className="bi bi-exclamation-triangle fs-1 mb-3 d-block"></i>
+        <i className="bx bx-error-circle fs-1 mb-3 d-block"></i>
         <p>Er is een probleem met deze vraag. Neem contact op met support.</p>
       </div>
     );
@@ -76,7 +76,7 @@ const WizardStep = ({ rule, currentAnswer, onAnswerSelect }) => {
                     <span className="fs-5 fw-medium">{option}</span>
                   </div>
                   {selectedValue === option && (
-                    <i className="bi bi-check-circle-fill text-primary fs-3 ms-3"></i>
+                    <i className="bx bxs-check-circle text-primary fs-3 ms-3"></i>
                   )}
                 </div>
               </div>
@@ -103,7 +103,7 @@ const WizardStep = ({ rule, currentAnswer, onAnswerSelect }) => {
             disabled={!selectedValue}
             className="btn btn-primary btn-lg px-5"
           >
-            Volgende <i className="bi bi-arrow-right ms-2"></i>
+            Volgende <i className="bx bx-right-arrow-alt ms-2"></i>
           </button>
         </div>
       )}
@@ -111,7 +111,7 @@ const WizardStep = ({ rule, currentAnswer, onAnswerSelect }) => {
       {rule.question_type === 'confirmation' && (
         <div className="text-center">
           <div className="mb-4">
-            <i className="bi bi-info-circle text-primary fs-1 mb-3 d-block"></i>
+            <i className="bx bx-info-circle text-primary fs-1 mb-3 d-block"></i>
             <p className="text-muted fs-5 mb-4">
               Klik op 'Doorgaan' om verder te gaan met het uploaden van documenten.
             </p>
@@ -120,7 +120,7 @@ const WizardStep = ({ rule, currentAnswer, onAnswerSelect }) => {
             onClick={() => onAnswerSelect('confirmed')}
             className="btn btn-primary btn-lg px-5"
           >
-            Doorgaan <i className="bi bi-arrow-right ms-2"></i>
+            Doorgaan <i className="bx bx-right-arrow-alt ms-2"></i>
           </button>
         </div>
       )}

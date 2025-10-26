@@ -169,7 +169,7 @@ const Feedback = () => {
                     >
                       <span>
                         {loading ? "Bezig met versturen..." : "Verstuur Feedback"}
-                        {!loading && <i className="bi bi-send ms-2"></i>}
+                        {!loading && <i className="bx bx-send ms-2"></i>}
                       </span>
                     </button>
                   </form>
@@ -178,7 +178,7 @@ const Feedback = () => {
 
               <div className="alert alert-info mt-4">
                 <small>
-                  <i className="bi bi-shield-check me-2"></i>
+                  <i className="bx bx-shield-check me-2"></i>
                   Uw gegevens worden vertrouwelijk behandeld en alleen gebruikt om onze dienstverlening te verbeteren.
                 </small>
               </div>

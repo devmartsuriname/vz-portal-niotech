@@ -93,8 +93,8 @@ const SubmissionSummary = ({ answers, personalInfo, files, evaluation, onSubmit,
           ) : (
             <ul className="list-unstyled mb-0">
               {files.map((file, index) => (
-                <li key={index} className="d-flex align-items-center mb-2">
-                  <i className="bi bi-file-earmark-pdf text-danger me-2"></i>
+              <li key={index} className="d-flex align-items-center mb-2">
+                  <i className="bx bxs-file-pdf text-danger me-2"></i>
                   <span>{file.name}</span>
                 </li>
               ))}
@@ -138,7 +138,7 @@ const SubmissionSummary = ({ answers, personalInfo, files, evaluation, onSubmit,
           </>
         ) : (
           <>
-            <i className="bi bi-check-circle me-2"></i>
+            <i className="bx bx-check-circle me-2"></i>
             Aanvraag Indienen
           </>
         )}
