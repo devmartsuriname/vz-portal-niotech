@@ -53,28 +53,60 @@ export const useSystemSettings = (category?: string) => {
         
         if (vaultError) throw vaultError;
         
-        // Don't store actual password in system_settings
-        const { data, error } = await supabase
+        // Try to update the mask in system_settings, fallback to upsert if row doesn't exist
+        const { data: updateData, error: updateError } = await supabase
           .from('system_settings')
           .update({ setting_value: '""' })
           .eq('setting_key', key)
           .select()
           .single();
 
-        if (error) throw error;
-        return data;
+        if (updateError && updateError.code === 'PGRST116') {
+          // Row doesn't exist, upsert it
+          const { data, error: upsertError } = await supabase
+            .from('system_settings')
+            .upsert({
+              setting_key: key,
+              setting_value: '""',
+              category: category || 'email'
+            })
+            .select()
+            .single();
+          
+          if (upsertError) throw upsertError;
+          return data;
+        }
+        
+        if (updateError) throw updateError;
+        return updateData;
       }
       
-      // Normal settings update
-      const { data, error } = await supabase
+      // Normal settings update with upsert fallback
+      const { data: updateData, error: updateError } = await supabase
         .from('system_settings')
         .update({ setting_value: value })
         .eq('setting_key', key)
         .select()
         .single();
 
-      if (error) throw error;
-      return data;
+      // If row doesn't exist (PGRST116), upsert it
+      if (updateError && updateError.code === 'PGRST116') {
+        const { data, error: upsertError } = await supabase
+          .from('system_settings')
+          .upsert({
+            setting_key: key,
+            setting_value: value,
+            category: category || 'general'
+          })
+          .select()
+          .single();
+        
+        if (upsertError) throw upsertError;
+        return data;
+      }
+
+      if (updateError) throw updateError;
+      return updateData;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['system_settings'] });

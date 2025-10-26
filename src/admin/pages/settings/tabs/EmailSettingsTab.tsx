@@ -7,7 +7,7 @@ export const EmailSettingsTab = () => {
   const { settings, isLoading, updateSetting, testResendConnection, testSMTPConnection } = useSystemSettings('email');
   const { toast } = useToast();
 
-  const [provider, setProvider] = useState('resend');
+  const [provider, setProvider] = useState('smtp'); // Default to Hostinger
   
   // Resend settings
   const [resendApiKey, setResendApiKey] = useState('');
@@ -38,7 +38,7 @@ export const EmailSettingsTab = () => {
 
         switch (setting.setting_key) {
           case 'smtp_provider':
-            setProvider(value || 'resend');
+            setProvider(value || 'smtp'); // Default to Hostinger
             break;
           case 'resend_api_key':
             setResendApiKey(value || '');
@@ -193,24 +193,41 @@ export const EmailSettingsTab = () => {
       <h5 className="mb-4">📧 Email Configuratie</h5>
 
       <Form.Group className="mb-4">
-        <Form.Label>Email Provider</Form.Label>
-        <div>
+        <Form.Label>Email Providers</Form.Label>
+        <Form.Text className="d-block mb-3 text-muted">
+          Slechts één provider kan tegelijkertijd actief zijn
+        </Form.Text>
+        
+        <div className="d-flex align-items-center mb-3">
           <Form.Check
-            type="radio"
-            label="Resend API (Eenvoudig)"
-            name="provider"
-            value="resend"
+            type="switch"
+            id="resend-switch"
+            label="Enable Resend API"
             checked={provider === 'resend'}
-            onChange={(e) => setProvider(e.target.value)}
-            className="mb-2"
+            onChange={(e) => {
+              if (e.target.checked) {
+                setProvider('resend');
+              } else {
+                setProvider('smtp'); // Auto-enable SMTP when Resend is disabled
+              }
+            }}
+            className="me-4"
           />
+        </div>
+        
+        <div className="d-flex align-items-center">
           <Form.Check
-            type="radio"
-            label="Hostinger SMTP (Geavanceerd)"
-            name="provider"
-            value="smtp"
+            type="switch"
+            id="smtp-switch"
+            label="Enable Hostinger SMTP (Default)"
             checked={provider === 'smtp'}
-            onChange={(e) => setProvider(e.target.value)}
+            onChange={(e) => {
+              if (e.target.checked) {
+                setProvider('smtp');
+              } else {
+                setProvider('resend'); // Auto-enable Resend when SMTP is disabled
+              }
+            }}
           />
         </div>
       </Form.Group>
@@ -225,6 +242,7 @@ export const EmailSettingsTab = () => {
               value={resendApiKey}
               onChange={(e) => setResendApiKey(e.target.value)}
               placeholder="re_..."
+              disabled={provider !== 'resend'}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -234,6 +252,7 @@ export const EmailSettingsTab = () => {
               value={resendFromEmail}
               onChange={(e) => setResendFromEmail(e.target.value)}
               placeholder="noreply@vz-juspol.sr"
+              disabled={provider !== 'resend'}
             />
           </Form.Group>
           <Form.Group className="mb-4">
@@ -243,6 +262,7 @@ export const EmailSettingsTab = () => {
               value={resendFromName}
               onChange={(e) => setResendFromName(e.target.value)}
               placeholder="VZ Juspol Portal"
+              disabled={provider !== 'resend'}
             />
           </Form.Group>
         </>
@@ -258,6 +278,7 @@ export const EmailSettingsTab = () => {
               value={smtpHost}
               onChange={(e) => setSmtpHost(e.target.value)}
               placeholder="smtp.hostinger.com"
+              disabled={provider !== 'smtp'}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -267,6 +288,7 @@ export const EmailSettingsTab = () => {
               value={smtpPort}
               onChange={(e) => setSmtpPort(e.target.value)}
               placeholder="587"
+              disabled={provider !== 'smtp'}
             />
             <Form.Text className="text-muted">587 (TLS) of 465 (SSL)</Form.Text>
           </Form.Group>
@@ -276,6 +298,7 @@ export const EmailSettingsTab = () => {
               label="TLS/SSL Inschakelen"
               checked={smtpSecure}
               onChange={(e) => setSmtpSecure(e.target.checked)}
+              disabled={provider !== 'smtp'}
             />
             <Form.Text className="text-muted d-block">Inschakelen voor poort 465 (SSL). Toegestaan voor poort 587 (STARTTLS)</Form.Text>
           </Form.Group>
@@ -286,6 +309,7 @@ export const EmailSettingsTab = () => {
               value={smtpUsername}
               onChange={(e) => setSmtpUsername(e.target.value)}
               placeholder="noreply@vz-juspol.sr"
+              disabled={provider !== 'smtp'}
             />
             <Form.Text className="text-muted">Meestal het volledige mailbox adres</Form.Text>
           </Form.Group>
@@ -296,6 +320,7 @@ export const EmailSettingsTab = () => {
               value={smtpPassword}
               onChange={(e) => setSmtpPassword(e.target.value)}
               placeholder="••••••••"
+              disabled={provider !== 'smtp'}
             />
             <Form.Text className="text-muted">
               {smtpPassword === '••••••••' ? '🔒 Wachtwoord is versleuteld opgeslagen in Vault' : 'Vul nieuw wachtwoord in om bij te werken'}
@@ -308,6 +333,7 @@ export const EmailSettingsTab = () => {
               value={smtpFromEmail}
               onChange={(e) => setSmtpFromEmail(e.target.value)}
               placeholder="noreply@vz-juspol.sr"
+              disabled={provider !== 'smtp'}
             />
             <Form.Text className="text-muted">Afzender adres getoond aan ontvangers</Form.Text>
           </Form.Group>
@@ -318,6 +344,7 @@ export const EmailSettingsTab = () => {
               value={smtpFromName}
               onChange={(e) => setSmtpFromName(e.target.value)}
               placeholder="VZ Juspol Portal"
+              disabled={provider !== 'smtp'}
             />
             <Form.Text className="text-muted">Afzender naam getoond aan ontvangers</Form.Text>
           </Form.Group>
