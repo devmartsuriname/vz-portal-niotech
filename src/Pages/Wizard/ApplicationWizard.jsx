@@ -154,7 +154,7 @@ const ApplicationWizard = () => {
               <div className="mb-5">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h5 className="mb-0 text-dark fw-semibold">
-                    <i className="bi bi-list-check me-2 text-primary"></i>
+                    <i className="bx bx-list-check me-2 text-primary"></i>
                     Voortgang
                   </h5>
                   <span className="badge bg-primary bg-opacity-10 text-primary px-3 py-2 fs-6">
@@ -227,7 +227,7 @@ const ApplicationWizard = () => {
                       className="btn btn-outline-secondary"
                       disabled={wizardPhase === 'questions' && !canGoBack}
                     >
-                      <i className="bi bi-arrow-left me-2"></i>
+                      <i className="bx bx-left-arrow-alt me-2"></i>
                       Vorige
                     </button>
 

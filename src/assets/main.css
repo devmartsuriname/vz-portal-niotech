@@ -11445,8 +11445,8 @@ textarea.is-invalid {
     position: relative;
  }
   .cs_nav .cs_nav_list > li.menu-item-has-children > a::after {
-    content: "\f282";
-    font-family: bootstrap-icons !important;
+    content: "\ef4e";
+    font-family: boxicons !important;
     font-weight: 900;
     display: inline-block;
     border-left: 0;

@@ -37,7 +37,7 @@ const DocumentChecklist = ({ requiredDocuments, onComplete }) => {
     console.log('No documents required, showing continue button');
     return (
       <div className="text-center py-5">
-        <i className="bi bi-check-circle text-success" style={{ fontSize: '3rem' }}></i>
+        <i className="bx bx-check-circle text-success" style={{ fontSize: '3rem' }}></i>
         <h4 className="mt-3">Geen documenten vereist</h4>
         <p className="text-muted">Voor deze aanvraag zijn geen documenten nodig. Klik op doorgaan om verder te gaan met uw persoonlijke gegevens.</p>
         <button 
@@ -48,7 +48,7 @@ const DocumentChecklist = ({ requiredDocuments, onComplete }) => {
           className="btn btn-primary btn-lg mt-3"
         >
           Doorgaan naar Persoonlijke Gegevens
-          <i className="bi bi-arrow-right ms-2"></i>
+          <i className="bx bx-right-arrow-alt ms-2"></i>
         </button>
       </div>
     );
@@ -78,7 +78,7 @@ const DocumentChecklist = ({ requiredDocuments, onComplete }) => {
                   </div>
                   {uploadedFiles.some(f => f.documentTypeId === doc.document_type_id) && (
                     <span className="badge bg-success">
-                      <i className="bi bi-check-circle me-1"></i>
+                      <i className="bx bx-check-circle me-1"></i>
                       Geüpload
                     </span>
                   )}
@@ -115,7 +115,7 @@ const DocumentChecklist = ({ requiredDocuments, onComplete }) => {
         className="btn btn-primary btn-lg w-100 mt-4"
       >
         Doorgaan naar Persoonlijke Gegevens
-        <i className="bi bi-arrow-right ms-2"></i>
+        <i className="bx bx-right-arrow-alt ms-2"></i>
       </button>
     </div>
   );

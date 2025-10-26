@@ -136,9 +136,9 @@ const Footer = () => {
                             © 2025 Ministerie van Justitie en Politie - Vreemdelingenzaken. Alle rechten voorbehouden.
                         </p>
                         <ul className="social-links" data-wow-delay=".5s">
-                            <li> <a href="#" aria-label="Facebook"><i className="bi bi-facebook"></i></a> </li>
-                            <li> <a href="#" aria-label="Twitter"><i className="bi bi-twitter"></i></a> </li>
-                            <li> <a href="#" aria-label="Instagram"><i className="bi bi-instagram"></i></a> </li>
+                            <li> <a href="#" aria-label="Facebook"><i className="bx bxl-facebook"></i></a> </li>
+                            <li> <a href="#" aria-label="Twitter"><i className="bx bxl-twitter"></i></a> </li>
+                            <li> <a href="#" aria-label="Instagram"><i className="bx bxl-instagram"></i></a> </li>
                         </ul>
                     </div>
                 </div>

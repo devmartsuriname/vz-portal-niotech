@@ -57,8 +57,8 @@
 }
 
 .menu-item-has-children > a::before {
-  content: '\f107';
-  font-family: 'bootstrap-icons';
+  content: '\ef4e';
+  font-family: 'boxicons';
   margin-left: var(--space-1);
   font-size: var(--text-xs);
   transition: var(--transition-fast);

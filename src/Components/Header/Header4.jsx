@@ -72,12 +72,12 @@ export default function Header4({ variant }) {
             <div className="cs_main_header_right">
               <div className="header-btn d-flex align-items-center">
 
-              <a onClick={() => setSearchToggle(!searchToggle)} className="search-trigger search-icon"><i className="bi bi-search"></i></a>
+              <a onClick={() => setSearchToggle(!searchToggle)} className="search-trigger search-icon"><i className="bx bx-search"></i></a>
                 <div className="header-button ms-4">
                     <Link to="/wizard" className="theme-btn">
                         <span>
                             Start Aanvraag
-                            <i className="bi bi-arrow-right"></i>
+                            <i className="bx bx-right-arrow-alt"></i>
                         </span>
                     </Link>
 
@@ -90,7 +90,7 @@ export default function Header4({ variant }) {
     </header>
       <div className={`search-wrap ${searchToggle ? 'active' : ''}`} >
       <div className="search-inner">
-          <i onClick={() => setSearchToggle(!searchToggle)} id="search-close" className="bi bi-x-lg search-close"></i>
+          <i onClick={() => setSearchToggle(!searchToggle)} id="search-close" className="bx bx-x search-close"></i>
           <div className="search-cell">
               <form method="get">
                   <div className="search-field-holder">
