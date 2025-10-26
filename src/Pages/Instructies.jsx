@@ -1,6 +1,6 @@
 import BreadCumb from "../Components/Common/BreadCumb";
 import { Link } from "react-router-dom";
-import { Accordion } from 'react-bootstrap';
+import { NativeAccordion } from '../components/ui/NativeAccordion';
 
 const Instructies = () => {
   return (
@@ -24,10 +24,8 @@ const Instructies = () => {
 
           <div className="row">
             <div className="col-lg-8">
-              <Accordion defaultActiveKey="0">
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header>1. Verblijfsvergunning</Accordion.Header>
-                  <Accordion.Body>
+              <NativeAccordion defaultActiveKey="0">
+                <NativeAccordion.Item eventKey="0" title="1. Verblijfsvergunning">
                     <h5>Vereisten:</h5>
                     <ul>
                       <li>Geldig paspoort (minimaal 6 maanden geldig)</li>
@@ -41,12 +39,9 @@ const Instructies = () => {
                     <p>SRD 500 (Surinaamse origine) / SRD 750 (Overige)</p>
                     <h5>Verwerkingstijd:</h5>
                     <p>4-6 weken</p>
-                  </Accordion.Body>
-                </Accordion.Item>
+                </NativeAccordion.Item>
 
-                <Accordion.Item eventKey="1">
-                  <Accordion.Header>2. Naturalisatie</Accordion.Header>
-                  <Accordion.Body>
+                <NativeAccordion.Item eventKey="1" title="2. Naturalisatie">
                     <h5>Vereisten:</h5>
                     <ul>
                       <li>Minimaal 5 jaar onafgebroken verblijf in Suriname</li>
@@ -61,12 +56,9 @@ const Instructies = () => {
                     <p>SRD 1,000 (Surinaamse origine) / SRD 1,500 (Overige)</p>
                     <h5>Verwerkingstijd:</h5>
                     <p>8-12 weken</p>
-                  </Accordion.Body>
-                </Accordion.Item>
+                </NativeAccordion.Item>
 
-                <Accordion.Item eventKey="2">
-                  <Accordion.Header>3. Verklaringen</Accordion.Header>
-                  <Accordion.Body>
+                <NativeAccordion.Item eventKey="2" title="3. Verklaringen">
                     <h5>Vereisten:</h5>
                     <ul>
                       <li>Geldig paspoort</li>
@@ -78,12 +70,9 @@ const Instructies = () => {
                     <p>SRD 150</p>
                     <h5>Verwerkingstijd:</h5>
                     <p>1-2 weken</p>
-                  </Accordion.Body>
-                </Accordion.Item>
+                </NativeAccordion.Item>
 
-                <Accordion.Item eventKey="3">
-                  <Accordion.Header>4. Duplicaten</Accordion.Header>
-                  <Accordion.Body>
+                <NativeAccordion.Item eventKey="3" title="4. Duplicaten">
                     <h5>Vereisten:</h5>
                     <ul>
                       <li>Geldig paspoort</li>
@@ -95,12 +84,9 @@ const Instructies = () => {
                     <p>SRD 200</p>
                     <h5>Verwerkingstijd:</h5>
                     <p>2-3 weken</p>
-                  </Accordion.Body>
-                </Accordion.Item>
+                </NativeAccordion.Item>
 
-                <Accordion.Item eventKey="4">
-                  <Accordion.Header>5. Conversie</Accordion.Header>
-                  <Accordion.Body>
+                <NativeAccordion.Item eventKey="4" title="5. Conversie">
                     <h5>Vereisten:</h5>
                     <ul>
                       <li>Geldig paspoort</li>
@@ -112,12 +98,9 @@ const Instructies = () => {
                     <p>SRD 300</p>
                     <h5>Verwerkingstijd:</h5>
                     <p>3-4 weken</p>
-                  </Accordion.Body>
-                </Accordion.Item>
+                </NativeAccordion.Item>
 
-                <Accordion.Item eventKey="5">
-                  <Accordion.Header>6. Asiel</Accordion.Header>
-                  <Accordion.Body>
+                <NativeAccordion.Item eventKey="5" title="6. Asiel">
                     <h5>Vereisten:</h5>
                     <ul>
                       <li>Geldig paspoort of identiteitsbewijs</li>
@@ -130,9 +113,8 @@ const Instructies = () => {
                     <p>Geen kosten voor asielaanvraag</p>
                     <h5>Verwerkingstijd:</h5>
                     <p>6-12 weken (afhankelijk van complexiteit)</p>
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
+                </NativeAccordion.Item>
+              </NativeAccordion>
             </div>
 
             <div className="col-lg-4">

@@ -13,9 +13,13 @@ const AdminLayout = () => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    // Dynamically load Bootstrap JS only for admin UI
-    import('bootstrap/dist/js/bootstrap.bundle.min.js').catch(err => 
-      console.error('Failed to load Bootstrap JS:', err)
+    // Dynamically load Bootstrap CSS + JS + Icons only for admin UI
+    Promise.all([
+      import('bootstrap/dist/css/bootstrap.min.css'),
+      import('bootstrap-icons/font/bootstrap-icons.css'),
+      import('bootstrap/dist/js/bootstrap.bundle.min.js')
+    ]).catch(err => 
+      console.error('Failed to load Bootstrap resources:', err)
     );
 
     document.documentElement.setAttribute('data-bs-theme', 'dark');

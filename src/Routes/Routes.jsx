@@ -1,29 +1,32 @@
-// React imports not needed here
+import { lazy, Suspense } from "react";
 import {
     createBrowserRouter,
   } from "react-router-dom";
 import Layout4 from "../Layout/Layout4";
-import AboutPage from "../Pages/AboutPage";
 import Home from "../Pages/Home";
-import ServicePage from "../Pages/ServicePage";
-import ContactPage from "../Pages/ContactPage";
-import FaqPage from "../Pages/FaqPage";
-import Instructies from "../Pages/Instructies";
-import DocumentenLijsten from "../Pages/DocumentenLijsten";
-import AanvraagIndienen from "../Pages/AanvraagIndienen";
-import Vergunningen from "../Pages/Vergunningen";
-import Overzicht from "../Pages/Overzicht";
-import Feedback from "../Pages/Feedback";
-import BlogPage from "../Pages/BlogPage";
-import BlogDetaillsPage from "../Pages/BlogDetaillsPage";
-import BlogStandardPage from "../Pages/BlogStandardPage";
 import { adminRoutes } from './AdminRoutes';
 import RouteError from "../components/common/RouteError";
 import NotFound from "../pages/NotFound";
+import PageSkeleton from "../components/common/PageSkeleton";
 
 // Wizard components (eager load to avoid duplicate React issues)
 import ApplicationWizard from "../Pages/Wizard/ApplicationWizard";
 import ConfirmationPage from "../Pages/Wizard/ConfirmationPage";
+
+// Lazy load public pages for better code splitting
+const AboutPage = lazy(() => import("../Pages/AboutPage"));
+const ServicePage = lazy(() => import("../Pages/ServicePage"));
+const ContactPage = lazy(() => import("../Pages/ContactPage"));
+const FaqPage = lazy(() => import("../Pages/FaqPage"));
+const Instructies = lazy(() => import("../Pages/Instructies"));
+const DocumentenLijsten = lazy(() => import("../Pages/DocumentenLijsten"));
+const AanvraagIndienen = lazy(() => import("../Pages/AanvraagIndienen"));
+const Vergunningen = lazy(() => import("../Pages/Vergunningen"));
+const Overzicht = lazy(() => import("../Pages/Overzicht"));
+const Feedback = lazy(() => import("../Pages/Feedback"));
+const BlogPage = lazy(() => import("../Pages/BlogPage"));
+const BlogDetaillsPage = lazy(() => import("../Pages/BlogDetaillsPage"));
+const BlogStandardPage = lazy(() => import("../Pages/BlogStandardPage"));
 
 
 export const router = createBrowserRouter([
@@ -38,43 +41,43 @@ export const router = createBrowserRouter([
         },
         {
             path: "/about",
-            element: <AboutPage></AboutPage>,
+            element: <Suspense fallback={<PageSkeleton />}><AboutPage /></Suspense>,
         },   
         {
           path: "/service",
-          element: <ServicePage></ServicePage>,
+          element: <Suspense fallback={<PageSkeleton />}><ServicePage /></Suspense>,
         }, 
         {
           path: "/faq",
-          element: <FaqPage></FaqPage>,
+          element: <Suspense fallback={<PageSkeleton />}><FaqPage /></Suspense>,
         },
         {
           path: "/contact",
-          element: <ContactPage></ContactPage>,
+          element: <Suspense fallback={<PageSkeleton />}><ContactPage /></Suspense>,
         },
         {
           path: "/instructies",
-          element: <Instructies></Instructies>,
+          element: <Suspense fallback={<PageSkeleton />}><Instructies /></Suspense>,
         },
         {
           path: "/documenten-lijsten",
-          element: <DocumentenLijsten></DocumentenLijsten>,
+          element: <Suspense fallback={<PageSkeleton />}><DocumentenLijsten /></Suspense>,
         },
         {
           path: "/aanvraag-indienen",
-          element: <AanvraagIndienen></AanvraagIndienen>,
+          element: <Suspense fallback={<PageSkeleton />}><AanvraagIndienen /></Suspense>,
         },
         {
           path: "/vergunningen",
-          element: <Vergunningen></Vergunningen>,
+          element: <Suspense fallback={<PageSkeleton />}><Vergunningen /></Suspense>,
         },
         {
           path: "/overzicht",
-          element: <Overzicht></Overzicht>,
+          element: <Suspense fallback={<PageSkeleton />}><Overzicht /></Suspense>,
         },
         {
           path: "/feedback",
-          element: <Feedback></Feedback>,
+          element: <Suspense fallback={<PageSkeleton />}><Feedback /></Suspense>,
         },
         {
           path: "/wizard",
@@ -87,15 +90,15 @@ export const router = createBrowserRouter([
         },
         {
           path: "/blog",
-          element: <BlogPage></BlogPage>,
+          element: <Suspense fallback={<PageSkeleton />}><BlogPage /></Suspense>,
         },
         {
           path: "/blog/blog-details",
-          element: <BlogDetaillsPage></BlogDetaillsPage>,
+          element: <Suspense fallback={<PageSkeleton />}><BlogDetaillsPage /></Suspense>,
         },
         {
           path: "/blog/blog-standard",
-          element: <BlogStandardPage></BlogStandardPage>,
+          element: <Suspense fallback={<PageSkeleton />}><BlogStandardPage /></Suspense>,
         },
         {
           path: "*",

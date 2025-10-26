@@ -30,7 +30,7 @@ const Faq2 = () => {
                     <div className="row gy-5 gx-100">
                         <div className="col-xl-6">
                             <div className="faq-thumb">
-                                <img src="/assets/images/faq/faqThumb3_1.png" alt="thumb" />
+                                <img src="/assets/images/faq/faqThumb3_1.png" alt="thumb" loading="lazy" />
                             </div>
                         </div>
                         <div className="col-xl-6">

@@ -12,7 +12,7 @@ const Services1 = () => {
                         <div key={index} className="col-xl-4 col-md-6">
                             <div className="service-box style3 wow fadeInLeft" data-wow-delay=".3s">
                                 <div className="icon-box style3">
-                                    <img src={item.icon} alt="icon" />
+                                    <img src={item.icon} alt="icon" loading="lazy" />
                                 </div>
                                 <div className="content">
                                     <h3><Link to="/service/service-details"> {item.title}</Link></h3>
