@@ -38,7 +38,7 @@ const Feature4 = ({img,subtitle,title,content,FeatureList,btnname,btnurl}) => {
                                 ))}
 
                             </ul>
-                            <Link className="theme-btn style2 wow fadeInUp" data-wow-delay=".4s" to={btnurl}>{btnname} <i className="bi bi-arrow-right"></i>
+                            <Link className="theme-btn style2 wow fadeInUp" data-wow-delay=".4s" to={btnurl}>{btnname} <i className="bx bx-right-arrow-alt"></i>
                             </Link>
                         </div>
                     </div>

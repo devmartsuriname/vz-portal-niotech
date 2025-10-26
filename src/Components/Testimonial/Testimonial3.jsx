@@ -61,8 +61,8 @@ const Testimonial3 = () => {
                 ></SectionTitle>
                 </div>
                 <div className="array-button">
-                    <button onClick={previous} className="array-prev"><i className="bi bi-chevron-left"></i></button>
-                    <button onClick={next} className="array-next"><i className="bi bi-chevron-right"></i></button>
+                    <button onClick={previous} className="array-prev"><i className="bx bx-chevron-left"></i></button>
+                    <button onClick={next} className="array-next"><i className="bx bx-chevron-right"></i></button>
                 </div>                
             </div>
             <div className="swiper testimonial-slider-3">

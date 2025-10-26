@@ -32,11 +32,11 @@ const BlogStandard = () => {
                                     <div className="news-content">
                                         <ul>
                                             <li>
-                                                <i className="bi bi-person"></i>
+                                                <i className="bx bx-user"></i>
                                                 {item.author}
                                             </li>
                                             <li>
-                                                <i className="bi bi-tag"></i>
+                                                <i className="bx bx-purchase-tag"></i>
                                                 {item.category}
                                             </li>
                                         </ul>
@@ -48,7 +48,7 @@ const BlogStandard = () => {
                                         </p>
                                         <Link to="/blog/blog-details" className="theme-btn mt-4">
                                             Lees Meer
-                                            <i className="bi bi-arrow-right"></i>
+                                            <i className="bx bx-right-arrow-alt"></i>
                                         </Link>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@ const BlogStandard = () => {
                             <div className="search-widget">
                                 <form action="#">
                                     <input type="text" placeholder="Zoek hier..." />
-                                    <button type="submit"><i className="bi bi-search"></i></button>
+                                    <button type="submit"><i className="bx bx-search"></i></button>
                                 </form>
                             </div>
                         </div>

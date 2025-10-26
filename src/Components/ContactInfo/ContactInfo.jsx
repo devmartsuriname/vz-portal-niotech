@@ -231,7 +231,7 @@ const ContactInfo = () => {
                                     </div>
                                     <div className="col-lg-7 wow fadeInUp" data-wow-delay=".9s">
                                         <button type="submit" className="theme-btn" disabled={isSubmitting}>
-                                            {isSubmitting ? 'Verzenden...' : 'Verstuur bericht'} <i className="bi bi-arrow-right"></i>
+                                            {isSubmitting ? 'Verzenden...' : 'Verstuur bericht'} <i className="bx bx-right-arrow-alt"></i>
                                         </button>
                                     </div>
                                 </div>

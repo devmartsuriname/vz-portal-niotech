@@ -20,7 +20,7 @@ const Vergunningen = () => {
             <div className="col-lg-6 mx-auto">
               <div className="input-group input-group-lg">
                 <span className="input-group-text">
-                  <i className="bi bi-search"></i>
+                  <i className="bx bx-search"></i>
                 </span>
                 <input
                   type="text"
@@ -50,7 +50,7 @@ const Vergunningen = () => {
                     </div>
                   ) : error ? (
                     <div className="alert alert-danger" role="alert">
-                      <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                      <i className="bx bxs-error me-2"></i>
                       Fout bij het laden van gegevens. Probeer het later opnieuw.
                     </div>
                   ) : (
@@ -125,7 +125,7 @@ const Vergunningen = () => {
 
                       {permits?.length === 0 && (
                         <div className="text-center py-5">
-                          <i className="bi bi-search fs-1 text-muted"></i>
+                          <i className="bx bx-search fs-1 text-muted"></i>
                           <p className="mt-3 text-muted">
                             Geen resultaten gevonden voor "{searchQuery}"
                           </p>
@@ -139,7 +139,7 @@ const Vergunningen = () => {
 
                   {!isLoading && !error && permits && permits.length > 0 && (
                     <div className="mt-3 text-muted small">
-                      <i className="bi bi-info-circle me-2"></i>
+                      <i className="bx bx-info-circle me-2"></i>
                       Totaal {permits.length} {permits.length === 1 ? 'vergunning' : 'vergunningen'} weergegeven
                     </div>
                   )}
@@ -148,7 +148,7 @@ const Vergunningen = () => {
 
               <div className="mt-4 text-center">
                 <p className="text-muted">
-                  <i className="bi bi-question-circle me-2"></i>
+                  <i className="bx bx-help-circle me-2"></i>
                   Vragen over vergunningen? 
                   <a href="/contact" className="ms-1 text-decoration-none">Neem contact op</a>
                 </p>

@@ -62,8 +62,8 @@ const Testimonial4 = () => {
                         </div>
                         <div className="col-xl-6">
                             <div className="slider-arrow-button style2 text-end wow fadeInUp" data-wow-delay=".9s">
-                                <button onClick={previous} data-slider-prev="#testimonialSliderThree" className="slider-arrow arrowPrev"><i className="bi bi-chevron-left"></i></button>
-                                <button onClick={next} data-slider-next="#testimonialSliderThree" className="slider-arrow arrowNext"><i className="bi bi-chevron-right"></i></button>
+                                <button onClick={previous} data-slider-prev="#testimonialSliderThree" className="slider-arrow arrowPrev"><i className="bx bx-chevron-left"></i></button>
+                                <button onClick={next} data-slider-next="#testimonialSliderThree" className="slider-arrow arrowNext"><i className="bx bx-chevron-right"></i></button>
                             </div>
                         </div>
                     </div>

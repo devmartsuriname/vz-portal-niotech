@@ -147,7 +147,7 @@ const DocumentenLijsten = () => {
                                     title="Download checklist"
                                     aria-label={`Download checklist voor ${doc.name}`}
                                   >
-                                    <i className="bi bi-download" aria-hidden="true"></i> PDF
+                                    <i className="bx bx-download" aria-hidden="true"></i> PDF
                                   </a>
                                 ) : (
                                   <span className="text-muted small">Geen checklist</span>

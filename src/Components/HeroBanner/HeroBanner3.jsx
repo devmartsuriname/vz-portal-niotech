@@ -40,7 +40,7 @@ const HeroBanner3 = ({bgimg,subtitle,title,content,btnname,btnurl,btnname2,btnur
 
                             </Link>
                             <Link className="theme-btn style2 wow fadeInUp" data-wow-delay=".2s"
-                                to={btnurl2}>{btnname2} <i className="bi bi-android2"></i>
+                                to={btnurl2}>{btnname2} <i className="bx bxl-android"></i>
                                 
                             </Link>
                         </div>

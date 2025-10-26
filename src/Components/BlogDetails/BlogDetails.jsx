@@ -25,11 +25,11 @@ const BlogDetails = () => {
                                 <div className="post-content">
                                     <ul className="post-list d-flex align-items-center wow fadeInUp" data-wow-delay=".2s">
                                         <li>
-                                        <i className="bi bi-person"></i>
+                                        <i className="bx bx-user"></i>
                                             {article.author}
                                         </li>
                                         <li>
-                                        <i className="bi bi-calendar"></i>
+                                        <i className="bx bx-calendar"></i>
                                             {article.date}
                                         </li>
                                         <li>
@@ -90,10 +90,10 @@ const BlogDetails = () => {
                                     data-wow-delay="1.2s">
                                     <div className="social-share">
                                         <span className="me-3">Delen:</span>
-                                        <a href="#"><i className="bi bi-facebook"></i></a>
-                                        <a href="#"><i className="bi bi-twitter"></i></a>
-                                        <a href="#"><i className="bi bi-linkedin"></i></a>
-                                        <a href="#"><i className="bi bi-whatsapp"></i></a>
+                                        <a href="#"><i className="bx bxl-facebook"></i></a>
+                                        <a href="#"><i className="bx bxl-twitter"></i></a>
+                                        <a href="#"><i className="bx bxl-linkedin"></i></a>
+                                        <a href="#"><i className="bx bxl-whatsapp"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@ const BlogDetails = () => {
                             <div className="search-widget">
                                 <form action="#">
                                     <input type="text" placeholder="Zoek hier..." />
-                                    <button type="submit"><i className="bi bi-search"></i></button>
+                                    <button type="submit"><i className="bx bx-search"></i></button>
                                 </form>
                             </div>
                         </div>
