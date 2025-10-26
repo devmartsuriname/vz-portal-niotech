@@ -83,9 +83,23 @@ All email settings stored in `system_settings` table:
 
 ---
 
+## Performance Optimization History
+
+### Wizard Restoration (2025-10-27)
+After Phase P1 code splitting optimizations, the Wizard system experienced duplicate React instance issues causing `useState null` errors on the Live URL.
+
+**Resolution:** Updated `vite.config.ts` React bundling patterns to ensure single React instance consolidation. Added `scheduler` to `vendor-react` bundle and enhanced `assertSingleReact.ts` diagnostics.
+
+**Key Finding:** Wizard logic was unchanged and identical to October 23 stable backups. Issue was purely bundling configuration.
+
+**Documentation:** See [Rollback & Restoration Report](./rollback.md) for detailed investigation and validation steps.
+
+---
+
 ## Links
 
 - [Backend Architecture](./backend-architecture.md)
 - [Wizard Logic](./wizard-logic.md)
 - [API Reference](./api-reference.md)
 - [Admin User Guide](./admin-user-guide.md)
+- [Rollback & Restoration Report](./rollback.md)
