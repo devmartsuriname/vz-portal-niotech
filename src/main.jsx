@@ -1,4 +1,4 @@
-// Deploy 2025-10-27 - Cache bust to regenerate asset hashes
+// Deploy 2025-10-27T14:45:33Z - Aggressive cache invalidation v3
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from "react-router-dom";
@@ -19,6 +19,9 @@ import './assets/wizard.css';
 assertSingleReact();
 attachGlobalErrorListeners();
 attachPerfProbe();
+
+// Build timestamp for cache busting
+console.log('[VZ Portal] Build:', '2025-10-27T14:45:33Z');
 
 const queryClient = new QueryClient({
   defaultOptions: {
