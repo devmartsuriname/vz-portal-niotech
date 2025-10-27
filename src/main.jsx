@@ -1,4 +1,4 @@
-// Deploy 2025-10-27T14:45:33Z - Aggressive cache invalidation v3
+// Deploy 2025-10-27T15:00:00Z - Vendor-react consolidation fix
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from "react-router-dom";
@@ -21,7 +21,7 @@ attachGlobalErrorListeners();
 attachPerfProbe();
 
 // Build timestamp for cache busting
-console.log('[VZ Portal] Build:', '2025-10-27T14:45:33Z');
+console.log('[VZ Portal] Build:', '2025-10-27T15:00:00Z - Vendor consolidation');
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -68,39 +68,34 @@ export default defineConfig(({ mode }) => {
           warn(warning);
         },
         output: {
-          // Enhanced vendor bundles for granular caching and lazy loading
+          // Enhanced vendor bundles - CRITICAL: All React-dependent libs in ONE chunk
           manualChunks: (id) => {
-            // Core React bundle - CRITICAL: Use strict path matching to prevent splitting
-            // React, React-DOM, and Scheduler must ALWAYS be in the same chunk
+            // CRITICAL: React + ALL React-dependent libraries MUST be in vendor-react
+            // This prevents duplicate React instances that cause createContext errors
             if (id.includes('/node_modules/react/') || 
                 id.includes('/node_modules/react-dom/') ||
-                id.includes('/scheduler/')) {
+                id.includes('/scheduler/') ||
+                id.includes('node_modules/@tanstack/react-query') ||
+                id.includes('node_modules/react-bootstrap') ||
+                id.includes('node_modules/@radix-ui') ||
+                id.includes('node_modules/react-slick') ||
+                id.includes('node_modules/react-apexcharts')) {
               return 'vendor-react';
             }
-            // React Query (admin-heavy)
-            if (id.includes('node_modules/@tanstack/react-query')) {
-              return 'vendor-query';
+            
+            // Non-React dependencies can have separate chunks
+            if (id.includes('node_modules/bootstrap/dist')) {
+              return 'vendor-bootstrap-css';
             }
-            // Admin-only: Bootstrap (deferred loading)
-            if (id.includes('node_modules/react-bootstrap') || 
-                id.includes('node_modules/bootstrap')) {
-              return 'admin-bootstrap';
+            
+            if (id.includes('node_modules/apexcharts') && !id.includes('react-apexcharts')) {
+              return 'vendor-charts-core';
             }
-            // Admin-only: Charts (lazy loaded)
-            if (id.includes('node_modules/apexcharts') || 
-                id.includes('node_modules/react-apexcharts')) {
-              return 'admin-charts';
+            
+            if (id.includes('node_modules/slick-carousel')) {
+              return 'vendor-slick-css';
             }
-            // Admin-only: Radix UI components
-            if (id.includes('node_modules/@radix-ui')) {
-              return 'admin-ui';
-            }
-            // Public-facing: Slick carousel
-            if (id.includes('node_modules/react-slick') || 
-                id.includes('node_modules/slick-carousel')) {
-              return 'public-ui';
-            }
-            // Supabase client
+            
             if (id.includes('node_modules/@supabase')) {
               return 'vendor-supabase';
             }
