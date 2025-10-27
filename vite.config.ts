@@ -59,24 +59,23 @@ export default defineConfig(({ mode }) => {
     build: {
       cssCodeSplit: true, // Split CSS per route for better isolation
       rollupOptions: {
+        onwarn(warning, warn) {
+          // Log warnings related to circular dependencies or duplicate modules
+          if (warning.code === 'CIRCULAR_DEPENDENCY' || 
+              warning.code === 'DUPLICATE_IMPORT') {
+            console.error('⚠️ Rollup Warning:', warning);
+          }
+          warn(warning);
+        },
         output: {
           // Enhanced vendor bundles for granular caching and lazy loading
           manualChunks: (id) => {
-            // Core React bundle (rarely changes) - broader pattern to catch all React imports
-            if (id.includes('node_modules/react') && !id.includes('node_modules/react-')) {
+            // Core React bundle - CRITICAL: Use strict path matching to prevent splitting
+            // React, React-DOM, and Scheduler must ALWAYS be in the same chunk
+            if (id.includes('/node_modules/react/') || 
+                id.includes('/node_modules/react-dom/') ||
+                id.includes('/scheduler/')) {
               return 'vendor-react';
-            }
-            if (id.includes('node_modules/react-dom')) {
-              return 'vendor-react';
-            }
-            // React's internal scheduler
-            if (id.includes('scheduler')) {
-              return 'vendor-react';
-            }
-            // Router bundle - keep separate but ensure it doesn't duplicate React
-            if (id.includes('node_modules/react-router-dom') || 
-                id.includes('node_modules/react-router')) {
-              return 'vendor-router';
             }
             // React Query (admin-heavy)
             if (id.includes('node_modules/@tanstack/react-query')) {
