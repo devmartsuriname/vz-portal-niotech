@@ -1,16 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import * as React from 'react';
 
 const STORAGE_KEY = 'wizard_progress';
 const EXPIRATION_HOURS = 24;
 
 export const useWizardState = () => {
-  // DIAGNOSTIC: Log React instance being used
-  if (typeof window !== 'undefined') {
-    console.log('[useWizardState] React version:', React.version);
-    console.log('[useWizardState] React instance ID:', (window as any).__REACT_DIAG__?.instanceId);
-  }
-  
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [questionPath, setQuestionPath] = useState(['application_type']);

@@ -1,16 +1,10 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
-// DIAGNOSTIC: Ensure consistent React instance in editor iframe
-if (typeof window !== 'undefined') {
-  console.log('[useWizardSubmission] React version:', React.version);
-  console.log('[useWizardSubmission] React instances:', window.__REACT_INSTANCES__?.length, 'active:', window.__REACT_DIAG__?.instanceId);
-}
-
 export const useWizardSubmission = () => {
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [submissionId, setSubmissionId] = React.useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionId, setSubmissionId] = useState(null);
 
   const evaluateWizard = async (answers) => {
     try {
