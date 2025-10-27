@@ -4,23 +4,26 @@
  */
 export function lazyRetry<T>(
   importFn: () => Promise<T>,
-  retries = 1
+  retries = 2
 ): Promise<T> {
-  return importFn().catch((error) => {
-    if (retries > 0) {
-      // Add cache-busting query parameter and retry
-      const cacheBust = `?v=${Date.now()}`;
-      console.warn('[lazyRetry] Chunk load failed, retrying with cache bust...', error);
-      
-      // For dynamic imports, we can't directly add query params,
-      // so we force a page reload which will fetch fresh chunks
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          window.location.reload();
+  return new Promise((resolve, reject) => {
+    importFn()
+      .then(resolve)
+      .catch((error) => {
+        if (retries > 0) {
+          console.warn(`[lazyRetry] Chunk load failed, retrying... (${retries} attempts left)`, error);
+          
+          // Wait 500ms and retry the import (allows transient network issues to resolve)
+          setTimeout(() => {
+            lazyRetry(importFn, retries - 1)
+              .then(resolve)
+              .catch(reject);
+          }, 500);
+        } else {
+          // After all retries exhausted, show helpful error
+          console.error('[lazyRetry] All retry attempts failed. Please refresh the page manually.');
           reject(error);
-        }, 100);
+        }
       });
-    }
-    throw error;
   });
 }
