@@ -39,6 +39,17 @@ const AppTree = (
   </ErrorBoundary>
 );
 
-createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root');
+
+createRoot(root).render(
   import.meta.env.DEV ? AppTree : <StrictMode>{AppTree}</StrictMode>
 );
+
+// Blank screen detector (production only)
+if (!import.meta.env.DEV) {
+  setTimeout(() => {
+    if (!root.hasChildNodes() || root.innerHTML.trim() === '') {
+      console.error('[VZ Portal] Blank screen detected. Try hard refresh (Ctrl+Shift+R). If issue persists, check Network tab for 404s.');
+    }
+  }, 2000);
+}

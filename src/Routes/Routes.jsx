@@ -8,25 +8,26 @@ import { adminRoutes } from './AdminRoutes';
 import RouteError from "../components/common/RouteError";
 import NotFound from "../pages/NotFound";
 import PageSkeleton from "../components/common/PageSkeleton";
+import { lazyRetry } from "../utils/lazyRetry";
 
 // Wizard components (eager load to avoid duplicate React issues)
 import ApplicationWizard from "../Pages/Wizard/ApplicationWizard";
 import ConfirmationPage from "../Pages/Wizard/ConfirmationPage";
 
-// Lazy load public pages for better code splitting
-const AboutPage = lazy(() => import("../Pages/AboutPage"));
-const ServicePage = lazy(() => import("../Pages/ServicePage"));
-const ContactPage = lazy(() => import("../Pages/ContactPage"));
-const FaqPage = lazy(() => import("../Pages/FaqPage"));
-const Instructies = lazy(() => import("../Pages/Instructies"));
-const DocumentenLijsten = lazy(() => import("../Pages/DocumentenLijsten"));
-const AanvraagIndienen = lazy(() => import("../Pages/AanvraagIndienen"));
-const Vergunningen = lazy(() => import("../Pages/Vergunningen"));
-const Overzicht = lazy(() => import("../Pages/Overzicht"));
-const Feedback = lazy(() => import("../Pages/Feedback"));
-const BlogPage = lazy(() => import("../Pages/BlogPage"));
-const BlogDetaillsPage = lazy(() => import("../Pages/BlogDetaillsPage"));
-const BlogStandardPage = lazy(() => import("../Pages/BlogStandardPage"));
+// Lazy load public pages with retry logic for better reliability
+const AboutPage = lazy(() => lazyRetry(() => import("../Pages/AboutPage")));
+const ServicePage = lazy(() => lazyRetry(() => import("../Pages/ServicePage")));
+const ContactPage = lazy(() => lazyRetry(() => import("../Pages/ContactPage")));
+const FaqPage = lazy(() => lazyRetry(() => import("../Pages/FaqPage")));
+const Instructies = lazy(() => lazyRetry(() => import("../Pages/Instructies")));
+const DocumentenLijsten = lazy(() => lazyRetry(() => import("../Pages/DocumentenLijsten")));
+const AanvraagIndienen = lazy(() => lazyRetry(() => import("../Pages/AanvraagIndienen")));
+const Vergunningen = lazy(() => lazyRetry(() => import("../Pages/Vergunningen")));
+const Overzicht = lazy(() => lazyRetry(() => import("../Pages/Overzicht")));
+const Feedback = lazy(() => lazyRetry(() => import("../Pages/Feedback")));
+const BlogPage = lazy(() => lazyRetry(() => import("../Pages/BlogPage")));
+const BlogDetaillsPage = lazy(() => lazyRetry(() => import("../Pages/BlogDetaillsPage")));
+const BlogStandardPage = lazy(() => lazyRetry(() => import("../Pages/BlogStandardPage")));
 
 
 export const router = createBrowserRouter([
